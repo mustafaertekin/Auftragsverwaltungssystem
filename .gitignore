@@ -12,3 +12,8 @@ server/npm-debug.log
 server/tests/sqlite.db
 server/*.log
 server/*.iml
+
+client/node_modules
+client/idea
+client/dist
+

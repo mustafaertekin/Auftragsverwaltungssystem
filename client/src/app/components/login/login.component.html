@@ -1,0 +1,15 @@
+<div class="login-card">
+  <form [formGroup]="loginForm">
+    <div class="example-container">
+      <mat-form-field>
+        <input matInput [placeholder]="'LOGIN.EMAIL.PLACEHOLDER' | translate" formControlName="email" name="email" required>
+        <mat-error *ngIf="!email.valid" translate="LOGIN.EMAIL.ERROR"></mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput [placeholder]="'LOGIN.PASSWORD.PLACEHOLDER' | translate" formControlName="password"  name="password" required>
+        <mat-error *ngIf="!password.valid" translate="LOGIN.PASSWORD.ERROR"></mat-error>
+      </mat-form-field>
+    </div>
+  <button mat-button></button>
+ </form>
+</div>

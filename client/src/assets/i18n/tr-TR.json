@@ -1,0 +1,21 @@
+
+{
+    "DASHBOARD": {
+        "TITLE":"Baslik",
+        "DESCRIPTION": "Nasilsiniz bugun?",
+        "SYSTEM": {
+            "NAME": "Is Yonetim Sistemi"
+        }
+    },
+    "LOGIN": {
+        "EMAIL":{
+            "PLACEHOLDER": "Email adresinizi giriniz",
+            "ERROR": "Emailiniz gecerli deyil"
+        },
+        "PASSWORD": {
+            "PLACEHOLDER": "Sifre",
+            "ERROR": "Lütfen sifreyi doldurunuz!"
+        },
+        "ERROR": "Lütfen tekrar deneyin!"
+    }
+}
