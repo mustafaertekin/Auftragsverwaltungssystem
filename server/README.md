@@ -17,8 +17,6 @@ Integration Testing with [SuperTest](https://github.com/visionmedia/supertest)
 ```
 npm install -g yarn
 yarn install
-# install docker https://docs.docker.com/install/
-docker stack deploy -c local-infra.yml infra
 # connect to postgres via postgres:password@localhost:5432
 # create 'seed' user with password 'password'
 # create 'seed' database and set the 'seed' user as the owner
@@ -36,11 +34,9 @@ as database passwords and client secrets.
 There is a `.env.example` file included at the root of this project as an example, rename it to '.env' (.env is not under version control). Update the `.env` file with the pertinent information
 for your project.
 
-### RabbitMQ
-Install and run [RabbitMQ](https://www.rabbitmq.com/) with the default settings (or use the provided local-infra.yml in conjunction with docker-compose/swarm)
 
 ### Database
-You will need a [PostgreSQL](https://www.postgresql.org) database running on localhost:5432 (or use the provided local-infra.yml in conjunction with docker-compose/swarm)
+You will need a [Sqlite3] database running on localhost:5432 (or use the provided local-infra.yml in conjunction with docker-compose/swarm)
 
 The setup of PostgreSQL is beyond the scope of this guide. Please reference the [Install Guides](https://wiki.postgresql.org/wiki/Detailed_installation_guides)
 for help installing PostgreSQL on your machine.
