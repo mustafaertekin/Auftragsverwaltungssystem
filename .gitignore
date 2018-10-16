@@ -12,4 +12,3 @@ server/npm-debug.log
 server/tests/sqlite.db
 server/*.log
 server/*.iml
-server/.env
