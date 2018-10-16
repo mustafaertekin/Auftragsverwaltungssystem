@@ -1,0 +1,21 @@
+
+{
+    "DASHBOARD": {
+        "TITLE":"Title",
+        "DESCRIPTION": "How you doing today",
+        "SYSTEM": {
+            "NAME": "Task Management System"
+        }
+    },
+    "LOGIN": {
+        "EMAIL":{
+            "PLACEHOLDER": "Enter your email",
+            "ERROR": "Email is invalid"
+        },
+        "PASSWORD": {
+            "PLACEHOLDER": "Password",
+            "ERROR": "Password can not be empty!"
+        },
+        "ERROR": "Please try again!"
+    }
+}
