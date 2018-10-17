@@ -10,6 +10,7 @@ import { DashboardComponent } from '../../pages/dashboard/dashboard.component';
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginPageComponent },
+  { path: '', component: DashboardComponent, canActivate: [IsAuthorizedGuard]  },
   { path: 'dashboard', component: DashboardComponent, canActivate: [IsAuthorizedGuard]  }
 ];
 
