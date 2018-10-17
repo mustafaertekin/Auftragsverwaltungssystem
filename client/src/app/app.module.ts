@@ -7,6 +7,7 @@ import { Http } from '@angular/http';
 import { HttpModule } from '@angular/http';
 import {TranslateModule, TranslateLoader, TranslateService} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {FlexLayoutModule} from "@angular/flex-layout";
 
 import 'hammerjs';
 import { AppComponent } from './components/app-component/app.component';
@@ -53,6 +54,7 @@ export function createTranslateLoader(http: HttpClient) {
     ReactiveFormsModule,
     HttpClientModule,
     HttpModule,
+    FlexLayoutModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
