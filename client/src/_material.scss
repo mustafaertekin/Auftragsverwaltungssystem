@@ -6,8 +6,8 @@
 // have to load a single css file for Angular Material in your app.
 @include mat-core();
 
-// Custom 2BIT style palette
-$mat-twobit: (
+// Custom AVS style palette
+$mat-avs: (
     50: $p50,
     100: $p100,
     200: $p200,
@@ -43,20 +43,20 @@ $mat-twobit: (
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue.
-$twobit-app-primary: mat-palette($mat-twobit);
-$twobit-app-accent:  mat-palette($mat-grey, A200, A100, A400);
+$avs-app-primary: mat-palette($mat-avs);
+$avs-app-accent:  mat-palette($mat-avs, A200, A100, A400);
 
 // The warn palette is optional (defaults to red).
-$twobit-app-warn:    mat-palette($mat-red);
+$avs-app-warn:    mat-palette($mat-red);
 
 // Create the theme object (a Sass map containing all of the palettes).
-$twobit-app-theme: mat-light-theme($twobit-app-primary, $twobit-app-accent, $twobit-app-warn);
+$avs-app-theme: mat-light-theme($avs-app-primary, $avs-app-accent, $avs-app-warn);
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
-@include angular-material-theme($twobit-app-theme);
+@include angular-material-theme($avs-app-theme);
 
-$primary: map-get($twobit-app-theme, primary);
-$accent: map-get($twobit-app-theme, accent);
-$foreground: map-get($twobit-app-theme, foreground);
+$primary: map-get($avs-app-theme, primary);
+$accent: map-get($avs-app-theme, accent);
+$foreground: map-get($avs-app-theme, foreground);
