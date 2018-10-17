@@ -24,6 +24,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { SnackMessageComponent } from './components/snack-message/snack-message.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { SidenavHeaderComponent } from './components/sidenav-header/sidenav-header.component';
+import { ReportComponent } from './components/report/report.component';
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -39,7 +40,8 @@ export function createTranslateLoader(http: HttpClient) {
     DashboardComponent,
     SnackMessageComponent,
     SidenavComponent,
-    SidenavHeaderComponent
+    SidenavHeaderComponent,
+    ReportComponent
    
   ],
   imports: [
