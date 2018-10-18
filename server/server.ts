@@ -102,7 +102,7 @@ export class Server {
     }
 
     private static configureApp() {
-        Server.app.set("port", process.env.PORT || 3000);
+        Server.app.set("port", process.env.PORT || 3001);
         Server.app.use(bodyParser.urlencoded({ extended: true }));
         Server.app.use(bodyParser.json());
         Server.app.use(compression()); 
