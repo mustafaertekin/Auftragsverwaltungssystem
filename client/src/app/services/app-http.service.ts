@@ -9,8 +9,8 @@ export class AppHttpService {
   private headers: HttpHeaders;
   private serverUrl: string;
   constructor(private http: HttpClient, private tokenService: TokenService) {
-    //this.serverUrl = 'http://localhost:3000/';
-    this.serverUrl = 'http://104.248.32.52:3000/';
+    this.serverUrl = 'http://localhost:3000/';
+    //this.serverUrl = 'http://104.248.32.52:3000/';
     this.createAuthorizationHeader();
   }
 

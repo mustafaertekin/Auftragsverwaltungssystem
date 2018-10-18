@@ -26,6 +26,11 @@ import { SnackMessageComponent } from './components/snack-message/snack-message.
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { SidenavHeaderComponent } from './components/sidenav-header/sidenav-header.component';
 import { ReportComponent } from './components/report/report.component';
+import { OrdersComponent } from './components/orders/orders.component';
+import { CustomersComponent } from './components/customers/customers.component';
+import { BrandsComponent } from './components/brands/brands.component';
+import { ServicesComponent } from './components/services/services.component';
+import { UsersComponent } from './components/users/users.component';
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -42,7 +47,12 @@ export function createTranslateLoader(http: HttpClient) {
     SnackMessageComponent,
     SidenavComponent,
     SidenavHeaderComponent,
-    ReportComponent
+    ReportComponent,
+    OrdersComponent,
+    CustomersComponent,
+    BrandsComponent,
+    ServicesComponent,
+    UsersComponent
    
   ],
   imports: [
