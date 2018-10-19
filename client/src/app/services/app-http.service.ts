@@ -3,14 +3,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Http, Headers } from '@angular/http';
 import { Observable } from 'rxjs';
 import { TokenService } from './token.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class AppHttpService {
   private headers: HttpHeaders;
   private serverUrl: string;
   constructor(private http: HttpClient, private tokenService: TokenService) {
-    this.serverUrl = 'http://localhost:3001/';
-    // this.serverUrl = 'http://104.248.32.52:3001/';
+    this.serverUrl = environment.baseUrl;
     this.createAuthorizationHeader();
   }
 
