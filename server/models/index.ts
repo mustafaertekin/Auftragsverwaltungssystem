@@ -3,6 +3,14 @@ import {AccessToken} from "./entities/AccessToken";
 import {AuthorizationCode} from "./entities/AuthorizationCode";
 import {Client} from "./entities/Client";
 import {User} from "./entities/User";
+import { Order } from './entities/Order';
+import { OrderService } from './entities/OrderService';
+import { Service } from './entities/Service';
+import { Setting } from './entities/Setting';
+import { Device } from './entities/Device';
+import { DeviceModel } from './entities/DeviceModel';
+import { Company } from './entities/Company';
+import { Address } from './entities/Address';
 
 export {Sequelize} from 'sequelize-typescript';
 export {AccessToken} from "./entities/AccessToken";
@@ -30,7 +38,7 @@ export class Models {
     // TODO Scan models folder to build list
     private getModels() {
         return [
-            AccessToken, AuthorizationCode, Client, User
+            AccessToken, AuthorizationCode, Client, User, Order, OrderService, Service, Setting, Device, DeviceModel, Company, Address
         ];
     }
 }

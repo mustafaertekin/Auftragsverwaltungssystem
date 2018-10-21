@@ -1,4 +1,4 @@
-import {Table, Column, Model} from 'sequelize-typescript';
+import {Table, Column, Model, Default, PrimaryKey, IsUUID} from 'sequelize-typescript';
 import {BaseModel} from "./BaseModel";
 
 @Table

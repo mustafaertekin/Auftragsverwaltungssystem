@@ -4,6 +4,7 @@ import * as passport from "passport";
 import {AuthManager} from "../managers/AuthManager";
 import {Auth} from "../auth/auth";
 import {BaseRouter} from "./BaseRouter";
+import { nextTick } from "async";
 
 export class AuthRouter extends BaseRouter {
 

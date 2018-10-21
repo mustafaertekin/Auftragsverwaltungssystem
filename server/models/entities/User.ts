@@ -1,11 +1,17 @@
-import {AllowNull, BeforeSave, Column, DataType, HasOne, IsEmail, Table, Unique} from 'sequelize-typescript';
+import {AllowNull, BeforeSave, Column, DataType, HasOne, IsEmail, Table, Unique, Default, PrimaryKey, IsUUID} from 'sequelize-typescript';
 import {AccessToken} from "./AccessToken";
 import {BaseModel} from "./BaseModel";
 import {RoleEnum} from "../enums/RoleEnum";
-import {Utils} from "../../utils";
+
 
 @Table
 export class User extends BaseModel<User> {
+
+    @IsUUID(4)
+    @PrimaryKey
+    @Default(DataType.UUIDV4)
+    @Column(DataType.UUID)
+    userId: string;
 
     @AllowNull(false)
     @Column
@@ -33,9 +39,4 @@ export class User extends BaseModel<User> {
 
     @Column
     profilePicUrl: string;
-
-    @BeforeSave
-    static encryptPassword(instance: User) {
-        instance.password = Utils.encryptPassword(instance.password);
-    }
 }

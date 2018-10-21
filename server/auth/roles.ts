@@ -35,7 +35,7 @@ export class Roles {
             if(Roles.isAdmin(req.user)) {
                 return true;
             } else {
-                return req.user.id === req.params.id || req.user.email === req.query.email;
+                return req.user.userId === req.params.userId || req.user.email === req.query.email;
             }
         });
     }

@@ -26,7 +26,7 @@ export class AuthManager {
     }
 
     public async logout(user: User): Promise<any> {
-        const accessToken = await AccessToken.findOne({where: {userId: user.id}});
+        const accessToken = await AccessToken.findOne({where: {userId: user.userId}});
         if(accessToken) {
             return accessToken.destroy();
         } else {

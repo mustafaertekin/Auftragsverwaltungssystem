@@ -10,17 +10,20 @@ import { CustomersComponent } from '../../components/customers/customers.compone
 import { BrandsComponent } from '../../components/brands/brands.component';
 import { ServicesComponent } from '../../components/services/services.component';
 import { UsersComponent } from '../../components/users/users.component';
+import { HomeComponent } from 'src/app/pages/home/home.component';
+
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'login', component: LoginPageComponent },
-  //{ path: 'orders', component: OrdersComponent },
+  { path: 'home', component: HomeComponent},
   { path: 'dashboard', component: DashboardComponent,
   children: [
-    { path:"orders", component: OrdersComponent }, 
-    { path:"customers", component: CustomersComponent },
-    { path:"brands", component: BrandsComponent},
-    { path:"services", component: ServicesComponent},
-    { path:"users", component: UsersComponent}], canActivate: [IsAuthorizedGuard]  }
+    { path: '', redirectTo: 'orders', pathMatch: 'full' },
+    { path: 'orders', component: OrdersComponent },
+    { path: 'customers', component: CustomersComponent },
+    { path: 'brands', component: BrandsComponent},
+    { path: 'services', component: ServicesComponent},
+    { path: 'users', component: UsersComponent}], canActivate: [IsAuthorizedGuard]  }
 ];
 
 @NgModule({

@@ -6,13 +6,13 @@ export class ClientManager {
     constructor() {
     }
 
-    public async createClient(clientId, clientSecret) {
-        let newClient = new Client({clientId, clientSecret});
+    public async createClient(client: Client) {
+        const newClient = new Client(client);
         return newClient.save();
     }
 
-    public async updateClient(clientId, clientSecret) {
-        let client = await Client.find<Client>({where: {clientId: clientId}});
+    public async updateClient(clientId: string, clientSecret: string) {
+        const client = await Client.find<Client>({where: {clientId: clientId}});
         if(client) {
             client.clientId = clientId;
             client.clientSecret = clientSecret;
@@ -23,11 +23,13 @@ export class ClientManager {
     }
 
     public async deleteClient(clientId) {
-        let client = await Client.find<Client>({where: {clientId: clientId}});
+        const client = await Client.find<Client>({where: {clientId: clientId}});
         if(client) {
             return client.destroy();
         } else {
             throw new NotFoundError("No client found with that id");
         }
     }
+
+    
 }

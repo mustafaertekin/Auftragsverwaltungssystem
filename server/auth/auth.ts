@@ -12,6 +12,7 @@ import {AccessToken} from "../models/entities/AccessToken";
 import {Client} from "../models/entities/Client";
 import {sign, verify} from 'jsonwebtoken';
 import {AuthError} from "../errors/AuthError";
+import * as _  from 'lodash';
 
 const FacebookTokenStrategy = require('passport-facebook-token');
 
@@ -19,11 +20,11 @@ export class Auth {
 
     static serializeUser() {
         passport.serializeUser(function (user: any, done) {
-            done(null, user.id);
+            done(null, user.userId);
         });
 
-        passport.deserializeUser(function (id: number, done) {
-            User.find<User>({where: {id}}).then(function (user: User) {
+        passport.deserializeUser(function (userId: string, done) {
+            User.find<User>({where: {userId}}).then(function (user: User) {
                 done(null, user);
             });
         });
@@ -39,11 +40,12 @@ export class Auth {
     static useLocalStrategy() {
         passport.use(new LocalStrategy( async(userName, password, done) => {
             try {
-                let user = await User.findOne<User>({where: {email: userName}});
+                const user = await User.findOne<User>({where: {email: userName}});
                 if(user) {
                     const authorized = await this.comparePasswords(password, user.password);
                     if(authorized) {
-                        return done(null, user);
+                       // console.log('hata burdami succes',  authorized, _.get(user, 'dataValues'));
+                        return done(null, _.get(user, 'dataValues'));
                     } else {
                         return done(null, false);
                     }
@@ -80,8 +82,8 @@ export class Auth {
                     const jwtSecret: string | undefined = process.env.JWT_SECRET;
                     if(jwtSecret) {
                         verify(accessToken.token, jwtSecret, (err, decodedToken: any) => {
-                            if (decodedToken && accessToken.userId === decodedToken.id) {
-                                User.find({where: {id: accessToken.userId}}).then(user => {
+                            if (decodedToken && accessToken.userId === decodedToken.userId) {
+                                User.find({where: { userId: accessToken.userId}}).then(user => {
                                     return done(null, user);
                                 }).catch(error => {
                                     return done(new AuthError(error.message), false);

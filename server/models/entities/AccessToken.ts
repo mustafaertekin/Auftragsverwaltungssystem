@@ -1,9 +1,15 @@
-import {BelongsTo, Column, DataType, ForeignKey, Table} from 'sequelize-typescript';
+import {BelongsTo, Column, DataType, ForeignKey, Table, PrimaryKey, Default, IsUUID} from 'sequelize-typescript';
 import {BaseModel} from "./BaseModel";
 import {User} from "./User";
 
 @Table
 export class AccessToken extends BaseModel<AccessToken> {
+
+    @IsUUID(4)
+    @PrimaryKey
+    @Default(DataType.UUIDV4)
+    @Column(DataType.UUID)
+    accessid: string;
 
     @Column(DataType.TEXT)
     token: string;

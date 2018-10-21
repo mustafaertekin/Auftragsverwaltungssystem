@@ -142,7 +142,7 @@ describe('Get Current User', () => {
 describe('Change Password', () => {
     test('member should be able to change his own password', async () => {
         const response = await request(Server.app)
-            .put(`/users/${member.id}/password`)
+            .put(`/users/${member.userId}/password`)
             .type('json')
             .set('Authorization', 'Bearer ' + memberToken)
             .set('Accept', 'application/json')
@@ -174,7 +174,7 @@ describe('Change Password', () => {
 
     test('member should not be able to change admin password', async () => {
         const response = await request(Server.app)
-            .put(`/users/${admin.id}/password`)
+            .put(`/users/${admin.userId}/password`)
             .type('json')
             .set('Authorization', 'Bearer ' + memberToken)
             .set('Accept', 'application/json')
@@ -186,7 +186,7 @@ describe('Change Password', () => {
 describe('Update User', () => {
     test('member should be able to update self', async () => {
         const response = await request(Server.app)
-            .put(`/users/${member.id}`)
+            .put(`/users/${member.userId}`)
             .type('json')
             .set('Authorization', 'Bearer ' + memberToken)
             .set('Accept', 'application/json')
@@ -203,7 +203,7 @@ describe('Update User', () => {
 
     test('member should not be able to update admin', async () => {
         const response = await request(Server.app)
-            .put(`/users/${admin.id}`)
+            .put(`/users/${admin.userId}`)
             .type('json')
             .set('Authorization', 'Bearer ' + memberToken)
             .set('Accept', 'application/json')
@@ -213,7 +213,7 @@ describe('Update User', () => {
 
     test('admin should be able to update member', async () => {
         const response = await request(Server.app)
-            .put(`/users/${member.id}`)
+            .put(`/users/${member.userId}`)
             .type('json')
             .set('Authorization', 'Bearer ' + adminToken)
             .set('Accept', 'application/json')
@@ -233,7 +233,7 @@ describe('Delete User', () => {
 
     test('member should not be able to delete admin', async () => {
         const response = await request(Server.app)
-            .delete(`/users/${admin.id}`)
+            .delete(`/users/${admin.userId}`)
             .type('json')
             .set('Authorization', 'Bearer ' + memberToken)
             .set('Accept', 'application/json');
@@ -242,7 +242,7 @@ describe('Delete User', () => {
 
     test('admin should be able to delete member', async () => {
         const response = await request(Server.app)
-            .delete(`/users/${member.id}`)
+            .delete(`/users/${member.userId}`)
             .type('json')
             .set('Authorization', 'Bearer ' + adminToken)
             .set('Accept', 'application/json');

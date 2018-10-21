@@ -48,7 +48,7 @@ export class Oauth2 {
     private serializeClient() {
 
         this.server.serializeClient(function(client, done) {
-            return done(null, client.id);
+            return done(null, client.clientId);
         });
 
         this.server.deserializeClient(function(id, done) {
@@ -80,21 +80,23 @@ export class Oauth2 {
     private registerPasswordGrant() {
 
         this.server.exchange(oauth2orize.exchange.password((athlete, username, password, scope, done) => {
-
-            AccessToken.findOne<AccessToken>({where: {userId: athlete.id}}).then(accessToken => {
+            
+            AccessToken.findOne<AccessToken>({where: {userId: athlete.userId}}).then(accessToken => {
+                
                 if(accessToken) {
                     if(this.jwtSecret) {
                         verify(accessToken.token, this.jwtSecret, (err, decodedToken: any) => {
                             if(err) {
                                 accessToken.destroy().then(() => {
                                     if(this.jwtSecret) {
-                                        sign(athlete.dataValues, this.jwtSecret, { expiresIn: "10h"}, (err, encodedToken) => {
+                                        sign(athlete, this.jwtSecret, { expiresIn: "10h"}, (err, encodedToken) => {
+                                            console.log('athletim ben', err, encodedToken);
                                             if(err) {
                                                 return done(err);
                                             }
                                             AccessToken.create({
                                                 token: encodedToken,
-                                                userId: athlete.id
+                                                userId: athlete.userId
                                             }).then((accessToken: AccessToken) => {
                                                 return done(null, accessToken.token);
                                             }).catch((error) => {
@@ -106,7 +108,8 @@ export class Oauth2 {
                                     }
 
                                 });
-                            } else if (decodedToken && accessToken.userId === decodedToken.id) {
+                            } else if (decodedToken && accessToken.userId === decodedToken.userId) {
+                                console.log('athletim ben 1', err, accessToken,decodedToken);
                                 return done(null, accessToken.token);
                             } else {
                                 return done(new AuthError("Token Validation Error"), false);
@@ -118,13 +121,13 @@ export class Oauth2 {
 
                 } else {
                     if(this.jwtSecret) {
-                        sign(athlete.dataValues, this.jwtSecret, { expiresIn: "10h"}, (err, encodedToken) => {
+                        sign(athlete, this.jwtSecret, { expiresIn: "10h"}, (err, encodedToken) => {
                             if(err) {
                                 return done(err);
                             }
                             AccessToken.create({
                                 token: encodedToken,
-                                userId: athlete.id
+                                userId: athlete.userId
                             }).then((accessToken: AccessToken) => {
                                 return done(null, accessToken.token);
                             }).catch((error) => {
@@ -158,7 +161,7 @@ export class Oauth2 {
                 const token = sign(localClient,  this.jwtSecret, { expiresIn: "10h"});
                 AccessToken.create({
                     token: token,
-                    clientId: client.dataValues.id
+                    clientId: client.dataValues.clientId
                 }).then(function(accessToken) {
                     return done(null, accessToken);
                 }).catch(function(error) {

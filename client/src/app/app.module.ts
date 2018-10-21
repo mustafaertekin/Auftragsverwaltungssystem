@@ -31,6 +31,10 @@ import { CustomersComponent } from './components/customers/customers.component';
 import { BrandsComponent } from './components/brands/brands.component';
 import { ServicesComponent } from './components/services/services.component';
 import { UsersComponent } from './components/users/users.component';
+import { HomeComponent } from './pages/home/home.component';
+import { HomeHeaderComponent } from './components/home-header/home-header.component';
+import { HomeFooterComponent } from './components/home-footer/home-footer.component';
+import { HomeContentComponent } from './components/home-content/home-content.component';
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -52,7 +56,11 @@ export function createTranslateLoader(http: HttpClient) {
     CustomersComponent,
     BrandsComponent,
     ServicesComponent,
-    UsersComponent
+    UsersComponent,
+    HomeComponent,
+    HomeHeaderComponent,
+    HomeFooterComponent,
+    HomeContentComponent
    
   ],
   imports: [

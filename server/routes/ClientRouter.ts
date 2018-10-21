@@ -25,7 +25,7 @@ export class ClientRouter {
 
     public async getById(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
-            const client = await Client.findOne<Client>({ where: {clientId: req.params.id} });
+            const client = await Client.findOne<Client>({ where: {clientId: req.params.clientId} });
             res.json(client);
         } catch(error) {
             next(error);
@@ -34,7 +34,7 @@ export class ClientRouter {
 
     public async post(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
-            const newClient = await this.clientManager.createClient(req.body.clientId, req.body.clientSecret);
+            const newClient = await this.clientManager.createClient(req.body);
             res.json(newClient);
         } catch(error) {
             next(error);

@@ -5,6 +5,7 @@ import {Auth} from "../auth/auth";
 import {AuthError} from "../errors/AuthError";
 import {S3Manager} from "./S3Manager";
 import {logger} from "../lib/logger";
+import {Utils} from "../utils";
 
 export class UserManager {
 
@@ -18,7 +19,7 @@ export class UserManager {
             firstName,
             lastName,
             email,
-            password,
+            password: Utils.encryptPassword(password),
             profilePicUrl,
             role
         });
@@ -27,7 +28,8 @@ export class UserManager {
 
     public async updateUser(userId: string, email: string, firstName: string, lastName: string, role: RoleEnum, profilePicUrl?: string): Promise<User> {
 
-        const user = await User.find<User>({where: {id: userId}});
+        console.log('UPDATING USER', userId);
+        const user = await User.find<User>({where: {userId: userId}});
         if (user) {
             user.email = email || user.email;
             user.firstName = firstName || user.firstName;
@@ -66,7 +68,7 @@ export class UserManager {
     }
 
     public async deleteUser(userId: string): Promise<User | null> {
-        const user = await User.find<User>({where: {id: userId}});
+        const user = await User.find<User>({where: {userId}});
         if (user) {
             await user.destroy();
             return user;
@@ -77,12 +79,12 @@ export class UserManager {
     }
 
     public async updatePassword(userId: string, currentPassword: string, newPassword: string): Promise<User> {
-        const user = await User.find<User>({where: {id: userId}});
+        const user = await User.find<User>({where: {userId}});
         if (user) {
             try{
                 const authorized = await Auth.comparePasswords(currentPassword, user.password);
                 if (authorized) {
-                    user.password = newPassword;
+                    user.password =  Utils.encryptPassword(newPassword);
                     return user.save();
                 } else {
                     logger.error("Current password incorrect");
@@ -90,7 +92,6 @@ export class UserManager {
                 }
             }
             catch(err){
-                console.log("burdayin", err);
                 throw new AuthError(err);
             }
             
