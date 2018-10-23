@@ -35,6 +35,9 @@ import { HomeComponent } from './pages/home/home.component';
 import { HomeHeaderComponent } from './components/home-header/home-header.component';
 import { HomeFooterComponent } from './components/home-footer/home-footer.component';
 import { HomeContentComponent } from './components/home-content/home-content.component';
+import { OrdersFormComponent } from './components/orders-form/orders-form.component';
+import { CustomersFormComponent } from './components/customers-form/customers-form.component';
+import { BrandsFormComponent } from './components/brands-form/brands-form.component';
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -60,7 +63,10 @@ export function createTranslateLoader(http: HttpClient) {
     HomeComponent,
     HomeHeaderComponent,
     HomeFooterComponent,
-    HomeContentComponent
+    HomeContentComponent,
+    OrdersFormComponent,
+    CustomersFormComponent,
+    BrandsFormComponent
    
   ],
   imports: [
