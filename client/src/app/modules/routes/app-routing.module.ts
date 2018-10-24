@@ -11,6 +11,7 @@ import { BrandsComponent } from '../../components/brands/brands.component';
 import { ServicesComponent } from '../../components/services/services.component';
 import { UsersComponent } from '../../components/users/users.component';
 import { HomeComponent } from 'src/app/pages/home/home.component';
+import { OrdersFormComponent} from '../../components/orders-form/orders-form.component'; 
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -23,6 +24,7 @@ const routes: Routes = [
     { path: 'customers', component: CustomersComponent },
     { path: 'brands', component: BrandsComponent},
     { path: 'services', component: ServicesComponent},
+    { path: 'ordersform', component: OrdersFormComponent},
     { path: 'users', component: UsersComponent}], canActivate: [IsAuthorizedGuard]  }
 ];
 
