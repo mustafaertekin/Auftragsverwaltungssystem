@@ -17,7 +17,17 @@ import {
   MatSidenavModule,
   MatListModule,
   MatTableModule,
+  MatDatepickerModule,
+  MatNativeDateModule,      
+  MatRadioModule,      
+  MatSelectModule,      
+  MatOptionModule,      
+  MatSlideToggleModule,
+  ErrorStateMatcher,
+  ShowOnDirtyErrorStateMatcher    
+  
 } from '@angular/material';
+
 
 
 @NgModule({
@@ -37,7 +47,13 @@ import {
     MatSnackBarModule,
     MatSidenavModule,
     MatListModule,
-    MatTableModule
+    MatTableModule,
+    MatDatepickerModule,
+  MatNativeDateModule,      
+  MatRadioModule,      
+  MatSelectModule,      
+  MatOptionModule,      
+  MatSlideToggleModule,
   ],
   exports: [
     MatButtonModule,
@@ -54,7 +70,16 @@ import {
     MatSnackBarModule,
     MatSidenavModule,
     MatListModule,
-    MatTableModule
+    MatTableModule,
+    MatDatepickerModule,
+  MatNativeDateModule,      
+  MatRadioModule,      
+  MatSelectModule,      
+  MatOptionModule,      
+  MatSlideToggleModule
+  ],
+  providers: [      
+    {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}      
   ],
   declarations: []
 })
