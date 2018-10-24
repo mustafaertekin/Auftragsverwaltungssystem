@@ -1,12 +1,13 @@
 import {Service} from "../models/entities/Service";
 import {NotFoundError} from "../errors/NotFoundError";
+import {logger} from "../lib/logger";
 
 export class ServiceManager {
 
     constructor() {
     }
 
-    public async createService(serviceId, description, order ) {
+    public async createService(serviceId: string, description: string, order: string ) {
         const newService = new Service({
             serviceId,
             description,
@@ -15,24 +16,27 @@ export class ServiceManager {
         return newService.save();
     }
 
-    public async updateService(serviceId, description, order) {
-        const service = await Service.find<Service>({where: {serviceId: serviceId}});
+    public async updateService(serviceId: string, description: string, order: string): Promise<Service> {
+        const service = await Service.find<Service>({where: {serviceId}});
         if(service) {
-            service.serviceId = serviceId;
-            service.description = description;
-            service.order = order;
+            service.serviceId = serviceId || service.serviceId;
+            service.description = description || service.description;
+            service.order = order || service.order;
             
             return service.save();
         } else {
+            logger.error("No service model found");
             throw new NotFoundError("No service found with that id");
         }
     }
 
-    public async deleteService(serviceId) {
-        const service = await Service.find<Service>({where: {serviceId: serviceId}});
+    public async deleteService(serviceId: string): Promise<Service> {
+        const service = await Service.find<Service>({where: {serviceId}});
         if(service) {
-            return service.destroy();
+            await service.destroy();
+            return service;
         } else {
+            logger.error("No service model found");
             throw new NotFoundError("No service found with that id");
         }
     }

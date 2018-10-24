@@ -1,5 +1,6 @@
 import {Client} from "../models/entities/Client";
 import {NotFoundError} from "../errors/NotFoundError";
+import {logger} from "../lib/logger";
 
 export class ClientManager {
 
@@ -12,21 +13,24 @@ export class ClientManager {
     }
 
     public async updateClient(clientId: string, clientSecret: string) {
-        const client = await Client.find<Client>({where: {clientId: clientId}});
+        const client = await Client.find<Client>({where: {clientId}});
         if(client) {
-            client.clientId = clientId;
-            client.clientSecret = clientSecret;
+            client.clientSecret = clientSecret || client.clientSecret;
+
             return client.save();
         } else {
+            logger.error("No client found");
             throw new NotFoundError("No client found with that id");
         }
     }
 
-    public async deleteClient(clientId) {
-        const client = await Client.find<Client>({where: {clientId: clientId}});
+    public async deleteClient(clientId: string): Promise<Client | null> {
+        const client = await Client.find<Client>({where: {clientId}});
         if(client) {
-            return client.destroy();
+            await client.destroy();
+            return client;
         } else {
+            logger.error("No client found");
             throw new NotFoundError("No client found with that id");
         }
     }

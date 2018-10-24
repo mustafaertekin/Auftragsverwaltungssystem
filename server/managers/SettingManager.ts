@@ -1,12 +1,13 @@
 import {Setting} from "../models/entities/Setting";
 import {NotFoundError} from "../errors/NotFoundError";
+import {logger} from "../lib/logger";
 
 export class SettingManager {
 
     constructor() {
     }
 
-    public async createSetting(settingId, userId, language ) {
+    public async createSetting(settingId: string, userId: string, language: string ) {
         const newSetting = new Setting({
             settingId,
             userId,
@@ -15,7 +16,7 @@ export class SettingManager {
         return newSetting.save();
     }
 
-    public async updateSetting(settingId, userId, language) {
+    public async updateSetting(settingId, userId, language): Promise<Setting> {
         const setting = await Setting.find<Setting>({where: {settingId: settingId}});
         if(setting) {
             setting.settingId = settingId;
@@ -24,15 +25,18 @@ export class SettingManager {
             
             return setting.save();
         } else {
+            logger.error("No setting model found");
             throw new NotFoundError("No setting found with that id");
         }
     }
 
-    public async deleteSetting(settingId) {
+    public async deleteSetting(settingId: string): Promise<Setting | null> {
         const setting = await Setting.find<Setting>({where: {settingId: settingId}});
         if(setting) {
-            return setting.destroy();
+            await setting.destroy();
+            return setting;
         } else {
+            logger.error("No setting model found");
             throw new NotFoundError("No setting found with that id");
         }
     }

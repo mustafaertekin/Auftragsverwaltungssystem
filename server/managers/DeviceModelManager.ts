@@ -1,5 +1,6 @@
 import {DeviceModel} from "../models/entities/DeviceModel";
 import {NotFoundError} from "../errors/NotFoundError";
+import {logger} from "../lib/logger";
 
 export class DeviceModelManager {
 
@@ -14,23 +15,25 @@ export class DeviceModelManager {
         return newDeviceModel.save();
     }
 
-    public async updateDeviceModel(deviceModelId: string, deviceModelName: string) {
-        const deviceModel = await DeviceModel.find<DeviceModel>({where: {deviceModelId: deviceModelId}});
+    public async updateDeviceModel(deviceModelId: string, deviceModelName: string): Promise<DeviceModel> {
+        const deviceModel = await DeviceModel.find<DeviceModel>({where: {deviceModelId}});
         if(deviceModel) {
-            deviceModel.deviceModelId = deviceModelId;
-            deviceModel.deviceModelName = deviceModelName;
+            deviceModel.deviceModelName = deviceModelName || deviceModel.deviceModelName;
             
             return deviceModel.save();
         } else {
+            logger.error("No device model found");
             throw new NotFoundError("No deviceModel found with that id");
         }
     }
 
-    public async deleteDeviceModel(deviceModelId) {
+    public async deleteDeviceModel(deviceModelId: string): Promise<DeviceModel | null> {
         const deviceModel = await DeviceModel.find<DeviceModel>({where: {deviceModelId: deviceModelId}});
         if(deviceModel) {
-            return deviceModel.destroy();
+            await deviceModel.destroy();
+            return deviceModel;
         } else {
+            logger.error("No device model found");
             throw new NotFoundError("No deviceModel found with that id");
         }
     }
