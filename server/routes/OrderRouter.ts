@@ -1,23 +1,24 @@
 import * as express from "express";
-import {Client} from "../models/entities/Client";
+import {Order} from "../models/entities/Order";
 import {Auth} from "../auth/auth";
-import {ClientManager} from "../managers/ClientManager";
+import {OrderManager} from "../managers/OrderManager";
 
-export class ClientRouter {
+export class OrderRouter {
 
     public router: express.Router;
-    private clientManager: ClientManager;
+    private orderManager: OrderManager;
+
 
     constructor() {
-        this.clientManager = new ClientManager();
+        this.orderManager = new OrderManager();
         this.router = express.Router();
         this.buildRoutes();
     }
 
     public async get(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
-            const clients = await Client.findAll<Client>();
-            res.json(clients);
+            const orders = await Order.findAll<Order>();
+            res.json(orders);
         } catch(error) {
             next(error);
         }
@@ -25,8 +26,8 @@ export class ClientRouter {
 
     public async getById(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
-            const client = await Client.findOne<Client>({ where: {clientId: req.params.clientId} });
-            res.json(client);
+            const order = await Order.findOne<Order>({ where: {orderId: req.params.orderId} });
+            res.json(order);
         } catch(error) {
             next(error);
         }
@@ -34,8 +35,19 @@ export class ClientRouter {
 
     public async post(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
-            const newClient = await this.clientManager.createClient(req.body);
-            res.json(newClient);
+            const newOrder = await this.orderManager.createOrder(
+                req.body.clientId,
+                req.body.orderId,
+                req.body.userId,
+                req.body.deviceId,
+                req.body.modelId,
+                req.body.service,
+                req.body.price,
+                req.body.companyId,
+                req.body.status,
+                req.body.description
+            );
+            res.json(newOrder);
         } catch(error) {
             next(error);
         }
@@ -43,8 +55,19 @@ export class ClientRouter {
 
     public async put(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
-            const updatedClient = await this.clientManager.updateClient(req.body.clientId, req.body.clientSecret);
-            res.json(updatedClient);
+            const updatedOrder = await this.orderManager.updateOrder(
+                req.params.orderId,
+                req.body.clientId,
+                req.body.userId,
+                req.body.deviceId,
+                req.body.modelId,
+                req.body.service,
+                req.body.price,
+                req.body.companyId,
+                req.body.status,
+                req.body.description
+            );
+            res.json(updatedOrder);
         } catch(error) {
             next(error);
         }
@@ -52,8 +75,8 @@ export class ClientRouter {
 
     public async delete(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
-            const client = this.clientManager.deleteClient(req.body.clientId);
-            res.json(client);
+            const order = this.orderManager.deleteOrder(req.params.orderId);
+            res.json(order);
         } catch(error) {
             next(error);
         }

@@ -37,6 +37,26 @@ export class AddressManager {
         }
     }
 
+    public async findById(addressId: string) {
+        const address = await Address.findOne<Address>({where: {addressId: addressId}});
+        if (address) {
+            return address;
+        } else {
+            logger.error("No address found with the provided id");
+            throw new NotFoundError("No address found with the provided id");
+        }
+    }
+
+    public async findAll(): Promise<Address[]> {
+        const addresses: Address[] = await Address.findAll<Address>({});
+        if (addresses) {
+            return addresses;
+        } else {
+            logger.error("No user found");
+            throw new NotFoundError("No address found");
+        }
+    }
+
     public async deleteAddress(addressId: string): Promise<Address | null> {
         const address = await Address.find<Address>({where: {addressId}});
         if(address) {

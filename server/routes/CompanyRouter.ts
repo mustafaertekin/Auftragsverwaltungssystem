@@ -1,23 +1,24 @@
 import * as express from "express";
-import {Client} from "../models/entities/Client";
+import {Company} from "../models/entities/Company";
 import {Auth} from "../auth/auth";
-import {ClientManager} from "../managers/ClientManager";
+import {CompanyManager} from "../managers/CompanyManager";
 
-export class ClientRouter {
+export class CompanyRouter {
 
     public router: express.Router;
-    private clientManager: ClientManager;
+    private companyManager: CompanyManager;
+
 
     constructor() {
-        this.clientManager = new ClientManager();
+        this.companyManager = new CompanyManager();
         this.router = express.Router();
         this.buildRoutes();
     }
 
     public async get(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
-            const clients = await Client.findAll<Client>();
-            res.json(clients);
+            const companys = await Company.findAll<Company>();
+            res.json(companys);
         } catch(error) {
             next(error);
         }
@@ -25,8 +26,8 @@ export class ClientRouter {
 
     public async getById(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
-            const client = await Client.findOne<Client>({ where: {clientId: req.params.clientId} });
-            res.json(client);
+            const company = await Company.findOne<Company>({ where: {companyId: req.params.companyId} });
+            res.json(company);
         } catch(error) {
             next(error);
         }
@@ -34,8 +35,12 @@ export class ClientRouter {
 
     public async post(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
-            const newClient = await this.clientManager.createClient(req.body);
-            res.json(newClient);
+            const newCompany = await this.companyManager.createCompany(
+                req.body.companyId,
+                req.body.name,
+                req.body.addressId
+            );
+            res.json(newCompany);
         } catch(error) {
             next(error);
         }
@@ -43,8 +48,12 @@ export class ClientRouter {
 
     public async put(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
-            const updatedClient = await this.clientManager.updateClient(req.body.clientId, req.body.clientSecret);
-            res.json(updatedClient);
+            const updatedCompany = await this.companyManager.updateCompany(
+                req.params.companyId,
+                req.body.name,
+                req.body.addressId
+            );
+            res.json(updatedCompany);
         } catch(error) {
             next(error);
         }
@@ -52,8 +61,8 @@ export class ClientRouter {
 
     public async delete(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
-            const client = this.clientManager.deleteClient(req.body.clientId);
-            res.json(client);
+            const company = this.companyManager.deleteCompany(req.params.companyId);
+            res.json(company);
         } catch(error) {
             next(error);
         }

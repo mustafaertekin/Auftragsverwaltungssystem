@@ -30,6 +30,26 @@ export class SettingManager {
         }
     }
 
+    public async findById(settingId: string) {
+        const setting = await Setting.findOne<Setting>({where: {settingId: settingId}});
+        if (setting) {
+            return setting;
+        } else {
+            logger.error("No setting found with the provided id");
+            throw new NotFoundError("No setting found with the provided id");
+        }
+    }
+
+    public async findAll(): Promise<Setting[]> {
+        const settings: Setting[] = await Setting.findAll<Setting>({});
+        if (settings) {
+            return settings;
+        } else {
+            logger.error("No setting found");
+            throw new NotFoundError("No setting found");
+        }
+    }
+
     public async deleteSetting(settingId: string): Promise<Setting | null> {
         const setting = await Setting.find<Setting>({where: {settingId: settingId}});
         if(setting) {

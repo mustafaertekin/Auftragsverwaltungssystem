@@ -1,23 +1,24 @@
 import * as express from "express";
-import {Client} from "../models/entities/Client";
+import {Service} from "../models/entities/Service";
 import {Auth} from "../auth/auth";
-import {ClientManager} from "../managers/ClientManager";
+import {ServiceManager} from "../managers/ServiceManager";
 
-export class ClientRouter {
+export class ServiceRouter {
 
     public router: express.Router;
-    private clientManager: ClientManager;
+    private serviceManager: ServiceManager;
+
 
     constructor() {
-        this.clientManager = new ClientManager();
+        this.serviceManager = new ServiceManager();
         this.router = express.Router();
         this.buildRoutes();
     }
 
     public async get(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
-            const clients = await Client.findAll<Client>();
-            res.json(clients);
+            const services = await Service.findAll<Service>();
+            res.json(services);
         } catch(error) {
             next(error);
         }
@@ -25,8 +26,8 @@ export class ClientRouter {
 
     public async getById(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
-            const client = await Client.findOne<Client>({ where: {clientId: req.params.clientId} });
-            res.json(client);
+            const service = await Service.findOne<Service>({ where: {serviceId: req.params.serviceId} });
+            res.json(service);
         } catch(error) {
             next(error);
         }
@@ -34,8 +35,12 @@ export class ClientRouter {
 
     public async post(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
-            const newClient = await this.clientManager.createClient(req.body);
-            res.json(newClient);
+            const newService = await this.serviceManager.createService(
+                req.body.serviceId,
+                req.body.description,
+                req.body.order
+            );
+            res.json(newService);
         } catch(error) {
             next(error);
         }
@@ -43,8 +48,12 @@ export class ClientRouter {
 
     public async put(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
-            const updatedClient = await this.clientManager.updateClient(req.body.clientId, req.body.clientSecret);
-            res.json(updatedClient);
+            const updatedService = await this.serviceManager.updateService(
+                req.params.serviceId,
+                req.body.description,
+                req.body.order
+            );
+            res.json(updatedService);
         } catch(error) {
             next(error);
         }
@@ -52,8 +61,8 @@ export class ClientRouter {
 
     public async delete(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
-            const client = this.clientManager.deleteClient(req.body.clientId);
-            res.json(client);
+            const service = this.serviceManager.deleteService(req.params.serviceId);
+            res.json(service);
         } catch(error) {
             next(error);
         }

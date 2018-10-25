@@ -1,32 +1,33 @@
 import * as express from "express";
-import {Client} from "../models/entities/Client";
+import {DeviceModel} from "../models/entities/DeviceModel";
 import {Auth} from "../auth/auth";
-import {ClientManager} from "../managers/ClientManager";
+import {DeviceModelManager} from "../managers/DeviceModelManager";
 
-export class ClientRouter {
+export class DeviceModelRouter {
 
     public router: express.Router;
-    private clientManager: ClientManager;
+    private deviceModelManager: DeviceModelManager;
+
 
     constructor() {
-        this.clientManager = new ClientManager();
+        this.deviceModelManager = new DeviceModelManager();
         this.router = express.Router();
         this.buildRoutes();
     }
 
     public async get(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
-            const clients = await Client.findAll<Client>();
-            res.json(clients);
+            const deviceModels = await DeviceModel.findAll<DeviceModel>();
+            res.json(deviceModels);
         } catch(error) {
             next(error);
         }
     }
-
+ 
     public async getById(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
-            const client = await Client.findOne<Client>({ where: {clientId: req.params.clientId} });
-            res.json(client);
+            const deviceModel = await DeviceModel.findOne<DeviceModel>({ where: {deviceModelId: req.params.deviceModelId} });
+            res.json(deviceModel);
         } catch(error) {
             next(error);
         }
@@ -34,8 +35,11 @@ export class ClientRouter {
 
     public async post(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
-            const newClient = await this.clientManager.createClient(req.body);
-            res.json(newClient);
+            const newDeviceModel = await this.deviceModelManager.createDeviceModel(
+                req.body.deviceModelId,
+                req.body.deviceModelName
+            );
+            res.json(newDeviceModel);
         } catch(error) {
             next(error);
         }
@@ -43,8 +47,11 @@ export class ClientRouter {
 
     public async put(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
-            const updatedClient = await this.clientManager.updateClient(req.body.clientId, req.body.clientSecret);
-            res.json(updatedClient);
+            const updatedDeviceModel = await this.deviceModelManager.updateDeviceModel(
+                req.params.deviceModelId,
+                req.body.deviceModelName
+            );
+            res.json(updatedDeviceModel);
         } catch(error) {
             next(error);
         }
@@ -52,8 +59,8 @@ export class ClientRouter {
 
     public async delete(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
-            const client = this.clientManager.deleteClient(req.body.clientId);
-            res.json(client);
+            const deviceModel = this.deviceModelManager.deleteDeviceModel(req.params.deviceModelId);
+            res.json(deviceModel);
         } catch(error) {
             next(error);
         }

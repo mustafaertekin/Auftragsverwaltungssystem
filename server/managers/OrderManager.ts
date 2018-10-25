@@ -45,6 +45,26 @@ export class OrderManager {
         }
     }
 
+    public async findById(orderId: string) {
+        const order = await Order.findOne<Order>({where: {orderId: orderId}});
+        if (order) {
+            return order;
+        } else {
+            logger.error("No order found with the provided id");
+            throw new NotFoundError("No order found with the provided id");
+        }
+    }
+
+    public async findAll(): Promise<Order[]> {
+        const orders: Order[] = await Order.findAll<Order>({});
+        if (orders) {
+            return orders;
+        } else {
+            logger.error("No order found");
+            throw new NotFoundError("No order found");
+        }
+    }
+
     public async deleteOrder(orderId: string): Promise<Order> {
         const order = await Order.find<Order>({where: {orderId: orderId}});
         if(order) {

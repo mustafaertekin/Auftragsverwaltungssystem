@@ -1,6 +1,7 @@
 import {Service} from "../models/entities/Service";
 import {NotFoundError} from "../errors/NotFoundError";
 import {logger} from "../lib/logger";
+import { Order } from "models/entities/Order";
 
 export class ServiceManager {
 
@@ -16,10 +17,9 @@ export class ServiceManager {
         return newService.save();
     }
 
-    public async updateService(serviceId: string, description: string, order: string): Promise<Service> {
+    public async updateService(serviceId: string, description: string, order: Order[]): Promise<Service> {
         const service = await Service.find<Service>({where: {serviceId}});
         if(service) {
-            service.serviceId = serviceId || service.serviceId;
             service.description = description || service.description;
             service.order = order || service.order;
             
@@ -27,6 +27,26 @@ export class ServiceManager {
         } else {
             logger.error("No service model found");
             throw new NotFoundError("No service found with that id");
+        }
+    }
+
+    public async findById(serviceId: string) {
+        const service = await Service.findOne<Service>({where: {serviceId: serviceId}});
+        if (service) {
+            return service;
+        } else {
+            logger.error("No service found with the provided id");
+            throw new NotFoundError("No service found with the provided id");
+        }
+    }
+
+    public async findAll(): Promise<Service[]> {
+        const services: Service[] = await Service.findAll<Service>({});
+        if (services) {
+            return services;
+        } else {
+            logger.error("No service found");
+            throw new NotFoundError("No service");
         }
     }
 

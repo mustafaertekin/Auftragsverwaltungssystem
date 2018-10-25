@@ -1,23 +1,24 @@
 import * as express from "express";
-import {Client} from "../models/entities/Client";
+import {Setting} from "../models/entities/Setting";
 import {Auth} from "../auth/auth";
-import {ClientManager} from "../managers/ClientManager";
+import {SettingManager} from "../managers/SettingManager";
 
-export class ClientRouter {
+export class SettingRouter {
 
     public router: express.Router;
-    private clientManager: ClientManager;
+    private settingManager: SettingManager;
+
 
     constructor() {
-        this.clientManager = new ClientManager();
+        this.settingManager = new SettingManager();
         this.router = express.Router();
         this.buildRoutes();
     }
 
     public async get(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
-            const clients = await Client.findAll<Client>();
-            res.json(clients);
+            const settings = await Setting.findAll<Setting>();
+            res.json(settings);
         } catch(error) {
             next(error);
         }
@@ -25,8 +26,8 @@ export class ClientRouter {
 
     public async getById(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
-            const client = await Client.findOne<Client>({ where: {clientId: req.params.clientId} });
-            res.json(client);
+            const setting = await Setting.findOne<Setting>({ where: {settingId: req.params.settingId} });
+            res.json(setting);
         } catch(error) {
             next(error);
         }
@@ -34,8 +35,12 @@ export class ClientRouter {
 
     public async post(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
-            const newClient = await this.clientManager.createClient(req.body);
-            res.json(newClient);
+            const newSetting = await this.settingManager.createSetting(
+                req.body.settingId,
+                req.body.userId,
+                req.body.language
+            );
+            res.json(newSetting);
         } catch(error) {
             next(error);
         }
@@ -43,8 +48,12 @@ export class ClientRouter {
 
     public async put(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
-            const updatedClient = await this.clientManager.updateClient(req.body.clientId, req.body.clientSecret);
-            res.json(updatedClient);
+            const updatedSetting = await this.settingManager.updateSetting(
+                req.params.settingId,
+                req.body.userId,
+                req.body.language
+            );
+            res.json(updatedSetting);
         } catch(error) {
             next(error);
         }
@@ -52,8 +61,8 @@ export class ClientRouter {
 
     public async delete(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
-            const client = this.clientManager.deleteClient(req.body.clientId);
-            res.json(client);
+            const setting = this.settingManager.deleteSetting(req.params.settingId);
+            res.json(setting);
         } catch(error) {
             next(error);
         }

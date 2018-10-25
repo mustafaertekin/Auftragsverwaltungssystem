@@ -27,6 +27,26 @@ export class DeviceManager {
         }
     }
 
+    public async findById(deviceId: string) {
+        const device = await Device.findOne<Device>({where: {deviceId: deviceId}});
+        if (device) {
+            return device;
+        } else {
+            logger.error("No device found with the provided id");
+            throw new NotFoundError("No device found with the provided id");
+        }
+    }
+
+    public async findAll(): Promise<Device[]> {
+        const devices: Device[] = await Device.findAll<Device>({});
+        if (devices) {
+            return devices;
+        } else {
+            logger.error("No devices found");
+            throw new NotFoundError("No device found with the provided email");
+        }
+    }
+
     public async deleteDevice(deviceId: string): Promise<Device | null> {
         const device = await Device.find<Device>({where: {deviceId}});
         if(device) {

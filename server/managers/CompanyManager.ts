@@ -29,6 +29,26 @@ export class CompanyManager {
         }
     }
 
+    public async findById(companyId: string) {
+        const company = await Company.findOne<Company>({where: {companyId: companyId}});
+        if (company) {
+            return company;
+        } else {
+            logger.error("No company found with the provided id");
+            throw new NotFoundError("No company found with the provided id");
+        }
+    }
+
+    public async findAll(): Promise<Company[]> {
+        const companies: Company[] = await Company.findAll<Company>({});
+        if (companies) {
+            return companies;
+        } else {
+            logger.error("No company found");
+            throw new NotFoundError("No company found");
+        }
+    }
+
     public async deleteCompany(companyId: string): Promise<Company | null> {
         const company = await Company.find<Company>({where: {companyId}});
         if(company) {

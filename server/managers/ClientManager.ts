@@ -24,6 +24,26 @@ export class ClientManager {
         }
     }
 
+    public async findById(clientId: string) {
+        const client = await Client.findOne<Client>({where: {clientId: clientId}});
+        if (client) {
+            return client;
+        } else {
+            logger.error("No client found with the provided id");
+            throw new NotFoundError("No client found with the provided id");
+        }
+    }
+
+    public async findAll(): Promise<Client[]> {
+        const clients: Client[] = await Client.findAll<Client>({});
+        if (clients) {
+            return clients;
+        } else {
+            logger.error("No client found");
+            throw new NotFoundError("No client found");
+        }
+    }
+
     public async deleteClient(clientId: string): Promise<Client | null> {
         const client = await Client.find<Client>({where: {clientId}});
         if(client) {

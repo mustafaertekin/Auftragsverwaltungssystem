@@ -27,6 +27,26 @@ export class DeviceModelManager {
         }
     }
 
+    public async findById(deviceModelId: string) {
+        const deviceModel = await DeviceModel.findOne<DeviceModel>({where: {deviceModelId: deviceModelId}});
+        if (deviceModel) {
+            return deviceModel;
+        } else {
+            logger.error("No device model found with the provided id");
+            throw new NotFoundError("No device model found with the provided id");
+        }
+    }
+
+    public async findAll(): Promise<DeviceModel[]> {
+        const deviceModels: DeviceModel[] = await DeviceModel.findAll<DeviceModel>({});
+        if (deviceModels) {
+            return deviceModels;
+        } else {
+            logger.error("No devices model found");
+            throw new NotFoundError("No device model found with the provided email");
+        }
+    }
+
     public async deleteDeviceModel(deviceModelId: string): Promise<DeviceModel | null> {
         const deviceModel = await DeviceModel.find<DeviceModel>({where: {deviceModelId: deviceModelId}});
         if(deviceModel) {
