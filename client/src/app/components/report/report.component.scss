@@ -1,3 +1,9 @@
-.example-card {
+@import '../../../material'  ;
+  
+  .example-card {
     max-width: 300px;
+    background: $p50;
+    border: 1px solid $p500;
   }
+
+
