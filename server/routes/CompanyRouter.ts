@@ -49,7 +49,7 @@ export class CompanyRouter {
     public async put(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
             const updatedCompany = await this.companyManager.updateCompany(
-                req.params.companyId,
+                req.params.id,
                 req.body.name,
                 req.body.addressId
             );
@@ -61,7 +61,7 @@ export class CompanyRouter {
 
     public async delete(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
-            const company = this.companyManager.deleteCompany(req.params.companyId);
+            const company = this.companyManager.deleteCompany(req.params.id);
             res.json(company);
         } catch(error) {
             next(error);

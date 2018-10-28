@@ -26,7 +26,7 @@ export class OrderRouter {
 
     public async getById(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
-            const order = await Order.findOne<Order>({ where: {orderId: req.params.orderId} });
+            const order = await Order.findOne<Order>({ where: {orderId: req.params.id} });
             res.json(order);
         } catch(error) {
             next(error);
@@ -56,7 +56,7 @@ export class OrderRouter {
     public async put(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
             const updatedOrder = await this.orderManager.updateOrder(
-                req.params.orderId,
+                req.params.id,
                 req.body.clientId,
                 req.body.userId,
                 req.body.deviceId,
@@ -75,7 +75,7 @@ export class OrderRouter {
 
     public async delete(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
-            const order = this.orderManager.deleteOrder(req.params.orderId);
+            const order = this.orderManager.deleteOrder(req.params.id);
             res.json(order);
         } catch(error) {
             next(error);

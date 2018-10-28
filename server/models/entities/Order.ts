@@ -20,22 +20,18 @@ export class Order extends BaseModel<Order> {
     orderId: string;
 
     @ForeignKey(() => Client)
-    @AllowNull(false)
     @Column
     clientId: string;
 
     @ForeignKey(() => User)
-    @AllowNull(false)
     @Column
     userId: string;
 
     @ForeignKey(() => Device)
-    @AllowNull(false)
     @Column
     deviceId: string;
 
     @ForeignKey(() => DeviceModel)
-    @AllowNull(false)
     @Column
     modelId: string;
 
@@ -47,7 +43,6 @@ export class Order extends BaseModel<Order> {
     price: string;
 
     @ForeignKey(() => Company)
-    @AllowNull(false)
     @Column
     companyId: string;
 

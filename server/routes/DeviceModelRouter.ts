@@ -26,7 +26,7 @@ export class DeviceModelRouter {
  
     public async getById(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
-            const deviceModel = await DeviceModel.findOne<DeviceModel>({ where: {deviceModelId: req.params.deviceModelId} });
+            const deviceModel = await DeviceModel.findOne<DeviceModel>({ where: {deviceModelId: req.params.id} });
             res.json(deviceModel);
         } catch(error) {
             next(error);
@@ -35,10 +35,7 @@ export class DeviceModelRouter {
 
     public async post(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
-            const newDeviceModel = await this.deviceModelManager.createDeviceModel(
-                req.body.deviceModelId,
-                req.body.deviceModelName
-            );
+            const newDeviceModel = await this.deviceModelManager.createDeviceModel(req.body);
             res.json(newDeviceModel);
         } catch(error) {
             next(error);
@@ -48,7 +45,7 @@ export class DeviceModelRouter {
     public async put(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
             const updatedDeviceModel = await this.deviceModelManager.updateDeviceModel(
-                req.params.deviceModelId,
+                req.params.id,
                 req.body.deviceModelName
             );
             res.json(updatedDeviceModel);
@@ -59,7 +56,7 @@ export class DeviceModelRouter {
 
     public async delete(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
-            const deviceModel = this.deviceModelManager.deleteDeviceModel(req.params.deviceModelId);
+            const deviceModel = this.deviceModelManager.deleteDeviceModel(req.params.id);
             res.json(deviceModel);
         } catch(error) {
             next(error);

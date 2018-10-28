@@ -7,15 +7,15 @@ export class AddressManager {
     constructor() {
     }
 
-    public async createAddress(addressId: string, streetName: string, plzName: string, cityName: string, countryName: string, clientId: string, userId: string) {
+    public async createAddress(addressId: string, streetName: string, plzNumber: string, cityName: string, countryName: string, clientId: string, userId: string) {
         const newAddress = new Address({
             addressId,
             streetName,
-            plzName,
+            plzNumber,
             cityName,
             countryName,
             clientId,
-            userId
+            userId,
         });
         return newAddress.save();
     }

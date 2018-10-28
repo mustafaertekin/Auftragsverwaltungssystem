@@ -26,7 +26,7 @@ export class AddressRouter {
 
     public async getById(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
-            const address = await Address.findOne<Address>({ where: {addressId: req.params.addressId} });
+            const address = await Address.findOne<Address>({ where: {addressId: req.params.id} });
             res.json(address);
         } catch(error) {
             next(error);
@@ -38,11 +38,11 @@ export class AddressRouter {
             const newAddress = await this.addressManager.createAddress(
                 req.body.addressId,
                 req.body.streetName,
-                req.body.plzName,
+                req.body.plzNumber,
                 req.body.cityName,
                 req.body.countryName,
                 req.body.clientId,
-                req.body.userId
+                req.body.userId,
             );
             res.json(newAddress);
         } catch(error) {
@@ -53,13 +53,13 @@ export class AddressRouter {
     public async put(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
             const updatedAddress = await this.addressManager.updateAddress(
-                req.params.addressId,
+                req.params.id,
                 req.body.streetName,
-                req.body.plzName,
+                req.body.plzNumber,
                 req.body.cityName,
                 req.body.countryName,
                 req.body.clientId,
-                req.body.userId
+                req.body.userId,
             );
             res.json(updatedAddress);
         } catch(error) {
@@ -69,7 +69,7 @@ export class AddressRouter {
 
     public async delete(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
-            const address = this.addressManager.deleteAddress(req.params.addressId);
+            const address = this.addressManager.deleteAddress(req.params.id);
             res.json(address);
         } catch(error) {
             next(error);

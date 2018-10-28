@@ -1,23 +1,30 @@
 import {DeviceModel} from "../models/entities/DeviceModel";
 import {NotFoundError} from "../errors/NotFoundError";
 import {logger} from "../lib/logger";
+import { Device } from "../models/entities/Device";
 
 export class DeviceModelManager {
 
     constructor() {
     }
 
-    public async createDeviceModel(deviceModelId: string, deviceModelName: string ) {
+    public async createDeviceModel(body: any ) {
+        const device  = new Device({
+            deviceName: body.deviceName
+        });
+        const savedDevice = await device.save();
+        
         const newDeviceModel = new DeviceModel({
-            deviceModelId,
-            deviceModelName
-             });
+            deviceId: savedDevice.deviceId,
+            deviceModelName: body.deviceModelName
+        });
         return newDeviceModel.save();
     }
 
     public async updateDeviceModel(deviceModelId: string, deviceModelName: string): Promise<DeviceModel> {
         const deviceModel = await DeviceModel.find<DeviceModel>({where: {deviceModelId}});
         if(deviceModel) {
+            
             deviceModel.deviceModelName = deviceModelName || deviceModel.deviceModelName;
             
             return deviceModel.save();
@@ -58,3 +65,8 @@ export class DeviceModelManager {
         }
     }
 }
+
+/* {
+    "deviceModelName": "XS Max 225",
+    "deviceName": "Samsung"
+  } */

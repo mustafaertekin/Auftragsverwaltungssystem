@@ -9,6 +9,7 @@ import { AddressRouter } from "./AddressRouter";
 import { DeviceModelRouter } from "./DeviceModelRouter";
 import { ServiceRouter } from "./ServiceRouter";
 import { SettingRouter } from "./SettingRouter";
+import { CompanyRouter } from "./CompanyRouter";
 
 export class Router {
 
@@ -22,5 +23,6 @@ export class Router {
         app.use('/device-models', new DeviceModelRouter().router);
         app.use('/services', new ServiceRouter().router);
         app.use('/settings', new SettingRouter().router);
+        app.use('/companies', new CompanyRouter().router);
     }
 }

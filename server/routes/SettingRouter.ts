@@ -26,7 +26,7 @@ export class SettingRouter {
 
     public async getById(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
-            const setting = await Setting.findOne<Setting>({ where: {settingId: req.params.settingId} });
+            const setting = await Setting.findOne<Setting>({ where: {settingId: req.params.id} });
             res.json(setting);
         } catch(error) {
             next(error);
@@ -49,7 +49,7 @@ export class SettingRouter {
     public async put(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
             const updatedSetting = await this.settingManager.updateSetting(
-                req.params.settingId,
+                req.params.id,
                 req.body.userId,
                 req.body.language
             );
@@ -61,7 +61,7 @@ export class SettingRouter {
 
     public async delete(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
-            const setting = this.settingManager.deleteSetting(req.params.settingId);
+            const setting = this.settingManager.deleteSetting(req.params.id);
             res.json(setting);
         } catch(error) {
             next(error);

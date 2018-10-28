@@ -26,7 +26,7 @@ export class ServiceRouter {
 
     public async getById(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
-            const service = await Service.findOne<Service>({ where: {serviceId: req.params.serviceId} });
+            const service = await Service.findOne<Service>({ where: {serviceId: req.params.id} });
             res.json(service);
         } catch(error) {
             next(error);
@@ -49,7 +49,7 @@ export class ServiceRouter {
     public async put(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
             const updatedService = await this.serviceManager.updateService(
-                req.params.serviceId,
+                req.params.id,
                 req.body.description,
                 req.body.order
             );
@@ -61,7 +61,7 @@ export class ServiceRouter {
 
     public async delete(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
-            const service = this.serviceManager.deleteService(req.params.serviceId);
+            const service = this.serviceManager.deleteService(req.params.id);
             res.json(service);
         } catch(error) {
             next(error);

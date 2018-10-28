@@ -25,7 +25,7 @@ export class ClientRouter {
 
     public async getById(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
-            const client = await Client.findOne<Client>({ where: {clientId: req.params.clientId} });
+            const client = await Client.findOne<Client>({ where: {clientId: req.params.id} });
             res.json(client);
         } catch(error) {
             next(error);
@@ -43,7 +43,14 @@ export class ClientRouter {
 
     public async put(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
-            const updatedClient = await this.clientManager.updateClient(req.body.clientId, req.body.clientSecret);
+            const updatedClient = await this.clientManager.updateClient(
+                req.params.id,
+                req.body.clientSecret,
+                req.body.clientEmail,
+                req.body.clientName,
+                req.body.clientTelefon,
+                req.body.addressId
+                );
             res.json(updatedClient);
         } catch(error) {
             next(error);
@@ -52,7 +59,7 @@ export class ClientRouter {
 
     public async delete(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
-            const client = this.clientManager.deleteClient(req.body.clientId);
+            const client = this.clientManager.deleteClient(req.params.id);
             res.json(client);
         } catch(error) {
             next(error);
@@ -67,4 +74,4 @@ export class ClientRouter {
         this.router.delete("/:id", Auth.getBearerMiddleware(), this.delete.bind(this));
     }
 
-}
+} 
