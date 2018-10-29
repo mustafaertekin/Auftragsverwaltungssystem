@@ -90,8 +90,8 @@ export class UserRouter extends BaseRouter {
     }
 
     private buildRoutes() {
-        this.router.get("/",/* Auth.getBearerMiddleware(), Roles.connectRoles.can('modify user'),*/ this.get.bind(this));
-        this.router.post("/", this.post.bind(this));
+        this.router.get("/", Auth.getBearerMiddleware(), Roles.connectRoles.can('modify user'), this.get.bind(this));
+        this.router.post("/", Auth.getBearerMiddleware(), Roles.connectRoles.can('modify user'), this.post.bind(this));
         this.router.delete("/:userId", Auth.getBearerMiddleware(), Roles.connectRoles.can('modify user'), this.delete.bind(this));
         this.router.put("/:userId", Auth.getBearerMiddleware() , Roles.connectRoles.can('modify user'), this.put.bind(this));
         this.router.get("/current", Auth.getBearerMiddleware(), this.getByToken.bind(this));

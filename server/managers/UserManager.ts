@@ -67,6 +67,16 @@ export class UserManager {
         }
     }
 
+    public async findById(userId: string) {
+        const user = await User.findOne<User>({where: {userId}});
+        if (user) {
+            return user;
+        } else {
+            logger.error("No user found with the provided email");
+            throw new NotFoundError("No user found with the provided email");
+        }
+    }
+
     public async deleteUser(userId: string): Promise<User | null> {
         const user = await User.find<User>({where: {userId}});
         if (user) {
