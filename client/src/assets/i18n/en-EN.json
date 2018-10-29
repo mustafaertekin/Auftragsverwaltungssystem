@@ -4,7 +4,7 @@
         "TITLE":"Title",
         "DESCRIPTION": "How you doing today",
         "SYSTEM": {
-            "NAME": "Task Management System"
+            "NAME": "Order Management System"
         }
     },
     "LOGIN": {
