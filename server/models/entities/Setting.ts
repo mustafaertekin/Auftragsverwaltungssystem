@@ -16,7 +16,6 @@ export class Setting extends BaseModel<Setting> {
     language: string;
 
     @ForeignKey(() => User)
-    @AllowNull(false)
     @Column
     userId: string;
 }

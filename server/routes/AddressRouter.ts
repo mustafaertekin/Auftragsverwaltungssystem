@@ -1,23 +1,24 @@
 import * as express from "express";
-import {Client} from "../models/entities/Client";
+import {Address} from "../models/entities/Address";
 import {Auth} from "../auth/auth";
-import {ClientManager} from "../managers/ClientManager";
+import {AddressManager} from "../managers/AddressManager";
 
-export class ClientRouter {
+export class AddressRouter {
 
     public router: express.Router;
-    private clientManager: ClientManager;
+    private addressManager: AddressManager;
+
 
     constructor() {
-        this.clientManager = new ClientManager();
+        this.addressManager = new AddressManager();
         this.router = express.Router();
         this.buildRoutes();
     }
 
     public async get(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
-            const clients = await Client.findAll<Client>();
-            res.json(clients);
+            const addresss = await Address.findAll<Address>();
+            res.json(addresss);
         } catch(error) {
             next(error);
         }
@@ -25,8 +26,8 @@ export class ClientRouter {
 
     public async getById(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
-            const client = await Client.findOne<Client>({ where: {clientId: req.params.id} });
-            res.json(client);
+            const address = await Address.findOne<Address>({ where: {addressId: req.params.id} });
+            res.json(address);
         } catch(error) {
             next(error);
         }
@@ -34,8 +35,16 @@ export class ClientRouter {
 
     public async post(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
-            const newClient = await this.clientManager.createClient(req.body);
-            res.json(newClient);
+            const newAddress = await this.addressManager.createAddress(
+                req.body.addressId,
+                req.body.streetName,
+                req.body.plzNumber,
+                req.body.cityName,
+                req.body.countryName,
+                req.body.clientId,
+                req.body.userId,
+            );
+            res.json(newAddress);
         } catch(error) {
             next(error);
         }
@@ -43,15 +52,16 @@ export class ClientRouter {
 
     public async put(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
-            const updatedClient = await this.clientManager.updateClient(
+            const updatedAddress = await this.addressManager.updateAddress(
                 req.params.id,
-                req.body.clientSecret,
-                req.body.clientEmail,
-                req.body.clientName,
-                req.body.clientTelefon,
-                req.body.addressId
-                );
-            res.json(updatedClient);
+                req.body.streetName,
+                req.body.plzNumber,
+                req.body.cityName,
+                req.body.countryName,
+                req.body.clientId,
+                req.body.userId,
+            );
+            res.json(updatedAddress);
         } catch(error) {
             next(error);
         }
@@ -59,8 +69,8 @@ export class ClientRouter {
 
     public async delete(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
-            const client = this.clientManager.deleteClient(req.params.id);
-            res.json(client);
+            const address = this.addressManager.deleteAddress(req.params.id);
+            res.json(address);
         } catch(error) {
             next(error);
         }
@@ -74,4 +84,4 @@ export class ClientRouter {
         this.router.delete("/:id", Auth.getBearerMiddleware(), this.delete.bind(this));
     }
 
-} 
+}

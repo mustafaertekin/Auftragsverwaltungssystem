@@ -38,6 +38,7 @@ export class Roles {
                 return req.user.userId === req.params.userId || req.user.email === req.query.email;
             }
         });
+
     }
 
     private static isAdmin(user): boolean {

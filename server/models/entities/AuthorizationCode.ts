@@ -15,4 +15,22 @@ export class AuthorizationCode extends BaseModel<AuthorizationCode> {
 
     @Column
     userId: string;
+
+    @Column
+    addressId: string;
+
+    @Column
+    serviceId: string;
+
+    @Column
+    deviceId: string;
+
+    @Column
+    deviceModelId: string;
+
+    @Column
+    orderId: string;
+
+    @Column
+    settingId: string;
 }
