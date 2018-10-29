@@ -1,38 +1,61 @@
 import {Service} from "../models/entities/Service";
 import {NotFoundError} from "../errors/NotFoundError";
+import {logger} from "../lib/logger";
+import { Order } from "models/entities/Order";
 
 export class ServiceManager {
 
     constructor() {
     }
 
-    public async createService(serviceId, description, order ) {
+    public async createService(description: string, order: string ) {
         const newService = new Service({
-            serviceId,
             description,
             order
         });
         return newService.save();
     }
 
-    public async updateService(serviceId, description, order) {
-        const service = await Service.find<Service>({where: {serviceId: serviceId}});
+    public async updateService(serviceId: string, description: string, orders: Order[]): Promise<Service> {
+        const service = await Service.find<Service>({where: {serviceId}});
         if(service) {
-            service.serviceId = serviceId;
-            service.description = description;
-            service.order = order;
+            service.description = description || service.description;
+            service.orders = orders || service.orders;
             
             return service.save();
         } else {
+            logger.error("No service model found");
             throw new NotFoundError("No service found with that id");
         }
     }
 
-    public async deleteService(serviceId) {
-        const service = await Service.find<Service>({where: {serviceId: serviceId}});
-        if(service) {
-            return service.destroy();
+    public async findById(serviceId: string) {
+        const service = await Service.findOne<Service>({where: {serviceId: serviceId}});
+        if (service) {
+            return service;
         } else {
+            logger.error("No service found with the provided id");
+            throw new NotFoundError("No service found with the provided id");
+        }
+    }
+
+    public async findAll(): Promise<Service[]> {
+        const services: Service[] = await Service.findAll<Service>({});
+        if (services) {
+            return services;
+        } else {
+            logger.error("No service found");
+            throw new NotFoundError("No service");
+        }
+    }
+
+    public async deleteService(serviceId: string): Promise<Service> {
+        const service = await Service.find<Service>({where: {serviceId}});
+        if(service) {
+            await service.destroy();
+            return service;
+        } else {
+            logger.error("No service model found");
             throw new NotFoundError("No service found with that id");
         }
     }

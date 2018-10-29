@@ -12,7 +12,6 @@ export class DeviceModel extends BaseModel<DeviceModel> {
     deviceModelId: string;
 
     @ForeignKey(() => Device)
-    @AllowNull(false)
     @Column
     deviceId: string;
 

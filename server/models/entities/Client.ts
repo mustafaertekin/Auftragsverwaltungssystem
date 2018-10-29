@@ -32,7 +32,6 @@ export class Client extends BaseModel<Client> {
     clientTelefon: string;
 
     @ForeignKey(() => Address)
-    @AllowNull(false)
     @Column
     addressId: string;
 
