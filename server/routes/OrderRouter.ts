@@ -37,11 +37,10 @@ export class OrderRouter {
         try {
             const newOrder = await this.orderManager.createOrder(
                 req.body.clientId,
-                req.body.orderId,
                 req.body.userId,
                 req.body.deviceId,
                 req.body.modelId,
-                req.body.service,
+                req.body.serviceId,
                 req.body.price,
                 req.body.companyId,
                 req.body.status,

@@ -7,9 +7,8 @@ export class OrderServiceManager {
     constructor() {
     }
 
-    public async createOrderService(orderServiceId: string, orderId: string, serviceId: string) {
+    public async createOrderService(orderId: string, serviceId: string) {
         const newOrderService = new OrderService({
-            orderServiceId,
             orderId,
             serviceId
         });

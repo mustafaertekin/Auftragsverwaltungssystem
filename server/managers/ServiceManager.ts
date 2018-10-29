@@ -8,9 +8,8 @@ export class ServiceManager {
     constructor() {
     }
 
-    public async createService(serviceId: string, description: string, order: string ) {
+    public async createService(description: string, order: string ) {
         const newService = new Service({
-            serviceId,
             description,
             order
         });

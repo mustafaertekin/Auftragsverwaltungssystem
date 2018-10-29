@@ -36,7 +36,6 @@ export class ServiceRouter {
     public async post(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
             const newService = await this.serviceManager.createService(
-                req.body.serviceId,
                 req.body.description,
                 req.body.order
             );
