@@ -29,8 +29,8 @@ export class ClientManager {
         }
     }
 
-    public async findById(clientId: string) {
-        const client = await Client.findOne<Client>({where: {clientId: clientId}});
+    public async findById(clientId: string): Promise<Client> {
+        const client = await Client.findOne<Client>({where: {clientId}});
         if (client) {
             return client;
         } else {

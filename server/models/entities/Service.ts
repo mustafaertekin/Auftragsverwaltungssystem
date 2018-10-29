@@ -16,5 +16,5 @@ export class Service extends BaseModel<Service> {
     description: string;
 
     @BelongsToMany(() => Order, () => OrderService)
-    order: Order[];
+    orders: Order[];
 }

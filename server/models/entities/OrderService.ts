@@ -1,4 +1,4 @@
-import {Column, DataType, IsUUID, Default,PrimaryKey, ForeignKey, Table} from 'sequelize-typescript';
+import {Column, DataType, IsUUID, Default,PrimaryKey, ForeignKey, Table, BelongsToMany, HasMany} from 'sequelize-typescript';
 import {BaseModel} from "./BaseModel";
 import { Order } from './Order';
 import { Service } from './Service';

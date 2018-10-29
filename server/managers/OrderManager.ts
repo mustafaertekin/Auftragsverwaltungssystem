@@ -16,6 +16,8 @@ import { MessageError } from "../errors/MessageError";
 import { Client } from "../models/entities/Client";
 import { Company } from "../models/entities/Company";
 import { Device } from "../models/entities/Device";
+import { User } from "../models/entities/User";
+import { OrderService } from "../models/entities/OrderService";
 
 
 export class OrderManager {
@@ -25,19 +27,18 @@ export class OrderManager {
 
     public async createOrder(clientId: string, userId: string, deviceId: string, modelId: string, serviceId: string, price: string, companyId: string, status: OrderStatus, description: string ) {
         try {
-                const user = await new UserManager().findById(userId);
+               
+                const user = await new UserManager().findById(userId); 
                 const client = await new ClientManager().findById(clientId);
                 const device = await new DeviceManager().findById(deviceId);
                 const model = await new DeviceModelManager().findById(modelId);
                 const service = await new ServiceManager().findById(serviceId);
                 const company = await new CompanyManager().findById(companyId);
-                // console.log('objects ===>>>', user, client, device, model, service, company);
                 /*
                 if(user && client && device && model && service && company) {
                     return new Error('sunlari adam gibi doldur yea!');
                 }
                 */
-                
                 const newOrder = new Order({
                         clientId: client.clientId,
                         userId: user.userId,
@@ -63,7 +64,7 @@ export class OrderManager {
             order.userId = userId || order.userId;
             order.deviceId = deviceId || order.deviceId;
             order.modelId = modelId || order.modelId;
-            order.service = service || order.service;
+            order.services = service || order.services;
             order.price = price || order.price;
             order.companyId = companyId || order.companyId;
             order.status = status || order.status;
@@ -77,7 +78,10 @@ export class OrderManager {
     }
 
     public async findById(orderId: string) {
-        const order = await Order.findOne<Order>({where: {orderId}});
+        const order = await Order.findOne<Order>({
+            where: {orderId},
+            include: [Client, User, Device, DeviceModel, Company, Service]
+        }); 
         if (order) {
             return order;
         } else {

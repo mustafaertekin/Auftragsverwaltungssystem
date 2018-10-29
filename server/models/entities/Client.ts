@@ -31,10 +31,6 @@ export class Client extends BaseModel<Client> {
     @Column
     clientTelefon: string;
 
-    @ForeignKey(() => Order)
-    @Column
-    orderId: string;
-
     @ForeignKey(() => Address)
     @Column
     addressId: string;

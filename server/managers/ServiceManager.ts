@@ -16,11 +16,11 @@ export class ServiceManager {
         return newService.save();
     }
 
-    public async updateService(serviceId: string, description: string, order: Order[]): Promise<Service> {
+    public async updateService(serviceId: string, description: string, orders: Order[]): Promise<Service> {
         const service = await Service.find<Service>({where: {serviceId}});
         if(service) {
             service.description = description || service.description;
-            service.order = order || service.order;
+            service.orders = orders || service.orders;
             
             return service.save();
         } else {

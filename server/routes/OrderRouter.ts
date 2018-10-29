@@ -26,7 +26,7 @@ export class OrderRouter {
 
     public async getById(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
-            const order = await Order.findOne<Order>({ where: {orderId: req.params.id} });
+            const order = await this.orderManager.findById(req.params.id);
             res.json(order);
         } catch(error) {
             next(error);
@@ -34,7 +34,7 @@ export class OrderRouter {
     }
 
     public async post(req: express.Request, res: express.Response, next: express.NextFunction) {
-        try {
+        try { 
             const newOrder = await this.orderManager.createOrder(
                 req.body.clientId,
                 req.body.userId,

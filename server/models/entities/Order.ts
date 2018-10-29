@@ -1,4 +1,4 @@
-import {AllowNull, BeforeSave, Column, DataType, HasOne, ForeignKey, Table, Unique, BelongsToMany, Default, PrimaryKey, IsUUID} from 'sequelize-typescript';
+import {AllowNull, BeforeSave, Column, DataType, HasOne, ForeignKey, Table, Unique, BelongsToMany, Default, PrimaryKey, IsUUID, BelongsTo} from 'sequelize-typescript';
 import {BaseModel} from "./BaseModel";
 import { User } from './User';
 import { Client } from './Client';
@@ -36,7 +36,7 @@ export class Order extends BaseModel<Order> {
     modelId: string;
 
     @BelongsToMany(() => Service, () => OrderService)
-    service: Service[];
+    services: Service[];
 
     @AllowNull(false)
     @Column
@@ -52,4 +52,23 @@ export class Order extends BaseModel<Order> {
     @Column
     description: string;
 
+    @BelongsTo(() => Client)
+    client: Client;
+
+    @BelongsTo(() => User)
+    user: User;
+
+    @BelongsTo(() => Company)
+    company: Company;
+
+    @BelongsTo(() => Device)
+    device: Device;
+
+    @BelongsTo(() => DeviceModel)
+    model: DeviceModel;
 }
+
+/**
+ * 
+ *  User, Device, DeviceModel, Company
+ */

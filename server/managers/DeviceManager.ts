@@ -27,8 +27,9 @@ export class DeviceManager {
         }
     }
 
-    public async findById(deviceId: string) {
-        const device = await Device.findOne<Device>({where: {deviceId: deviceId}});
+    public async findById(deviceId: string): Promise<Device> {
+        console.log('order 1221===============>', deviceId);
+        const device = await Device.findOne<Device>({where: {deviceId}});
         if (device) {
             return device;
         } else {
