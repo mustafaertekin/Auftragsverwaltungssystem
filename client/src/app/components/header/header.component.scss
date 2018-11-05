@@ -3,3 +3,18 @@
   height: 40px;
   border-radius: 100%;
 }
+
+mat-toolbar{
+  box-shadow: 3px 0px 10px rgba(18, 0, 82, 0.7);
+
+
+  .navbar-header {
+      text-align: center;
+      .navbar-brand {
+          display: flex;
+          line-height: 18px;
+
+          align-items: center;
+      }
+  }
+}

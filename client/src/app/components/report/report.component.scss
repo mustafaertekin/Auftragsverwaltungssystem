@@ -1,9 +1,18 @@
 @import '../../../material'  ;
-  
-  .example-card {
-    max-width: 300px;
-    background: $p50;
-    border: 1px solid $p500;
-  }
+
+.d-flex{
+    display: flex;
+ }
+
+ .no-shrink{
+    flex-shrink: 0;
+}
 
 
+.m-r-10 {
+  margin-right: 10px;
+}
+
+.m-0 {
+  margin: 0px;
+}
