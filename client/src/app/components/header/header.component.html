@@ -2,9 +2,8 @@
   <mat-toolbar color="primary">
     <span translate="DASHBOARD.SYSTEM.NAME"></span>
     <span style="flex:1 1 auto"></span>
-    <button mat-icon-button [mat-menu-trigger-for]="menu">
-      <mat-icon>more_vert</mat-icon>
-    </button>
+    <button [mat-menu-trigger-for]="menu" mat-icon-button>
+      <img src="../../../assets/images/users/mertekin-profil.jpg" alt="user" class="profile-picture"> </button>
   </mat-toolbar>
   <mat-menu x-position="before" #menu="matMenu">
   <button mat-menu-item (click)="logout()">Logout</button>
