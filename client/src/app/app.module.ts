@@ -24,7 +24,6 @@ import { IsAuthorizedGuard } from './services/is-authorized.guard';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { SnackMessageComponent } from './components/snack-message/snack-message.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
-import { SidenavHeaderComponent } from './components/sidenav-header/sidenav-header.component';
 import { ReportComponent } from './components/report/report.component';
 import { OrdersComponent } from './components/orders/orders.component';
 import { CustomersComponent } from './components/customers/customers.component';
@@ -53,7 +52,6 @@ export function createTranslateLoader(http: HttpClient) {
     DashboardComponent,
     SnackMessageComponent,
     SidenavComponent,
-    SidenavHeaderComponent,
     ReportComponent,
     OrdersComponent,
     CustomersComponent,
