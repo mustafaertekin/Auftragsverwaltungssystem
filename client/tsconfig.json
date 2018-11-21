@@ -16,6 +16,11 @@
     "lib": [
       "es2017",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@avs-services/*": ["src/lib/services/*"],
+      "@avs-modules/*": ["src/lib/modules/*"],
+      "@avs-components/*": ["src/lib/components/*"]
+    }
   }
 }

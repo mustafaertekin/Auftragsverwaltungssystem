@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "must-al": {
+    "avs": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/must-al",
+            "outputPath": "dist/avs",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -27,7 +27,9 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/perfect-scrollbar/css/perfect-scrollbar.css",
+              "src/assets/styles/style.scss"
             ],
             "scripts": []
           },
@@ -54,18 +56,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "must-al:build"
+            "browserTarget": "avs:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "must-al:build:production"
+              "browserTarget": "avs:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "must-al:build"
+            "browserTarget": "avs:build"
           }
         },
         "test": {
@@ -99,7 +101,7 @@
         }
       }
     },
-    "must-al-e2e": {
+    "avs-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "architect": {
@@ -107,11 +109,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "must-al:serve"
+            "devServerTarget": "avs:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "must-al:serve:production"
+              "devServerTarget": "avs:serve:production"
             }
           }
         },
@@ -125,7 +127,19 @@
           }
         }
       }
+    },
+    "avs-modules": {
+      "root": "lib/modules",
+      "projectType": "application"
+    },
+    "avs-components": {
+      "root": "lib/components",
+      "projectType": "application"
+    },
+    "avs-services": {
+      "root": "lib/services/",
+      "projectType": "application"
     }
   },
-  "defaultProject": "must-al"
+  "defaultProject": "avs"
 }
