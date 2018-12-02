@@ -43,14 +43,7 @@ export class ClientRouter {
 
     public async put(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
-            const updatedClient = await this.clientManager.updateClient(
-                req.params.id,
-                req.body.clientSecret,
-                req.body.clientEmail,
-                req.body.clientName,
-                req.body.clientTelefon,
-                req.body.addressId
-                );
+            const updatedClient = await this.clientManager.updateClient(req.params.id, req.body);
             res.json(updatedClient);
         } catch(error) {
             next(error);

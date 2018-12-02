@@ -33,12 +33,18 @@ export class ServiceRouter {
         }
     }
 
+    public async getAllByModelId(req: express.Request, res: express.Response, next: express.NextFunction) {
+      try {
+        const service = await Service.findAll<Service>({ where: {modelId: req.params.modelId} });
+          res.json(service);
+      } catch(error) {
+          next(error);
+      }
+  }
+
     public async post(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
-            const newService = await this.serviceManager.createService(
-                req.body.description,
-                req.body.order
-            );
+            const newService = await this.serviceManager.createService(req.body, req.params.modelId);
             res.json(newService);
         } catch(error) {
             next(error);
@@ -47,11 +53,7 @@ export class ServiceRouter {
 
     public async put(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
-            const updatedService = await this.serviceManager.updateService(
-                req.params.id,
-                req.body.description,
-                req.body.order
-            );
+            const updatedService = await this.serviceManager.updateService(req.body);
             res.json(updatedService);
         } catch(error) {
             next(error);
@@ -70,7 +72,8 @@ export class ServiceRouter {
     private buildRoutes() {
         this.router.get("/", Auth.getBearerMiddleware(), this.get.bind(this));
         this.router.get("/:id", Auth.getBearerMiddleware(), this.getById.bind(this));
-        this.router.post("/", Auth.getBearerMiddleware(), this.post.bind(this));
+        this.router.get("/getAllByModelId/:modelId", Auth.getBearerMiddleware(), this.getAllByModelId.bind(this));
+        this.router.post("/:modelId", Auth.getBearerMiddleware(), this.post.bind(this));
         this.router.put("/:id", Auth.getBearerMiddleware(), this.put.bind(this));
         this.router.delete("/:id", Auth.getBearerMiddleware(), this.delete.bind(this));
     }

@@ -7,6 +7,14 @@ export class TokenService {
 
   constructor() { }
 
+  public static getToken() {
+    const token = localStorage.getItem('TOKEN');
+    if(token) {
+      return  JSON.parse(token);
+    }
+    return { access_token: '', token_type: ''};
+  }
+
   setToken(token) {
     localStorage.setItem('TOKEN', JSON.stringify(token));
   }

@@ -13,16 +13,16 @@ export class ClientManager {
         return newClient.save();
     }
 
-    public async updateClient(clientId: string, clientSecret: string, clientEmail: string, clientName: string, clientTelefon: string, addressId: string): Promise <Client> {
-        const client = await Client.find<Client>({where: {clientId}});
-        if(client) {
-            client.clientSecret = clientSecret || client.clientSecret;
-            client.clientEmail = clientEmail || client.clientEmail;
-            client.clientName = clientName || client.clientName;
-            client.clientTelefon = clientTelefon || client.clientTelefon;
-            client.addressId = addressId || client.addressId;
-
-            return client.save();
+    public async updateClient(clientId: string, client: Client): Promise <Client> { 
+        const dbclient = await Client.find<Client>({where: { clientId }});
+        if(dbclient) {
+            dbclient.clientSecret = client.clientSecret || dbclient.clientSecret;
+            dbclient.salutation = client.salutation || dbclient.salutation;
+            dbclient.email = client.email || dbclient.email;
+            dbclient.lastName = client.lastName || dbclient.lastName;
+            dbclient.firstName = client.firstName || dbclient.firstName;
+            dbclient.phone = client.phone || dbclient.phone;
+            return dbclient.save();
         } else {
             logger.error("No client found");
             throw new NotFoundError("No client found with that id");

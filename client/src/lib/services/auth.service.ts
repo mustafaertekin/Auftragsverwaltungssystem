@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { AppHttpService } from '@avs-services/app-http.service';
+import { AppHttpService } from '@avs-ecosystem/services/app-http.service';
 import { Http, Response, Headers } from '@angular/http';
 import { Observable } from 'rxjs';
-import { TokenService } from '@avs-services/token.service';
+import { TokenService } from '@avs-ecosystem/services/token.service';
 import { map } from 'rxjs/operators';
 
 @Injectable({

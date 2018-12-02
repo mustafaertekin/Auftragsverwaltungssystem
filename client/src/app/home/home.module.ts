@@ -1,14 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import {
-  MatIconModule,
-  MatCardModule,
-  MatInputModule,
-  MatCheckboxModule,
-  MatButtonModule
-} from '@angular/material';
-import { MaterialModule } from '@avs-modules/material/material.module';
+import { MaterialModule } from '@avs-ecosystem/modules/material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HomePageRoutesModule } from './home.routing';
@@ -22,11 +15,6 @@ import { HomeMainFooterComponent } from './components/footer/footer.component';
   imports: [
     CommonModule,
     HomePageRoutesModule,
-    MatIconModule,
-    MatCardModule,
-    MatInputModule,
-    MatCheckboxModule,
-    MatButtonModule,
     FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule,

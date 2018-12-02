@@ -8,15 +8,10 @@ export class DeviceModelManager {
     constructor() {
     }
 
-    public async createDeviceModel(body: any ) {
-        const device  = new Device({
-            deviceName: body.deviceName
-        });
-        const savedDevice = await device.save();
-        
+    public async createDeviceModel(deviceModel: DeviceModel, deviceId: string ) {
         const newDeviceModel = new DeviceModel({
-            deviceId: savedDevice.deviceId,
-            deviceModelName: body.deviceModelName
+            deviceId: deviceId,
+            deviceModelName: deviceModel.deviceModelName
         });
         return newDeviceModel.save();
     }

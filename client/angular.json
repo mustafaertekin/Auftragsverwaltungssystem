@@ -23,13 +23,12 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              { "glob": "**/*", "input": "src/lib/assets/", "output": "/assets/" },
+              { "glob": "favicon.ico", "input": "src/", "output": "/" }
             ],
             "styles": [
-              "src/styles.scss",
               "node_modules/perfect-scrollbar/css/perfect-scrollbar.css",
-              "src/assets/styles/style.scss"
+              "src/lib/assets/styles/style.scss"
             ],
             "scripts": []
           },

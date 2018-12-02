@@ -1,0 +1,46 @@
+<div class="dashboard-new-device">
+  <!--
+  <div fxLayout="row">
+    <form>
+      <mat-form-field>
+        <input type="text" placeholder="Choose a device" aria-label="Device" matInput [formControl]="myDevices"
+          [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+          <mat-option *ngFor="let option of filteredOptions | async" [value]="option.deviceName" (click)="showDeviceDetails(option)">
+            {{option.deviceName}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </form>
+  </div>
+  -->
+  <h2>Devices</h2>
+  <div fxLayout="row">
+    <mat-accordion class="full-width">
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <span class="m-r-1">
+              <mat-icon>add_circle_outline</mat-icon>
+            </span>
+            <span>Add a new device</span>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <form fxLayout="column" fxFlex="100" [formGroup]="deviceForm">
+          <mat-form-field>
+            <input matInput placeholder="Device name" formControlName="deviceName">
+          </mat-form-field>
+          <div fxLayout="row" fxLayoutGap="16px">
+            <div>
+              <button mat-button mat-raised-button color="accent" (click)="submitDeviceForm()">
+                <span>Save</span>
+              </button>
+            </div>
+          </div>
+        </form>
+      </mat-expansion-panel>
+      <avs-dashboard-added-devices (click)="setSelectedDevice(device)" [device]="device" *ngFor="let device of devices">
+      </avs-dashboard-added-devices>
+    </mat-accordion>
+  </div>
+</div>

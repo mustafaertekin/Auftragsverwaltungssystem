@@ -11,7 +11,7 @@ import {
   declarations: [
     AccordionAnchorDirective,
     AccordionLinkDirective,
-    AccordionDirective
+    AccordionDirective,
   ],
   exports: [
     AccordionAnchorDirective,

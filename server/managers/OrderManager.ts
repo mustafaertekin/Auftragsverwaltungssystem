@@ -11,13 +11,11 @@ import { DeviceManager } from "./DeviceManager";
 import { DeviceModelManager } from "./DeviceModelManager";
 import { ServiceManager } from "./ServiceManager";
 import { CompanyManager } from "./CompanyManager";
-import { DeviceModel } from "../models/entities/DeviceModel";
+import { Address } from "../models/entities/Address";
 import { MessageError } from "../errors/MessageError";
 import { Client } from "../models/entities/Client";
 import { Company } from "../models/entities/Company";
-import { Device } from "../models/entities/Device";
 import { User } from "../models/entities/User";
-import { OrderService } from "../models/entities/OrderService";
 
 
 export class OrderManager {
@@ -27,8 +25,8 @@ export class OrderManager {
 
     public async createOrder(clientId: string, userId: string, deviceId: string, modelId: string, serviceId: string, price: string, companyId: string, status: OrderStatus, description: string ) {
         try {
-               
-                const user = await new UserManager().findById(userId); 
+
+                const user = await new UserManager().findById(userId);
                 const client = await new ClientManager().findById(clientId);
                 const device = await new DeviceManager().findById(deviceId);
                 const model = await new DeviceModelManager().findById(modelId);
@@ -54,23 +52,22 @@ export class OrderManager {
         } catch (error) {
             return new Error(error);
         }
-        
+
     }
 
-    public async updateOrder(orderId: string, clientId: string, userId: string, deviceId: string, modelId: string, service: Service[], price: string, companyId: string, status: OrderStatus, description: string): Promise<Order> {
-        const order = await Order.find<Order>({where: {orderId}});
-        if(order) {
-            order.clientId = clientId || order.clientId;
-            order.userId = userId || order.userId;
-            order.deviceId = deviceId || order.deviceId;
-            order.modelId = modelId || order.modelId;
-            order.services = service || order.services;
-            order.price = price || order.price;
-            order.companyId = companyId || order.companyId;
-            order.status = status || order.status;
-            order.description = description || order.description;
+    public async updateOrder(orderId: string,  order: Order): Promise<Order> {
+        const dbOrder = await Order.find<Order>({where: {orderId}});
+        if(dbOrder) {
+          dbOrder.clientId = order.clientId || dbOrder.clientId;
+          dbOrder.userId = order.userId || dbOrder.userId;
+          dbOrder.billingAddressId = order.billingAddressId || dbOrder.billingAddressId;
+          dbOrder.deliveryAddressId = order.deliveryAddressId || dbOrder.deliveryAddressId;
+          dbOrder.price = order.price || dbOrder.price;
+          dbOrder.companyId = order.companyId || dbOrder.companyId;
+          dbOrder.status = order.status || dbOrder.status;
+          dbOrder.description = order.description || dbOrder.description;
 
-            return order.save();
+            return dbOrder.save();
         } else {
             logger.error("No order found");
             throw new NotFoundError("No order found with that id");
@@ -80,8 +77,8 @@ export class OrderManager {
     public async findById(orderId: string) {
         const order = await Order.findOne<Order>({
             where: {orderId},
-            include: [Client, User, Device, DeviceModel, Company, Service]
-        }); 
+            include: [Client, User, Address, Company, Service]
+        });
         if (order) {
             return order;
         } else {

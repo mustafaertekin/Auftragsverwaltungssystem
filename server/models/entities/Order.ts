@@ -27,20 +27,20 @@ export class Order extends BaseModel<Order> {
     @Column
     userId: string;
 
-    @ForeignKey(() => Device)
-    @Column
-    deviceId: string;
-
-    @ForeignKey(() => DeviceModel)
-    @Column
-    modelId: string;
-
     @BelongsToMany(() => Service, () => OrderService)
     services: Service[];
 
     @AllowNull(false)
     @Column
     price: string;
+
+    @AllowNull(false)
+    @Column
+    deliveryAddressId: string;
+
+    @AllowNull(false)
+    @Column
+    billingAddressId: string;
 
     @ForeignKey(() => Company)
     @Column
@@ -60,15 +60,5 @@ export class Order extends BaseModel<Order> {
 
     @BelongsTo(() => Company)
     company: Company;
-
-    @BelongsTo(() => Device)
-    device: Device;
-
-    @BelongsTo(() => DeviceModel)
-    model: DeviceModel;
 }
 
-/**
- * 
- *  User, Device, DeviceModel, Company
- */
