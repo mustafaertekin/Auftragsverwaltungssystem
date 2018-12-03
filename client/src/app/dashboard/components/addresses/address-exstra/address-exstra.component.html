@@ -7,7 +7,7 @@
                   <mat-checkbox (click)="setAddressId($event, address.addressId)"></mat-checkbox>
               </div>
               <div>
-                  <span>{{address.streetName}}, {{address.cityName}}, {{address.plzNumber}}</span>
+                  <span>{{address.streetName}}, {{address.plzNumber}}, {{address.cityName}}</span>
               </div>
             </div> 
           </mat-panel-title>
@@ -19,10 +19,10 @@
                 <input matInput formControlName="streetName" placeholder="Street">
               </mat-form-field>
               <mat-form-field>
-                <input matInput formControlName="cityName" placeholder="City">
+                  <input matInput formControlName="plzNumber" placeholder="Zip">
               </mat-form-field>
               <mat-form-field>
-                <input matInput formControlName="plzNumber" placeholder="Zip">
+                <input matInput formControlName="cityName" placeholder="City">
               </mat-form-field>
               <mat-form-field>
                 <mat-select formControlName="countryName" placeholder="Country">
