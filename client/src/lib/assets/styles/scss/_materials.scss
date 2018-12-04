@@ -15,6 +15,7 @@ $mat-custom: (
   A200:   $AVS200,
   A400:   $AVS400,
   A700:   $AVS700,
+  A800:   $A800,
   contrast: (
     50:   $black-87-opacity,
     100:  $black-87-opacity,
@@ -30,6 +31,7 @@ $mat-custom: (
     A200: $black-87-opacity,
     A400: white,
     A700: $white-87-opacity,
+    A800: $white-87-opacity
   )
 );
 
@@ -40,8 +42,8 @@ $my-app-accent:  mat-palette($mat-custom);
 $my-app-warn:    mat-palette($mat-red);
 
 $my-app-theme: mat-light-theme(
-  $my-app-primary, 
-  $my-app-accent, 
+  $my-app-primary,
+  $my-app-accent,
   $my-app-warn
 );
 
