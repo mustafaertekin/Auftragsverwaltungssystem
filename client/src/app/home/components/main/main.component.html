@@ -1,26 +1,23 @@
-<avs-home-header></avs-home-header>
-<div>
-    <mat-card class="home-content-card">
-            <mat-card-header>
-              <mat-card-title>AVS</mat-card-title>
-              <mat-card-subtitle>Auftragsvervaltungssystem</mat-card-subtitle>
-            </mat-card-header>
-            <img mat-card-image src="../../../assets/images/avs.png" alt="AVS logo">
-            <mat-card-content>
-              <pre>
-                Auftragsvervaltungssystem<br>
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, 
-                sed diam nonumy eirmod tempor invidunt ut labore et dolore 
-                magna aliquyam erat, sed diam voluptua. At vero eos et accusam 
-                et justo duo dolores et ea rebum. Stet clita kasd gubergren, 
-                no sea takimata sanctus est Lorem ipsum dolor sit amet.
-            
-              </pre>
-            </mat-card-content>
-            <mat-card-actions>
-              <button mat-button [routerLink]="['/auth/login']" routerLinkActive="router-link-active" >Login</button>
-              <button mat-button>Sign Up</button>
-            </mat-card-actions>
-          </mat-card>
+<div class="container" fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="0">
+  <div class="navbar" fxFlex="100%">
+    <div class="navbar-logo">
+      <img src="/assets/images/logo-244x51.png" alt="logo" class="logo">
+    </div>
+    <span fxFlex></span> <!-- the space between search icon and the profil-image -->
 
+      <button mat-raised-button color="primary" [routerLink]="['/auth/login']" routerLinkActive="router-link-active">LOGIN</button>
+  </div>
+
+  <div class="item item-1" fxFlex="45%">
+    <h1>The Most Beautiful & Powerful <span class="text-green">Order Management</span> System</h1>
+    <h2>It is a "must have" application</h2>
+    <p>Automates the order management on focus Smartphone & Tablet repair services.</p>
+    <div>
+      <button mat-raised-button color="accent" class="m-r-1">KONTAKT</button>
+      <button mat-raised-button color="primary" [routerLink]="['/auth/login']" routerLinkActive="router-link-active">LOGIN</button>
+    </div>
+  </div>
+  <div class="item item-2" fxFlex="50%">
+    <img src="/assets/images/auftragpro-screenshot.jpg">
+  </div>
 </div>
