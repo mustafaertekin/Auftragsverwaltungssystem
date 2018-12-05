@@ -1,19 +1,4 @@
 <div class="dashboard-device-model">
-  <!--
-      <div fxLayout="row">
-        <form>
-          <mat-form-field>
-            <input type="text" placeholder="Choose a device" aria-label="Device" matInput [formControl]="myDevices"
-              [matAutocomplete]="auto">
-            <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-              <mat-option *ngFor="let option of filteredOptions | async" [value]="option.deviceName" (click)="showDeviceDetails(option)">
-                {{option.deviceName}}
-              </mat-option>
-            </mat-autocomplete>
-          </mat-form-field>
-        </form>
-      </div>
-      -->
   <h2>Model</h2>
   <div fxLayout="row">
     <mat-accordion class="full-width">
