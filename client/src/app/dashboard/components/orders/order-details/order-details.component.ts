@@ -1,10 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { OrderDetailsService } from '@avs-ecosystem/services/order-details.service';
-import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
-import { OrderDetails } from '@avs-ecosystem/models/OrderDetails';
-import { MatTableDataSource } from '@angular/material';
-
-
+import {MatTableDataSource} from '@angular/material';
 
 export interface PeriodicElement {
   name: string;
@@ -33,18 +28,21 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 
 export class DashboardOrderDetailsComponent implements OnInit {
-   
+
 
   constructor() {}
 
   ngOnInit() {
-     
+
   }
 
+  // tslint:disable-next-line:member-ordering
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+  // tslint:disable-next-line:member-ordering
   dataSource = new MatTableDataSource(ELEMENT_DATA);
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
+
 }
