@@ -38,7 +38,6 @@ export class DeviceRouter extends BaseRouter {
     public async post(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
             const newDevice = await this.deviceManager.createDevice(
-                req.body.deviceId,
                 req.body.deviceName
             );
             res.json(newDevice);

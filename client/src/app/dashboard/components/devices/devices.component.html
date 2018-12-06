@@ -1,0 +1,25 @@
+<div class="dashboard-devices m-t-1 m-l-1 m-r-1">
+    <mat-card>
+      <mat-card-header>
+        <mat-icon class="title-icon-size" mat-card-avatar>perm_device_information</mat-icon>
+        <mat-card-title>New Device</mat-card-title>
+        <mat-card-subtitle>Create a new device</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-vertical-stepper>
+          <mat-step>
+            <ng-template matStepLabel>Chose a device or create a new one</ng-template>
+            <avs-dashboard-new-device #deviceForm></avs-dashboard-new-device>
+          </mat-step>
+          <mat-step>
+            <ng-template matStepLabel>Choose a model or create one</ng-template>
+             <avs-dashboard-device-model #modelForm [deviceId]="deviceForm?.device?.deviceId"></avs-dashboard-device-model>
+          </mat-step>
+          <mat-step>
+            <ng-template matStepLabel>Chose a service or create one</ng-template>
+            <avs-dashboard-device-service [modelId]="modelForm?.model?.deviceModelId"></avs-dashboard-device-service>
+          </mat-step>
+        </mat-vertical-stepper>
+      </mat-card-content>
+    </mat-card>
+</div>

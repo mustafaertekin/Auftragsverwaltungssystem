@@ -1,0 +1,46 @@
+<div class="dashboard-device-model">
+  <!--
+      <div fxLayout="row">
+        <form>
+          <mat-form-field>
+            <input type="text" placeholder="Choose a device" aria-label="Device" matInput [formControl]="myDevices"
+              [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+              <mat-option *ngFor="let option of filteredOptions | async" [value]="option.deviceName" (click)="showDeviceDetails(option)">
+                {{option.deviceName}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </form>
+      </div>
+      -->
+  <h2>Model</h2>
+  <div fxLayout="row">
+    <mat-accordion class="full-width">
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <span class="m-r-1">
+              <mat-icon>add_circle_outline</mat-icon>
+            </span>
+            <span>Add a new model</span>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <form fxLayout="column" fxFlex="100" [formGroup]="modelForm">
+          <mat-form-field>
+            <input matInput placeholder="Model name" formControlName="deviceModelName">
+          </mat-form-field>
+          <div fxLayout="row" fxLayoutGap="16px">
+            <div>
+              <button mat-button mat-raised-button color="accent" (click)="submitModelForm()">
+                <span>Save</span>
+              </button>
+            </div>
+          </div>
+        </form>
+      </mat-expansion-panel>
+      <avs-added-model (click)="setSelectedDeviceModel(model)" [model]="model" *ngFor="let model of models">
+      </avs-added-model>
+    </mat-accordion>
+  </div>
+</div>

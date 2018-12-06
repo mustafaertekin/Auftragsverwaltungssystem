@@ -1,0 +1,38 @@
+<div class="avs-dashboard-header ">
+  <mat-toolbar color="primary" class="topbar">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/dashboard">
+        <div>
+          <img src="/assets/images/logo-icon.png" alt="logo" class="logo">
+        </div>
+        <span fxShow="false" fxShow.gt-xs>
+          <img src="/assets/images/logo-text.png" alt="AuftragPro" class="logo">
+        </span>
+      </a>
+    </div>
+
+    <button mat-icon-button value="sidebarclosed" (click)="toogleSideNavigation()">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <!-- the space between search icon and the profil-image -->
+    <span fxFlex></span>
+    <!--  
+    <button  >
+      <mat-icon>language</mat-icon>
+    </button>
+    <mat-menu>
+      <button mat-menu-item (click)="setCulture('en-EN')">English</button>
+      <button mat-menu-item (click)="setCulture('de-DE')">German</button>
+    </mat-menu>
+-->
+    <button [mat-menu-trigger-for]="menu" mat-icon-button>
+      <img src="/assets/images/users/mertekin-profil.jpg" width="40" alt="user" class="profile-picture">
+    </button>
+    <mat-menu x-position="before" #menu="matMenu">
+      <button mat-menu-item (click)="logout()">
+        <mat-icon>exit_to_app</mat-icon>Logout
+      </button>
+    </mat-menu>
+  </mat-toolbar>  
+</div>

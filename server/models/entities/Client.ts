@@ -13,29 +13,35 @@ export class Client extends BaseModel<Client> {
     @Column(DataType.UUID)
     clientId: string;
 
-    
-    @AllowNull(false)
-    @Unique
-    @Column
-    clientEmail: string;
-
-    @AllowNull(false)
+    @AllowNull(true)
     @Column
     clientSecret: string;
 
-    @AllowNull(false)
+    @AllowNull(true)
     @Column
-    clientName: string;
+    salutation: string;
 
     @AllowNull(false)
     @Column
-    clientTelefon: string;
+    firstName: string;
 
-    @ForeignKey(() => Address)
+    @AllowNull(false)
     @Column
-    addressId: string;
+    lastName: string;
+
+    @AllowNull(false)
+    @Column
+    phone: string; 
+
+    @AllowNull(false)
+    @Unique
+    @Column
+    email: string;
+
+    @HasMany(() => Address)
+    addresses: Address[];
 
     @HasMany(() => Order)
-    order: Order[];
+    orders: Order[];
 
 }

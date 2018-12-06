@@ -33,9 +33,20 @@ export class DeviceModelRouter {
         }
     }
 
+    public async getAllByDeviceId(req: express.Request, res: express.Response, next: express.NextFunction) {
+        try {
+            const deviceModel = await DeviceModel.findAll<DeviceModel>({ where: {deviceId: req.params.deviceId} });
+            res.json(deviceModel);
+        } catch(error) {
+            next(error);
+        }
+    }
+
+    
+
     public async post(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
-            const newDeviceModel = await this.deviceModelManager.createDeviceModel(req.body);
+            const newDeviceModel = await this.deviceModelManager.createDeviceModel(req.body, req.params.deviceId);
             res.json(newDeviceModel);
         } catch(error) {
             next(error);
@@ -62,11 +73,12 @@ export class DeviceModelRouter {
             next(error);
         }
     }
-
+    
     private buildRoutes() {
         this.router.get("/", Auth.getBearerMiddleware(), this.get.bind(this));
+        this.router.get("/getAllByDeviceId/:deviceId", Auth.getBearerMiddleware(), this.getAllByDeviceId.bind(this));
         this.router.get("/:id", Auth.getBearerMiddleware(), this.getById.bind(this));
-        this.router.post("/", Auth.getBearerMiddleware(), this.post.bind(this));
+        this.router.post("/:deviceId", Auth.getBearerMiddleware(), this.post.bind(this));
         this.router.put("/:id", Auth.getBearerMiddleware(), this.put.bind(this));
         this.router.delete("/:id", Auth.getBearerMiddleware(), this.delete.bind(this));
     }

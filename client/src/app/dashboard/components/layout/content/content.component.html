@@ -1,0 +1,11 @@
+<div class="avs-dashboard-content">
+  <mat-sidenav-container class="container full-height">
+    <mat-sidenav #sidenav [(mode)]="over" [(opened)]="opened" class="side-nav">
+      <avs-dashboard-side-menu-content></avs-dashboard-side-menu-content>
+    </mat-sidenav>
+
+    <mat-sidenav-content class="mat-sidenav-content">
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

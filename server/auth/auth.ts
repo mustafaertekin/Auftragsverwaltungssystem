@@ -44,8 +44,7 @@ export class Auth {
                 if(user) {
                     const authorized = await this.comparePasswords(password, user.password);
                     if(authorized) {
-                       // console.log('hata burdami succes',  authorized, _.get(user, 'dataValues'));
-                        return done(null, _.get(user, 'dataValues'));
+                       return done(null, _.get(user, 'dataValues'));
                     } else {
                         return done(null, false);
                     }
@@ -55,7 +54,7 @@ export class Auth {
             } catch (error) {
                 return done("No user found", false);
             }
-           
+
         }));
     }
 
@@ -116,9 +115,8 @@ export class Auth {
      */
     static useBasicStrategy() {
         passport.use(new BasicStrategy(
-            
+
             function (clientId, clientSecret, done) {
-                console.log('burdan geldim 4444444444444444');
                 Client.findOne({
                     where: {clientId: clientId}
                 }).then(function (client: any) {

@@ -33,6 +33,15 @@ export class AddressRouter {
         }
     }
 
+    public async getByClientId(req: express.Request, res: express.Response, next: express.NextFunction) {
+        try {
+            const address = await Address.findAll<Address>({ where: { clientId: req.params.id } });
+            res.json(address);
+        } catch(error) {
+            next(error);
+        }
+    }
+
     public async post(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
             const newAddress = await this.addressManager.createAddress(
@@ -79,6 +88,7 @@ export class AddressRouter {
     private buildRoutes() {
         this.router.get("/", Auth.getBearerMiddleware(), this.get.bind(this));
         this.router.get("/:id", Auth.getBearerMiddleware(), this.getById.bind(this));
+        this.router.get("/getByClientId/:id", Auth.getBearerMiddleware(), this.getByClientId.bind(this));
         this.router.post("/", Auth.getBearerMiddleware(), this.post.bind(this));
         this.router.put("/:id", Auth.getBearerMiddleware(), this.put.bind(this));
         this.router.delete("/:id", Auth.getBearerMiddleware(), this.delete.bind(this));

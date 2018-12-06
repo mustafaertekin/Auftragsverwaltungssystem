@@ -7,9 +7,8 @@ export class DeviceManager {
     constructor() {
     }
 
-    public async createDevice(deviceId: string, deviceName: string ) {
-        const newDevice = new Device({
-            deviceId,
+    public async createDevice(deviceName: string ) {
+        const newDevice = new Device({ 
             deviceName
              });
         return newDevice.save();

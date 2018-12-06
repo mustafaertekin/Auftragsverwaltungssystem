@@ -34,7 +34,7 @@ export class OrderRouter {
     }
 
     public async post(req: express.Request, res: express.Response, next: express.NextFunction) {
-        try { 
+        try {
             const newOrder = await this.orderManager.createOrder(
                 req.body.clientId,
                 req.body.userId,
@@ -55,17 +55,7 @@ export class OrderRouter {
     public async put(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
             const updatedOrder = await this.orderManager.updateOrder(
-                req.params.id,
-                req.body.clientId,
-                req.body.userId,
-                req.body.deviceId,
-                req.body.modelId,
-                req.body.service,
-                req.body.price,
-                req.body.companyId,
-                req.body.status,
-                req.body.description
-            );
+                req.params.id, req.body );
             res.json(updatedOrder);
         } catch(error) {
             next(error);

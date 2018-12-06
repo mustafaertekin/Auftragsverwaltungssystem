@@ -8,21 +8,22 @@ export class ServiceManager {
     constructor() {
     }
 
-    public async createService(description: string, order: string ) {
+    public async createService(service: Service, modelId: string) {
         const newService = new Service({
-            description,
-            order
+          modelId: modelId,
+          serviceName: service.serviceName,
+          price: service.price
         });
         return newService.save();
     }
 
-    public async updateService(serviceId: string, description: string, orders: Order[]): Promise<Service> {
-        const service = await Service.find<Service>({where: {serviceId}});
-        if(service) {
-            service.description = description || service.description;
-            service.orders = orders || service.orders;
-            
-            return service.save();
+    public async updateService(service: Service): Promise<Service> {
+        const dbService = await Service.find<Service>({where: {serviceId: service.serviceId}});
+        if(dbService) {
+          dbService.serviceName = service.serviceName || dbService.serviceName;
+          dbService.price = service.price || dbService.price ;
+
+            return dbService.save();
         } else {
             logger.error("No service model found");
             throw new NotFoundError("No service found with that id");

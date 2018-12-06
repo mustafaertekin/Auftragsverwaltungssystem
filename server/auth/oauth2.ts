@@ -80,9 +80,9 @@ export class Oauth2 {
     private registerPasswordGrant() {
 
         this.server.exchange(oauth2orize.exchange.password((athlete, username, password, scope, done) => {
-            
+
             AccessToken.findOne<AccessToken>({where: {userId: athlete.userId}}).then(accessToken => {
-                
+
                 if(accessToken) {
                     if(this.jwtSecret) {
                         verify(accessToken.token, this.jwtSecret, (err, decodedToken: any) => {
@@ -90,7 +90,6 @@ export class Oauth2 {
                                 accessToken.destroy().then(() => {
                                     if(this.jwtSecret) {
                                         sign(athlete, this.jwtSecret, { expiresIn: "10h"}, (err, encodedToken) => {
-                                            console.log('athletim ben', err, encodedToken);
                                             if(err) {
                                                 return done(err);
                                             }
