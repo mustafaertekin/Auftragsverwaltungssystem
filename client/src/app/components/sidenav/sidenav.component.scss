@@ -1,0 +1,14 @@
+@import '../../../material'  ;
+
+.example-container {
+    width: 90%;
+    height: 60vh;
+    margin: 20px;
+  }
+
+.example-container a{
+  margin: 10px;
+  background: $p50;
+  border: 1px solid $p500;
+}
+
