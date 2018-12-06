@@ -7,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardOrderDetailsComponent implements OnInit {
    
-
+  orderStatus: string;
+  statuses: string[] = ['Pending', 'Processing', 'Completed', 'Unscuccesful', 'Delivered', 'Cancelled'];
   constructor() {}
 
   ngOnInit() {

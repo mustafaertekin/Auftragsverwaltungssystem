@@ -1,46 +1,44 @@
 <div class="dashboard-addresses">
-    <h2>Address Details</h2>
-    <mat-accordion>
-        <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              <span class="m-r-1">
-                <mat-icon>add_circle_outline</mat-icon>
-              </span>
-              <span>Add a new address</span>
-            </mat-panel-title>
-          </mat-expansion-panel-header>
-          <form [formGroup]="addressForm">
-            <div>
-              <div fxLayout="column">
-                <mat-form-field>
-                  <input matInput formControlName="streetName" placeholder="Street">
-                </mat-form-field>
-                <mat-form-field>
-                    <input matInput formControlName="plzNumber" placeholder="Zip">
-                  </mat-form-field>
-                <mat-form-field>
-                  <input matInput formControlName="cityName" placeholder="City">
-                </mat-form-field>
-                <mat-form-field>
-                  <mat-select formControlName="countryName" placeholder="Country">
-                    <mat-option value="ch">Schweiz</mat-option>
-                    <mat-option value="de">German</mat-option>
-                    <mat-option value="en">England</mat-option>
-                  </mat-select>
-                </mat-form-field>
-              </div>
-            </div>
-            <div fxLayout="row" fxLayoutGap="16px">
-              <div>
-                <button mat-button mat-raised-button color="accent" (click)="saveAddress()">Save</button>
-              </div>
-            </div>
-          </form>
-        </mat-expansion-panel> 
-        <avs-dashboard-address-exstra *ngFor="let address of addresses"
-          [clientId]="clientId" 
-          [address]="address">
-        </avs-dashboard-address-exstra> 
-      </mat-accordion>
+  <h2>Address Details</h2>
+  <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <span class="m-r-1">
+            <mat-icon>add_circle_outline</mat-icon>
+          </span>
+          <span>Add a new address</span>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <form [formGroup]="addressForm">
+        <div>
+          <div fxLayout="column">
+            <mat-form-field>
+              <input matInput formControlName="streetName" placeholder="Street">
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput formControlName="plzNumber" placeholder="Zip">
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput formControlName="cityName" placeholder="City">
+            </mat-form-field>
+            <mat-form-field>
+              <mat-select formControlName="countryName" placeholder="Country">
+                <mat-option value="ch">Schweiz</mat-option>
+                <mat-option value="de">Germany</mat-option>
+                <mat-option value="en">England</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="16px">
+          <div>
+            <button mat-button mat-raised-button color="accent" (click)="saveAddress()">Save</button>
+          </div>
+        </div>
+      </form>
+    </mat-expansion-panel>
+    <avs-dashboard-address-exstra *ngFor="let address of addresses" [clientId]="clientId" [address]="address">
+    </avs-dashboard-address-exstra>
+  </mat-accordion>
 </div>
