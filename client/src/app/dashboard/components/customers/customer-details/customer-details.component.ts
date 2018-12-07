@@ -26,7 +26,7 @@ export class DashboardCustomerDetailsComponent implements OnInit {
 
 
   constructor(private fb: FormBuilder,
-    private parent: DashboardNewOrderComponent ,
+    // private parent: DashboardNewOrderComponent ,
     private addressService: AddressService,
     private clientService: ClientService) {
 

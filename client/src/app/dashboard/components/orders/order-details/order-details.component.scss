@@ -20,4 +20,8 @@
         border-radius: 0px;
         margin-bottom: 10px;
       }
+
+      .mat-radio-button label div:last-child{
+        background: red;
+      }    
 }
