@@ -21,12 +21,45 @@
           </button>
         </div>
       </div>
-      <div fxLayout="row">
+      <div fxLayout="row"class="m-1">
         <div fxFlex="60">
-          <div></div>
+          <div>
+            <mat-card> <mat-card-title>Customer:</mat-card-title>
+              <mat-card-subtitle>Order:</mat-card-subtitle>
+              <mat-card-content>
+                <div fxLayout="column">
+                  <div class="service-first">
+                    <mat-card-subtitle>Service:</mat-card-subtitle>
+                    <mat-card-subtitle>IMEI:</mat-card-subtitle>
+                    <mat-card-subtitle>Device:</mat-card-subtitle>
+                  <div>
+                    <mat-list>
+                      <mat-list-item>LIST 1</mat-list-item>
+                      <mat-list-item>LIST 1</mat-list-item>
+                    </mat-list>
+                  </div>
+                </div>
+                <div class="service-second">
+                    <mat-card-subtitle>Service-2:</mat-card-subtitle>
+                    <mat-card-subtitle>IMEI:</mat-card-subtitle>
+                    <mat-card-subtitle>Device:</mat-card-subtitle>
+                  <div>
+                    <mat-list>
+                      <mat-list-item>LIST 1</mat-list-item>
+                      <mat-list-item>LIST 1</mat-list-item>
+                    </mat-list>
+                  </div>
+                </div>
+                   
+                  
+                </div>
+               
+              </mat-card-content>
+            </mat-card>
+          </div>
 
         </div>
-        <div fxFlex="40" fxLayout="column" class="m-b-1">
+        <div fxFlex="40" fxLayout="column">
           <div>
             <mat-card>
               <mat-card-content>
@@ -59,10 +92,10 @@
               <mat-card-content>
                 <form class="example-form">
 
-                  <mat-form-field class="example-full-width">
-                    <input matInput #message maxlength="256" placeholder="Comments">
-                    <mat-hint align="start"><strong>Don't disclose personal info</strong> </mat-hint>
-                    <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+                  <mat-form-field class="full-width">
+                    <input matInput #message maxlength="140" placeholder="Comments">
+                    <mat-hint align="start"><strong>Order Description</strong> </mat-hint>
+                    <mat-hint align="end">{{message.value.length}} / 140</mat-hint>
                   </mat-form-field>
 
                 </form>

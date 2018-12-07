@@ -7,7 +7,15 @@
     </mat-card-header>
     <mat-divider></mat-divider>
     <mat-card-content fxLayout="row" class="order-list-container">
-      <div fxFlex="20" fxlayoutalign="center center" class="order-list">
+      <div fxFlex="30" fxlayoutalign="center center" class="order-list">
+          <form class="order-form  m-t-1 m-l-1 m-r-1">
+
+              <mat-form-field class="full-width">
+                <input matInput maxlength="140" placeholder="Orders">
+                <mat-hint align="start"><strong>Search Orders</strong> </mat-hint>
+              </mat-form-field>
+          
+            </form>
         <mat-list role="list">
           <mat-list-item role="listitem">
             <avs-dashboard-order-item class="avs-dashboard-order-item"></avs-dashboard-order-item>
@@ -27,7 +35,7 @@
           <mat-divider [inset]="true"></mat-divider>
         </mat-list>
       </div>
-      <div fxFlex="80" fxlayoutalign="center center">
+      <div fxFlex="70" fxlayoutalign="center center">
         <avs-dashboard-order-details></avs-dashboard-order-details>
       </div>
     </mat-card-content>

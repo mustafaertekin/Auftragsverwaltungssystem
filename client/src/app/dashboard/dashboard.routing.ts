@@ -15,7 +15,7 @@ export const DashboardRoutes: Routes = [
       { path: 'main', component: DashboardMainComponent },
       { path: 'orders', component: DashboardOrdersComponent },
       { path: 'new-order', component: DashboardNewOrderComponent },
-      { path: 'devices', component: DashboardDevicesComponent }
+      { path: 'devices', component: DashboardDevicesComponent },
     ]
   }
 ];
