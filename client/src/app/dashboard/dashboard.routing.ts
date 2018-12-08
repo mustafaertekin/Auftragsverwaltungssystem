@@ -6,7 +6,7 @@ import { DashboardOrdersComponent } from './components/orders/orders.component';
 import { DashboardNewOrderComponent } from './components/orders/new-order/new-order.component';
 import { DashboardDevicesComponent } from './components/devices/devices.component';
 import { UsersComponent } from './components/users/users.component';
-import { DashboardCustomerDetailsComponent } from './components/customers/customer-details/customer-details.component';
+import { DashboardCustomersComponent } from './components/customers/customers/customers.component';
 export const DashboardRoutes: Routes = [
   {
     path: 'dashboard',
@@ -19,7 +19,7 @@ export const DashboardRoutes: Routes = [
       { path: 'new-order', component: DashboardNewOrderComponent },
       { path: 'devices', component: DashboardDevicesComponent },
       { path: 'users', component: UsersComponent },
-      { path: 'customers', component: DashboardCustomerDetailsComponent }
+      { path: 'customers', component: DashboardCustomersComponent }
     ]
   }
 ];
