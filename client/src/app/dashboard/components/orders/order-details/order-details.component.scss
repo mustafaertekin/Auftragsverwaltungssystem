@@ -1,3 +1,27 @@
-.order-order-item{
-    width: 100%;
+
+// @import '';
+
+.order-details{
+    .example-radio-group {
+        display: inline-flex;
+        flex-direction: column;
+      }
+      
+      .example-radio-button {
+        margin: 5px;
+      }
+    
+      
+      .example-full-width {
+        width: 100%;
+      }
+      .mat-card{
+        width: 90%;
+        border-radius: 0px;
+        margin-bottom: 10px;
+      }
+
+      .mat-radio-button label div:last-child{
+        background: red;
+      }    
 }

@@ -1,8 +1,116 @@
 <div class="order-details m-t-1 m-l-1 m-r-1">
-  <h2>Order Details</h2>
   <!-- Orders Overview-->
 
   <!-- Customer Info-->
 
   <!-- Orders Overview-->
+  <mat-tab-group>
+    <mat-tab label="Order Details">
+      <div fxLayout="row">
+        <h2>Order Details</h2>
+        <span fxFlex></span>
+        <div class="m-t-1 m-r-1 m-b-1" fxLayoutAlign="end center">
+          <button mat-fab>
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-fab class="m-l-1">
+            <mat-icon>email</mat-icon>
+          </button>
+          <button mat-fab class="m-l-1">
+            <mat-icon>print</mat-icon>
+          </button>
+        </div>
+      </div>
+      <div fxLayout="row"class="m-1">
+        <div fxFlex="60">
+          <div>
+            <mat-card> <mat-card-title>Customer:</mat-card-title>
+              <mat-card-subtitle>Order:</mat-card-subtitle>
+              <mat-card-content>
+                <div fxLayout="column">
+                  <div class="service-first">
+                    <mat-card-subtitle>Service:</mat-card-subtitle>
+                    <mat-card-subtitle>IMEI:</mat-card-subtitle>
+                    <mat-card-subtitle>Device:</mat-card-subtitle>
+                  <div>
+                    <mat-list>
+                      <mat-list-item>LIST 1</mat-list-item>
+                      <mat-list-item>LIST 1</mat-list-item>
+                    </mat-list>
+                  </div>
+                </div>
+                <div class="service-second">
+                    <mat-card-subtitle>Service-2:</mat-card-subtitle>
+                    <mat-card-subtitle>IMEI:</mat-card-subtitle>
+                    <mat-card-subtitle>Device:</mat-card-subtitle>
+                  <div>
+                    <mat-list>
+                      <mat-list-item>LIST 1</mat-list-item>
+                      <mat-list-item>LIST 1</mat-list-item>
+                    </mat-list>
+                  </div>
+                </div>
+                   
+                  
+                </div>
+               
+              </mat-card-content>
+            </mat-card>
+          </div>
+
+        </div>
+        <div fxFlex="40" fxLayout="column">
+          <div>
+            <mat-card>
+              <mat-card-content>
+                <mat-radio-group class="example-radio-group" [(ngModel)]="orderStaus">
+                  <mat-radio-button class="example-radio-button" *ngFor="let status of statuses" [value]="status">
+                    <span class="status-color status-color-{{status.color}}">
+                      {{status.name}}
+                    </span>
+                  </mat-radio-button>
+                </mat-radio-group>
+              </mat-card-content>
+            </mat-card>
+          </div>
+          <div>
+            <mat-card>
+              <mat-card-content>
+                Due:
+                Date 19:12
+              </mat-card-content>
+            </mat-card>
+          </div>
+          <div>
+            <mat-card>
+              <mat-card-content>
+                User
+                Mustafa Ertekin
+              </mat-card-content>
+            </mat-card>
+          </div>
+          <div>
+            <mat-card>
+              <mat-card-content>
+                <form class="example-form">
+
+                  <mat-form-field class="full-width">
+                    <input matInput #message maxlength="140" placeholder="Comments">
+                    <mat-hint align="start"><strong>Order Description</strong> </mat-hint>
+                    <mat-hint align="end">{{message.value.length}} / 140</mat-hint>
+                  </mat-form-field>
+
+                </form>
+              </mat-card-content>
+            </mat-card>
+
+          </div>
+        </div>
+
+      </div>
+
+
+    </mat-tab>
+    <mat-tab label="Customer Details"> Customer Details </mat-tab>
+  </mat-tab-group>
 </div>
