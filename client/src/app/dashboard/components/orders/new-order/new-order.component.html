@@ -6,7 +6,7 @@
       <mat-card-subtitle>Create a new</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
-      <mat-vertical-stepper #stepper>
+      <mat-vertical-stepper [linear]="isLinear" #stepper>
           <mat-step>
               <ng-template matStepLabel>Add reperature services</ng-template>
               <div class="m-t-1">
@@ -89,11 +89,12 @@
           <avs-dashboard-customer-details #clientComponent fxFlexFill>
           </avs-dashboard-customer-details>
         </mat-step>
-        <mat-step >
+        <mat-step [stepControl]="secondFormGroup">
           <ng-template matStepLabel>Select and address or create a new one</ng-template>
           <avs-dashboard-addresses [clientId]="clientComponent?.client?.clientId" fxFlexFill></avs-dashboard-addresses>
         </mat-step>
       </mat-vertical-stepper>
+      <button mat-button mat-raised-button color="accent">Submit</button>
     </mat-card-content>
   </mat-card>
 </div>
