@@ -5,10 +5,9 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HomeMainHeaderComponent{
-  
+export class HomeMainHeaderComponent {
 
-  setCulture(culture){
+  setCulture(culture) {
 
   }
 }

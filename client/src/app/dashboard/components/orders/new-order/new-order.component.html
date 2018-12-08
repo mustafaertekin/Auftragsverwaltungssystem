@@ -6,14 +6,14 @@
       <mat-card-subtitle>Create a new</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
-      <mat-vertical-stepper #stepper> <!-- [linear]="isLinear" -->
+      <mat-vertical-stepper #stepper>
         <mat-step>
           <ng-template matStepLabel>Chose a customer or create a new one</ng-template>
           <avs-dashboard-customer-details #clientComponent fxFlexFill>
           </avs-dashboard-customer-details>
 
         </mat-step>
-        <mat-step> <!-- [stepControl]="secondFormGroup" -->
+        <mat-step >
           <ng-template matStepLabel>Select and address or create a new one</ng-template>
           <avs-dashboard-addresses [clientId]="clientComponent?.client?.clientId" fxFlexFill></avs-dashboard-addresses>
         </mat-step>
@@ -95,7 +95,6 @@
           </div>
         </mat-step>
       </mat-vertical-stepper>
-      <button mat-button mat-raised-button color="accent">Submit</button>
     </mat-card-content>
   </mat-card>
 </div>

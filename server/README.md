@@ -65,7 +65,7 @@ Once the app is running and the tables are created, you can seed the database wi
     yarn run test
 
 ## Login 
-    POST - http://localhost:3000/oauth/token
+    POST - http://localhost:3001/oauth/token
     Body => {
     "username":"admin@gmail.com",
     "password": "99032",
