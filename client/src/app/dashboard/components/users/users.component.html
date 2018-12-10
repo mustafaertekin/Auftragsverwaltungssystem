@@ -1,31 +1,70 @@
-<div class="users-form m-1" fxFlex.gt-sm="60" fxFlex.gt-xs="100" fxFlex="100">
-<mat-card>
-  <mat-card-title>Users</mat-card-title>
-  <mat-card-content>
-    <div class="example-container">
-      <mat-form-field>
-        <input matInput placeholder="First Name">
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Last Name">
-      </mat-form-field>
+<div class="users-component m-t-1 m-l-1">
+  <mat-card>
+    <mat-card-header>
+      <mat-icon class="title-icon-size" mat-card-avatar>person</mat-icon>
+      <mat-card-title>Users</mat-card-title>
+      <mat-card-subtitle>User list</mat-card-subtitle>
+    </mat-card-header>
+    <mat-divider></mat-divider>
+    <mat-card-content fxLayout="row">
+      <div fxFlex="30" fxlayoutalign="center center">
+        <form class="order-form  m-t-1 m-l-1 m-r-1">
+          <mat-form-field class="full-width">
+            <input matInput maxlength="140" placeholder="Users">
+            <mat-hint align="start"><strong>Search Users</strong> </mat-hint>
+          </mat-form-field>
+        </form>
+        <mat-list role="list">
+          <mat-list-item role="listitem">
+          </mat-list-item>
+          <mat-divider [inset]="true"></mat-divider>
+          <mat-list-item role="listitem">
+            <!-- <avs-dashboard-order-item class="avs-dashboard-order-item"></avs-dashboard-order-item> -->
+          </mat-list-item>
+          <mat-divider [inset]="true"></mat-divider>
+          <mat-list-item role="listitem">
+            <!-- <avs-dashboard-order-item class="avs-dashboard-order-item"></avs-dashboard-order-item> -->
+          </mat-list-item>
+          <mat-divider [inset]="true"></mat-divider>
+          <mat-list-item role="listitem">
+            <!-- <avs-dashboard-order-item class="avs-dashboard-order-item"></avs-dashboard-order-item> -->
+          </mat-list-item>
+          <mat-divider [inset]="true"></mat-divider>
+        </mat-list>
+      </div>
+      <div fxFlex="70" fxlayoutalign="center center">
+        <div class="users-form m-1" fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+          <mat-card>
+            <mat-card-title>Users Details</mat-card-title>
+            <mat-card-content>
+              <div class="example-container">
+                <mat-form-field>
+                  <input matInput placeholder="First Name">
+                </mat-form-field>
+                <mat-form-field>
+                  <input matInput placeholder="Last Name">
+                </mat-form-field>
 
-      <mat-form-field>
-        <input matInput placeholder="Enter your email" [formControl]="email" required>
-        <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput type="password" placeholder="Password">
-      </mat-form-field>
+                <mat-form-field>
+                  <input matInput placeholder="Enter your email" [formControl]="email" required>
+                  <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                  <input matInput type="password" placeholder="Password">
+                </mat-form-field>
 
 
-      <mat-form-field>
-        <mat-select placeholder="Rolle">
-          <mat-option value="option">Admin</mat-option>
-          <mat-option value="option">Crew</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-  </mat-card-content>
-</mat-card>
+                <mat-form-field>
+                  <mat-select placeholder="Rolle">
+                    <mat-option value="option">Admin</mat-option>
+                    <mat-option value="option">Crew</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
 </div>
