@@ -7,6 +7,7 @@ import { DashboardNewOrderComponent } from './components/orders/new-order/new-or
 import { DashboardDevicesComponent } from './components/devices/devices.component';
 import { UsersComponent } from './components/users/users.component';
 import { DashboardCustomersComponent } from './components/customers/customers/customers.component';
+import { DashboardSettingsComponent } from './components/settings/settings.component';
 export const DashboardRoutes: Routes = [
   {
     path: 'dashboard',
@@ -19,7 +20,9 @@ export const DashboardRoutes: Routes = [
       { path: 'new-order', component: DashboardNewOrderComponent },
       { path: 'devices', component: DashboardDevicesComponent },
       { path: 'users', component: UsersComponent },
-      { path: 'customers', component: DashboardCustomersComponent }
+      { path: 'customers', component: DashboardCustomersComponent },
+      { path: 'settings', component: DashboardSettingsComponent }
+
     ]
   }
 ];
