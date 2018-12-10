@@ -36,6 +36,10 @@ export class Order extends BaseModel<Order> {
 
     @AllowNull(false)
     @Column
+    deliveryDate: string;
+
+    @AllowNull(false)
+    @Column
     deliveryAddressId: string;
 
     @AllowNull(false)

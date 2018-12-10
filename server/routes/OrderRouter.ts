@@ -44,7 +44,8 @@ export class OrderRouter {
                 req.body.price,
                 req.body.companyId,
                 req.body.status,
-                req.body.description
+                req.body.description,
+                req.body.deliveryDate
             );
             res.json(newOrder);
         } catch(error) {

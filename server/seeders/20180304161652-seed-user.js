@@ -11,6 +11,7 @@ module.exports = {
             email: 'admin@gmail.com',
             password: '$2a$10$NUckPE1ErB7SRKVeeKKYcOQPvbb7HJQ7mXC5xpuz.fC1kQ3QucGL2',
             role: 'admin',
+            isActive: 'true',
             creationDate: new Date(),
             updatedOn: new Date(),
         },
@@ -21,6 +22,7 @@ module.exports = {
             email: 'member@gmail.com',
             password: '$2a$10$NUckPE1ErB7SRKVeeKKYcOQPvbb7HJQ7mXC5xpuz.fC1kQ3QucGL2',
             role: 'member',
+            isActive: 'true',
             creationDate: new Date(),
             updatedOn: new Date(),
         }], {});

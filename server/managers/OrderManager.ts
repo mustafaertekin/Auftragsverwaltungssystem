@@ -23,7 +23,8 @@ export class OrderManager {
     constructor() {
     }
 
-    public async createOrder(clientId: string, userId: string, deviceId: string, modelId: string, serviceId: string, price: string, companyId: string, status: OrderStatus, description: string ) {
+    public async createOrder(clientId: string, userId: string, deviceId: string, modelId: string, serviceId: string, 
+        price: string, companyId: string, status: OrderStatus, description: string, deliveryDate:string ) {
         try {
 
                 const user = await new UserManager().findById(userId);
@@ -46,7 +47,8 @@ export class OrderManager {
                         price,
                         companyId: company.companyId,
                         status,
-                        description
+                        description,
+                        deliveryDate
                 });
                 return newOrder.save();
         } catch (error) {
@@ -66,6 +68,7 @@ export class OrderManager {
           dbOrder.companyId = order.companyId || dbOrder.companyId;
           dbOrder.status = order.status || dbOrder.status;
           dbOrder.description = order.description || dbOrder.description;
+          dbOrder.deliveryDate = order.deliveryDate || dbOrder.deliveryDate;
 
             return dbOrder.save();
         } else {
