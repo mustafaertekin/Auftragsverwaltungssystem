@@ -51,9 +51,9 @@
         <mat-panel-title>
           <div fxLayout="row" fxLayoutAlign="space-between center">
             <span class="m-r-1">
-              <mat-icon>settings</mat-icon>
+              <mat-icon>supervisor_account</mat-icon>
             </span>
-            <span>Settings</span>
+            <span>Customers</span>
           </div>
         </mat-panel-title>
       </mat-expansion-panel-header>
@@ -63,24 +63,24 @@
         <mat-panel-title>
           <div fxLayout="row" fxLayoutAlign="space-between center">
             <span class="m-r-1">
-              <mat-icon>supervisor_account</mat-icon>
+              <mat-icon>person</mat-icon>
             </span>
-            <span>Customers</span>
+            <span>Users</span>
           </div>
         </mat-panel-title>
       </mat-expansion-panel-header>
     </mat-expansion-panel>
     <mat-expansion-panel class="no-panel" dense>
-        <mat-expansion-panel-header [routerLink]="['/dashboard','main']" fxLayout="row" [expandedHeight]="'48px'">
-          <mat-panel-title>
-            <div fxLayout="row" fxLayoutAlign="space-between center">
-              <span class="m-r-1">
-                <mat-icon>person</mat-icon>
-              </span>
-              <span>Users</span>
-            </div>
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-      </mat-expansion-panel>
+      <mat-expansion-panel-header [routerLink]="['/dashboard','settings']" fxLayout="row" [expandedHeight]="'48px'">
+        <mat-panel-title>
+          <div fxLayout="row" fxLayoutAlign="space-between center">
+            <span class="m-r-1">
+              <mat-icon>settings</mat-icon>
+            </span>
+            <span>Settings</span>
+          </div>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+    </mat-expansion-panel>
   </mat-accordion>
 </div>

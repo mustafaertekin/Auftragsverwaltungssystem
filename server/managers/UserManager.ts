@@ -13,7 +13,7 @@ export class UserManager {
 
     }
 
-    public async createUser(email: string, password: string, firstName: string, lastName: string, role: RoleEnum, profilePicUrl?: string) {
+    public async createUser(email: string, password: string, firstName: string, lastName: string, role: RoleEnum, isActive: boolean, profilePicUrl?: string) {
 
         const newUser = new User({
             firstName,
@@ -21,12 +21,13 @@ export class UserManager {
             email,
             password: Utils.encryptPassword(password),
             profilePicUrl,
-            role
+            role,
+            isActive
         });
         return newUser.save();
     }
 
-    public async updateUser(userId: string, email: string, firstName: string, lastName: string, role: RoleEnum, profilePicUrl?: string): Promise<User> {
+    public async updateUser(userId: string, email: string, firstName: string, lastName: string, role: RoleEnum, isActive: boolean, profilePicUrl?: string): Promise<User> {
 
         console.log('UPDATING USER', userId);
         const user = await User.find<User>({where: {userId: userId}});
@@ -36,6 +37,7 @@ export class UserManager {
             user.lastName = lastName || user.lastName;
             user.profilePicUrl = profilePicUrl || user.profilePicUrl;
             user.role = role;
+            user.isActive = isActive;
             return user.save();
         } else {
             logger.error("No user found");

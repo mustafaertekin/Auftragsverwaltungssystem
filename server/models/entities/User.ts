@@ -34,9 +34,15 @@ export class User extends BaseModel<User> {
     @Column(DataType.ENUM(RoleEnum.ADMIN, RoleEnum.MEMBER))
     role: RoleEnum;
 
+    @AllowNull(false)
+    @Column
+    isActive: boolean;
+
     @HasOne(() => AccessToken)
     accessToken: AccessToken;
 
     @Column
     profilePicUrl: string;
+    
+   
 }

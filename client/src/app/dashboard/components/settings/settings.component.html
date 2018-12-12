@@ -1,0 +1,43 @@
+<div class="settings-component m-1" fxFlex.gt-sm="70" fxFlex.gt-xs="100" fxFlex="100">
+    <mat-card>
+      <mat-card-header>
+        <mat-icon class="title-icon-size" mat-card-avatar>settings</mat-icon>
+        <mat-card-title>Settings</mat-card-title>
+        <mat-card-subtitle>Change your settings</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+          <div>
+          <!-- <div class="users-form m-1" fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100"> -->
+
+            <h2>User Details</h2>
+              <mat-card-content>
+                <div class="example-container" fxLayout="column">
+                  <mat-form-field>
+                    <input matInput placeholder="First Name">
+                  </mat-form-field>
+                  <mat-form-field>
+                    <input matInput placeholder="Last Name">
+                  </mat-form-field>
+  
+                  <!-- <mat-form-field>
+                    <input matInput placeholder="Enter your email" [formControl]="email" required>
+                    <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+                  </mat-form-field> -->
+                  <mat-form-field>
+                    <input matInput type="password" placeholder="Password">
+                  </mat-form-field>
+  
+  
+                  <mat-form-field>
+                    <mat-select placeholder="Language">
+                      <mat-option value="de-DE">Deutsch</mat-option>
+                      <mat-option value="en-EN">English</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </mat-card-content>
+          <!-- </div> -->
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>

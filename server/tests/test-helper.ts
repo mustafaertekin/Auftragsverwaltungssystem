@@ -43,12 +43,12 @@ export class TestHelper {
 
     static async createMember(email?: string): Promise<User> {
         const userManager = new UserManager();
-        return userManager.createUser(email || 'test.member@gmail.com', 'password', 'Test', 'Member',  RoleEnum.MEMBER);
+        return userManager.createUser(email || 'test.member@gmail.com', 'password', 'Test', 'Member',  RoleEnum.MEMBER, true);
     }
 
     static async createAdmin(): Promise<User> {
         const userManager = new UserManager();
-        return userManager.createUser('test.admin@gmail.com', 'password', 'Test', 'Admin', RoleEnum.ADMIN);
+        return userManager.createUser('test.admin@gmail.com', 'password', 'Test', 'Admin', RoleEnum.ADMIN, true);
     }
 
     private static async getEmailForRole(role: RoleEnum): Promise<string> {
