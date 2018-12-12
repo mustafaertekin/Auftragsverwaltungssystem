@@ -93,8 +93,11 @@
           <ng-template matStepLabel>Select and address or create a new one</ng-template>
           <avs-dashboard-addresses [clientId]="clientComponent?.client?.clientId" fxFlexFill></avs-dashboard-addresses>
         </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Save your new order</ng-template>
+            <button mat-button mat-raised-button color="accent" class="m-1">Submit</button>
+        </mat-step>
       </mat-vertical-stepper>
-      <button mat-button mat-raised-button color="accent">Submit</button>
     </mat-card-content>
   </mat-card>
 </div>
