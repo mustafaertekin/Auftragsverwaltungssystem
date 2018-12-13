@@ -19,12 +19,18 @@
                     <input matInput placeholder="Last Name">
                   </mat-form-field>
   
-                  <!-- <mat-form-field>
-                    <input matInput placeholder="Enter your email" [formControl]="email" required>
-                    <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
-                  </mat-form-field> -->
                   <mat-form-field>
-                    <input matInput type="password" placeholder="Password">
+                    <input matInput type="email" placeholder="Enter your email" required>
+                    <!-- <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error> -->
+                  </mat-form-field>
+                  <mat-form-field>
+                    <input matInput type="password" placeholder=" Current password">
+                  </mat-form-field>
+                  <mat-form-field>
+                    <input matInput type="password" placeholder=" New password">
+                  </mat-form-field>
+                  <mat-form-field>
+                    <input matInput type="password" placeholder="Confirm new password">
                   </mat-form-field>
   
   
