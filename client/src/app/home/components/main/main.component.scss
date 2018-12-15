@@ -1,10 +1,10 @@
-
+@import '../../../../lib/assets/styles/scss/variables';
 .avs-home-container{
     .item {
         padding: 20px;
         font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
         .text-green {
-          color: green;
+          color: $AVS900;
         }
       }
       

@@ -37,7 +37,7 @@ $mat-custom: (
 
 $my-app-primary: mat-palette($mat-custom, 700, 300, 900);
 $my-app-accent:  mat-palette($mat-custom);
-$my-app-warn:    mat-palette($mat-red);
+$my-app-warn:    mat-palette($mat-custom, 900);
 
 $my-app-theme: mat-light-theme(
   $my-app-primary, 
