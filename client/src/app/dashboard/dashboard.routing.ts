@@ -17,6 +17,7 @@ export const DashboardRoutes: Routes = [
       { path: '', redirectTo: 'main', pathMatch: 'full'},
       { path: 'main', component: DashboardMainComponent },
       { path: 'orders', component: DashboardOrdersComponent },
+      { path: 'orders/:id', component: DashboardOrdersComponent },
       { path: 'new-order', component: DashboardNewOrderComponent },
       { path: 'devices', component: DashboardDevicesComponent },
       { path: 'users', component: UsersComponent },

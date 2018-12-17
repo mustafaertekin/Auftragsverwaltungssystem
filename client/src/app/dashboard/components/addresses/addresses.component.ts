@@ -9,10 +9,11 @@ import { AddressService } from '@avs-ecosystem/services/address.service';
   templateUrl: './addresses.component.html',
   styleUrls: ['./addresses.component.scss']
 })
-export class DashboardAddressesComponent implements OnInit, OnChanges { 
-  public addressForm: FormGroup; 
+export class DashboardAddressesComponent implements OnInit, OnChanges {
+  public addressForm: FormGroup;
   public addresses: any;
-  @Input() clientId:string;
+  public selectedAddress: any;
+  @Input() clientId: string;
 
 
   constructor(private fb: FormBuilder,
@@ -24,16 +25,16 @@ export class DashboardAddressesComponent implements OnInit, OnChanges {
     this.setAddressForm();
   }
 
-  ngOnChanges(changes){ 
-    if(changes.clientId.currentValue) {
+  ngOnChanges(changes) {
+    if (changes.clientId.currentValue) {
       this.clientId = changes.clientId.currentValue;
       this.getAllAddressesByClientId(this.clientId);
     } else {
       this.addresses = null;
-    } 
+    }
   }
 
-  setAddressForm(){
+  setAddressForm() {
     this.addressForm = this.fb.group({
       streetName: ["", [Validators.required]],
       plzNumber: ["", [Validators.required]],
@@ -42,10 +43,9 @@ export class DashboardAddressesComponent implements OnInit, OnChanges {
     });
   }
 
-  saveAddress(){
-    if(this.addressForm.valid && this.clientId) {
-      
-      let addresInfo = this.addressForm.value;
+  saveAddress() {
+    if (this.addressForm.valid && this.clientId) {
+      const addresInfo = this.addressForm.value;
       addresInfo.clientId = this.clientId;
       this.addressService.create(addresInfo).subscribe(() => {
           this.getAllAddressesByClientId(this.clientId);
@@ -62,6 +62,11 @@ export class DashboardAddressesComponent implements OnInit, OnChanges {
   deleteAddress(addressId) {
     this.addressService.delete(addressId).subscribe(addresses => {
       this.getAllAddressesByClientId(this.clientId);
-    })
+    });
+  }
+
+  setSelectedAddress(address) {
+    console.log('addressees', address);
+    this.selectedAddress = address;
   }
 }

@@ -1,12 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { OrderService } from '@avs-ecosystem/services/order.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'avs-dashboard-order-details',
   templateUrl: './order-details.component.html',
   styleUrls: ['./order-details.component.scss']
 })
-export class DashboardOrderDetailsComponent implements OnInit {
-   
+export class DashboardOrderDetailsComponent implements OnInit, OnChanges {
+
+  @Input() currentOrderId;
+  public currentOrder: any;
+
   public orderStatus: string;
   statuses: any[] = [
     { name: 'Pending', color: 'red'},
@@ -16,9 +21,20 @@ export class DashboardOrderDetailsComponent implements OnInit {
     { name: 'Delivered', color: 'purple'},
     { name: 'Cancelled', color: 'orange'}
   ];
-  constructor() {}
+  constructor(private orderService: OrderService,
+    private route: ActivatedRoute, private router: Router) {}
 
-  ngOnInit() {
-     
+  ngOnInit() {}
+
+  ngOnChanges (changes) {
+    this.orderService.getById(this.currentOrderId).subscribe(order => {
+      this.currentOrder = order;
+    });
+  }
+
+  deleteOrder(orderId) {
+    this.orderService.deleteOrder(orderId).subscribe(result => {
+      this.router.navigate(['/', 'dashboard', 'orders'], { relativeTo: this.route});
+    });
   }
 }

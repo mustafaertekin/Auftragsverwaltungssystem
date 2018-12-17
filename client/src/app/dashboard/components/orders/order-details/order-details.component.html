@@ -10,8 +10,8 @@
         <h2>Order Details</h2>
         <span fxFlex></span>
         <div class="m-t-1 m-r-1 m-b-1" fxLayoutAlign="end center">
-          <button mat-fab>
-            <mat-icon>edit</mat-icon>
+          <button mat-fab color="warn" (click)="deleteOrder(currentOrder.orderId)">
+            <mat-icon>delete</mat-icon>
           </button>
           <button mat-fab class="m-l-1">
             <mat-icon>email</mat-icon>
@@ -23,43 +23,38 @@
       </div>
       <div fxLayout="row"class="m-1">
         <div fxFlex="60">
-          <div>
-            <mat-card> <mat-card-title>Customer:</mat-card-title>
-              <mat-card-subtitle>Order:</mat-card-subtitle>
+          <div *ngFor="let service of currentOrder?.orderServices; let i = index">
+            <mat-card>
+              <mat-card-title>
+                <div fxLayout="row" fxLayoutAlign="space-between center">
+                  <div>#Service {{i+1}}:</div>
+                  <div>{{service?.Service?.price}}.- CHF</div>
+                </div>
+              </mat-card-title>
               <mat-card-content>
                 <div fxLayout="column">
-                  <div class="service-first">
-                    <mat-card-subtitle>Service:</mat-card-subtitle>
-                    <mat-card-subtitle>IMEI:</mat-card-subtitle>
-                    <mat-card-subtitle>Device:</mat-card-subtitle>
-                  <div>
-                    <mat-list>
-                      <mat-list-item>LIST 1</mat-list-item>
-                      <mat-list-item>LIST 1</mat-list-item>
-                    </mat-list>
+                  <div class="service-first" >
+                    <mat-card-subtitle>IMEI:{{service?.device?.deviceId}}</mat-card-subtitle>
+                    <mat-card-subtitle>Service: {{service?.Service?.serviceName}}</mat-card-subtitle>
+                    <mat-card-subtitle>Model: {{service?.deviceModel?.deviceModelName}}</mat-card-subtitle>
+                    <mat-card-subtitle>Device:{{service?.device?.deviceName}}</mat-card-subtitle>
                   </div>
                 </div>
-                <div class="service-second">
-                    <mat-card-subtitle>Service-2:</mat-card-subtitle>
-                    <mat-card-subtitle>IMEI:</mat-card-subtitle>
-                    <mat-card-subtitle>Device:</mat-card-subtitle>
-                  <div>
-                    <mat-list>
-                      <mat-list-item>LIST 1</mat-list-item>
-                      <mat-list-item>LIST 1</mat-list-item>
-                    </mat-list>
-                  </div>
-                </div>
-                   
-                  
-                </div>
-               
               </mat-card-content>
             </mat-card>
           </div>
-
         </div>
         <div fxFlex="40" fxLayout="column">
+          <div>
+            <mat-card>
+              <mat-card-content>
+                <div fxLayout="row" fxLayoutAlign="space-between center">
+                  <h2>TOTAL:</h2>
+                  <h2>{{currentOrder?.price}}.- CHF</h2>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </div>
           <div>
             <mat-card>
               <mat-card-content>
@@ -76,16 +71,15 @@
           <div>
             <mat-card>
               <mat-card-content>
-                Due:
-                Date 19:12
+                 {{currentOrder?.deliveryDate | date: 'short'}}
               </mat-card-content>
             </mat-card>
           </div>
           <div>
             <mat-card>
               <mat-card-content>
-                User
-                Mustafa Ertekin
+                <h3>User:</h3>
+                {{currentOrder?.user?.firstName}}  {{currentOrder?.user?.lastName}}
               </mat-card-content>
             </mat-card>
           </div>
@@ -112,5 +106,6 @@
 
     </mat-tab>
     <mat-tab label="Customer Details"> Customer Details </mat-tab>
+
   </mat-tab-group>
 </div>

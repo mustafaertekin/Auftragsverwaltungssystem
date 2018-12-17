@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'avs-dashboard-order-item',
@@ -6,11 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./order-item.component.scss']
 })
 export class DashboardOrderItemComponent implements OnInit {
-   
+  @Input() order;
 
   constructor() {}
 
   ngOnInit() {
-     
   }
 }

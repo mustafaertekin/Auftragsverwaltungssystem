@@ -38,7 +38,10 @@
         </div>
       </form>
     </mat-expansion-panel>
-    <avs-dashboard-address-exstra *ngFor="let address of addresses" [clientId]="clientId" [address]="address">
-    </avs-dashboard-address-exstra>
+      <avs-dashboard-address-exstra  *ngFor="let address of addresses"
+      [clientId]="clientId"
+      (click)="setSelectedAddress(address)"
+      [address]="address">
+      </avs-dashboard-address-exstra>
   </mat-accordion>
 </div>

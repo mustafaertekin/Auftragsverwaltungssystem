@@ -1,7 +1,8 @@
-import {AllowNull, BeforeSave, Column, DataType, HasOne, ForeignKey, Table, Unique, HasMany, Default, PrimaryKey, IsUUID } from 'sequelize-typescript';
+import {AllowNull, BeforeSave, Column, DataType, BelongsTo, ForeignKey, Table, Unique, HasMany, Default, PrimaryKey, IsUUID } from 'sequelize-typescript';
 import {BaseModel} from "./BaseModel";
 import { Client } from './Client';
 import { User } from './User';
+import { Order } from './Order';
 
 
 @Table
@@ -36,4 +37,8 @@ export class Address extends BaseModel<Address> {
     @ForeignKey(() => User)
     @Column
     userId: string;
+
+    @HasMany(() => Order)
+    orders: Order[];
+
 }
