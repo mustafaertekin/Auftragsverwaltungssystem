@@ -1,4 +1,4 @@
-import {AllowNull, BeforeSave, Column, DataType, HasOne, ForeignKey, Table, Unique, BelongsToMany, Default, PrimaryKey, IsUUID, BelongsTo} from 'sequelize-typescript';
+import {AllowNull, BeforeSave, Column, DataType, HasOne, ForeignKey, Table, Unique, BelongsToMany, Default, PrimaryKey, IsUUID, BelongsTo, HasMany} from 'sequelize-typescript';
 import {BaseModel} from "./BaseModel";
 import { User } from './User';
 import { Client } from './Client';
@@ -6,7 +6,7 @@ import { Device } from './Device';
 import { Service } from './Service';
 import { Company } from './Company';
 import { OrderService } from './OrderService';
-import { DeviceModel } from './DeviceModel';
+import { Address } from './Address';
 import { OrderStatus } from '../enums/OrderStatus';
 
 
@@ -36,11 +36,21 @@ export class Order extends BaseModel<Order> {
 
     @AllowNull(false)
     @Column
+    deliveryDate: string;
+
+
+    @ForeignKey(() => Address)
+    @Column
     deliveryAddressId: string;
 
-    @AllowNull(false)
+    @ForeignKey(() => Address)
     @Column
     billingAddressId: string;
+
+    // this gets only one address needs to be solved
+    // or make another request and show addreses on a different view
+    @BelongsTo(() => Address)
+    address: Address;
 
     @ForeignKey(() => Company)
     @Column
@@ -60,5 +70,10 @@ export class Order extends BaseModel<Order> {
 
     @BelongsTo(() => Company)
     company: Company;
+
+    @HasMany(() => OrderService)
+    orderServices: OrderService[];
+
+
 }
 

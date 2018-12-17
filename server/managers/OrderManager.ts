@@ -3,7 +3,7 @@ import {DatabaseError as SequelizeError, ValidationError as SequelizeValidationE
 import {Order} from "../models/entities/Order";
 import {NotFoundError} from "../errors/NotFoundError";
 import { Service } from "../models/entities/Service";
-import { OrderStatus } from "models/enums/OrderStatus";
+import { OrderStatus } from "../models/enums/OrderStatus";
 import {logger} from "../lib/logger";
 import { UserManager } from "./UserManager";
 import { ClientManager } from "./ClientManager";
@@ -16,6 +16,11 @@ import { MessageError } from "../errors/MessageError";
 import { Client } from "../models/entities/Client";
 import { Company } from "../models/entities/Company";
 import { User } from "../models/entities/User";
+import { DeviceModel } from "../models/entities/DeviceModel";
+import { OrderService } from "../models/entities/OrderService";
+import { Device } from "../models/entities/Device";
+import * as bluebird from 'bluebird';
+import * as _ from 'lodash';
 
 
 export class OrderManager {
@@ -23,36 +28,49 @@ export class OrderManager {
     constructor() {
     }
 
-    public async createOrder(clientId: string, userId: string, deviceId: string, modelId: string, serviceId: string, price: string, companyId: string, status: OrderStatus, description: string ) {
+    public async createOrder(reqObject) {
         try {
+          let services = reqObject.body.addedServices;
+          const resolvedServices = await bluebird.all(services.map(item => {
+            return new ServiceManager().findById(item.serviceId);
+          }));
 
-                const user = await new UserManager().findById(userId);
-                const client = await new ClientManager().findById(clientId);
-                const device = await new DeviceManager().findById(deviceId);
-                const model = await new DeviceModelManager().findById(modelId);
-                const service = await new ServiceManager().findById(serviceId);
-                const company = await new CompanyManager().findById(companyId);
-                /*
-                if(user && client && device && model && service && company) {
-                    return new Error('sunlari adam gibi doldur yea!');
-                }
-                */
-                const newOrder = new Order({
-                        clientId: client.clientId,
-                        userId: user.userId,
-                        deviceId: device.deviceId,
-                        modelId: model.deviceModelId,
-                        serviceId: service.serviceId,
-                        price,
-                        companyId: company.companyId,
-                        status,
-                        description
-                });
-                return newOrder.save();
+          const price = resolvedServices.reduce((sum, curr)=> {
+            sum += _.get(curr, 'dataValues.price', 0); return sum;
+          }, 0);
+
+          const user = _.get(reqObject, 'user.dataValues.userId');
+          const clientId = reqObject.body.clientId;
+          const addressId = reqObject.body.addressId;
+          // TODO here needs to get company id programatically
+          const companyId = "10e0e993-b796-4168-b017-2b15b1640ccc";
+
+          const newOrder = new Order({
+                  clientId: clientId,
+                  userId: user.userId,
+                  price,
+                  companyId: companyId,
+                  status: OrderStatus.OPENED,
+                  deliveryAddressId: addressId,
+                  billingAddressId: addressId,
+                  description: 'not yet implemented',
+                  deliveryDate: new Date().toString()
+          });
+          const savedOrder = await newOrder.save();
+
+          services = services.map(service => {
+            return {
+              orderId: _.get(savedOrder, 'dataValues.orderId'),
+              deviceId: service.deviceId,
+              modelId: service.deviceModelId,
+              serviceId: service.serviceId
+            };
+          });
+          await OrderService.bulkCreate(services, { ignoreDuplicates: true });
+          return savedOrder;
         } catch (error) {
-            return new Error(error);
+            throw new Error(error);
         }
-
     }
 
     public async updateOrder(orderId: string,  order: Order): Promise<Order> {
@@ -66,6 +84,7 @@ export class OrderManager {
           dbOrder.companyId = order.companyId || dbOrder.companyId;
           dbOrder.status = order.status || dbOrder.status;
           dbOrder.description = order.description || dbOrder.description;
+          dbOrder.deliveryDate = order.deliveryDate || dbOrder.deliveryDate;
 
             return dbOrder.save();
         } else {
@@ -77,7 +96,16 @@ export class OrderManager {
     public async findById(orderId: string) {
         const order = await Order.findOne<Order>({
             where: {orderId},
-            include: [Client, User, Address, Company, Service]
+            include: [
+              Client,
+              User,
+              Address,
+              {
+                model: OrderService,
+                include: [Device, DeviceModel, Service]
+              },
+               Company
+            ]
         });
         if (order) {
             return order;
@@ -88,7 +116,11 @@ export class OrderManager {
     }
 
     public async findAll(): Promise<Order[]> {
-        const orders: Order[] = await Order.findAll<Order>({});
+        const orders: Order[] = await Order.findAll<Order>({
+          order: [
+             ['creationDate', 'DESC']
+          ]
+        });
         if (orders) {
             return orders;
         } else {

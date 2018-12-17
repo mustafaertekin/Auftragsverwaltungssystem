@@ -2,6 +2,8 @@ import * as express from "express";
 import {Order} from "../models/entities/Order";
 import {Auth} from "../auth/auth";
 import {OrderManager} from "../managers/OrderManager";
+import * as _ from 'lodash';
+import { Client } from "../models/entities/Client";
 
 export class OrderRouter {
 
@@ -17,7 +19,14 @@ export class OrderRouter {
 
     public async get(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
-            const orders = await Order.findAll<Order>();
+            const orders = await Order.findAll<Order>(
+              {
+                include:[Client],
+                order: [
+                  ['creationDate', 'DESC']
+                ]
+              }
+            );
             res.json(orders);
         } catch(error) {
             next(error);
@@ -35,17 +44,7 @@ export class OrderRouter {
 
     public async post(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
-            const newOrder = await this.orderManager.createOrder(
-                req.body.clientId,
-                req.body.userId,
-                req.body.deviceId,
-                req.body.modelId,
-                req.body.serviceId,
-                req.body.price,
-                req.body.companyId,
-                req.body.status,
-                req.body.description
-            );
+            const newOrder = await this.orderManager.createOrder(req);
             res.json(newOrder);
         } catch(error) {
             next(error);

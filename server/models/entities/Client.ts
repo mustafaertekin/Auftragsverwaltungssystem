@@ -31,7 +31,7 @@ export class Client extends BaseModel<Client> {
 
     @AllowNull(false)
     @Column
-    phone: string; 
+    phone: string;
 
     @AllowNull(false)
     @Unique

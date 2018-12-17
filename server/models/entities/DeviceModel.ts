@@ -1,6 +1,7 @@
-import {AllowNull, Column, ForeignKey, DataType, PrimaryKey, IsUUID, Default, Table} from 'sequelize-typescript';
+import {AllowNull, Column, ForeignKey, DataType, BelongsTo, PrimaryKey, IsUUID, Default, Table, HasMany} from 'sequelize-typescript';
 import {BaseModel} from "./BaseModel";
 import {Device} from "./Device";
+import {Service} from "./Service";
 
 @Table
 export class DeviceModel extends BaseModel<DeviceModel> {

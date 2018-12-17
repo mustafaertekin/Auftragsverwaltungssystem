@@ -1,0 +1,52 @@
+
+
+
+$mat-dark-custom: (
+  50:     $AVSDARK50,
+  100:    $AVSDARK100,
+  200:    $AVSDARK200,
+  300:    $AVSDARK300,
+  400:    $AVSDARK400,
+  500:    $AVSDARK500,
+  600:    $AVSDARK600,
+  700:    $AVSDARK700,
+  800:    $AVSDARK800,
+  900:    $AVSDARK900,
+  A100:   $AD100,
+  A200:   $AD200,
+  A400:   $AD400,
+  A700:   $AD700,
+  contrast: (
+    50:   $black-87-opacity,
+    100:  $black-87-opacity,
+    200:  $black-87-opacity,
+    300:  $black-87-opacity,
+    400:  white,
+    500:  white,
+    600:  $white-87-opacity,
+    700:  $white-87-opacity,
+    800:  $white-87-opacity,
+    900:  $white-87-opacity,
+    A100: $black-87-opacity,
+    A200: $black-87-opacity,
+    A400: white,
+    A700: $white-87-opacity,
+  )
+);
+
+
+
+$dark-app-primary: mat-palette($mat-dark-custom, 700, 300, 900);
+$dark-app-accent:  mat-palette($mat-dark-custom);
+$dark-app-warn:    mat-palette($mat-dark-custom, 900);
+
+$dark-app-theme: mat-light-theme(
+  $dark-app-primary,
+  $dark-app-accent,
+  $dark-app-warn
+);
+
+.dark-theme{
+  @include angular-material-theme($dark-app-theme);
+}
+

@@ -1,9 +1,15 @@
-import {Column, DataType, Table, BelongsToMany, AllowNull, Default, ForeignKey, PrimaryKey, IsUUID} from 'sequelize-typescript';
+import {Column, DataType, Table, BelongsToMany, Scopes,
+  AllowNull,ForeignKey, Default, BelongsTo, PrimaryKey, IsUUID, HasOne} from 'sequelize-typescript';
 import { BaseModel} from "./BaseModel";
 import { OrderService } from './OrderService';
 import { Order } from './Order';
+import { DeviceModel } from './DeviceModel';
 
-
+@Scopes({
+  full: {
+    include: [() => DeviceModel]
+  }
+})
 @Table
 export class Service extends BaseModel<Service> {
 
@@ -20,9 +26,13 @@ export class Service extends BaseModel<Service> {
     @Column
     price: number;
 
+    @ForeignKey(() => DeviceModel)
     @Column
     modelId: string;
 
     @BelongsToMany(() => Order, () => OrderService)
     orders: Order[];
+
+    @BelongsTo(() => DeviceModel)
+    deviceModel: DeviceModel;
 }

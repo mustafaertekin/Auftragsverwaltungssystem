@@ -26,6 +26,9 @@ import { DashboardAddedDeviceComponent } from './components/devices/device-detai
 import { DashboardModelExstraComponent } from './components/devices/model-details/added-model/added-model.component';
 import { DashboardDeviceServiceExstraComponent } from './components/devices/service-details/added-service/added-service.component';
 import { UsersComponent } from './components/users/users.component';
+import { DashboardCustomersComponent } from './components/customers/customers/customers.component';
+import { DashboardSettingsComponent } from './components/settings/settings.component';
+import { DashboardOrderServicesComponent } from './components/orders/order-services/order-services.component';
 
 @NgModule({
   imports: [
@@ -57,7 +60,10 @@ import { UsersComponent } from './components/users/users.component';
     DashboardAddedDeviceComponent,
     DashboardModelExstraComponent,
     DashboardDeviceServiceExstraComponent,
-    UsersComponent
+    UsersComponent,
+    DashboardCustomersComponent,
+    DashboardSettingsComponent,
+    DashboardOrderServicesComponent
   ]
 })
 export class DashboardPageModule {}

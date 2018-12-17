@@ -1,28 +1,28 @@
 
-<a href="/dashboard/"> <div class="m-t-1 m-b-1">
+
+  <div class="order-item m-t-1 m-b-1" [routerLink]="['/', 'dashboard', 'orders', order.orderId]">
   <mat-card class="example-card">
     <mat-card-content>
         <div fxLayout="row wrap" fxLayoutGap="10px grid">
           <div fxFlex="50">
-            Michael Jung
+              {{order.client.firstName}} {{order.client.lastName}}
           </div>
             <div fxFlex="50" fxLayoutAlign="end center">
-                Status: Open
+                Status: {{order.status}}
             </div>
           <div fxFlex="50">
-              16.12.2018
+              {{order.deliveryDate | date: 'short'}}
           </div>
           <div fxFlex="50" class="text-align-right">
-             Iphone 8
+
           </div>
           <div fxFlex="50">
-             Nr: 354
+              {{order.orderId | slice:0:7}}
           </div>
           <div fxFlex="50" fxLayoutAlign="end center">
-              140.-
+              {{order.price}}
           </div>
         </div>
     </mat-card-content>
   </mat-card>
 </div>
-</a>

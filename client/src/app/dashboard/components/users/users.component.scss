@@ -1,11 +1,15 @@
-.users-form {
-  width: 60%;
-  .example-container {
-    display: flex;
-    flex-direction: column;
+.users-component {
+
+  .users-form {
+    .example-container {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .example-container>* {
+      width: 100%;
+    }
+    
   }
 
-  .example-container>* {
-    width: 100%;
-  }
 }

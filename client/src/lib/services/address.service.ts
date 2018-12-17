@@ -26,7 +26,6 @@ export class AddressService {
   public getByClientId(clientId: string): Observable<any> {
     return this.http.get(`${this.serverUrl}addresses/getByClientId/${clientId}`).pipe(map((res: Response) => res));
   }
-  
 
   public getById(clientId: string): Observable<any> {
     return this.http.get(`${this.serverUrl}addresses/${clientId}`).pipe(map((res: Response) => res));

@@ -4,12 +4,15 @@
           <mat-panel-title>
             <div fxLayout="row" fxLayoutGap="30px" class="m-t-1 m-b-1">
               <div>
+                  <mat-icon >add_to_queue</mat-icon>
+                <!--
                   <mat-checkbox (click)="setAddressId($event, address.addressId)"></mat-checkbox>
+                -->
               </div>
               <div>
                   <span>{{address.streetName}}, {{address.cityName}}, {{address.plzNumber}}</span>
               </div>
-            </div> 
+            </div>
           </mat-panel-title>
         </mat-expansion-panel-header>
         <form [formGroup]="addressForm">
@@ -40,5 +43,5 @@
             </div>
           </div>
         </form>
-      </mat-expansion-panel> 
+      </mat-expansion-panel>
 </span>

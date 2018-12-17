@@ -1,0 +1,81 @@
+<div class="order-services">
+  <div class="m-t-1">
+    <h2 class="m-t-1">Services</h2>
+    <form [formGroup]="serviceForm" class="full-width">
+      <div fxLayout="row" class="m-t-1" fxLayoutAlign="space-between center" fxLayout.xs="column">
+        <div fxFlex="25">
+          <div>
+            <h3>Device</h3>
+            <mat-form-field>
+              <mat-select formControlName="device" placeholder="Select device">
+                <mat-option *ngFor="let device of devices; let i = index" name="xx-{i}" [value]="device.deviceId"
+                  (click)="getModelsByDeviceId(device)">
+                  {{device.deviceName}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxFlex="25">
+          <h3>Model</h3>
+          <mat-form-field>
+            <mat-select formControlName="model" placeholder="Select model">
+              <mat-option *ngFor="let model of models; let i = index" name="yy-{i}" [value]="model.deviceModelId"
+                (click)="getAllServicesByModelId(model)">
+                {{model.deviceModelName}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div fxFlex="25">
+          <h3>Service type</h3>
+          <mat-form-field>
+            <mat-select formControlName="service" placeholder="Select service type">
+              <mat-option *ngFor="let service of services; let i = index" name="zz-{i}" [value]="service.serviceId"
+                (click)="getSelectedService(service)">
+                {{service.serviceName}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div fxFlex="25">
+          <div fxLayout="row">
+            <button mat-button mat-raised-button color="accent" (click)="saveNewService()">
+              <div fxLayout="row" fxLayoutGap="10px">
+                <div fxLayout="row" fxLayoutAlign="start center">
+                  <mat-icon>add_circle_outline</mat-icon>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="start center">
+                  <span> Add</span>
+                </div>
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+
+  </div>
+  <div fxLayout="row" *ngIf="orders?.length">
+    <mat-nav-list class="full-width">
+      <mat-list-item *ngFor="let order of orders">
+        <div fxFlex="23">{{order?.device?.deviceName}}</div>
+        <div fxFlex="23">{{order?.model?.deviceModelName}}</div>
+        <div fxFlex="23">{{order?.service?.serviceName}}</div>
+        <div fxFlex="23">{{order?.service?.price}}</div>
+        <div fxFlex="8">
+          <button mat-button mat-raised-button color="warn" (click)="removeServiceRow(order.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+        <mat-divider></mat-divider>
+      </mat-list-item>
+    </mat-nav-list>
+  </div>
+  <div fxLayout="row" *ngIf="orders?.length" fxLayoutAlign="end center">
+    <div fxFlex="25">
+      <h2>Service Total: {{serviceTotal}}</h2>
+    </div>
+  </div>
+
+</div>

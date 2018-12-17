@@ -1,13 +1,13 @@
 import {Component, OnInit, OnChanges, Input, EventEmitter} from '@angular/core';
-import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms'; 
-import {Observable, BehaviorSubject} from 'rxjs'; 
+import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
+import {Observable, BehaviorSubject} from 'rxjs';
 import { Client } from '@avs-ecosystem/models/Client';
-import * as _ from 'lodash'; 
+import * as _ from 'lodash';
 import {startWith, map} from 'rxjs/operators';
 import { ClientService } from '@avs-ecosystem/services/client.service';
 import { AddressService } from '@avs-ecosystem/services/address.service';
 import { DashboardNewOrderComponent } from '../../orders/new-order/new-order.component';
- 
+
 
 @Component({
   selector: 'avs-dashboard-customer-details',
@@ -17,12 +17,12 @@ import { DashboardNewOrderComponent } from '../../orders/new-order/new-order.com
 export class DashboardCustomerDetailsComponent implements OnInit {
   public customerForm: FormGroup;
   public addressForm: FormGroup;
-  @Input() clientId: string; 
+  @Input() clientId: string;
   public addresses: any;
   myControl = new FormControl();
   options: Client[] = [];
   filteredOptions: Observable<Client[]>;
-  public client:Client; 
+  public client: Client;
 
 
   constructor(private fb: FormBuilder,
@@ -34,8 +34,8 @@ export class DashboardCustomerDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getAllClients().subscribe(result => { 
-      this.options = result; 
+    this.getAllClients().subscribe(result => {
+      this.options = result;
       this.filteredOptions = this.myControl.valueChanges
         .pipe(
           startWith<string | Client>(''),
@@ -45,28 +45,28 @@ export class DashboardCustomerDetailsComponent implements OnInit {
                 this.showPersonDetails(null);
               }
               return name ? this._filter(name) : this.options.slice();
-            }) 
-        ); 
-    }) 
+            })
+        );
+    })
   }
- 
+
   displayFn(user?: string): string | undefined {
     return user ? user : undefined;
   }
 
   private _filter(word: string): Client[] {
-    
+
     const clients = this.options.filter(client => {
       let value = [
-        client.firstName.toLowerCase(), 
-        client.lastName.toLowerCase(), 
-        client.email.toLowerCase(), 
+        client.firstName.toLowerCase(),
+        client.lastName.toLowerCase(),
+        client.email.toLowerCase(),
         client.phone.toLowerCase()
       ]
       return _.includes(value.join("").toLowerCase(),  word.toLowerCase())
     });
-    
-    if(!clients.length){ 
+
+    if(!clients.length){
       this.showPersonDetails(null);
     }
     return clients;
@@ -75,7 +75,7 @@ export class DashboardCustomerDetailsComponent implements OnInit {
   public getFullName(person) {
     return `${person.firstName} ${person.lastName}`
   }
-  
+
 
   public getAllClients() {
     return this.clientService.getAll();
@@ -86,9 +86,9 @@ export class DashboardCustomerDetailsComponent implements OnInit {
      let holder = null;
      if(!this.client){
       holder = { salutation: '', email: '', firstName: '', lastName: '', phone: ''};
-     } 
+     }
      this.setFormFields(this.client || holder);
-  } 
+  }
 
   setCustomerForm(){
     this.customerForm = this.fb.group({
@@ -112,9 +112,9 @@ export class DashboardCustomerDetailsComponent implements OnInit {
     if (this.customerForm.valid) {
       this.clientService.createClient(this.customerForm.value)
         .subscribe((client) => {
-          this.client = client; 
-          this.getAllClients().subscribe(result => { 
-            this.options = result; 
+          this.client = client;
+          this.getAllClients().subscribe(result => {
+            this.options = result;
           });
         }
           , err => console.log('Err from client submit', err));
@@ -124,16 +124,16 @@ export class DashboardCustomerDetailsComponent implements OnInit {
   private updateClient() {
     if (this.customerForm.valid) {
       this.clientService.updateClient(this.client.clientId, this.customerForm.value)
-        .subscribe(result => { 
+        .subscribe(result => {
           this.client = result;
-          this.getAllClients().subscribe(result => { 
-            this.options = result; 
+          this.getAllClients().subscribe(result => {
+            this.options = result;
           });
-          
+
         }, err => console.log('Err from client submit', err));
     }
   }
- 
+
 
   setFormFields(result) {
     this.customerForm.controls['salutation'].setValue(result.salutation);
@@ -141,5 +141,5 @@ export class DashboardCustomerDetailsComponent implements OnInit {
     this.customerForm.controls['firstName'].setValue(result.firstName);
     this.customerForm.controls['lastName'].setValue(result.lastName);
     this.customerForm.controls['phone'].setValue(result.phone);
-  } 
+  }
 }
