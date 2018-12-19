@@ -38,7 +38,7 @@ $mat-dark-custom: (
 
 $dark-app-primary: mat-palette($mat-dark-custom, 700, 300, 900);
 $dark-app-accent:  mat-palette($mat-dark-custom);
-$dark-app-warn:    mat-palette($mat-dark-custom, 900);
+$dark-app-warn:    mat-palette($mat-red);
 
 $dark-app-theme: mat-light-theme(
   $dark-app-primary,
