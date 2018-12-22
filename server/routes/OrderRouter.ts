@@ -75,7 +75,8 @@ export class OrderRouter {
 
     public async mail(req: express.Request, res: express.Response, next: express.NextFunction) {
       try {
-        const order = await this.orderManager.findById(req.params.id);
+        let order = await this.orderManager.findById(req.params.id);
+        order = _.set(order, 'deliveryDate', moment(new Date(order.deliveryDate)).format('YYYY-MM-DD'));
         const transporter = nodemailer.createTransport({
           service: 'gmail',
           auth: {
