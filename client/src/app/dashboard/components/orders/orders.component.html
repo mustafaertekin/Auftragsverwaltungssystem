@@ -1,19 +1,23 @@
 <div class="order-component m-t-1 m-l-1">
   <mat-card class="full-height">
     <mat-card-header>
-        <mat-icon class="title-icon-size" mat-card-avatar>format_list_bulleted</mat-icon>
-        <mat-card-title>Orders</mat-card-title>
-        <mat-card-subtitle>Order list</mat-card-subtitle>
+      <mat-icon class="title-icon-size" mat-card-avatar>format_list_bulleted</mat-icon>
+      <mat-card-title>Orders</mat-card-title>
+      <mat-card-subtitle>Order list</mat-card-subtitle>
     </mat-card-header>
     <mat-divider></mat-divider>
-    <mat-card-content fxLayout="row" class="order-list-container">
+    <div class="empty-view" *ngIf="!currentOrderId">
+        <div class="empty-view-item"> You have no orders yet!
+        </div>
+      </div>
+    <mat-card-content fxLayout="row" class="order-list-container" *ngIf="currentOrderId">  
       <div fxFlex="30" fxlayoutalign="center center" class="order-list">
-          <form class="order-form  m-t-1 m-l-1 m-r-1">
-              <mat-form-field class="full-width">
-                <input matInput maxlength="140" placeholder="Orders">
-                <mat-hint align="start"><strong>Search Orders</strong> </mat-hint>
-              </mat-form-field>
-            </form>
+        <form class="order-form  m-t-1 m-l-1 m-r-1">
+          <mat-form-field class="full-width">
+            <input matInput maxlength="140" placeholder="Orders">
+            <mat-hint align="start"><strong>Search Orders</strong> </mat-hint>
+          </mat-form-field>
+        </form>
         <mat-list role="list">
           <mat-list-item role="listitem" *ngFor="let order of orders">
             <avs-dashboard-order-item [order]="order" class="avs-dashboard-order-item"></avs-dashboard-order-item>

@@ -14,12 +14,12 @@ export class DashboardOrderDetailsComponent implements OnInit, OnChanges {
 
   public orderStatus: string;
   statuses: any[] = [
-    { name: 'Pending', color: 'red'},
-    { name: 'Processing', color: 'yellow'},
-    { name: 'Completed', color: 'blue'},
-    { name: 'Unscuccesful', color: 'green'},
-    { name: 'Delivered', color: 'purple'},
-    { name: 'Cancelled', color: 'orange'}
+    { name: 'Pending', color: 'pending'},
+    { name: 'Processing', color: 'processing'},
+    { name: 'Completed', color: 'completed'},
+    { name: 'Unscuccesful', color: 'unscuccesful'},
+    { name: 'Delivered', color: 'delivered'},
+    { name: 'Cancelled', color: 'cancelled'}
   ];
   constructor(private orderService: OrderService,
     private route: ActivatedRoute, private router: Router) {}

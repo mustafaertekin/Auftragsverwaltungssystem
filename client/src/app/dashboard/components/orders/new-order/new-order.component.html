@@ -25,9 +25,9 @@
         <mat-step>
           <ng-template matStepLabel>Select and address or create a new one</ng-template>
           <avs-dashboard-addresses [clientId]="clientComponent?.client?.clientId" #addressForm fxFlexFill></avs-dashboard-addresses>
-          <div fxLayout="row"  fxLayoutAlign="end center">
-            <button  fxFlex="10"  matStepperPrevious mat-button mat-raised-button color="accent" class="m-r-1">Previous</button>
-            <button  fxFlex="10"  matStepperNext mat-button mat-raised-button color="accent"  >Next</button>
+          <div fxLayout="row"  fxLayoutAlign="space-between center">
+            <button  fxFlex="8"  matStepperPrevious mat-button mat-raised-button color="accent" class="m-r-1">Previous</button>
+            <button  fxFlex="8"  matStepperNext mat-button mat-raised-button color="accent">Next</button>
           </div>
         </mat-step>
         <mat-step>

@@ -1,4 +1,4 @@
-<div class="dashboard-addresses">
+<div class="dashboard-addresses m-b-1">
   <h2>Address Details</h2>
   <mat-accordion>
     <mat-expansion-panel>
@@ -10,38 +10,61 @@
           <span>Add a new address</span>
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <form [formGroup]="addressForm">
-        <div>
-          <div fxLayout="column">
-            <mat-form-field>
-              <input matInput formControlName="streetName" placeholder="Street">
+      <mat-divider></mat-divider>
+      <div fxLayout="row" class="m-t-1">
+        <div fxFlex="50" fxLayout="column" fxLayoutAlign="center start" >
+          <div>
+            <mat-checkbox>Delivery Address</mat-checkbox>
+            <mat-form-field class="m-l-1">
+              <mat-select placeholder="Select">
+                <mat-option value="option">Adress1</mat-option>
+                <mat-option value="option">Adress2</mat-option>
+              </mat-select>
             </mat-form-field>
-            <mat-form-field>
-              <input matInput formControlName="plzNumber" placeholder="Zip">
-            </mat-form-field>
-            <mat-form-field>
-              <input matInput formControlName="cityName" placeholder="City">
-            </mat-form-field>
-            <mat-form-field>
-              <mat-select formControlName="countryName" placeholder="Country">
-                <mat-option value="ch">Schweiz</mat-option>
-                <mat-option value="de">Germany</mat-option>
-                <mat-option value="en">England</mat-option>
+          </div>
+          <div>
+            <mat-checkbox>Invoice Address</mat-checkbox>
+            <mat-form-field class="m-l-1">
+              <mat-select placeholder="Select">
+                <mat-option value="option">Adress1</mat-option>
+                <mat-option value="option">Adress2</mat-option>
               </mat-select>
             </mat-form-field>
           </div>
         </div>
-        <div fxLayout="row" fxLayoutGap="16px">
-          <div>
-            <button mat-button mat-raised-button color="accent" (click)="saveAddress()">Save</button>
-          </div>
+        <div fxFlex="50">
+          <form [formGroup]="addressForm">
+            <div>
+              <div fxLayout="column">
+                <mat-form-field>
+                  <input matInput formControlName="streetName" placeholder="Street">
+                </mat-form-field>
+                <mat-form-field>
+                  <input matInput formControlName="plzNumber" placeholder="Zip">
+                </mat-form-field>
+                <mat-form-field>
+                  <input matInput formControlName="cityName" placeholder="City">
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-select formControlName="countryName" placeholder="Country">
+                    <mat-option value="ch">Schweiz</mat-option>
+                    <mat-option value="de">Germany</mat-option>
+                    <mat-option value="en">England</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+            <div fxLayout="row" fxLayoutGap="16px">
+              <div>
+                <button mat-button mat-raised-button color="accent" (click)="saveAddress()">Save</button>
+              </div>
+            </div>
+          </form>
         </div>
-      </form>
+      </div>
     </mat-expansion-panel>
-      <avs-dashboard-address-exstra  *ngFor="let address of addresses"
-      [clientId]="clientId"
-      (click)="setSelectedAddress(address)"
+    <avs-dashboard-address-exstra *ngFor="let address of addresses" [clientId]="clientId" (click)="setSelectedAddress(address)"
       [address]="address">
-      </avs-dashboard-address-exstra>
+    </avs-dashboard-address-exstra>
   </mat-accordion>
 </div>
