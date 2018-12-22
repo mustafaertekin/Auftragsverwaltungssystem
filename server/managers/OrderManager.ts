@@ -94,10 +94,13 @@ export class OrderManager {
     }
 
     public async findById(orderId: string) {
-        const order = await Order.findOne<Order>({
+        let order = await Order.findOne<Order>({
             where: {orderId},
             include: [
-              Client,
+              {
+                model: Client,
+                include: [Address]
+              },
               User,
               Address,
               {
@@ -108,7 +111,14 @@ export class OrderManager {
             ]
         });
         if (order) {
-            return order;
+          const deliveryAddres = order.client.addresses
+                                .find(address => address.addressId === _.get(order,'deliveryAddressId'));
+          const billingAddress = order.client.addresses
+                                .find(address => address.addressId === _.get(order,'billingAddressId'));
+
+          order = _.set(order, 'deliveryAddressId', deliveryAddres);
+          order = _.set(order, 'billingAddressId', billingAddress);
+          return order;
         } else {
             logger.error("No order found with the provided id");
             throw new NotFoundError("No order found with the provided id");

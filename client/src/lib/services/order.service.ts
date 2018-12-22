@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Http, Response, Headers } from '@angular/http';
+import { Http, Response, Headers, ResponseContentType } from '@angular/http';
 import { Observable } from 'rxjs';
 import { TokenService } from '@avs-ecosystem/services/token.service';
 import { map } from 'rxjs/operators';
@@ -33,5 +33,13 @@ export class OrderService {
 
   public deleteOrder(orderId: string): Observable<any> {
     return this.http.delete(`${this.serverUrl}orders/${orderId}`).pipe(map((res: Response) => res));
+  }
+
+  public download(orderId): Observable<any> {
+    return this.http.get(`${this.serverUrl}orders/download/${orderId}`, { responseType: 'blob' });
+  }
+
+  public mail(orderId): Observable<any> {
+    return this.http.post(`${this.serverUrl}orders/mail/${orderId}`, {}).pipe(map((res: Response) => res));
   }
 }

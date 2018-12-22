@@ -16,7 +16,7 @@
             </form>
         <mat-list role="list">
           <mat-list-item role="listitem" *ngFor="let order of orders">
-            <avs-dashboard-order-item [order]="order" class="avs-dashboard-order-item"></avs-dashboard-order-item>
+            <avs-dashboard-order-item [currentId]="currentOrderId" [order]="order" class="avs-dashboard-order-item"></avs-dashboard-order-item>
           </mat-list-item>
         </mat-list>
       </div>

@@ -90,15 +90,6 @@ body{
       color: rgba(0,0,0,.87);
     }
 
-
-    .no-panel{
-        .mat-expansion-indicator,
-        .mat-expansion-panel-body,
-        .mat-expansion-indicator:after{
-            display: none;
-        }
-    }
-
     .full-height{
         height: calc(100vh - 80px);
         overflow-y: scroll;

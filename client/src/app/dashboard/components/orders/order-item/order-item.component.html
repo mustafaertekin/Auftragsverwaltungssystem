@@ -1,28 +1,26 @@
-
-
-  <div class="order-item m-t-1 m-b-1" [routerLink]="['/', 'dashboard', 'orders', order.orderId]">
-  <mat-card class="example-card">
+<div class="order-item m-t-1 m-b-1" [routerLink]="['/', 'dashboard', 'orders', order.orderId]">
+  <mat-card [ngClass]="{'heighlight': isHighlighted }" class="noSelect">
     <mat-card-content>
-        <div fxLayout="row wrap" fxLayoutGap="10px grid">
-          <div fxFlex="50">
-              {{order.client.firstName}} {{order.client.lastName}}
-          </div>
-            <div fxFlex="50" fxLayoutAlign="end center">
-                Status: {{order.status}}
-            </div>
-          <div fxFlex="50">
-              {{order.deliveryDate | date: 'short'}}
-          </div>
-          <div fxFlex="50" class="text-align-right">
-
-          </div>
-          <div fxFlex="50">
-              {{order.orderId | slice:0:7}}
-          </div>
-          <div fxFlex="50" fxLayoutAlign="end center">
-              {{order.price}}
-          </div>
+      <div fxLayout="row wrap" fxLayoutGap="10px grid">
+        <div fxFlex="50">
+          {{order.client.firstName}} {{order.client.lastName}}
         </div>
+        <div fxFlex="50" fxLayoutAlign="end center">
+          Status: {{order.status}}
+        </div>
+        <div fxFlex="50">
+          {{order.deliveryDate | date: 'short'}}
+        </div>
+        <div fxFlex="50" class="text-align-right">
+
+        </div>
+        <div fxFlex="50">
+          {{order.orderId | slice:0:7}}
+        </div>
+        <div fxFlex="50" fxLayoutAlign="end center">
+          {{order.price}} CHF
+        </div>
+      </div>
     </mat-card-content>
   </mat-card>
 </div>

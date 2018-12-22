@@ -21,7 +21,7 @@ export class TokenService {
 
   getToken(): any {
     const token = localStorage.getItem('TOKEN');
-    if(token) {
+    if (token) {
       return  JSON.parse(token);
     }
     return { access_token: '', token_type: ''};

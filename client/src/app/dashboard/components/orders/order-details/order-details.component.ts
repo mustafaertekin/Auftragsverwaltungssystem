@@ -11,6 +11,7 @@ export class DashboardOrderDetailsComponent implements OnInit, OnChanges {
 
   @Input() currentOrderId;
   public currentOrder: any;
+  disableDownloadButton: boolean;
 
   public orderStatus: string;
   statuses: any[] = [
@@ -24,7 +25,9 @@ export class DashboardOrderDetailsComponent implements OnInit, OnChanges {
   constructor(private orderService: OrderService,
     private route: ActivatedRoute, private router: Router) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.disableDownloadButton = false;
+  }
 
   ngOnChanges (changes) {
     this.orderService.getById(this.currentOrderId).subscribe(order => {
@@ -35,6 +38,22 @@ export class DashboardOrderDetailsComponent implements OnInit, OnChanges {
   deleteOrder(orderId) {
     this.orderService.deleteOrder(orderId).subscribe(result => {
       this.router.navigate(['/', 'dashboard', 'orders'], { relativeTo: this.route});
+    });
+  }
+
+  downloadInvoice(orderId) {
+    this.disableDownloadButton = true;
+    this.orderService.download(orderId).subscribe(response => {
+      this.disableDownloadButton = false;
+      const blob = new Blob([response], { type: 'application/pdf'});
+      const url = window.URL.createObjectURL(blob);
+      window.open(url);
+    });
+  }
+
+  emailToClient(orderId) {
+    this.orderService.mail(orderId).subscribe(response => {
+      // notification
     });
   }
 }

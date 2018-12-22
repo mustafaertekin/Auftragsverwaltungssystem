@@ -44,6 +44,6 @@ $my-app-theme: mat-light-theme(
   $my-app-warn
 );
 
-.light-theme{
-  @include angular-material-theme($my-app-theme);
-}
+
+@include angular-material-theme($my-app-theme);
+

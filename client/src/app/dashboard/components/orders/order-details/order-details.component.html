@@ -13,11 +13,12 @@
           <button mat-fab color="warn" (click)="deleteOrder(currentOrder.orderId)">
             <mat-icon>delete</mat-icon>
           </button>
-          <button mat-fab class="m-l-1">
+          <button mat-fab class="m-l-1" (click)="emailToClient(currentOrder.orderId)">
             <mat-icon>email</mat-icon>
           </button>
-          <button mat-fab class="m-l-1">
-            <mat-icon>print</mat-icon>
+          <button mat-fab class="m-l-1" (click)="downloadInvoice(currentOrder.orderId)">
+            <mat-icon *ngIf="!disableDownloadButton">print</mat-icon>
+            <mat-spinner color="warn" diameter="30" *ngIf="disableDownloadButton" ></mat-spinner>
           </button>
         </div>
       </div>

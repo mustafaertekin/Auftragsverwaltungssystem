@@ -17,7 +17,6 @@ export class DashboardOrdersComponent implements OnInit {
     this.orderService.getAll().subscribe(orders => {
       this.orders = orders;
       this.route.params.subscribe(params => {
-        console.log('orderid nedir', params['id'] );
         this.currentOrderId = params['id'] || (orders[0] ? orders[0].orderId : null);
       });
     });

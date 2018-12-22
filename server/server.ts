@@ -35,6 +35,7 @@ export class Server {
 
             Server.app = express();
 
+            Server.app.set('view engine', 'pug');
             // Configure application
             Server.configureApp();
 
@@ -70,7 +71,7 @@ export class Server {
             }
 
             return Server.app.listen(Server.app.get("port"));
-            
+
         } catch(error) {
             throw new InternalServerError(error.message);
         }
@@ -105,15 +106,15 @@ export class Server {
         Server.app.set("port", process.env.PORT || 3001);
         Server.app.use(bodyParser.urlencoded({ extended: true }));
         Server.app.use(bodyParser.json());
-        Server.app.use(compression()); 
+        Server.app.use(compression());
         Server.app.use(cors());
         Server.app.use(morgan((tokens, req, res) => {
-            return  [ 
+            return  [
                         _.get(req, 'user.firstName'),
                         _.get(req, 'user.lastName'),
                         tokens.method(req, res),
                         tokens.url(req, res),
-                        tokens.status(req, res) 
+                        tokens.status(req, res)
                     ].join(' ');
         }, {  "stream": logger.stream  }));
     }
