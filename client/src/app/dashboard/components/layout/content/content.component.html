@@ -5,7 +5,9 @@
     </mat-sidenav>
 
     <mat-sidenav-content class="mat-sidenav-content">
-      <router-outlet></router-outlet>
+      <avs-animate-fadein [state]="animationState">
+        <router-outlet></router-outlet>
+      </avs-animate-fadein>
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>

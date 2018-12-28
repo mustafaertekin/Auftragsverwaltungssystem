@@ -1,20 +1,22 @@
 <div class="customer-details" >
-    <div fxLayout="row"> 
+  <!--
+    <div fxLayout="row">
         <form >
             <mat-form-field >
-              <input type="text" placeholder="Assignee" aria-label="Assignee" 
+              <input type="text" placeholder="Assignee" aria-label="Assignee"
                      matInput [formControl]="myControl" [matAutocomplete]="auto">
               <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-                <mat-option *ngFor="let option of filteredOptions | async" [value]="getFullName(option)" 
+                <mat-option *ngFor="let option of filteredOptions | async" [value]="getFullName(option)"
                             (click)="showPersonDetails(option)">
                   {{option.firstName}} {{option.lastName}}
                 </mat-option>
               </mat-autocomplete>
             </mat-form-field>
-          </form> 
+          </form>
     </div>
+
   <h2>Customer Details</h2>
-  <div fxLayout="row" > 
+  <div fxLayout="row" >
       <form fxLayout="column" fxFlex="100"  [formGroup]="customerForm">
         <mat-form-field>
           <mat-select placeholder="Salutation" formControlName="salutation">
@@ -41,6 +43,7 @@
             </button>
           </div>
         </div>
-      </form> 
+      </form>
   </div>
+   -->
 </div>

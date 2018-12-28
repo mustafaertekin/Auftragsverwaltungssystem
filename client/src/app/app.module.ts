@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { MainPageRoutesModule } from './app-routing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
+
 import { HttpModule } from '@angular/http';
 import { FlexLayoutModule} from '@angular/flex-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -27,12 +28,11 @@ import { OrderService } from '@avs-ecosystem/services/order.service';
 import { DeviceService } from '@avs-ecosystem/services/device.service';
 import { DeviceServiceType } from '@avs-ecosystem/services/device-service-type.service';
 import { AppSettingsService } from '@avs-ecosystem/services/app-settings.service';
-import { GeneralErrorComponent } from '@avs-ecosystem/modules/shared/general-error-message/general-error.component';
+
 
 @NgModule({
   declarations: [
-    AppComponent,
-    GeneralErrorComponent
+    AppComponent
   ],
   imports: [
     HomePageModule,
@@ -47,9 +47,7 @@ import { GeneralErrorComponent } from '@avs-ecosystem/modules/shared/general-err
     FlexLayoutModule,
     BrowserAnimationsModule,
     MaterialModule
-
   ],
-  entryComponents: [GeneralErrorComponent],
   bootstrap: [AppComponent],
   providers: [
     Http,
@@ -67,7 +65,7 @@ import { GeneralErrorComponent } from '@avs-ecosystem/modules/shared/general-err
       provide : HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi   : true,
-    },
+    }
   ],
 })
 export class AppModule {}

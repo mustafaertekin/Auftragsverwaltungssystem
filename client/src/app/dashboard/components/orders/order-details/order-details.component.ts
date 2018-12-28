@@ -37,7 +37,7 @@ export class DashboardOrderDetailsComponent implements OnInit, OnChanges {
 
   deleteOrder(orderId) {
     this.orderService.deleteOrder(orderId).subscribe(result => {
-      this.router.navigate(['/', 'dashboard', 'orders'], { relativeTo: this.route});
+      this.router.navigate(['/', 'dashboard', 'orders', 'list']);
     });
   }
 

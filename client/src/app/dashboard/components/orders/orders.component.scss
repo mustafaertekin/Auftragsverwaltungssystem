@@ -1,5 +1,4 @@
  .order-component {
-
    .mat-card {
      padding: 16px 0;
 
@@ -9,21 +8,34 @@
    }
 
    .order-list-container {
+
+     .no-order{
+       width: 100%;
+       height: 500px;
+       display: flex;
+       justify-content: center;
+       align-items: center;
+     }
      .order-list {
        border-right: 1px solid rgba(0, 0, 0, 0.12);
-
        .avs-dashboard-order-item {
          width: 100%;
        }
-
        .mat-list {
          padding-top: 0;
-
          .mat-list-item {
            height: auto;
          }
        }
      }
+   }
 
+   .order-items-scrollbar-area{
+     max-height: calc(100vh - 200px);
+     position: relative;
+   }
+
+   .search-area{
+     flex: 1 1 auto;
    }
  }

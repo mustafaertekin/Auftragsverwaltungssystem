@@ -1,23 +1,24 @@
 import { NgModule } from '@angular/core';
+import { SearchComponent } from './search/search.component';
+import { GeneralErrorComponent } from './general-error-message/general-error.component';
+import { FadeInComponent } from './animations/fadein/fadein.component';
+import { MaterialModule } from '@avs-ecosystem/modules/material/material.module';
 
-import { MenuItems } from './menu-items/menu-items';
-import {
-  AccordionAnchorDirective,
-  AccordionLinkDirective,
-  AccordionDirective
-} from './accordion';
 
 @NgModule({
+  imports: [
+    MaterialModule
+  ],
   declarations: [
-    AccordionAnchorDirective,
-    AccordionLinkDirective,
-    AccordionDirective,
+    SearchComponent,
+    GeneralErrorComponent,
+    FadeInComponent
   ],
   exports: [
-    AccordionAnchorDirective,
-    AccordionLinkDirective,
-    AccordionDirective
+    SearchComponent,
+    GeneralErrorComponent,
+    FadeInComponent
   ],
-  providers: [MenuItems]
+  entryComponents: [GeneralErrorComponent],
 })
 export class SharedModule {}

@@ -1,19 +1,22 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { ObservableMedia, MediaChange } from '@angular/flex-layout';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 @Component({
   selector: 'avs-dashboard-content',
   templateUrl: './content.component.html',
   styleUrls: ['./content.component.scss']
 })
 export class DashboardMainContentComponent implements OnInit {
-  @ViewChild('sidenav') sidenav:ElementRef;
+  @ViewChild('sidenav') sidenav: ElementRef;
   watcher: Subscription;
   opened = true;
-  over = 'side'; 
+  over = 'side';
+  animationState: string;
+  previousUrl: string;
 
   constructor(
-    media: ObservableMedia) {
+    media: ObservableMedia, private router: Router) {
     this.watcher = media.subscribe((change: MediaChange) => {
       if (change.mqAlias === 'sm' || change.mqAlias === 'xs') {
         this.opened = false;
@@ -26,6 +29,18 @@ export class DashboardMainContentComponent implements OnInit {
    }
 
   ngOnInit() {
-     
+    this.animate();
+    this.router.events.subscribe(elm => {
+      const subRouter = this.router.url.split('/')[2];
+      if (!this.previousUrl || subRouter !== this.previousUrl) {
+        this.animate();
+        this.previousUrl = subRouter;
+      }
+    });
+  }
+
+  animate() {
+    this.animationState = 'out';
+    setTimeout(() => this.animationState = 'in', 500);
   }
 }

@@ -1,6 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
+import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+
 import { MaterialModule } from '@avs-ecosystem/modules/material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -29,15 +33,23 @@ import { UsersComponent } from './components/users/users.component';
 import { DashboardCustomersComponent } from './components/customers/customers/customers.component';
 import { DashboardSettingsComponent } from './components/settings/settings.component';
 import { DashboardOrderServicesComponent } from './components/orders/order-services/order-services.component';
+import { SharedModule } from '@avs-ecosystem/modules/shared/shared.module';
+import { DashboardCustomerItemComponent } from './components/customers/customer-item/customer-item.component';
+
+const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+  suppressScrollX: true
+};
 
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule.forRoot(DashboardRoutes),
+    RouterModule.forRoot(DashboardRoutes, { onSameUrlNavigation: 'reload' }),
     MaterialModule,
     FlexLayoutModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    PerfectScrollbarModule,
+    SharedModule
   ],
   declarations: [
     DashboardMainComponent,
@@ -63,7 +75,14 @@ import { DashboardOrderServicesComponent } from './components/orders/order-servi
     UsersComponent,
     DashboardCustomersComponent,
     DashboardSettingsComponent,
-    DashboardOrderServicesComponent
+    DashboardOrderServicesComponent,
+    DashboardCustomerItemComponent
+  ],
+  providers: [
+    {
+      provide: PERFECT_SCROLLBAR_CONFIG,
+      useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
+    }
   ]
 })
 export class DashboardPageModule {}

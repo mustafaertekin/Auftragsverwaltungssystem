@@ -1,4 +1,4 @@
-.order-item{
+.customer-item{
     outline: none;
     width: 100%;
     border-bottom: 1px solid #efefef;
@@ -9,7 +9,7 @@
       background: whitesmoke;
     }
 
-    .order-wrapper{
+    .customer-wrapper{
       display: flex;
       .selected-indicator{
         width: 6px;
@@ -17,7 +17,7 @@
         padding-top: 16px;
       }
 
-      .order-item-info{
+      .customer-item-info{
         padding: 16px;
       }
     }

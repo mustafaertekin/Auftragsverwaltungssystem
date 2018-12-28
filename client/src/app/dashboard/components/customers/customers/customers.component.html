@@ -1,3 +1,4 @@
+<!--
 <div class="customers-component m-1" fxFlex.gt-sm="70" fxFlex.gt-xs="100" fxFlex="100">
   <mat-card>
     <mat-card-header>
@@ -19,3 +20,38 @@
     </mat-card-content>
   </mat-card>
 </div>
+-->
+<div class="customer-component avs-list m-t-1 m-l-1">
+    <mat-card>
+      <mat-card-header>
+        <mat-icon class="title-icon-size" mat-card-avatar>person</mat-icon>
+        <mat-card-title>Customer</mat-card-title>
+        <mat-card-subtitle>Customer list</mat-card-subtitle>
+        <div class="search-area">
+          <div class="search-wrapper">
+            <avs-search (word)="searchWord($event)"></avs-search>
+          </div>
+        </div>
+      </mat-card-header>
+      <mat-divider></mat-divider>
+      <mat-card-content fxLayout="row" class="customer-list-container list-container">
+        <div fxFlex="30" fxlayoutalign="center center" class="customer-list">
+          <div class="customer-items-scrollbar-area" [perfectScrollbar]>
+            <avs-animate-fadein [state]="animationState">
+              <mat-list role="list">
+                <mat-list-item class="customer-item-holder item-holder" role="listitem" *ngFor="let customer of customers">
+                  <avs-dashboard-customer-item [currentId]="currentCustomerId"
+                  [customer]="customer" class="avs-dashboard-customer-item"></avs-dashboard-customer-item>
+                </mat-list-item>
+              </mat-list>
+            </avs-animate-fadein>
+          </div>
+        </div>
+        <div fxFlex="70" fxlayoutalign="center center" *ngIf="currentCustomerId">
+          <!--
+          <avs-dashboard-order-details [currentOrderId]="currentOrderId"></avs-dashboard-order-details>
+          -->
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>

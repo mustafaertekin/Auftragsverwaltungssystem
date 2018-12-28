@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterContentInit } from '@angular/core';
 import { OrderService } from '@avs-ecosystem/services/order.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -10,15 +10,40 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class DashboardOrdersComponent implements OnInit {
   orders: any;
   currentOrderId: any;
+  animationState: string;
+
   constructor(private orderService: OrderService,
     private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit() {
+    this.animationState = 'out';
+    this.getAllOrders();
+    this.route.params.subscribe(params => {
+      this.currentOrderId = params['id'];
+      if (this.currentOrderId === 'list') {
+        this.animationState = 'out';
+        this.getAllOrders();
+      }
+    });
+  }
+
+  getAllOrders() {
     this.orderService.getAll().subscribe(orders => {
       this.orders = orders;
-      this.route.params.subscribe(params => {
-        this.currentOrderId = params['id'] || (orders[0] ? orders[0].orderId : null);
-      });
+      this.animationState = 'in';
+      this.currentOrderId = orders[0] ? orders[0].orderId : null;
+    });
+  }
+
+  searchWord(word) {
+    this.animationState = 'out';
+    if (!word) {
+      return this.getAllOrders();
+    }
+    this.orderService.getByText(word).subscribe(orders => {
+      this.orders = orders;
+      this.animationState = 'in';
+      this.currentOrderId = orders[0] ? orders[0].orderId : null;
     });
   }
 }

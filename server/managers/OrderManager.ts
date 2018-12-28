@@ -1,5 +1,5 @@
-import {DatabaseError as SequelizeError, ValidationError as SequelizeValidationError} from "sequelize";
-
+import {DatabaseError as SequelizeError, ValidationError as SequelizeValidationError, Op} from "sequelize";
+import * as express from "express";
 import {Order} from "../models/entities/Order";
 import {NotFoundError} from "../errors/NotFoundError";
 import { Service } from "../models/entities/Service";
@@ -39,7 +39,7 @@ export class OrderManager {
             sum += _.get(curr, 'dataValues.price', 0); return sum;
           }, 0);
 
-          const user = _.get(reqObject, 'user.dataValues.userId');
+          const userId = _.get(reqObject, 'user.dataValues.userId');
           const clientId = reqObject.body.clientId;
           const addressId = reqObject.body.addressId;
           // TODO here needs to get company id programatically
@@ -47,7 +47,7 @@ export class OrderManager {
 
           const newOrder = new Order({
                   clientId: clientId,
-                  userId: user.userId,
+                  userId: userId,
                   price,
                   companyId: companyId,
                   status: OrderStatus.OPENED,
@@ -91,6 +91,49 @@ export class OrderManager {
             logger.error("No order found");
             throw new NotFoundError("No order found with that id");
         }
+    }
+
+    public async searchByText(req: express.Request, res: express.Response, next: express.NextFunction) {
+      try{
+        const result = await Order.findAll({
+          where: {
+            [Op.or] : {
+              '$Client.firstName$': { [Op.like]: `%${req.params.text}%`},
+              '$Client.lastName$': { [Op.like]: `%${req.params.text}%`},
+              '$Client.phone$': { [Op.like]: `%${req.params.text}%`},
+              '$Client.email$': { [Op.like]: `%${req.params.text}%`},
+              '$Client.addresses.streetName$': { [Op.like]: `%${req.params.text}%`},
+              '$Client.addresses.plzNumber$': { [Op.like]: `%${req.params.text}%`},
+              '$Client.addresses.cityName$': { [Op.like]: `%${req.params.text}%`},
+              '$Client.addresses.countryName$': { [Op.like]: `%${req.params.text}%`},
+              '$OrderServices.device.deviceName$': { [Op.like]: `%${req.params.text}%`},
+              '$OrderServices.deviceModel.deviceModelName$': { [Op.like]: `%${req.params.text}%`},
+              '$OrderServices.service.serviceName$': { [Op.like]: `%${req.params.text}%`},
+              '$Company.name$': { [Op.like]: `%${req.params.text}%`},
+              '$Order.price$': { [Op.like]: `%${req.params.text}%`},
+              '$Order.orderId$': { [Op.like]: `%${req.params.text}%`},
+              '$Order.deliveryDate$': { [Op.like]: `%${req.params.text}%`},
+              '$Order.status$': { [Op.like]: `%${req.params.text}%`},
+            }
+          },
+          include: [
+            {
+              model: Client,
+              include: [Address]
+            },
+            User,
+            Address,
+            {
+              model: OrderService,
+              include: [Device, DeviceModel, Service]
+            },
+            Company
+          ]
+        });
+        return result;
+      } catch(err) {
+        next(err);
+      }
     }
 
     public async findById(orderId: string) {

@@ -1,8 +1,9 @@
 <div class="side-menu-content">
-  <mat-accordion multi="true" displayMode="flat">
-    <mat-expansion-panel class="no-panel" dense>
+  <mat-accordion multi="false" displayMode="flat" >
+    <mat-expansion-panel [ngClass]="{'selected-item': selectedMenu === 'main'}" class="disable-body" [hideToggle]="'true'">
       <mat-expansion-panel-header [routerLink]="['/dashboard','main']" fxLayout="row" [expandedHeight]="'48px'">
         <mat-panel-title>
+          <div [ngClass]="{'mat-primary': selectedMenu === 'main'}" class="mat-toolbar selected-indicator"></div>
           <div fxLayout="row" fxLayoutAlign="space-between center">
             <span class="m-r-1">
               <mat-icon>dashboard</mat-icon>
@@ -12,9 +13,10 @@
         </mat-panel-title>
       </mat-expansion-panel-header>
     </mat-expansion-panel>
-    <mat-expansion-panel class="">
-      <mat-expansion-panel-header [routerLink]="['/dashboard','orders']" fxLayout="row">
+    <mat-expansion-panel [ngClass]="{'selected-item': selectedMenu === 'orders' || selectedMenu === 'new-order'}">
+      <mat-expansion-panel-header [routerLink]="['/','dashboard','orders', 'list']" fxLayout="row" >
         <mat-panel-title>
+          <div [ngClass]="{'mat-primary': selectedMenu === 'orders' || selectedMenu === 'new-order'}" class="mat-toolbar selected-indicator"></div>
           <div fxLayout="row" fxLayoutAlign="space-between center">
             <span class="m-r-1">
               <mat-icon>format_list_bulleted</mat-icon>
@@ -24,7 +26,17 @@
         </mat-panel-title>
       </mat-expansion-panel-header>
       <mat-nav-list dense>
-        <mat-list-item [routerLink]="['/dashboard','new-order']">
+          <mat-list-item [routerLink]="['/','dashboard','orders', 'list']">
+            <div fxLayout="row" class="vertical-center" fxLayoutAlign="space-between center">
+              <span class="m-r-1">
+                <mat-icon>format_list_bulleted</mat-icon>
+              </span>
+              <span>Order List</span>
+            </div>
+          </mat-list-item>
+        </mat-nav-list>
+      <mat-nav-list dense>
+        <mat-list-item [routerLink]="['/','dashboard','new-order']">
           <div fxLayout="row" class="vertical-center" fxLayoutAlign="space-between center">
             <span class="m-r-1">
               <mat-icon>add_to_queue</mat-icon>
@@ -34,9 +46,10 @@
         </mat-list-item>
       </mat-nav-list>
     </mat-expansion-panel>
-    <mat-expansion-panel class="no-panel" dense>
-      <mat-expansion-panel-header [routerLink]="['/dashboard','devices']" fxLayout="row" [expandedHeight]="'48px'">
+    <mat-expansion-panel [ngClass]="{'selected-item': selectedMenu === 'devices'}" [hideToggle]="'true'" class="disable-body">
+      <mat-expansion-panel-header [routerLink]="['/dashboard','devices']" fxLayout="row"  [expandedHeight]="'48px'">
         <mat-panel-title>
+          <div [ngClass]="{'mat-primary': selectedMenu === 'devices'}" class="mat-toolbar selected-indicator"></div>
           <div fxLayout="row" fxLayoutAlign="space-between center">
             <span class="m-r-1">
               <mat-icon>perm_device_information</mat-icon>
@@ -46,9 +59,10 @@
         </mat-panel-title>
       </mat-expansion-panel-header>
     </mat-expansion-panel>
-    <mat-expansion-panel class="no-panel" dense>
-      <mat-expansion-panel-header [routerLink]="['/dashboard','customers']" fxLayout="row" [expandedHeight]="'48px'">
+    <mat-expansion-panel [ngClass]="{'selected-item': selectedMenu === 'customers'}" [hideToggle]="'false'">
+      <mat-expansion-panel-header [routerLink]="['/dashboard','customers', 'list']" fxLayout="row"   [expandedHeight]="'48px'">
         <mat-panel-title>
+            <div [ngClass]="{'mat-primary': selectedMenu === 'customers'}" class="mat-toolbar selected-indicator"></div>
           <div fxLayout="row" fxLayoutAlign="space-between center">
             <span class="m-r-1">
               <mat-icon>supervisor_account</mat-icon>
@@ -57,10 +71,31 @@
           </div>
         </mat-panel-title>
       </mat-expansion-panel-header>
+      <mat-nav-list dense>
+          <mat-list-item [routerLink]="['/','dashboard','customers', 'list']">
+            <div fxLayout="row" class="vertical-center" fxLayoutAlign="space-between center">
+              <span class="m-r-1">
+                <mat-icon>format_list_bulleted</mat-icon>
+              </span>
+              <span>Customer list</span>
+            </div>
+          </mat-list-item>
+        </mat-nav-list>
+      <mat-nav-list dense>
+        <mat-list-item [routerLink]="['/','dashboard','new-customer']">
+          <div fxLayout="row" class="vertical-center" fxLayoutAlign="space-between center">
+            <span class="m-r-1">
+              <mat-icon>add_to_queue</mat-icon>
+            </span>
+            <span>New customer</span>
+          </div>
+        </mat-list-item>
+      </mat-nav-list>
     </mat-expansion-panel>
-    <mat-expansion-panel class="no-panel" dense>
-      <mat-expansion-panel-header [routerLink]="['/dashboard','users']" fxLayout="row" [expandedHeight]="'48px'">
+    <mat-expansion-panel [ngClass]="{'selected-item': selectedMenu === 'users'}" [hideToggle]="'false'">
+      <mat-expansion-panel-header [routerLink]="['/dashboard','users', 'list']" fxLayout="row" [expandedHeight]="'48px'">
         <mat-panel-title>
+            <div [ngClass]="{'mat-primary': selectedMenu === 'users'}" class="mat-toolbar selected-indicator"></div>
           <div fxLayout="row" fxLayoutAlign="space-between center">
             <span class="m-r-1">
               <mat-icon>person</mat-icon>
@@ -69,10 +104,31 @@
           </div>
         </mat-panel-title>
       </mat-expansion-panel-header>
+      <mat-nav-list dense>
+          <mat-list-item [routerLink]="['/','dashboard','users', 'list']">
+            <div fxLayout="row" class="vertical-center" fxLayoutAlign="space-between center">
+              <span class="m-r-1">
+                <mat-icon>format_list_bulleted</mat-icon>
+              </span>
+              <span>User list</span>
+            </div>
+          </mat-list-item>
+      </mat-nav-list>
+      <mat-nav-list dense>
+        <mat-list-item [routerLink]="['/','dashboard','new-user']">
+          <div fxLayout="row" class="vertical-center" fxLayoutAlign="space-between center">
+            <span class="m-r-1">
+              <mat-icon>add_to_queue</mat-icon>
+            </span>
+            <span>New user</span>
+          </div>
+        </mat-list-item>
+      </mat-nav-list>
     </mat-expansion-panel>
-    <mat-expansion-panel class="no-panel" dense>
-      <mat-expansion-panel-header [routerLink]="['/dashboard','settings']" fxLayout="row" [expandedHeight]="'48px'">
+    <mat-expansion-panel [ngClass]="{'selected-item': selectedMenu === 'settings'}" [hideToggle]="'true'" [expanded]="'false'" class="disable-body">
+      <mat-expansion-panel-header [routerLink]="['/dashboard','settings']" fxLayout="row"  [expandedHeight]="'48px'">
         <mat-panel-title>
+          <div [ngClass]="{'mat-primary': selectedMenu === 'settings'}" class="mat-toolbar selected-indicator"></div>
           <div fxLayout="row" fxLayoutAlign="space-between center">
             <span class="m-r-1">
               <mat-icon>settings</mat-icon>
@@ -81,6 +137,6 @@
           </div>
         </mat-panel-title>
       </mat-expansion-panel-header>
-    </mat-expansion-panel>
+     </mat-expansion-panel>
   </mat-accordion>
 </div>

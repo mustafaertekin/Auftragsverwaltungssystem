@@ -42,4 +42,8 @@ export class OrderService {
   public mail(orderId): Observable<any> {
     return this.http.post(`${this.serverUrl}orders/mail/${orderId}`, {}).pipe(map((res: Response) => res));
   }
+
+  public getByText(text: string): Observable<any> {
+    return this.http.get(`${this.serverUrl}orders/search/${text}`).pipe(map((res: Response) => res));
+  }
 }
