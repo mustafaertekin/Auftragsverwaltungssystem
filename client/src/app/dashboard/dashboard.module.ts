@@ -35,6 +35,11 @@ import { DashboardSettingsComponent } from './components/settings/settings.compo
 import { DashboardOrderServicesComponent } from './components/orders/order-services/order-services.component';
 import { SharedModule } from '@avs-ecosystem/modules/shared/shared.module';
 import { DashboardCustomerItemComponent } from './components/customers/customer-item/customer-item.component';
+import { DashboardCustomerOrdersComponent } from './components/customers/customer-orders/customer-orders.component';
+import { DashboardNewCustomerComponent } from './components/customers/new-customer/new-customer.component';
+import { DashboardUserItemComponent } from './components/users/user-item/user-item.component';
+import { DashboardUserDetailsComponent } from './components/users/user-details/user-details.component';
+import { DashboardNewUserComponent } from './components/users/new-user/new-user.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -76,7 +81,12 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     DashboardCustomersComponent,
     DashboardSettingsComponent,
     DashboardOrderServicesComponent,
-    DashboardCustomerItemComponent
+    DashboardCustomerItemComponent,
+    DashboardCustomerOrdersComponent,
+    DashboardNewCustomerComponent,
+    DashboardUserItemComponent,
+    DashboardUserDetailsComponent,
+    DashboardNewUserComponent
   ],
   providers: [
     {

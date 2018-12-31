@@ -25,6 +25,7 @@ import { ClientService } from '@avs-ecosystem/services/client.service';
 import { AddressService } from '@avs-ecosystem/services/address.service';
 import { AuthInterceptor } from '@avs-ecosystem/services/auth.interceptor';
 import { OrderService } from '@avs-ecosystem/services/order.service';
+import { UserService } from '@avs-ecosystem/services/user.service';
 import { DeviceService } from '@avs-ecosystem/services/device.service';
 import { DeviceServiceType } from '@avs-ecosystem/services/device-service-type.service';
 import { AppSettingsService } from '@avs-ecosystem/services/app-settings.service';
@@ -61,6 +62,7 @@ import { AppSettingsService } from '@avs-ecosystem/services/app-settings.service
     DeviceServiceType,
     AppSettingsService,
     OrderService,
+    UserService,
     {
       provide : HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

@@ -1,40 +1,40 @@
+import * as express from "express";
 import {Address} from "../models/entities/Address";
 import {NotFoundError} from "../errors/NotFoundError";
 import {logger} from "../lib/logger";
+import * as _ from 'lodash';
 
 export class AddressManager {
 
     constructor() {
     }
 
-    public async createAddress(addressId: string, streetName: string, plzNumber: string, cityName: string, countryName: string, clientId: string, userId: string) {
-        const newAddress = new Address({
-            addressId,
-            streetName,
-            plzNumber,
-            cityName,
-            countryName,
-            clientId,
-            userId,
-        });
+    public async createAddress(req: express.Request, res: express.Response, next: express.NextFunction) {
+        const userId = _.get(req, 'user.dataValues.userId');
+        const address = req.body;
+        // address.userId = userId;
+        const newAddress = new Address(address);
         return newAddress.save();
     }
 
-    public async updateAddress(addressId: string, streetName: string, plzNumber: string, cityName: string, countryName: string, clientId: string, userId: string): Promise<Address> {
-        const address = await Address.find<Address>({where: {addressId}});
-        if(address) {
-            address.streetName = streetName || address.streetName;
-            address.plzNumber = plzNumber || address.plzNumber;
-            address.cityName = cityName || address.cityName;
-            address.countryName = countryName || address.countryName;
-            address.clientId = clientId || address.clientId;
-            address.userId = userId || address.userId;
-            
-            return address.save();
-        } else {
-            logger.error("No address found");
-            throw new NotFoundError("No address found with that id");
-        }
+    public async updateAddress(req: express.Request, res: express.Response, next: express.NextFunction): Promise<Address> {
+      const userId = _.get(req, 'user.dataValues.userId');
+      const updateInfo = req.body;
+      const address = await Address.find<Address>({where: {addressId: req.params.id}});
+      const addressInfo = _.get(address, 'dataValues');
+      if(address) {
+          address.streetName = updateInfo.streetName || addressInfo.streetName;
+          address.plzNumber = updateInfo.plzNumber || addressInfo.plzNumber;
+          address.cityName = updateInfo.cityName || addressInfo.cityName;
+          address.countryName = updateInfo.countryName || addressInfo.countryName;
+          address.clientId = updateInfo.clientId || addressInfo.clientId;
+          // address.userId = userId;
+
+          return address.save();
+      } else {
+          logger.error("No address found");
+          throw new NotFoundError("No address found with that id");
+      }
     }
 
     public async findById(addressId: string) {

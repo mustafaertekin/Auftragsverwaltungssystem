@@ -1,0 +1,10 @@
+.new-customer{
+    width: 100%;
+    box-sizing: border-box;
+    .mat-card{
+      padding: 16px 0;
+      .mat-card-content{
+        padding: 16px 16px;
+      }
+    }
+}

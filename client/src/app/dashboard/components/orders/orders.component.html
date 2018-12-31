@@ -12,10 +12,10 @@
     </mat-card-header>
     <mat-divider></mat-divider>
     <mat-card-content fxLayout="row" class="order-list-container list-container">
-      <div class="no-order" *ngIf="!orders.length">
+      <div class="no-order" *ngIf="!orders?.length">
         <span>No order is available, please add a new one or make a new search.</span>
       </div>
-      <div fxFlex="30"  fxHide [fxHide.gt-sm]="'false'" fxlayoutalign="center center" class="order-list" *ngIf="orders.length">
+      <div fxFlex="30"  fxHide [fxHide.gt-sm]="'false'" fxlayoutalign="center center" class="order-list" *ngIf="orders?.length">
         <div class="order-items-scrollbar-area" [perfectScrollbar]>
           <avs-animate-fadein [state]="animationState">
             <mat-list role="list">
@@ -26,7 +26,7 @@
           </avs-animate-fadein>
         </div>
       </div>
-      <div fxFlex="70" [fxFlex.sm]="100" [fxFlex.xs]="100" fxlayoutalign="center center" *ngIf="currentOrderId && orders.length" >
+      <div fxFlex="70" [fxFlex.sm]="100" [fxFlex.xs]="100" fxlayoutalign="center center" *ngIf="currentOrderId && orders?.length" >
         <avs-dashboard-order-details [currentOrderId]="currentOrderId"></avs-dashboard-order-details>
       </div>
     </mat-card-content>

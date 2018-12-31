@@ -14,10 +14,10 @@
             </mat-form-field>
           </form>
     </div>
-
-  <h2>Customer Details</h2>
+  -->
+  <h2> </h2>
   <div fxLayout="row" >
-      <form fxLayout="column" fxFlex="100"  [formGroup]="customerForm">
+      <form fxLayout="column" fxFlex="90"  [formGroup]="customerForm">
         <mat-form-field>
           <mat-select placeholder="Salutation" formControlName="salutation">
             <mat-option value="male">Male</mat-option>
@@ -38,12 +38,15 @@
         </mat-form-field>
         <div fxLayout="row" fxLayoutGap="16px">
           <div>
-            <button mat-button mat-raised-button color="accent" (click)="submitClientForm()">
-              <span *ngIf="client?.clientId"> Update</span> <span *ngIf="!client?.clientId">Save</span>
+            <button mat-button mat-raised-button color="accent" class="m-r-1" (click)="submitClientForm()">
+              <span> Update</span>
             </button>
+            <button mat-button mat-raised-button color="warn" (click)="deleteClient()">
+                <span> Delete</span>
+              </button>
           </div>
         </div>
       </form>
   </div>
-   -->
+
 </div>

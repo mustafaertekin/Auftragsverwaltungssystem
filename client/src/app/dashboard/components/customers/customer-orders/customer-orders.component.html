@@ -1,0 +1,22 @@
+<div class="customer-orders" >
+  <h2></h2>
+  <mat-list role="list" *ngIf="orders">
+      <mat-list-item role="listitem" *ngFor="let order of orders" [routerLink]="['/', 'dashboard', 'orders', order.orderId]">
+          <div class="item-info">
+              <div fxLayout="row wrap" fxLayoutGap="10px grid">
+                <div fxFlex="100">
+                  Status: {{order.status}}
+                </div>
+                <div fxFlex="100">
+                   created: {{ order.creationDate | date: 'short'}}
+                </div>
+                <div fxFlex="100">
+                  Order Id : {{order.orderId | slice:0:7}}
+                </div>
+
+              </div>
+            </div>
+      </mat-list-item>
+    </mat-list>
+
+</div>

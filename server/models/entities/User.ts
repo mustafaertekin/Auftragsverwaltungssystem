@@ -1,6 +1,8 @@
-import {AllowNull, BeforeSave, Column, DataType, HasOne, IsEmail, Table, Unique, Default, PrimaryKey, IsUUID} from 'sequelize-typescript';
+import {AllowNull, BeforeSave, Column, DataType, HasOne,HasMany, IsEmail, Table, Unique, Default, PrimaryKey, IsUUID} from 'sequelize-typescript';
 import {AccessToken} from "./AccessToken";
 import {BaseModel} from "./BaseModel";
+import {Address} from "./Address";
+import {Order} from "./Order";
 import {RoleEnum} from "../enums/RoleEnum";
 
 
@@ -43,6 +45,10 @@ export class User extends BaseModel<User> {
 
     @Column
     profilePicUrl: string;
-    
-   
+
+    @HasMany(() => Address)
+    addresses: Address[];
+
+    @HasMany(() => Order)
+    orders: Order[];
 }

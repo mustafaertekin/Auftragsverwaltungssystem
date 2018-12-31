@@ -1,4 +1,5 @@
 import * as express from "express";
+import {Op} from "sequelize";
 import {Address} from "../models/entities/Address";
 import {Auth} from "../auth/auth";
 import {AddressManager} from "../managers/AddressManager";
@@ -35,8 +36,15 @@ export class AddressRouter {
 
     public async getByClientId(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
-            const address = await Address.findAll<Address>({ where: { clientId: req.params.id } });
-            res.json(address);
+          const address = await Address.findAll<Address>({
+            where: {
+              [Op.or] : {
+                clientId: req.params.id,
+                userId: req.params.id,
+              }
+            }
+          });
+          res.json(address);
         } catch(error) {
             next(error);
         }
@@ -44,15 +52,7 @@ export class AddressRouter {
 
     public async post(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
-            const newAddress = await this.addressManager.createAddress(
-                req.body.addressId,
-                req.body.streetName,
-                req.body.plzNumber,
-                req.body.cityName,
-                req.body.countryName,
-                req.body.clientId,
-                req.body.userId,
-            );
+            const newAddress = await this.addressManager.createAddress(req, res, next);
             res.json(newAddress);
         } catch(error) {
             next(error);
@@ -61,15 +61,7 @@ export class AddressRouter {
 
     public async put(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
-            const updatedAddress = await this.addressManager.updateAddress(
-                req.params.id,
-                req.body.streetName,
-                req.body.plzNumber,
-                req.body.cityName,
-                req.body.countryName,
-                req.body.clientId,
-                req.body.userId,
-            );
+            const updatedAddress = await this.addressManager.updateAddress(req, res, next);
             res.json(updatedAddress);
         } catch(error) {
             next(error);

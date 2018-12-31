@@ -8,7 +8,7 @@ export class DeviceManager {
     }
 
     public async createDevice(deviceName: string ) {
-        const newDevice = new Device({ 
+        const newDevice = new Device({
             deviceName
              });
         return newDevice.save();
@@ -18,7 +18,7 @@ export class DeviceManager {
         const device = await Device.find<Device>({where: {deviceId}});
         if(device) {
             device.deviceName = deviceName || device.deviceName;
-            
+
             return device.save();
         } else {
             logger.error("No device found");
@@ -27,7 +27,6 @@ export class DeviceManager {
     }
 
     public async findById(deviceId: string): Promise<Device> {
-        console.log('order 1221===============>', deviceId);
         const device = await Device.findOne<Device>({where: {deviceId}});
         if (device) {
             return device;

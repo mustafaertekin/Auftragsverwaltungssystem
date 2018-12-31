@@ -1,0 +1,19 @@
+<div class="user-item" [routerLink]="['/', 'dashboard', 'users', user.userId]">
+  <div [ngClass]="{'heighlight': isHighlighted }" class="user-wrapper">
+    <div [ngClass]="{'selected-indicator': isHighlighted }" class="mat-toolbar mat-primary"></div>
+    <div class="user-item-info">
+      <div fxLayout="row wrap" fxLayoutGap="10px grid">
+        <div fxFlex="100">
+          {{user.firstName}} {{user.lastName}}
+        </div>
+        <div fxFlex="100">
+            since: {{ user.creationDate | date: 'short'}}
+        </div>
+        <div fxFlex="100">
+          {{user.userId | slice:0:7}}
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

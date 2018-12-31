@@ -108,7 +108,6 @@ export class Oauth2 {
 
                                 });
                             } else if (decodedToken && accessToken.userId === decodedToken.userId) {
-                                console.log('athletim ben 1', err, accessToken,decodedToken);
                                 return done(null, accessToken.token);
                             } else {
                                 return done(new AuthError("Token Validation Error"), false);

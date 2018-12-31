@@ -1,4 +1,7 @@
+import {Op} from "sequelize";
+import * as express from "express";
 import {User} from "../models/entities/User";
+import {Address} from "../models/entities/Address";
 import {NotFoundError} from "../errors/NotFoundError";
 import {RoleEnum} from "../models/enums/RoleEnum";
 import {Auth} from "../auth/auth";
@@ -13,7 +16,15 @@ export class UserManager {
 
     }
 
-    public async createUser(email: string, password: string, firstName: string, lastName: string, role: RoleEnum, isActive: boolean, profilePicUrl?: string) {
+    public async createUser(
+        email: string,
+        password: string,
+        firstName: string,
+        lastName: string,
+        role: RoleEnum,
+        isActive: boolean,
+        profilePicUrl?: string
+      ) {
 
         const newUser = new User({
             firstName,
@@ -27,9 +38,9 @@ export class UserManager {
         return newUser.save();
     }
 
-    public async updateUser(userId: string, email: string, firstName: string, lastName: string, role: RoleEnum, isActive: boolean, profilePicUrl?: string): Promise<User> {
+    public async updateUser(userId: string, email: string, firstName: string,
+      lastName: string, role: RoleEnum, isActive: boolean, profilePicUrl?: string): Promise<User> {
 
-        console.log('UPDATING USER', userId);
         const user = await User.find<User>({where: {userId: userId}});
         if (user) {
             user.email = email || user.email;
@@ -69,6 +80,16 @@ export class UserManager {
         }
     }
 
+    public async getById(req: express.Request, res: express.Response, next: express.NextFunction) {
+      const user = await User.findOne<User>({where: {userId: req.params.userId}});
+        if (user) {
+            return user;
+        } else {
+            logger.error("No user found with the provided email");
+            throw new NotFoundError("No user found with the provided email");
+        }
+    }
+
     public async findById(userId: string) {
         const user = await User.findOne<User>({where: {userId}});
         if (user) {
@@ -90,6 +111,31 @@ export class UserManager {
         }
     }
 
+    public async search(req: express.Request, res: express.Response, next: express.NextFunction) {
+      try{
+        const result = await User.findAll({
+          where: {
+            [Op.or] : {
+              '$User.userId$': { [Op.like]: `%${req.params.text}%`},
+              '$User.firstName$': { [Op.like]: `%${req.params.text}%`},
+              '$User.lastName$': { [Op.like]: `%${req.params.text}%`},
+              '$User.role$': { [Op.like]: `%${req.params.text}%`},
+              '$User.email$': { [Op.like]: `%${req.params.text}%`},
+              '$addresses.streetName$': { [Op.like]: `%${req.params.text}%`},
+              '$addresses.plzNumber$': { [Op.like]: `%${req.params.text}%`},
+              '$addresses.cityName$': { [Op.like]: `%${req.params.text}%`},
+              '$addresses.countryName$': { [Op.like]: `%${req.params.text}%`}
+            }
+          },
+          include: [Address]
+        });
+        return result;
+      } catch(err) {
+        next(err);
+      }
+    }
+
+
     public async updatePassword(userId: string, currentPassword: string, newPassword: string): Promise<User> {
         const user = await User.find<User>({where: {userId}});
         if (user) {
@@ -106,7 +152,7 @@ export class UserManager {
             catch(err){
                 throw new AuthError(err);
             }
-            
+
         } else {
             logger.error("No user found");
             throw new NotFoundError("No user found");

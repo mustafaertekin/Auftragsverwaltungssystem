@@ -14,11 +14,11 @@ export class DashboardAddressesComponent implements OnInit, OnChanges {
   public addresses: any;
   public selectedAddress: any;
   @Input() clientId: string;
+  @Input() userId: string;
 
 
   constructor(private fb: FormBuilder,
-    private addressService: AddressService,
-    private clientService: ClientService) {
+    private addressService: AddressService) {
   }
 
   ngOnInit() {
@@ -26,9 +26,27 @@ export class DashboardAddressesComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes) {
+    if (this.clientId) {
+      this.loadForClient(changes);
+    }
+    if (this.userId) {
+      this.loadForUser(changes);
+    }
+  }
+
+  loadForClient(changes) {
     if (changes.clientId.currentValue) {
       this.clientId = changes.clientId.currentValue;
       this.getAllAddressesByClientId(this.clientId);
+    } else {
+      this.addresses = null;
+    }
+  }
+
+  loadForUser(changes) {
+    if (changes.userId.currentValue) {
+      this.userId = changes.userId.currentValue;
+      this.getAllAddressesByClientId(this.userId);
     } else {
       this.addresses = null;
     }
@@ -44,6 +62,15 @@ export class DashboardAddressesComponent implements OnInit, OnChanges {
   }
 
   saveAddress() {
+    if (this.clientId) {
+      this.saveForClient();
+    }
+    if (this.userId) {
+      this.saveForUser();
+    }
+  }
+
+  saveForClient() {
     if (this.addressForm.valid && this.clientId) {
       const addresInfo = this.addressForm.value;
       addresInfo.clientId = this.clientId;
@@ -53,20 +80,19 @@ export class DashboardAddressesComponent implements OnInit, OnChanges {
     }
   }
 
+  saveForUser() {
+    if (this.addressForm.valid && this.userId) {
+      const addresInfo = this.addressForm.value;
+      addresInfo.userId = this.userId;
+      this.addressService.create(addresInfo).subscribe(() => {
+          this.getAllAddressesByClientId(this.userId);
+      });
+    }
+  }
+
   public getAllAddressesByClientId (clientId) {
     this.addressService.getByClientId(clientId).subscribe(addresses => {
       this.addresses = addresses;
     });
-  }
-
-  deleteAddress(addressId) {
-    this.addressService.delete(addressId).subscribe(addresses => {
-      this.getAllAddressesByClientId(this.clientId);
-    });
-  }
-
-  setSelectedAddress(address) {
-    console.log('addressees', address);
-    this.selectedAddress = address;
   }
 }

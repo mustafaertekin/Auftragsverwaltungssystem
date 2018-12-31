@@ -1,26 +1,18 @@
-<div class="customer-item" [routerLink]="['/', 'dashboard', 'customer', customer.clientId]">
+<div class="customer-item" [routerLink]="['/', 'dashboard', 'customers', customer.clientId]">
   <div [ngClass]="{'heighlight': isHighlighted }" class="customer-wrapper">
     <div [ngClass]="{'selected-indicator': isHighlighted }" class="mat-toolbar mat-primary"></div>
     <div class="customer-item-info">
       <div fxLayout="row wrap" fxLayoutGap="10px grid">
-        <div fxFlex="50">
+        <div fxFlex="100">
           {{customer.firstName}} {{customer.lastName}}
         </div>
-        <div fxFlex="50" fxLayoutAlign="end center">
-          Status:
+        <div fxFlex="100">
+            since: {{ customer.creationDate | date: 'short'}}
         </div>
-        <div fxFlex="50">
+        <div fxFlex="100">
+          {{customer.clientId | slice:0:7}}
+        </div>
 
-        </div>
-        <div fxFlex="50" class="text-align-right">
-
-        </div>
-        <div fxFlex="50">
-         <!--{{order.orderId | slice:0:7}}-->
-        </div>
-        <div fxFlex="50" fxLayoutAlign="end center">
-
-        </div>
       </div>
     </div>
   </div>

@@ -1,46 +1,56 @@
 <div class="dashboard-device-model">
-  <!--
-      <div fxLayout="row">
-        <form>
-          <mat-form-field>
-            <input type="text" placeholder="Choose a device" aria-label="Device" matInput [formControl]="myDevices"
-              [matAutocomplete]="auto">
-            <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-              <mat-option *ngFor="let option of filteredOptions | async" [value]="option.deviceName" (click)="showDeviceDetails(option)">
-                {{option.deviceName}}
-              </mat-option>
-            </mat-autocomplete>
-          </mat-form-field>
-        </form>
-      </div>
-      -->
   <h2>Model</h2>
-  <div fxLayout="row">
-    <mat-accordion class="full-width">
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            <span class="m-r-1">
-              <mat-icon>add_circle_outline</mat-icon>
-            </span>
-            <span>Add a new model</span>
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-        <form fxLayout="column" fxFlex="100" [formGroup]="modelForm">
-          <mat-form-field>
-            <input matInput placeholder="Model name" formControlName="deviceModelName">
-          </mat-form-field>
-          <div fxLayout="row" fxLayoutGap="16px">
-            <div>
-              <button mat-button mat-raised-button color="accent" (click)="submitModelForm()">
-                <span>Save</span>
-              </button>
-            </div>
+  <div fxLayout="row" fxLayoutGap="40px">
+      <div fxFlex="50">
+          <div fxLayout="row">
+            <h3 fxFlex="100">Select a device model model</h3>
           </div>
-        </form>
-      </mat-expansion-panel>
-      <avs-added-model (click)="setSelectedDeviceModel(model)" [model]="model" *ngFor="let model of models">
-      </avs-added-model>
-    </mat-accordion>
+          <div fxLayout="row">
+              <form fxFlex="100" [formGroup]="selectedDeviceModelForm">
+                    <mat-form-field fxFlex="100">
+                        <mat-select placeholder="Language" fxFlex="100"
+                          formControlName="selectedDeviceModel" placeholder="Select a device model">
+                          <mat-option *ngFor="let model of models"
+                          (click)="setSelectedDeviceModel(model)"
+                          [value]="model.deviceModelId"
+                          >
+                              {{model.deviceModelName}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+              </form>
+          </div>
+      </div>
+      <div fxFlex="50" >
+          <div fxLayout="row">
+              <h3 fxFlex="100">Add a new device model</h3>
+            </div>
+            <mat-accordion class="full-width">
+                <mat-expansion-panel>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      <span class="m-r-1">
+                        <mat-icon>add_circle_outline</mat-icon>
+                      </span>
+                      <span>Add a new model</span>
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <form fxLayout="column" fxFlex="100" [formGroup]="modelForm">
+                    <mat-form-field>
+                      <input matInput placeholder="Model name" formControlName="deviceModelName">
+                    </mat-form-field>
+                    <div fxLayout="row" fxLayoutGap="16px">
+                      <div>
+                        <button mat-button mat-raised-button color="accent" (click)="submitModelForm()">
+                          <span>Save</span>
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                </mat-expansion-panel>
+                <avs-added-model (click)="setSelectedDeviceModel(model)" [model]="model" *ngFor="let model of models">
+                </avs-added-model>
+              </mat-accordion>
+      </div>
   </div>
 </div>

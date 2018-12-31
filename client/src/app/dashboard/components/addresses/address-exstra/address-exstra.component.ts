@@ -13,7 +13,7 @@ export class DashboardAddressesExstraComponent implements OnInit {
   public addressForm: FormGroup;
   @Input() address: any;
   @Input() clientId: string;
-  @Output() selectedAddress: EventEmitter<string>;
+  @Input() userId: string;
 
   constructor(private fb: FormBuilder,
     private parent: DashboardAddressesComponent,
@@ -22,7 +22,6 @@ export class DashboardAddressesExstraComponent implements OnInit {
 
   ngOnInit() {
     this.setAddressForm();
-    this.selectedAddress = new EventEmitter<string>();
   }
 
   setAddressForm() {
@@ -35,25 +34,39 @@ export class DashboardAddressesExstraComponent implements OnInit {
   }
 
   updateAddress() {
+    if (this.clientId) {
+      this.updateForClient();
+    }
+    if (this.userId) {
+      this.updateForUser();
+    }
+  }
+
+  updateForClient() {
     if (this.addressForm.valid && this.clientId) {
       const addresInfo = this.addressForm.value;
       addresInfo.clientId = this.clientId;
       addresInfo.addressId = this.address.addressId;
       this.addressService.update(addresInfo).subscribe(() => {
-           this.parent.getAllAddressesByClientId(this.clientId);
+        this.parent.getAllAddressesByClientId(this.clientId);
+      });
+    }
+  }
+
+  updateForUser() {
+    if (this.addressForm.valid && this.userId) {
+      const addresInfo = this.addressForm.value;
+      addresInfo.userId = this.userId;
+      addresInfo.addressId = this.address.addressId;
+      this.addressService.update(addresInfo).subscribe(() => {
+        this.parent.getAllAddressesByClientId(this.userId);
       });
     }
   }
 
   deleteAddress(addressId) {
     this.addressService.delete(addressId).subscribe(addresses => {
-      this.parent.getAllAddressesByClientId(this.clientId);
+      this.parent.getAllAddressesByClientId(this.clientId || this.userId);
     });
-  }
-
-  setAddressId(event, addressId) {
-    event.stopPropagation();
-    console.log('address Id', addressId);
-    this.selectedAddress.emit(addressId);
   }
 }

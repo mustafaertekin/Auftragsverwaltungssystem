@@ -15,6 +15,7 @@ export class DashboardDeviceModelComponent implements OnInit, OnChanges {
   myModels = new FormControl();
   filteredOptions: Observable<DeviceModel[]>;
   public modelForm: FormGroup;
+  public selectedDeviceModelForm: FormGroup;
   public model: DeviceModel;
   @Input() deviceId;
   public selectedDevice: Device;
@@ -51,6 +52,10 @@ export class DashboardDeviceModelComponent implements OnInit, OnChanges {
   setModelForm() {
     this.modelForm = this.fb.group({
       deviceModelName: ['', [Validators.required]]
+    });
+
+    this.selectedDeviceModelForm = this.fb.group({
+      selectedDeviceModel: ['', [Validators.required]]
     });
   }
 

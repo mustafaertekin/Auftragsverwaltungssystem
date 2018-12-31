@@ -38,16 +38,42 @@ export class UserRouter extends BaseRouter {
 
     public async post(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
-            const user = await this.userManager.createUser(req.body.email, req.body.password, req.body.firstName, req.body.lastName, req.body.role, req.body.profilePicUrl);
+            const user = await this.userManager.createUser(
+              req.body.email,
+              req.body.password,
+              req.body.firstName,
+              req.body.lastName,
+              req.body.role,
+              req.body.isActive,
+              req.body.profilePicUrl
+            );
             res.json(new UserDTO(user));
         } catch (error) {
             next(error);
         }
     }
 
+
+    public async getById(req: express.Request, res: express.Response, next: express.NextFunction) {
+      try {
+          const user = await this.userManager.getById(req, res, next);
+          res.json(new UserDTO(user));
+      } catch (error) {
+          next(error);
+      }
+    }
+
     public async put(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
-            const user = await this.userManager.updateUser(req.params.userId, req.body.email, req.body.firstName, req.body.lastName, req.body.role, req.body.profilePicUrl);
+            const user = await this.userManager.updateUser(
+               req.params.userId,
+               req.body.email,
+               req.body.firstName,
+               req.body.lastName,
+               req.body.role,
+               req.body.isActive,
+               req.body.profilePicUrl
+            );
             res.json(new UserDTO(user));
         } catch (error) {
             next(error);
@@ -89,12 +115,23 @@ export class UserRouter extends BaseRouter {
         }
     }
 
+    public async search(req: express.Request, res: express.Response, next: express.NextFunction) {
+      try {
+        const clients = await this.userManager.search(req, res, next);
+        res.json(clients);
+      } catch(error) {
+          next(error);
+      }
+    }
+
     private buildRoutes() {
         this.router.get("/", Auth.getBearerMiddleware(), Roles.connectRoles.can('modify user'), this.get.bind(this));
         this.router.post("/", Auth.getBearerMiddleware(), Roles.connectRoles.can('modify user'), this.post.bind(this));
         this.router.delete("/:userId", Auth.getBearerMiddleware(), Roles.connectRoles.can('modify user'), this.delete.bind(this));
         this.router.put("/:userId", Auth.getBearerMiddleware() , Roles.connectRoles.can('modify user'), this.put.bind(this));
+        this.router.get("/:userId", Auth.getBearerMiddleware() , Roles.connectRoles.can('modify user'), this.getById.bind(this));
         this.router.get("/current", Auth.getBearerMiddleware(), this.getByToken.bind(this));
+        this.router.get("/search/:text", Auth.getBearerMiddleware(), this.search.bind(this));
         this.router.put("/:userId/password",  Auth.getBearerMiddleware(), Roles.connectRoles.can('modify user'), this.changePassword.bind(this));
         this.router.put("/:userId/profileImage",  Auth.getBearerMiddleware(), Roles.connectRoles.can('modify user'), this.uploadHandler.single('profileImage'), this.uploadProfileImage.bind(this));
     }

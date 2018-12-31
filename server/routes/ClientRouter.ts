@@ -32,6 +32,24 @@ export class ClientRouter {
         }
     }
 
+    public async getOrders(req: express.Request, res: express.Response, next: express.NextFunction) {
+      try {
+        const orders = await this.clientManager.getOrders(req.params.id);
+        res.json(orders);
+      } catch(error) {
+          next(error);
+      }
+    }
+
+    public async search(req: express.Request, res: express.Response, next: express.NextFunction) {
+      try {
+        const clients = await this.clientManager.search(req, res, next);
+        res.json(clients);
+      } catch(error) {
+          next(error);
+      }
+    }
+
     public async post(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
             const newClient = await this.clientManager.createClient(req.body);
@@ -43,8 +61,8 @@ export class ClientRouter {
 
     public async put(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
-            const updatedClient = await this.clientManager.updateClient(req.params.id, req.body);
-            res.json(updatedClient);
+          const updatedClient = await this.clientManager.updateClient(req.params.id, req.body);
+          res.json(updatedClient);
         } catch(error) {
             next(error);
         }
@@ -62,9 +80,11 @@ export class ClientRouter {
     private buildRoutes() {
         this.router.get("/", Auth.getBearerMiddleware(), this.get.bind(this));
         this.router.get("/:id", Auth.getBearerMiddleware(), this.getById.bind(this));
+        this.router.get("/orders/:id", Auth.getBearerMiddleware(), this.getOrders.bind(this));
+        this.router.get("/search/:text", Auth.getBearerMiddleware(), this.search.bind(this));
         this.router.post("/", Auth.getBearerMiddleware(), this.post.bind(this));
         this.router.put("/:id", Auth.getBearerMiddleware(), this.put.bind(this));
         this.router.delete("/:id", Auth.getBearerMiddleware(), this.delete.bind(this));
     }
 
-} 
+}

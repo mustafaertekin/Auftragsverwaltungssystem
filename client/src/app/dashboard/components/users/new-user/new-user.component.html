@@ -1,0 +1,61 @@
+<div class="new-customer">
+  <div class="avs-list m-t-1 m-l-1">
+    <mat-card>
+      <mat-card-header>
+        <mat-icon class="title-icon-size" mat-card-avatar>person</mat-icon>
+        <mat-card-title>User</mat-card-title>
+        <mat-card-subtitle>Create new user</mat-card-subtitle>
+      </mat-card-header>
+      <mat-divider></mat-divider>
+      <mat-card-content fxLayout="row" class="list-container">
+        <mat-vertical-stepper [linear]="'true'" #stepper class="full-width">
+          <mat-step [stepControl]="userForm">
+            <ng-template matStepLabel>Fill out form</ng-template>
+            <div fxLayout="row">
+              <form fxLayout="column" fxFlex="90" [formGroup]="userForm" #form="ngForm">
+                <div class="m-t-1 m-b-1" [ngClass]="{'mat-form-field-invalid': isActive.hasError('required') && form.submitted}">
+                  <mat-slide-toggle class="mat-input-element" formControlName="isActive">Activate Account</mat-slide-toggle>
+                </div>
+                <mat-form-field>
+                  <mat-select placeholder="Roles" formControlName="role">
+                    <mat-option value="admin">Admin</mat-option>
+                    <mat-option value="member">Member</mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <mat-form-field>
+                  <input matInput placeholder="First name" formControlName="firstName">
+                </mat-form-field>
+                <mat-form-field>
+                  <input matInput placeholder="Last name" formControlName="lastName">
+                </mat-form-field>
+                <mat-form-field>
+                  <input matInput placeholder="Email" formControlName="email">
+                </mat-form-field>
+                <mat-form-field>
+                  <input matInput placeholder="Password" formControlName="password">
+                </mat-form-field>
+                <mat-form-field>
+                  <input matInput placeholder="Reenter password" formControlName="repassword">
+                </mat-form-field>
+                <div fxLayout="row" fxLayoutGap="16px">
+                  <div>
+                    <button mat-button mat-raised-button color="accent" class="m-r-1" (click)="submitUserForm()">
+                      <span>Save</span>
+                    </button>
+                    <button mat-button mat-raised-button matStepperNext color="accent" [disabled]="!isUserSubmitted" class="m-r-1">
+                        <span> Next</span>
+                      </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </mat-step>
+          <mat-step>
+            <ng-template matStepLabel>Add address</ng-template>
+            <avs-dashboard-addresses [userId]="user?.userId" fxFlexFill></avs-dashboard-addresses>
+          </mat-step>
+        </mat-vertical-stepper>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

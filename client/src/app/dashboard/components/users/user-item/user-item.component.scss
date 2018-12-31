@@ -1,0 +1,24 @@
+.user-item{
+  outline: none;
+  width: 100%;
+  border-bottom: 1px solid #efefef;
+  .mat-card{
+      border-radius: 0px;
+  }
+  .heighlight{
+    background: whitesmoke;
+  }
+
+  .user-wrapper{
+    display: flex;
+    .selected-indicator{
+      width: 6px;
+      height: auto;
+      padding-top: 16px;
+    }
+
+    .user-item-info{
+      padding: 16px;
+    }
+  }
+}

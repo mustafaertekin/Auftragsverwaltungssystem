@@ -6,14 +6,20 @@
         <mat-card-subtitle>Create a new device</mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
-        <mat-vertical-stepper>
-          <mat-step>
+        <mat-vertical-stepper [linear]="'true'">
+          <mat-step [stepControl]="">
             <ng-template matStepLabel>Chose a device or create a new one</ng-template>
             <avs-dashboard-new-device #deviceForm></avs-dashboard-new-device>
+            <button mat-button mat-raised-button matStepperNext color="accent" [disabled]="!deviceForm?.selectedDeviceForm?.valid" class="m-r-1">
+                <span> Next</span>
+            </button>
           </mat-step>
           <mat-step>
             <ng-template matStepLabel>Choose a model or create one</ng-template>
              <avs-dashboard-device-model #modelForm [deviceId]="deviceForm?.device?.deviceId"></avs-dashboard-device-model>
+             <button mat-button mat-raised-button matStepperNext color="accent" [disabled]="!modelForm?.selectedDeviceModelForm?.valid" class="m-r-1">
+                <span> Next</span>
+            </button>
           </mat-step>
           <mat-step>
             <ng-template matStepLabel>Chose a service or create one</ng-template>

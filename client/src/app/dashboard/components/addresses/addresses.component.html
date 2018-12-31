@@ -1,5 +1,5 @@
 <div class="dashboard-addresses">
-  <h2>Address Details</h2>
+  <h2> </h2>
   <mat-accordion>
     <mat-expansion-panel>
       <mat-expansion-panel-header>
@@ -40,7 +40,7 @@
     </mat-expansion-panel>
       <avs-dashboard-address-exstra  *ngFor="let address of addresses"
       [clientId]="clientId"
-      (click)="setSelectedAddress(address)"
+      [userId]="userId"
       [address]="address">
       </avs-dashboard-address-exstra>
   </mat-accordion>

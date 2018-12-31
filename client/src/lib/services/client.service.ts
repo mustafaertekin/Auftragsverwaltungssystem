@@ -30,4 +30,16 @@ export class ClientService {
   public updateClient(clientId: string, client: any): Observable<any> {
     return this.http.put(`${this.serverUrl}clients/${clientId}`, client).pipe(map((res: Response) => res));
   }
+
+  public delete(clientId: string): Observable<any> {
+    return this.http.delete(`${this.serverUrl}clients/${clientId}`).pipe(map((res: Response) => res));
+  }
+
+  public getOrders(clientId: string): Observable<any> {
+    return this.http.get(`${this.serverUrl}clients/orders/${clientId}`).pipe(map((res: Response) => res));
+  }
+
+  public getByText(text: string): Observable<any> {
+    return this.http.get(`${this.serverUrl}clients/search/${text}`).pipe(map((res: Response) => res));
+  }
 }

@@ -15,9 +15,16 @@ export class DashboardSideMenuContentComponent implements OnInit {
 
   ngOnInit() {
     this.selectedMenu = 'main';
-    this.router.events.subscribe(params => {
-      const urlparams = this.router.url.split('/');
-      this.selectedMenu = urlparams[2];
+    this.route.params.subscribe(params => {
+      this.setSelectedMenu();
     });
+    this.router.events.subscribe(params => {
+      this.setSelectedMenu();
+    });
+  }
+
+  setSelectedMenu() {
+    const urlparams = this.router.url.split('/');
+    this.selectedMenu = urlparams[2];
   }
 }

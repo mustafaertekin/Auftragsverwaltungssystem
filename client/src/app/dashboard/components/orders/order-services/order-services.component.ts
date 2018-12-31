@@ -86,6 +86,5 @@ export class DashboardOrderServicesComponent implements OnInit {
   }
 
   goToNextStep() {
-    console.log('');
   }
 }

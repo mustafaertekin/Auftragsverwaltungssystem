@@ -1,15 +1,38 @@
 .users-component {
 
-  .users-form {
-    .example-container {
-      display: flex;
-      flex-direction: column;
-    }
+  .mat-card {
+    padding: 16px 0;
 
-    .example-container>* {
-      width: 100%;
+    .mat-card-header {
+      padding-left: 16px;
     }
-    
+  }
+
+  .user-list-container {
+    .user-list {
+      border-right: 1px solid rgba(0, 0, 0, 0.12);
+      .avs-dashboard-user-item {
+        width: 100%;
+      }
+      .mat-list {
+        padding-top: 0;
+        .mat-list-item {
+          height: auto;
+        }
+      }
+    }
+    .users-main-details{
+      background: whitesmoke;
+    }
+  }
+
+  .user-items-scrollbar-area{
+    max-height: calc(100vh - 200px);
+    position: relative;
+  }
+
+  .search-area{
+    flex: 1 1 auto;
   }
 
 }
