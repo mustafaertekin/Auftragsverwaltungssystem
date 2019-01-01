@@ -32,7 +32,11 @@ export class DashboardCustomerDetailsComponent implements OnInit, OnChanges {
   ngOnInit() {
   }
 
-  ngOnChanges() {
+  ngOnChanges(changes) {
+    if (!changes.clientId.currentValue && !changes.clientId.firstChange) {
+      this.customerForm.reset();
+      return this.clientId = null;
+    }
     this.clientService.getById(this.clientId).subscribe(client => {
       this.setFormFields(client);
     });
@@ -65,7 +69,16 @@ export class DashboardCustomerDetailsComponent implements OnInit, OnChanges {
     if (this.customerForm.valid) {
       this.clientService.updateClient(this.clientId, this.customerForm.value)
         .subscribe(result => {
-          this.emitter.emit(result.clientId);
+          this.emitter.emit(result);
+        }, err => console.log('Err from client submit', err));
+    }
+  }
+
+  private createClient() {
+    if (this.customerForm.valid) {
+      this.clientService.createClient(this.customerForm.value)
+        .subscribe(result => {
+          this.emitter.emit(result);
         }, err => console.log('Err from client submit', err));
     }
   }

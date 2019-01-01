@@ -16,29 +16,77 @@
         </mat-step>
         <mat-step [stepControl]="clientComponent?.customerForm" [optional]="optional">
           <ng-template matStepLabel>Chose a customer or create a new one</ng-template>
-          <avs-dashboard-customer-details #clientComponent fxFlexFill></avs-dashboard-customer-details>
-          <div  fxLayout="row" fxLayoutAlign="end center"  *ngIf="clientComponent?.customerForm.valid"  >
-            <button fxFlex="10" matStepperPrevious mat-button mat-raised-button color="accent"  >Previous</button>
-            <button fxFlex="10"  matStepperNext mat-button mat-raised-button color="accent">Next</button>
+          <div fxLayout="row" fxLayoutGap="40px">
+            <div fxFlex="50">
+              <h3>Find a customer</h3>
+              <form>
+                <mat-form-field class="full-width">
+                  <input type="text" id="customer_search" placeholder="Select a customer" matInput [matAutocomplete]="auto">
+                  <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let customer of customers" [value]="getName(customer)" (click)="setCustomer(customer)">
+                      {{customer.firstName}} {{customer.lastName}}, {{customer.email}}
+                    </mat-option>
+                  </mat-autocomplete>
+                </mat-form-field>
+              </form>
+            </div>
+            <div fxFlex="50">
+              <h3>
+                <span *ngIf="customer?.clientId">Update</span>
+                <span *ngIf="!customer?.clientId">Add</span>
+                customer
+              </h3>
+              <avs-dashboard-customer-details [clientId]="customer?.clientId" (emitter)="setCustomer($event)"
+                fxFlexFill></avs-dashboard-customer-details>
+            </div>
+          </div>
+          <div fxLayout="row" fxLayoutAlign="start center" *ngIf="customer?.clientId">
+            <button fxFlex="10" class="m-r-1" matStepperPrevious mat-button mat-raised-button color="accent">Previous</button>
+            <button fxFlex="10" matStepperNext mat-button mat-raised-button color="accent">Next</button>
           </div>
         </mat-step>
         <mat-step>
           <ng-template matStepLabel>Select and address or create a new one</ng-template>
-          <avs-dashboard-addresses [clientId]="clientComponent?.client?.clientId" #addressForm fxFlexFill></avs-dashboard-addresses>
-          <div fxLayout="row"  fxLayoutAlign="end center">
-            <button  fxFlex="10"  matStepperPrevious mat-button mat-raised-button color="accent" class="m-r-1">Previous</button>
-            <button  fxFlex="10"  matStepperNext mat-button mat-raised-button color="accent"  >Next</button>
+          <div fxLayout="column">
+            <div fxLayout="row" fxLayoutGap="40px">
+              <div fxFlex="50">
+                <form fxLayout="column" fxFlex="100" [formGroup]="addressForms">
+                  <mat-form-field>
+                    <mat-select placeholder="Delivery Address" formControlName="deliveryAddress">
+                      <mat-option *ngFor="let address of addressForm?.addresses" [value]="address?.addressId">
+                        {{address.streetName}}, {{address.cityName}}, {{address.plzNumber}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <mat-form-field>
+                    <mat-select placeholder="Invoice Address" formControlName="invoiceAddress">
+                      <mat-option *ngFor="let address of addressForm?.addresses" [value]="address?.addressId">
+                        {{address.streetName}}, {{address.cityName}}, {{address.plzNumber}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </form>
+              </div>
+              <div fxFlex="50">
+                <avs-dashboard-addresses class="m-b-1" [clientId]="customer?.clientId" #addressForm fxFlexFill></avs-dashboard-addresses>
+              </div>
+            </div>
+            <div fxLayout="row">
+              <br>
+              <div fxLayout="row m-t-1" fxLayoutAlign="start center">
+                <button class="m-r-1" matStepperPrevious mat-button mat-raised-button color="accent" class="m-r-1">Previous</button>
+              </div>
+              <br>
+            </div>
+            <div fxLayout="row m-t-1 full-width" fxLayoutAlign="center center">
+              <br><br>
+              <button *ngIf="customer?.clientId && addressForms.valid" mat-button
+                mat-raised-button class="submit-order-button m-1" color="accent" (click)="saveOrder(services?.orders)">
+                Submit new order
+              </button>
+            </div>
           </div>
         </mat-step>
-        <mat-step>
-          <ng-template matStepLabel>Save your new order</ng-template>
-          <div fxLayout="row"  fxLayoutAlign="end center">
-            <button fxFlex="10" matStepperPrevious mat-button mat-raised-button color="accent">Previous</button>
-          </div>
-          <button mat-button mat-raised-button color="accent"
-          (click)="saveOrder(services?.orders, clientComponent?.client, addressForm?.selectedAddress)"
-          class="m-1">Submit</button>
-          </mat-step>
       </mat-vertical-stepper>
     </mat-card-content>
   </mat-card>

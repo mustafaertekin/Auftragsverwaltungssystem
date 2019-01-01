@@ -16,16 +16,15 @@ export class DashboardMainHeaderComponent implements OnInit {
     private router: Router,
      ) {
    }
- 
+
   ngOnInit() {
-     
   }
 
   toogleSideNavigation() {
     this.toogleMenu.toggle();
   }
 
-  logout(){
+  logout() {
     this.tokenService.setToken('');
     this.router.navigate(['/']);
   }

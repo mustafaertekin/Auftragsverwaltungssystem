@@ -11,7 +11,7 @@ import { AddressService } from '@avs-ecosystem/services/address.service';
 })
 export class DashboardAddressesComponent implements OnInit, OnChanges {
   public addressForm: FormGroup;
-  public addresses: any;
+  public addresses: any[];
   public selectedAddress: any;
   @Input() clientId: string;
   @Input() userId: string;

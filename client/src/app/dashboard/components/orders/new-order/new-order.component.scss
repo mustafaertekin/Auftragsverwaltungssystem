@@ -7,16 +7,16 @@
         }
         .mat-table {
             .mat-header-cell:first-child{
-                width: 100px; 
+                width: 100px;
             }
             td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type, th.mat-header-cell:first-of-type{
                 padding-left: 0px;
             }
         }
-    }
-    button:last-of-type{
-        width: 60%;
-        margin-left: 20%;
 
+    }
+    .submit-order-button{
+      width: 100%;
+      height: 80px;
     }
 }
