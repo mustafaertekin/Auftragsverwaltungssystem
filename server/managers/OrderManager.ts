@@ -41,7 +41,8 @@ export class OrderManager {
 
           const userId = _.get(reqObject, 'user.dataValues.userId');
           const clientId = reqObject.body.clientId;
-          const addressId = reqObject.body.addressId;
+          const deliveryAddress = reqObject.body.deliveryAddress;
+          const invoiceAddress = reqObject.body.invoiceAddress;
           // TODO here needs to get company id programatically
           const companyId = "10e0e993-b796-4168-b017-2b15b1640ccc";
 
@@ -51,8 +52,8 @@ export class OrderManager {
                   price,
                   companyId: companyId,
                   status: OrderStatus.OPENED,
-                  deliveryAddressId: addressId,
-                  billingAddressId: addressId,
+                  deliveryAddressId: deliveryAddress,
+                  billingAddressId: invoiceAddress,
                   description: 'not yet implemented',
                   deliveryDate: new Date().toString()
           });
