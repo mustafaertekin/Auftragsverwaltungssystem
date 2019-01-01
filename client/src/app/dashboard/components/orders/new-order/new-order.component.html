@@ -10,11 +10,11 @@
         <mat-step [stepControl]="services?.serviceForm" [optional]="optional">
           <ng-template matStepLabel>Add reperature services</ng-template>
           <avs-dashboard-order-services #services></avs-dashboard-order-services>
-          <div fxLayout="row" *ngIf="services?.serviceForm.valid" fxLayoutAlign="end end">
+          <div fxLayout="row" *ngIf="services?.serviceForm.valid" fxLayoutAlign="start center">
             <button fxFlex="10" matStepperNext mat-button mat-raised-button color="accent">Next</button>
           </div>
         </mat-step>
-        <mat-step [stepControl]="clientComponent?.customerForm" [optional]="optional">
+        <mat-step [optional]="optional">
           <ng-template matStepLabel>Chose a customer or create a new one</ng-template>
           <div fxLayout="row" fxLayoutGap="40px">
             <div fxFlex="50">
