@@ -32,7 +32,7 @@ export class StatisticRouter {
         const ordered = _.groupBy(orders, (elm) => { return new Date(elm.creationDate).getMonth(); });
         const summedMonats = _.map(ordered, (monat, index) => {
           const sum = monat.reduce((sum, curr) => {
-            sum += sum + math.eval(curr.price);
+            sum += math.eval(curr.price);
             return sum;
           }, 0);
           return { index: index, sum: sum};
