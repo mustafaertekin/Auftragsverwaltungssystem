@@ -7,22 +7,21 @@ export class SettingManager {
     constructor() {
     }
 
-    public async createSetting(settingId: string, userId: string, language: string ) {
-        const newSetting = new Setting({
-            settingId,
-            userId,
-            language
-        });
+    public async createSetting(body: any) {
+      if(!body.settingId) {
+        const newSetting = new Setting({body});
         return newSetting.save();
+      } else {
+        return await this.updateSetting(body.settingId, body.theme, body.language);
+      }
     }
 
-    public async updateSetting(settingId, userId, language): Promise<Setting> {
+    public async updateSetting(settingId, theme, language): Promise<Setting> {
         const setting = await Setting.find<Setting>({where: {settingId: settingId}});
         if(setting) {
-            setting.settingId = settingId;
-            setting.userId = userId;
+            setting.theme = theme;
             setting.language = language;
-            
+
             return setting.save();
         } else {
             logger.error("No setting model found");

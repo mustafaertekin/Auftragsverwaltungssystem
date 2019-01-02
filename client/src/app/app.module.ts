@@ -31,7 +31,6 @@ import { DeviceServiceType } from '@avs-ecosystem/services/device-service-type.s
 import { AppSettingsService } from '@avs-ecosystem/services/app-settings.service';
 import { StatisticsService } from '@avs-ecosystem/services/statistics.service';
 
-
 @NgModule({
   declarations: [
     AppComponent
@@ -48,7 +47,7 @@ import { StatisticsService } from '@avs-ecosystem/services/statistics.service';
     HttpModule,
     FlexLayoutModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
   ],
   bootstrap: [AppComponent],
   providers: [
@@ -72,4 +71,5 @@ import { StatisticsService } from '@avs-ecosystem/services/statistics.service';
     }
   ],
 })
-export class AppModule {}
+export class AppModule {
+}

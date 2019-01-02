@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { StatisticsService } from '@avs-ecosystem/services/statistics.service';
+import { UserService } from '@avs-ecosystem/services/user.service';
+import { TranslateService } from '@ngx-translate/core';
+import { AppSettingsService } from '@avs-ecosystem/services/app-settings.service';
 
 @Component({
   selector: 'avs-dashboard-main',
@@ -9,10 +12,20 @@ import { StatisticsService } from '@avs-ecosystem/services/statistics.service';
 export class DashboardMainComponent implements OnInit {
   monathlyGainData: number [];
 
-  constructor(private statisticService: StatisticsService) {
-
+  constructor(private translate: TranslateService, private userService: UserService,
+    private settingService:  AppSettingsService,
+    private statisticService: StatisticsService) {
   }
+
   ngOnInit() {
+    this.translate.setDefaultLang('en-EN');
+    this.userService.current().subscribe(user => {
+      if (user && user.setting) {
+        this.settingService.setLanguage(user.setting.language);
+        this.settingService.setThema(user.setting.theme);
+      }
+    });
+
     this.statisticService.getMonatlyGain().subscribe(data => {
       this.monathlyGainData = [data];
     });

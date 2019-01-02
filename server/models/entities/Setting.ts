@@ -4,16 +4,20 @@ import { User } from './User';
 
 @Table
 export class Setting extends BaseModel<Setting> {
-    
+
     @IsUUID(4)
     @PrimaryKey
     @Default(DataType.UUIDV4)
     @Column(DataType.UUID)
     settingId: string;
 
-    @AllowNull(false)
+    @AllowNull(true)
     @Column
     language: string;
+
+    @AllowNull(true)
+    @Column
+    theme: string;
 
     @ForeignKey(() => User)
     @Column

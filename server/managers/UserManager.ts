@@ -2,6 +2,7 @@ import {Op} from "sequelize";
 import * as express from "express";
 import {User} from "../models/entities/User";
 import {Address} from "../models/entities/Address";
+import {Setting} from "../models/entities/Setting";
 import {NotFoundError} from "../errors/NotFoundError";
 import {RoleEnum} from "../models/enums/RoleEnum";
 import {Auth} from "../auth/auth";
@@ -9,6 +10,7 @@ import {AuthError} from "../errors/AuthError";
 import {S3Manager} from "./S3Manager";
 import {logger} from "../lib/logger";
 import {Utils} from "../utils";
+import * as _ from 'lodash';
 
 export class UserManager {
 
@@ -81,17 +83,25 @@ export class UserManager {
     }
 
     public async getById(req: express.Request, res: express.Response, next: express.NextFunction) {
-      const user = await User.findOne<User>({where: {userId: req.params.userId}});
+      const userId = (_.get(req, 'params.userId') === 'current' || !_.get(req, 'params.userId'))
+                 ? _.get(req, 'user.dataValues.userId') : _.get(req, 'params.userId');
+      const user = await User.findOne<User>(
+        {
+          where: {
+            userId: userId
+          },
+          include: [Setting]
+        });
         if (user) {
             return user;
         } else {
-            logger.error("No user found with the provided email");
-            throw new NotFoundError("No user found with the provided email");
+            logger.error("No user found with the provided userId");
+            throw new NotFoundError("No user found with the provided userId");
         }
     }
 
     public async findById(userId: string) {
-        const user = await User.findOne<User>({where: {userId}});
+        const user = await User.findOne<User>({where: {userId}, include: [Setting]});
         if (user) {
             return user;
         } else {

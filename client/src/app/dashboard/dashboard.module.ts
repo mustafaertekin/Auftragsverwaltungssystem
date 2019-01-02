@@ -5,7 +5,11 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { DeviceDetectorModule } from 'ngx-device-detector';
+import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 
+import { AppSettingsService } from '@avs-ecosystem/services/app-settings.service';
 import { MaterialModule } from '@avs-ecosystem/modules/material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -41,6 +45,12 @@ import { DashboardNewCustomerComponent } from './components/customers/new-custom
 import { DashboardUserItemComponent } from './components/users/user-item/user-item.component';
 import { DashboardUserDetailsComponent } from './components/users/user-details/user-details.component';
 import { DashboardNewUserComponent } from './components/users/new-user/new-user.component';
+import { UserService } from '@avs-ecosystem/services/user.service';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -56,6 +66,13 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ReactiveFormsModule,
     PerfectScrollbarModule,
     SharedModule,
+    TranslateModule.forRoot({
+      loader: {
+          provide: TranslateLoader,
+          useFactory: (createTranslateLoader),
+          deps: [HttpClient]
+      }
+    })
   ],
   declarations: [
     DashboardMainComponent,
@@ -96,4 +113,5 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     }
   ]
 })
-export class DashboardPageModule {}
+export class DashboardPageModule {
+}

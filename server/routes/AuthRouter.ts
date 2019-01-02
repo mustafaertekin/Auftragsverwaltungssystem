@@ -33,7 +33,4 @@ export class AuthRouter extends BaseRouter {
         });
         this.router.post("/logout", Auth.getBearerMiddleware(),  this.logout.bind(this));
     }
-
-
-
 }

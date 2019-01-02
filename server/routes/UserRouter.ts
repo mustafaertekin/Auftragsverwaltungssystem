@@ -6,6 +6,7 @@ import {UserDTO} from "../models/dtos/UserDTO";
 import {Roles} from "../auth/roles";
 import * as multer from 'multer';
 import {BaseRouter} from "./BaseRouter";
+import * as _ from 'lodash';
 
 export class UserRouter extends BaseRouter {
 
@@ -53,11 +54,11 @@ export class UserRouter extends BaseRouter {
         }
     }
 
-
     public async getById(req: express.Request, res: express.Response, next: express.NextFunction) {
       try {
           const user = await this.userManager.getById(req, res, next);
-          res.json(new UserDTO(user));
+          const sanitizedUser = _.omit(user, ['dataValues.password']);
+          res.json(_.get(sanitizedUser, 'dataValues'));
       } catch (error) {
           next(error);
       }
@@ -91,7 +92,8 @@ export class UserRouter extends BaseRouter {
 
     public async getByToken(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
-            res.json(new UserDTO(req.user));
+            console.log('current user', req, _.get(req, 'user'));
+            res.json('');
         } catch (error) {
             next(error);
         }

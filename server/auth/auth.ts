@@ -8,6 +8,7 @@ import * as BearerStrategy from "passport-http-bearer";
 import * as bcrypt from "bcrypt-nodejs";
 import {BasicStrategy} from "passport-http";
 import {User} from "../models/entities/User";
+import {Setting} from "../models/entities/Setting";
 import {AccessToken} from "../models/entities/AccessToken";
 import {Client} from "../models/entities/Client";
 import {sign, verify} from 'jsonwebtoken';
@@ -82,7 +83,15 @@ export class Auth {
                     if(jwtSecret) {
                         verify(accessToken.token, jwtSecret, (err, decodedToken: any) => {
                             if (decodedToken && accessToken.userId === decodedToken.userId) {
-                                User.find({where: { userId: accessToken.userId}}).then(user => {
+
+                                User.find(
+                                  {
+                                    where:
+                                    {
+                                      userId: accessToken.userId
+                                    },
+                                    include: [Setting]
+                                  }).then(user => {
                                     return done(null, user);
                                 }).catch(error => {
                                     return done(new AuthError(error.message), false);

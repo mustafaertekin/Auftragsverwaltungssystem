@@ -2,6 +2,7 @@ import {AllowNull, BeforeSave, Column, DataType, HasOne,HasMany, IsEmail, Table,
 import {AccessToken} from "./AccessToken";
 import {BaseModel} from "./BaseModel";
 import {Address} from "./Address";
+import {Setting} from "./Setting";
 import {Order} from "./Order";
 import {RoleEnum} from "../enums/RoleEnum";
 
@@ -51,4 +52,7 @@ export class User extends BaseModel<User> {
 
     @HasMany(() => Order)
     orders: Order[];
+
+    @HasOne(() => Setting)
+    setting: Setting;
 }

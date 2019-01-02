@@ -8,7 +8,6 @@ export class LineConfig {
   constructor(type = 'line', title) {
     this._seed = Date.now();
     this.initConfig(title, type);
-    console.log('this is a data format', this.randomScalingFactor(), type);
   }
 
   addDataSet(data: number[], label) {

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable } from 'rxjs';
-import { TokenService } from './token.service'; 
+import { TokenService } from './token.service';
 
 @Injectable({
   providedIn: 'root'
@@ -20,13 +20,12 @@ export class IsAuthorizedGuard implements CanActivate {
     try {
       if (this.tokenservice.isTokenExpired(token.access_token)) {
         this.router.navigate(['/']);
-        return false
+        return false;
       }
       return true;
     } catch (error) {
       this.router.navigate(['/']);
       return false;
     }
-    
   }
 }

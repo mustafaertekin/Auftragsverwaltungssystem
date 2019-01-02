@@ -27,6 +27,10 @@ export class UserService {
     return this.http.get(`${this.serverUrl}users/${userId}`).pipe(map((res: Response) => res));
   }
 
+  public current(): Observable<any> {
+    return this.http.get(`${this.serverUrl}users/current`).pipe(map((res: Response) => res));
+  }
+
   public updateUser(userId: string, user: any): Observable<any> {
     return this.http.put(`${this.serverUrl}users/${userId}`, user).pipe(map((res: Response) => res));
   }

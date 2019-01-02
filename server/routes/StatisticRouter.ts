@@ -1,7 +1,6 @@
 import * as express from "express";
 import { Op, fn, col } from "sequelize";
 import {Order} from "../models/entities/Order";
-import {Client} from "../models/entities/Client";
 import {Auth} from "../auth/auth";
 import {ClientManager} from "../managers/ClientManager";
 import * as _ from 'lodash';
@@ -14,7 +13,6 @@ export class StatisticRouter {
     private clientManager: ClientManager;
 
     constructor() {
-        this.clientManager = new ClientManager();
         this.router = express.Router();
         this.buildRoutes();
     }
@@ -62,5 +60,4 @@ export class StatisticRouter {
     private buildRoutes() {
         this.router.get("/gain", Auth.getBearerMiddleware(), this.gain.bind(this));
     }
-
 }

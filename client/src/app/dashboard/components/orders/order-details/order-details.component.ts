@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, Output, EventEmitter } from '@angular/core';
 import { OrderService } from '@avs-ecosystem/services/order.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -10,6 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class DashboardOrderDetailsComponent implements OnInit, OnChanges {
 
   @Input() currentOrderId;
+  @Output() emitter: EventEmitter<string> = new EventEmitter<string>();
   public currentOrder: any;
   disableDownloadButton: boolean;
 
@@ -35,9 +36,13 @@ export class DashboardOrderDetailsComponent implements OnInit, OnChanges {
     });
   }
 
+  getOrderById (event) {
+    this.emitter.emit('update');
+  }
+
   deleteOrder(orderId) {
     this.orderService.deleteOrder(orderId).subscribe(result => {
-      this.router.navigate(['/', 'dashboard', 'orders', 'list']);
+      this.emitter.emit('update');
     });
   }
 

@@ -1,51 +1,28 @@
 {
   "DASHBOARD": {
-    "TITLE": "Anfang",
-    "DESCRIPTION": "Wie geht es dir heute?",
-    "SYSTEM": {
-      "NAME": "Auftrag Verwaltung System"
-    },
-    "ORDER": {
-      "CUSTOMER_NAME": "Kundenname",
-      "DEVICE_NAME": "Gerät Marke",
-      "DEVICE_MODEL": "Gerät Modell",
-      "SERVICE": "Dienstleistung",
-      "PAID_AMOUNT": "Anzahlung",
-      "TOTAL_PRICE": "Total",
-      "COMPANY": "Filiale",
-      "STATUS": "Status",
-      "DESCRIPTION": "Beschreibung"
-    },
-    "CLIENT": {
-      "CLIENT_NAME": "Kundenname",
-      "CLIENT_EMAIL": "Kundenname",
-      "CLIENT_TELEFON": "Telefon"
-    },
-    "CUSTOMER": {
-      "CUSTOMER_NAME":"Kundenname"
-    },
-    "DEVICE": {
-      "DEVICE_NAME": "Gerät Marke",
-      "DEVICE_MODEL": "Gerät Modell"
-    },
-    "SERVICE": {
-      "SERVICE_DESC": "Beschreibung",
-      "ORDER": "Auftrag"
-    },
-    "SETTING": {
-      "USER": "Benutzer",
-      "LANGUAGE": "Sprache"
-    }
+    "TITLE": "Dashboard"
   },
-  "LOGIN": {
-    "EMAIL": {
-      "PLACEHOLDER": "Geben Sie Ihre Email",
-      "ERROR": "Email ist nicht gultig!"
-    },
-    "PASSWORD": {
-      "PLACEHOLDER": "Kennwort",
-      "ERROR": "Kennwort kann nicht leer sein!"
-    },
-    "ERROR": "Bitte probieren Sie es noch mal!"
+  "ORDER": {
+    "TITLE": "Auftrag"
+  },
+  "USER": {
+    "TITLE": "Benutzer"
+  },
+  "CUSTOMER": {
+    "TITLE": "Kunden"
+  },
+  "DEVICE": {
+    "TITLE": "Geräte"
+  },
+  "SERVICE": {
+    "TITLE": "Dienste"
+  },
+  "SETTING": {
+    "TITLE": "Einstellungen"
+  },
+  "BUTTON": {
+    "DELETE": "Loeschen",
+    "UPDATE": "Aktualizieren",
+    "SAVE": "Speichern"
   }
 }
