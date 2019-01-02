@@ -10,11 +10,13 @@ import { DeviceModelRouter } from "./DeviceModelRouter";
 import { ServiceRouter } from "./ServiceRouter";
 import { SettingRouter } from "./SettingRouter";
 import { CompanyRouter } from "./CompanyRouter";
+import { StatisticRouter } from "./StatisticRouter";
 
 export class Router {
 
     public static initializeRoutes(app: express.Express) {
         app.use('/oauth', new AuthRouter().router);
+        app.use('/statistics', new StatisticRouter().router);
         app.use('/users', new UserRouter().router);
         app.use('/clients', new ClientRouter().router);
         app.use('/orders', new OrderRouter().router);

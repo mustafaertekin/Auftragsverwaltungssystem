@@ -13,6 +13,8 @@ import { LineConfig } from './chart-config';
 export class AvsLineChartComponent implements OnInit, AfterContentInit {
   @Output() word = new EventEmitter<string>();
   @Input() type: string;
+  @Input() title: string;
+  @Input() data: number[];
   uniqueId: number;
   lineconfig: any;
   ctx: any;
@@ -44,18 +46,21 @@ export class AvsLineChartComponent implements OnInit, AfterContentInit {
     let myChart = null;
     setTimeout(() => {
       if (!this.lineconfig) {
-        this.lineconfig = new LineConfig(this.type);
+        this.lineconfig = new LineConfig(this.type, this.title);
         this.line_chart_container = document.getElementById('line_chart_container');
         this.line_chart = document.getElementById(`${this.uniqueId}`);
-
-        this.lineconfig.addDataSet([], 'iphone iphonex glass');
-        this.lineconfig.addDataSet([], 'huewai glass');
-        this.lineconfig.addDataSet([], 'iphonex battary');
+        if (!this.data) {
+          this.lineconfig.addDataSet([], this.title);
+        } else {
+          this.data.forEach(item => {
+            this.lineconfig.addDataSet(item, this.title);
+          });
+        }
 
         myChart = new Chart(this.line_chart['getContext']('2d'), this.lineconfig.getConfig());
       }
       this.line_chart.style.width = `${size}px`;
-      myChart.update(5000);
-    }, 0);
+      myChart.update(100);
+    }, 200);
   }
 }

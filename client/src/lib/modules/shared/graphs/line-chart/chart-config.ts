@@ -5,9 +5,9 @@ export class LineConfig {
   options: any;
   _seed: any;
 
-  constructor(type = 'line') {
+  constructor(type = 'line', title) {
     this._seed = Date.now();
-    this.initConfig('Services selling progress', type);
+    this.initConfig(title, type);
     console.log('this is a data format', this.randomScalingFactor(), type);
   }
 
@@ -110,3 +110,6 @@ export class LineConfig {
     this._seed = seed;
   }
 }
+
+
+//  (((1546380411014 * 9301) + 49297) % 233280) / 233280;
