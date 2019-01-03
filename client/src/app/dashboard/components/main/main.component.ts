@@ -18,14 +18,6 @@ export class DashboardMainComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.translate.setDefaultLang('en-EN');
-    this.userService.current().subscribe(user => {
-      if (user && user.setting) {
-        this.settingService.setLanguage(user.setting.language);
-        this.settingService.setThema(user.setting.theme);
-      }
-    });
-
     this.statisticService.getMonatlyGain().subscribe(data => {
       this.monathlyGainData = [data];
     });

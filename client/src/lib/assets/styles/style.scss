@@ -1,10 +1,15 @@
 
 @import '~@angular/material/_theming';
 @import '~perfect-scrollbar/css/perfect-scrollbar.css';
-@import './scss/light_variables';
-@import './scss/dark_variables';
+
+@import './scss/material/materials';
+
 @import './scss/light_thema';
 @import './scss/dark_thema';
-@import './scss/materials';
-@import './scss/common';
+@import './scss/purple_thema';
+@import './scss/blue_thema';
+@import './scss/orange_thema';
+@import './scss/green_thema';
+
+@import './common';
 

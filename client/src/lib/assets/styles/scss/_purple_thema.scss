@@ -1,7 +1,9 @@
-@import './scss/colors/dark';
+
+
+@import './scss/colors/purple';
 @import './scss/material/theme';
 
-.dark-theme{
+.purple-theme{
   @include angular-material-theme($my-app-theme);
 }
 

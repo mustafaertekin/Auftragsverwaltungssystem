@@ -12,9 +12,9 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
       })),
       state('out', style({
         opacity: 0,
-        transform: 'translate3d(0, 20%, 0)'
+        transform: 'translate3d(0, 15%, 0)'
       })),
-      transition('out => in', animate(500)),
+      transition('out => in', animate(300)),
     ])
   ]
 })

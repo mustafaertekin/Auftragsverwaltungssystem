@@ -12,7 +12,14 @@ export class DashboardSettingsComponent implements OnInit {
   currentTheme: string;
   userSettings: FormGroup;
   user: any;
-  themes: string[] = ['light-theme', 'dark-theme'];
+  themes: string[] = [
+    'light-theme',
+    'dark-theme',
+    'green-theme',
+    'blue-theme',
+    'orange-theme',
+    'purple-theme'
+  ];
 
   constructor(private settingService: AppSettingsService,
     private userService: UserService,

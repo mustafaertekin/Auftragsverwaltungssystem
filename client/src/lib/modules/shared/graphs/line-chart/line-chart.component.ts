@@ -60,7 +60,9 @@ export class AvsLineChartComponent implements OnInit, AfterContentInit {
         myChart = new Chart(this.line_chart['getContext']('2d'), this.lineconfig.getConfig());
       }
       this.line_chart.style.width = `${size}px`;
-      myChart.update(100);
+      if (myChart) {
+        myChart.update(100);
+      }
     }, 200);
   }
 }
