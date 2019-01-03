@@ -3,13 +3,19 @@
     "TITLE": "Dashboard"
   },
   "ORDER": {
-    "TITLE": "Auftrag"
+    "TITLE": "Aufträge",
+    "LIST": "Auftragliste",
+    "NEW" : "Neuer Auftrag"
   },
   "USER": {
-    "TITLE": "Benutzer"
+    "TITLE": "Benutzer",
+    "LIST": "Benutzerliste",
+    "NEW" : "Neuer Benutzer"
   },
   "CUSTOMER": {
-    "TITLE": "Kunden"
+    "TITLE": "Kunden",
+    "LIST": "Kundenliste",
+    "NEW" : "Neue Kunde"
   },
   "DEVICE": {
     "TITLE": "Geräte"
@@ -24,5 +30,8 @@
     "DELETE": "Loeschen",
     "UPDATE": "Aktualizieren",
     "SAVE": "Speichern"
+  },
+  "STATISTIC": {
+    "TITLE": "Statistiken"
   }
 }

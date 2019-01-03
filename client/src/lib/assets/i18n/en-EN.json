@@ -3,13 +3,19 @@
     "TITLE": "Dashboard"
   },
   "ORDER": {
-    "TITLE": "Orders"
+    "TITLE": "Orders",
+    "LIST": "Order List",
+    "NEW" : "New Order"
   },
   "USER": {
-    "TITLE": "Users"
+    "TITLE": "Users",
+    "LIST": "User List",
+    "NEW" : "New User"
   },
   "CUSTOMER": {
-    "TITLE": "Customers"
+    "TITLE": "Customers",
+    "LIST": "Customer List",
+    "NEW" : "New Order"
   },
   "DEVICE": {
     "TITLE": "Devices"
@@ -21,8 +27,11 @@
     "TITLE": "Settings"
   },
   "BUTTON": {
-    "DELETE": "Loeschen",
-    "UPDATE": "Aktualizieren",
-    "SAVE": "Speichern"
+    "DELETE": "Delete",
+    "UPDATE": "Update",
+    "SAVE": "Save"
+  },
+  "STATISTIC": {
+    "TITLE": "Statistics"
   }
 }
