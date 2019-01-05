@@ -1,4 +1,5 @@
 import {Setting} from "../models/entities/Setting";
+import {User} from "../models/entities/User";
 import {NotFoundError} from "../errors/NotFoundError";
 import {logger} from "../lib/logger";
 
@@ -9,23 +10,35 @@ export class SettingManager {
 
     public async createSetting(body: any) {
       if(!body.settingId) {
-        const newSetting = new Setting({body});
-        return newSetting.save();
+        const newSetting = new Setting(body);
+        await newSetting.save();
+        return await User.findOne<User>({
+          where: {
+            userId: body.userId
+          },
+          include: [Setting]
+        });
       } else {
-        return await this.updateSetting(body.settingId, body.theme, body.language);
+        return await this.updateSetting(body);
       }
     }
 
-    public async updateSetting(settingId, theme, language): Promise<Setting> {
-        const setting = await Setting.find<Setting>({where: {settingId: settingId}});
+    public async updateSetting(body: any): Promise<User | null> {
+        const setting = await Setting.find<Setting>({where: {settingId: body.settingId}});
         if(setting) {
-            setting.theme = theme;
-            setting.language = language;
+            setting.theme = body.theme;
+            setting.language = body.language;
 
-            return setting.save();
+            await setting.save();
+            return await User.findOne<User>({
+              where: {
+                userId: body.userId
+              },
+              include: [Setting]
+            });
         } else {
-            logger.error("No setting model found");
-            throw new NotFoundError("No setting found with that id");
+            logger.error("No User model found");
+            throw new NotFoundError("No User found with that id");
         }
     }
 

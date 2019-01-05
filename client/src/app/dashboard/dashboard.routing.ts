@@ -10,14 +10,16 @@ import { DashboardCustomersComponent } from './components/customers/customers/cu
 import { DashboardSettingsComponent } from './components/settings/settings.component';
 import { DashboardNewCustomerComponent } from './components/customers/new-customer/new-customer.component';
 import { DashboardNewUserComponent } from './components/users/new-user/new-user.component';
+import { CurrentUserResolver } from '@avs-ecosystem/services/current-user.resolver';
 export const DashboardRoutes: Routes = [
   {
     path: 'dashboard',
     component: DashboardMainLayoutComponent,
-    canActivate: [IsAuthorizedGuard] ,
+    canActivate: [IsAuthorizedGuard],
+    resolve: { user: CurrentUserResolver },
     children: [
       { path: '', redirectTo: 'main', pathMatch: 'full'},
-      { path: 'main', component: DashboardMainComponent },
+      { path: 'main', component: DashboardMainComponent},
       { path: 'orders/:id', component: DashboardOrdersComponent },
       { path: 'new-order', component: DashboardNewOrderComponent },
       { path: 'devices', component: DashboardDevicesComponent },

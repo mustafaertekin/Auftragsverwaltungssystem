@@ -16,16 +16,14 @@ export class DashboardOrdersComponent implements OnInit, OnChanges {
     private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit() {
+    this.currentOrderId = null;
     this.animationState = 'out';
-    this.getAllOrders(null);
     this.route.params.subscribe(params => {
       this.currentOrderId = params['id'];
       if (this.currentOrderId === 'list') {
         this.currentOrderId = null;
-        this.animationState = 'out';
-      } else {
-        this.getAllOrders(null);
       }
+      this.getAllOrders(null);
     });
   }
 
@@ -43,6 +41,7 @@ export class DashboardOrdersComponent implements OnInit, OnChanges {
   searchWord(word) {
     this.animationState = 'out';
     if (!word) {
+      this.animationState = 'in';
       return this.getAllOrders(null);
     }
     this.orderService.getByText(word).subscribe(orders => {

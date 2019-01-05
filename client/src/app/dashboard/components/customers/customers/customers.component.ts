@@ -19,7 +19,7 @@ export class DashboardCustomersComponent implements OnInit {
     this.currentCustomerId = null;
     this.animationState = 'out';
     this.route.params.subscribe(params => {
-      this.currentCustomerId = params['id'] ? params['id'] : null;
+      this.currentCustomerId = params['id'];
       if (this.currentCustomerId === 'list') {
         this.currentCustomerId = null;
       }
@@ -28,7 +28,6 @@ export class DashboardCustomersComponent implements OnInit {
   }
 
   getAll(event) {
-    this.animationState = 'out';
     this.clientService.getAll().subscribe(customers => {
       this.customers = customers;
       this.currentCustomerId = this.currentCustomerId || (this.customers[0] ? this.customers[0].clientId : null);

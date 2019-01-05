@@ -6,18 +6,24 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Http, Response, Headers } from '@angular/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { UserService } from '@avs-ecosystem/services/user.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppSettingsService {
   changeThema;
+  currentUser: any;
   private serverUrl: string;
-  constructor(private  http: HttpClient, private translate: TranslateService) {
+  constructor(private  http: HttpClient, private userService: UserService, private translate: TranslateService) {
     this.serverUrl = environment.baseUrl;
-    this.changeThema = new BehaviorSubject('light-theme');
+    this.changeThema = new BehaviorSubject('green-theme');
+    this.currentUser = new BehaviorSubject(null);
    }
 
+  getCurentUser() {
+    return this.currentUser;
+  }
 
   setThema(theme) {
     this.changeThema.next(theme);
@@ -25,6 +31,10 @@ export class AppSettingsService {
 
   listenThemaChanges() {
     return this.changeThema;
+  }
+
+  setUser(user) {
+    this.currentUser.next(user);
   }
 
   setLanguage(language) {

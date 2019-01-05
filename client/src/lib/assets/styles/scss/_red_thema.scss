@@ -1,8 +1,9 @@
 
-@import './scss/colors/light';
+
+@import './scss/colors/red';
 @import './scss/material/theme';
 
-.light-theme {
+.red-theme{
   @include angular-material-theme($my-app-theme);
 }
 

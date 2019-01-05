@@ -16,6 +16,7 @@ export class DashboardSettingsComponent implements OnInit {
     'light-theme',
     'dark-theme',
     'green-theme',
+    'red-theme',
     'blue-theme',
     'orange-theme',
     'purple-theme'
@@ -27,14 +28,12 @@ export class DashboardSettingsComponent implements OnInit {
 
   ngOnInit() {
     this.setUserForm();
-    this.userService.current().subscribe(user => {
+    this.settingService.getCurentUser().subscribe(user => {
+      this.user = user;
       if (user && user.setting) {
-        this.settingService.setLanguage(user.setting.language);
-        this.settingService.setThema(user.setting.theme);
         this.setUserForm(user.setting.language, user.setting.theme);
-        this.user = user;
       }
-   });
+    });
   }
 
   changeLanguage(language) {
@@ -53,7 +52,9 @@ export class DashboardSettingsComponent implements OnInit {
       data.settingId = this.user.setting.settingId;
     }
     if (this.userSettings.valid) {
-      this.settingService.updateOrCreate(data).subscribe();
+      this.settingService.updateOrCreate(data).subscribe(user => {
+        this.settingService.setUser(user);
+      });
     }
   }
 

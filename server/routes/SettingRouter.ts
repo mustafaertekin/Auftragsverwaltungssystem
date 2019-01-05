@@ -44,11 +44,7 @@ export class SettingRouter {
 
   public async put(req: express.Request, res: express.Response, next: express.NextFunction) {
     try {
-      const updatedSetting = await this.settingManager.updateSetting(
-        req.params.id,
-        req.body.theme,
-        req.body.language
-      );
+      const updatedSetting = await this.settingManager.updateSetting(req.body);
       res.json(updatedSetting);
     } catch (error) {
       next(error);

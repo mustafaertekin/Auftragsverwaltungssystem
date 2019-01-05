@@ -16,5 +16,13 @@
         align-items: center;
       }
     }
+    .person-name{
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background: lightgray;
+      color: white;
+      font-size: 22px;
+    }
   }
 }

@@ -3,6 +3,8 @@ import { StatisticsService } from '@avs-ecosystem/services/statistics.service';
 import { UserService } from '@avs-ecosystem/services/user.service';
 import { TranslateService } from '@ngx-translate/core';
 import { AppSettingsService } from '@avs-ecosystem/services/app-settings.service';
+import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'avs-dashboard-layout',
@@ -10,8 +12,10 @@ import { AppSettingsService } from '@avs-ecosystem/services/app-settings.service
   styleUrls: ['./layout.component.scss']
 })
 export class DashboardMainLayoutComponent implements OnInit {
-
-  constructor(private translate: TranslateService, private userService: UserService,
+  data: any;
+  constructor(private translate: TranslateService,
+    private userService: UserService,
+    private route: ActivatedRoute,
     private settingService:  AppSettingsService,
     private statisticService: StatisticsService) {
 
@@ -19,11 +23,6 @@ export class DashboardMainLayoutComponent implements OnInit {
 
   ngOnInit() {
     this.translate.setDefaultLang('en-EN');
-    this.userService.current().subscribe(user => {
-      if (user && user.setting) {
-        this.settingService.setLanguage(user.setting.language);
-        this.settingService.setThema(user.setting.theme);
-      }
-    });
+    // console.log('gelen yapi user', this.data);
   }
 }

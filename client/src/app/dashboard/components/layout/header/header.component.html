@@ -17,7 +17,7 @@
 
     <!-- the space between search icon and the profil-image -->
     <span fxFlex></span>
-    <!--  
+    <!--
     <button  >
       <mat-icon>language</mat-icon>
     </button>
@@ -26,13 +26,13 @@
       <button mat-menu-item (click)="setCulture('de-DE')">German</button>
     </mat-menu>
 -->
-    <button [mat-menu-trigger-for]="menu" mat-icon-button>
-      <img src="/assets/images/users/mertekin-profil.jpg" width="40" alt="user" class="profile-picture">
+    <button [mat-menu-trigger-for]="menu" class="person-name" mat-icon-button>
+      {{personName}}
     </button>
     <mat-menu x-position="before" #menu="matMenu">
       <button mat-menu-item (click)="logout()">
         <mat-icon>exit_to_app</mat-icon>Logout
       </button>
     </mat-menu>
-  </mat-toolbar>  
+  </mat-toolbar>
 </div>
