@@ -47,11 +47,7 @@ export class OrderServiceRouter {
 
     public async put(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
-            const updatedOrderService = await this.orderServiceManager.updateOrderService(
-                req.params.id,
-                req.body.orderId,
-                req.body.serviceId
-            );
+            const updatedOrderService = await this.orderServiceManager.updateOrderService(req.body);
             res.json(updatedOrderService);
         } catch(error) {
             next(error);
@@ -71,7 +67,7 @@ export class OrderServiceRouter {
         this.router.get("/", Auth.getBearerMiddleware(), this.get.bind(this));
         this.router.get("/:id", Auth.getBearerMiddleware(), this.getById.bind(this));
         this.router.post("/", Auth.getBearerMiddleware(), this.post.bind(this));
-        this.router.put("/:id", Auth.getBearerMiddleware(), this.put.bind(this));
+        this.router.put("/", Auth.getBearerMiddleware(), this.put.bind(this));
         this.router.delete("/:id", Auth.getBearerMiddleware(), this.delete.bind(this));
     }
 

@@ -47,6 +47,7 @@ import { DashboardUserDetailsComponent } from './components/users/user-details/u
 import { DashboardNewUserComponent } from './components/users/new-user/new-user.component';
 import { UserService } from '@avs-ecosystem/services/user.service';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { DashboardOrderItemServiceComponent } from './components/orders/order-details/order-item-service/order-item-service.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -104,7 +105,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     DashboardNewCustomerComponent,
     DashboardUserItemComponent,
     DashboardUserDetailsComponent,
-    DashboardNewUserComponent
+    DashboardNewUserComponent,
+    DashboardOrderItemServiceComponent
   ],
   providers: [
     {

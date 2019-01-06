@@ -31,6 +31,11 @@ export class DashboardOrdersComponent implements OnInit, OnChanges {
   }
 
   getAllOrders(event) {
+    // console.log('ne olduki', event);
+    if (event === 'update') {
+      this.animationState = 'out';
+      this.orders = [];
+    }
     this.orderService.getAll().subscribe(orders => {
       this.orders = orders;
       this.animationState = 'in';

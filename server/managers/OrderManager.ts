@@ -28,6 +28,30 @@ export class OrderManager {
     constructor() {
     }
 
+    public async recalculatePrice(orderId: string) {
+      const order = await Order.findOne<Order>({
+        where: {orderId},
+        include: [
+          {
+            model: OrderService,
+            include: [Service]
+          },
+        ]
+    });
+      const services = _.get(order, 'orderServices', []);
+      const cleanServices = _.map(services, (service) => _.get(service, 'dataValues'));
+      const price = cleanServices.reduce((sum, curr)=> {
+        sum += _.get(curr, 'Service.dataValues.price', 0);
+        return sum;
+      }, 0);
+
+      if(order) {
+        order.price = price;
+        return await order.save();
+      }
+      return null;
+    }
+
     public async createOrder(reqObject) {
         try {
           let services = reqObject.body.addedServices;

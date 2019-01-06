@@ -1,4 +1,4 @@
-import { NgModule }             from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ForgotComponent } from './forgot/forgot.component';
 import { LoginComponent } from './login/login.component';
@@ -17,7 +17,6 @@ export const routes: Routes = [
     ]
   }
 ];
- 
 
 @NgModule({
     imports: [

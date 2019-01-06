@@ -11,6 +11,7 @@ import { ServiceRouter } from "./ServiceRouter";
 import { SettingRouter } from "./SettingRouter";
 import { CompanyRouter } from "./CompanyRouter";
 import { StatisticRouter } from "./StatisticRouter";
+import { OrderServiceRouter } from "./OrderServiceRouter";
 
 export class Router {
 
@@ -26,5 +27,6 @@ export class Router {
         app.use('/services', new ServiceRouter().router);
         app.use('/settings', new SettingRouter().router);
         app.use('/companies', new CompanyRouter().router);
+        app.use('/order-service', new OrderServiceRouter().router);
     }
 }

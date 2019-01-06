@@ -1,47 +1,25 @@
 <div class="order-details p-t-1 p-l-1 p-r-1">
-  <!-- Orders Overview-->
-
-  <!-- Customer Info-->
-
-  <!-- Orders Overview-->
   <mat-tab-group>
     <mat-tab label="Order Details">
       <div fxLayout="row">
         <span fxFlex></span>
         <div class="m-t-1 m-r-1 m-b-1" fxLayoutAlign="end center">
+          <button mat-fab class="" (click)="emailToClient(currentOrder.orderId)">
+            <mat-icon>email</mat-icon>
+          </button>
+          <button mat-fab class="m-l-1 m-r-1" (click)="downloadInvoice(currentOrder.orderId)">
+            <mat-icon *ngIf="!disableDownloadButton">print</mat-icon>
+            <mat-spinner color="warn" diameter="30" *ngIf="disableDownloadButton"></mat-spinner>
+          </button>
           <button mat-fab color="warn" (click)="deleteOrder(currentOrder.orderId)">
             <mat-icon>delete</mat-icon>
           </button>
-          <button mat-fab class="m-l-1" (click)="emailToClient(currentOrder.orderId)">
-            <mat-icon>email</mat-icon>
-          </button>
-          <button mat-fab class="m-l-1" (click)="downloadInvoice(currentOrder.orderId)">
-            <mat-icon *ngIf="!disableDownloadButton">print</mat-icon>
-            <mat-spinner color="warn" diameter="30" *ngIf="disableDownloadButton" ></mat-spinner>
-          </button>
         </div>
       </div>
-      <div fxLayout="row"class="m-1">
+      <div fxLayout="row" class="m-1">
         <div fxFlex="60">
-          <div *ngFor="let service of currentOrder?.orderServices; let i = index">
-            <mat-card>
-              <mat-card-title>
-                <div fxLayout="row" fxLayoutAlign="space-between center">
-                  <div>#Service {{i+1}}:</div>
-                  <div>{{service?.Service?.price}}.- CHF</div>
-                </div>
-              </mat-card-title>
-              <mat-card-content>
-                <div fxLayout="column">
-                  <div class="service-first" >
-                    <mat-card-subtitle>IMEI:{{service?.device?.deviceId}}</mat-card-subtitle>
-                    <mat-card-subtitle>Service: {{service?.Service?.serviceName}}</mat-card-subtitle>
-                    <mat-card-subtitle>Model: {{service?.deviceModel?.deviceModelName}}</mat-card-subtitle>
-                    <mat-card-subtitle>Device:{{service?.device?.deviceName}}</mat-card-subtitle>
-                  </div>
-                </div>
-              </mat-card-content>
-            </mat-card>
+          <div *ngFor="let service of currentOrder?.orderServices; let i = index;">
+            <avs-order-item-service (emitter)="getOrderById($event)" [service]="service"></avs-order-item-service>
           </div>
         </div>
         <div fxFlex="40" fxLayout="column">
@@ -71,7 +49,7 @@
           <div>
             <mat-card>
               <mat-card-content>
-                 {{currentOrder?.deliveryDate | date: 'short'}}
+                {{currentOrder?.deliveryDate | date: 'short'}}
               </mat-card-content>
             </mat-card>
           </div>
@@ -79,7 +57,7 @@
             <mat-card>
               <mat-card-content>
                 <h3>User:</h3>
-                {{currentOrder?.user?.firstName}}  {{currentOrder?.user?.lastName}}
+                {{currentOrder?.user?.firstName}} {{currentOrder?.user?.lastName}}
               </mat-card-content>
             </mat-card>
           </div>
@@ -102,7 +80,7 @@
       </div>
     </mat-tab>
     <mat-tab label="Customer Details">
-        <avs-dashboard-customer-details (emitter)="getOrderById($event)" [clientId]="currentOrder?.client?.clientId"></avs-dashboard-customer-details>
+      <avs-dashboard-customer-details (emitter)="getOrderById($event)" [clientId]="currentOrder?.client?.clientId"></avs-dashboard-customer-details>
     </mat-tab>
   </mat-tab-group>
 </div>

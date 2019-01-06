@@ -31,6 +31,7 @@ import { DeviceServiceType } from '@avs-ecosystem/services/device-service-type.s
 import { AppSettingsService } from '@avs-ecosystem/services/app-settings.service';
 import { StatisticsService } from '@avs-ecosystem/services/statistics.service';
 import { CurrentUserResolver } from '@avs-ecosystem/services/current-user.resolver';
+import { OrderItemService } from '@avs-ecosystem/services/order-item.service';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { CurrentUserResolver } from '@avs-ecosystem/services/current-user.resolv
     UserService,
     StatisticsService,
     CurrentUserResolver,
+    OrderItemService,
     {
       provide : HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
