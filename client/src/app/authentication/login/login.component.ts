@@ -42,10 +42,11 @@ export class LoginComponent implements OnInit {
       .subscribe(result => {
         this.router.navigate(['/', 'dashboard', 'main'], { relativeTo: this.route });
       },
-      err => { 
+      err => {
         console.log('Login failed', err);
         this.router.navigate(['/auth', 'login'], { relativeTo: this.route });
       });
     }
   }
+
 }

@@ -6,8 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main.component.scss']
 })
 export class HomeMainComponent implements OnInit {
-   
+
   ngOnInit() {
-     
+
   }
 }
