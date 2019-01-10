@@ -27,11 +27,15 @@
     "TITLE": "Einstellungen"
   },
   "BUTTON": {
-    "DELETE": "Loeschen",
+    "DELETE": "Löschen",
     "UPDATE": "Aktualizieren",
-    "SAVE": "Speichern"
+    "SAVE": "Speichern",
+    "LOGIN": "Anmelden"
   },
   "STATISTIC": {
     "TITLE": "Statistiken"
+  },
+  "PASSWORD":{
+    "TITLE": "Passwort"
   }
 }

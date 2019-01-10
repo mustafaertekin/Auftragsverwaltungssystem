@@ -29,9 +29,13 @@
   "BUTTON": {
     "DELETE": "Delete",
     "UPDATE": "Update",
-    "SAVE": "Save"
+    "SAVE": "Save",
+    "LOGIN": "Login"
   },
   "STATISTIC": {
     "TITLE": "Statistics"
+  },
+  "PASSWORD":{
+    "TITLE": "Password"
   }
 }
