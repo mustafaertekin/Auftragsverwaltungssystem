@@ -1,8 +1,11 @@
-.background-img {
-  background-image: url(/assets/images/mock1.jpg);
-  background-size: 100% auto;
+.login-page {
+  .background-img {
+    background-image: url(/assets/images/mock1.jpg);
+    background-size: 100% auto;
+  }
+
+  .width-300 {
+    width: 300px;
+  }
 }
 
-.width-300 {
-  width: 300px;
-}
