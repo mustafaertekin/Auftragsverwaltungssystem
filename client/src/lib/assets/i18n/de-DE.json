@@ -5,7 +5,10 @@
   "ORDER": {
     "TITLE": "Aufträge",
     "LIST": "Auftragliste",
-    "NEW" : "Neuer Auftrag"
+    "NEW" : "Neuer Auftrag",
+    "SUBTITLE": "Erstellen Sie einen neuen Auftrag",
+    "DETAILS": "Auftragsdetails",
+    "DESCRIPTION": "Auftragsbeschreibung"
   },
   "USER": {
     "TITLE": "Benutzer",
@@ -15,23 +18,52 @@
   "CUSTOMER": {
     "TITLE": "Kunden",
     "LIST": "Kundenliste",
-    "NEW" : "Neue Kunde"
+    "NEW" : "Neue Kunde",
+    "DETAILS": "Kundendetails",
+    "STEP": "Wählen Sie einen Kunden oder erstellen Sie einen neuen",
+    "FIND": "Einen Kunden suchen",
+    "SELECT": "Einen Kunden selektieren"
   },
   "DEVICE": {
-    "TITLE": "Geräte",
+    "TITLE": "Gerät",
     "SELECT": "Gerät auswählen"
   },
   "SERVICE": {
-    "TITLE": "Reperatur"
+    "TITLE": "Reperatur",
+    "SELECT": "Reperatur auswählen",
+    "TOTAL": "Reperatur Total: ",
+    "STEP": "Reperatur oder reperaturen erstellen"
+  },
+  "MODEL":{
+    "TITLE": "Modell",
+    "SELECT": "Modell auswählen"
   },
   "SETTING": {
     "TITLE": "Einstellungen"
   },
+  "ADD":{
+    "TITLE": "Hinzufügen Kunde"
+  },
+  "UPDATE":{
+    "TITLE": "Aktualisieren Kunde"
+  },
+  "INPUT":{
+    "FIRSTNAME": "Vorname",
+    "LASTNAME": "Nachname",
+    "PHONE": "Telefon"
+    },
   "BUTTON": {
+    "ADD": "Hinzufügen",
     "DELETE": "Löschen",
     "UPDATE": "Aktualizieren",
     "SAVE": "Speichern",
-    "LOGIN": "Anmelden"
+    "LOGIN": "Anmelden",
+    "NEXT": "Nächste",
+    "PREVIOUS" : "Zurück",
+    "SUBMIT": "Auftrag erfassen"
+  },
+  "SALUTATION": {
+    "TITLE": "Anrede"
   },
   "STATISTIC": {
     "TITLE": "Statistiken"
@@ -39,12 +71,24 @@
   "PASSWORD":{
     "TITLE": "Passwort"
   },
+  "ADDRESS":{
+    "TITLE": "Adresse",
+    "STEP": "Wählen Sie eine Adresse aus oder erstellen Sie eine neue",
+    "DELIVERY": "Lieferung Adresse",
+    "INVOICE": "Rechnung Adresse"
+  },
   "CHART":{
     "SERVICE": "Monatlich genutzte Servicen",
     "AMOUNT": "Monatlich gewonnener Betrag"
   },
   "NOTICE":{
     "TITLE": "Es ist keine Bestellung verfügbar, fügen Sie eine neue hinzu oder suchen Sie eine neue Suche."
+  },
+  "COMMENTS":{
+    "TITLE": "Bemerkungen"
+  },
+  "SEARCH":{
+    "TITLE": "SUCHEN ..."
   },
   "MONTHS": 
   {

@@ -1,11 +1,6 @@
 <div class="order-details p-t-1 p-l-1 p-r-1">
-  <!-- Orders Overview-->
-
-  <!-- Customer Info-->
-
-  <!-- Orders Overview-->
   <mat-tab-group>
-    <mat-tab label="Order Details">
+    <mat-tab label="{{'ORDER.DETAILS' | translate }}">
       <div fxLayout="row">
         <span fxFlex></span>
         <div class="m-t-1 m-r-1 m-b-1" fxLayoutAlign="end center">
@@ -35,9 +30,9 @@
                 <div fxLayout="column">
                   <div class="service-first" >
                     <mat-card-subtitle>IMEI:{{service?.device?.deviceId}}</mat-card-subtitle>
-                    <mat-card-subtitle>Service: {{service?.Service?.serviceName}}</mat-card-subtitle>
-                    <mat-card-subtitle>Model: {{service?.deviceModel?.deviceModelName}}</mat-card-subtitle>
-                    <mat-card-subtitle>Device:{{service?.device?.deviceName}}</mat-card-subtitle>
+                    <mat-card-subtitle><span translate="SERVICE.TITLE"></span><span>: </span>{{service?.Service?.serviceName}}</mat-card-subtitle>
+                    <mat-card-subtitle><span translate="MODEL.TITLE"></span><span>: </span>{{service?.deviceModel?.deviceModelName}}</mat-card-subtitle>
+                    <mat-card-subtitle><span translate="DEVICE.TITLE"></span><span>: </span>{{service?.device?.deviceName}}</mat-card-subtitle>
                   </div>
                 </div>
               </mat-card-content>
@@ -78,7 +73,7 @@
           <div>
             <mat-card>
               <mat-card-content>
-                <h3>User:</h3>
+                <h3 translate="USER.TITLE"></h3>
                 {{currentOrder?.user?.firstName}}  {{currentOrder?.user?.lastName}}
               </mat-card-content>
             </mat-card>
@@ -89,8 +84,8 @@
                 <form class="example-form">
 
                   <mat-form-field class="full-width">
-                    <input matInput #message maxlength="140" placeholder="Comments">
-                    <mat-hint align="start"><strong>Order Description</strong> </mat-hint>
+                    <input matInput #message maxlength="140" placeholder="{{ 'COMMENTS.TITLE' | translate}}">
+                    <mat-hint align="start"><strong translate="ORDER.DESCRIPTION"></strong></mat-hint>
                     <mat-hint align="end">{{message.value.length}} / 140</mat-hint>
                   </mat-form-field>
 
@@ -101,7 +96,7 @@
         </div>
       </div>
     </mat-tab>
-    <mat-tab label="Customer Details">
+    <mat-tab label="{{'CUSTOMER.DETAILS' | translate }}">
         <avs-dashboard-customer-details (emitter)="getOrderById($event)" [clientId]="currentOrder?.client?.clientId"></avs-dashboard-customer-details>
     </mat-tab>
   </mat-tab-group>

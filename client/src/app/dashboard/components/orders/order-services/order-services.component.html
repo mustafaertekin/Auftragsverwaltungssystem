@@ -1,11 +1,11 @@
 <div class="order-services">
   <div class="m-t-1">
-    <h2 class="m-t-1">Services</h2>
+    <h2 class="m-t-1" translate="SERVICE.TITLE"></h2>
     <form [formGroup]="serviceForm" class="full-width">
       <div fxLayout="row" class="m-t-1" fxLayoutAlign="space-between center" fxLayout.xs="column">
         <div fxFlex="25">
           <div>
-            <h3 translate="DEVICE.TITLE">Device</h3>
+            <h3 translate="DEVICE.TITLE"></h3>
             <mat-form-field>
               <mat-select formControlName="device" placeholder="{{ 'DEVICE.SELECT' | translate }}">
                 <mat-option *ngFor="let device of devices; let i = index" name="xx-{i}" [value]="device.deviceId"
@@ -17,9 +17,9 @@
           </div>
         </div>
         <div fxFlex="25">
-          <h3>Model</h3>
+          <h3 translate="MODEL.TITLE"></h3>
           <mat-form-field>
-            <mat-select formControlName="model" placeholder="Select model">
+            <mat-select formControlName="model" placeholder="{{ 'MODEL.SELECT' | translate }}">
               <mat-option *ngFor="let model of models; let i = index" name="yy-{i}" [value]="model.deviceModelId"
                 (click)="getAllServicesByModelId(model)">
                 {{model.deviceModelName}}
@@ -28,9 +28,9 @@
           </mat-form-field>
         </div>
         <div fxFlex="25">
-          <h3>Service type</h3>
+          <h3 translate="SERVICE.TITLE"></h3>
           <mat-form-field>
-            <mat-select formControlName="service" placeholder="Select service type">
+            <mat-select formControlName="service" placeholder="{{ 'SERVICE.SELECT' | translate }}">
               <mat-option *ngFor="let service of services; let i = index" name="zz-{i}" [value]="service.serviceId"
                 (click)="getSelectedService(service)">
                 {{service.serviceName}}
@@ -46,7 +46,7 @@
                   <mat-icon>add_circle_outline</mat-icon>
                 </div>
                 <div fxLayout="row" fxLayoutAlign="start center">
-                  <span> Add</span>
+                  <span translate="BUTTON.ADD"></span>
                 </div>
               </div>
             </button>
@@ -74,7 +74,7 @@
   </div>
   <div fxLayout="row" *ngIf="orders?.length" fxLayoutAlign="end center">
     <div fxFlex="25">
-      <h2>Service Total: {{serviceTotal}}</h2>
+      <h2><span translate="SERVICE.TOTAL"></span>{{serviceTotal}}</h2>
     </div>
   </div>
 
