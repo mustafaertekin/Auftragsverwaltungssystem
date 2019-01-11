@@ -27,18 +27,18 @@
   <div fxLayout="column">
     <div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxLayoutGap="40px">
       <div fxFlex="50" >
-          <avs-line-chart type="line" title="Monatly used services" style="width:100%"></avs-line-chart>
+          <avs-line-chart type="line" title="{{ 'CHART.SERVICE' | translate }}" style="width:100%"></avs-line-chart>
       </div>
       <div fxFlex="50" >
-          <avs-line-chart  type="line" title="Monatly used services" style="width:100%"></avs-line-chart>
+          <avs-line-chart  type="line" title="{{ 'CHART.SERVICE' | translate }}" style="width:100%"></avs-line-chart>
       </div>
     </div>
     <div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxLayoutGap="40px">
         <div fxFlex="50">
-            <avs-line-chart type="bar" title="Monatly gained amount" [data]="monathlyGainData" style="width:100%"></avs-line-chart>
+            <avs-line-chart type="bar" title="{{ 'CHART.AMOUNT' | translate }}" [data]="monathlyGainData" style="width:100%"></avs-line-chart>
         </div>
         <div fxFlex="50">
-            <avs-line-chart type="bar" title="Monatly used services" style="width:100%"></avs-line-chart>
+            <avs-line-chart type="bar" title="{{ 'CHART.SERVICE' | translate }}" style="width:100%"></avs-line-chart>
         </div>
       </div>
   </div>

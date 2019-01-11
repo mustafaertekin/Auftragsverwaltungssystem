@@ -4,6 +4,8 @@ import { map, debounceTime, switchMap, tap } from 'rxjs/operators';
 import * as Chart from 'chart.js';
 import * as _ from 'lodash';
 import { LineConfig } from './chart-config';
+import { TranslateService } from '@ngx-translate/core';
+import { merge } from 'rxjs/operators';
 
 @Component({
   selector: 'avs-line-chart',
@@ -20,11 +22,40 @@ export class AvsLineChartComponent implements OnInit, AfterContentInit {
   ctx: any;
   line_chart: any;
   line_chart_container: any;
+  months: string []  = [];
 
-  constructor() { }
+  constructor(private translate: TranslateService) { }
 
   ngOnInit() {
     this.getUniqeId();
+    this.updateMonthsNames();
+    this.translate.onLangChange.subscribe(()=>   {
+      this.updateMonthsNames();
+    });
+    // console.log('MONTHS', this.months);
+  }
+
+  updateMonthsNames() {
+    this.months = [];
+    const MONTHS = [
+      this.translate.get('MONTHS.JANUARY'),
+      this.translate.get('MONTHS.FEBRUARY'),
+      this.translate.get('MONTHS.MARCH'),
+      this.translate.get('MONTHS.APRIL'),
+      this.translate.get('MONTHS.MAY'),
+      this.translate.get('MONTHS.JUNE'),
+      this.translate.get('MONTHS.JULY'),
+      this.translate.get('MONTHS.AUGUST'),
+      this.translate.get('MONTHS.SEPTEMBER'),
+      this.translate.get('MONTHS.OCTOBER'),
+      this.translate.get('MONTHS.NOVEMBER'),
+      this.translate.get('MONTHS.DECEMBER'),
+    ];
+    of(null).pipe(merge(...MONTHS)).subscribe((result: string) => {
+      if(result) {
+        this.months.push(result);
+      }
+    })
   }
 
   ngAfterContentInit() {
@@ -47,6 +78,7 @@ export class AvsLineChartComponent implements OnInit, AfterContentInit {
     setTimeout(() => {
       if (!this.lineconfig) {
         this.lineconfig = new LineConfig(this.type, this.title);
+        this.lineconfig.getConfig().data.labels = this.months;
         this.line_chart_container = document.getElementById('line_chart_container');
         this.line_chart = document.getElementById(`${this.uniqueId}`);
         if (!this.data) {
@@ -60,7 +92,9 @@ export class AvsLineChartComponent implements OnInit, AfterContentInit {
         myChart = new Chart(this.line_chart['getContext']('2d'), this.lineconfig.getConfig());
       }
       this.line_chart.style.width = `${size}px`;
-      myChart.update(100);
+      if(myChart) {
+        myChart.update(100);
+      }
     }, 200);
   }
 }

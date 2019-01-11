@@ -5,9 +5,9 @@
       <div fxLayout="row" class="m-t-1" fxLayoutAlign="space-between center" fxLayout.xs="column">
         <div fxFlex="25">
           <div>
-            <h3>Device</h3>
+            <h3 translate="DEVICE.TITLE">Device</h3>
             <mat-form-field>
-              <mat-select formControlName="device" placeholder="Select device">
+              <mat-select formControlName="device" placeholder="{{ 'DEVICE.SELECT' | translate }}">
                 <mat-option *ngFor="let device of devices; let i = index" name="xx-{i}" [value]="device.deviceId"
                   (click)="getModelsByDeviceId(device)">
                   {{device.deviceName}}

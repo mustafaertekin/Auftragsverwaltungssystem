@@ -2,8 +2,8 @@
   <mat-card>
     <mat-card-header>
       <mat-icon class="title-icon-size" mat-card-avatar>format_list_bulleted</mat-icon>
-      <mat-card-title>Orders</mat-card-title>
-      <mat-card-subtitle>Order list</mat-card-subtitle>
+      <mat-card-title translate="ORDER.TITLE"></mat-card-title>
+      <mat-card-subtitle translate="ORDER.LIST"></mat-card-subtitle>
       <div class="search-area">
         <div class="search-wrapper">
           <avs-search (word)="searchWord($event)"></avs-search>
@@ -13,7 +13,7 @@
     <mat-divider></mat-divider>
     <mat-card-content fxLayout="row" class="order-list-container list-container">
       <div class="no-order" *ngIf="!orders?.length">
-        <span>No order is available, please add a new one or make a new search.</span>
+        <span translate="NOTICE.TITLE"></span>
       </div>
       <div fxFlex="30"  fxHide [fxHide.gt-sm]="'false'" fxlayoutalign="center center" class="order-list" *ngIf="orders?.length">
         <div class="order-items-scrollbar-area" [perfectScrollbar]>

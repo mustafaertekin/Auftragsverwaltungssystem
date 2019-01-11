@@ -18,10 +18,11 @@
     "NEW" : "Neue Kunde"
   },
   "DEVICE": {
-    "TITLE": "Geräte"
+    "TITLE": "Geräte",
+    "SELECT": "Gerät auswählen"
   },
   "SERVICE": {
-    "TITLE": "Dienste"
+    "TITLE": "Reperatur"
   },
   "SETTING": {
     "TITLE": "Einstellungen"
@@ -37,5 +38,27 @@
   },
   "PASSWORD":{
     "TITLE": "Passwort"
+  },
+  "CHART":{
+    "SERVICE": "Monatlich genutzte Servicen",
+    "AMOUNT": "Monatlich gewonnener Betrag"
+  },
+  "NOTICE":{
+    "TITLE": "Es ist keine Bestellung verfügbar, fügen Sie eine neue hinzu oder suchen Sie eine neue Suche."
+  },
+  "MONTHS": 
+  {
+    "JANUARY": "January",
+    "FEBRUARY": "February",
+    "MARCH": "März",
+    "APRIL": "April",
+    "MAY": "Mai",
+    "JUNE": "Juni",
+    "JULY": "Juli",
+    "AUGUST": "August",
+    "SEPTEMBER": "September",
+    "OCTOBER": "Oktober",
+    "NOVEMBER": "November",
+    "DECEMBER": "Dezember"
   }
 }

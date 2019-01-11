@@ -18,7 +18,8 @@
     "NEW" : "New Order"
   },
   "DEVICE": {
-    "TITLE": "Devices"
+    "TITLE": "Devices",
+    "SELECT": "Select Device"
   },
   "SERVICE": {
     "TITLE": "Services"
@@ -37,5 +38,27 @@
   },
   "PASSWORD":{
     "TITLE": "Password"
+  },
+  "CHART":{
+    "SERVICE": "Monatly used services",
+    "AMOUNT": "Monatly gained amount"
+  },
+  "NOTICE":{
+    "TITLE": "No order is available, please add a new one or make a new search."
+  },
+  "MONTHS": 
+    {
+      "JANUARY": "January",
+      "FEBRUARY": "February",
+      "MARCH": "March",
+      "APRIL": "April",
+      "MAY": "May",
+      "JUNE": "June",
+      "JULY": "July",
+      "AUGUST": "August",
+      "SEPTEMBER": "September",
+      "OCTOBER": "October",
+      "NOVEMBER": "November",
+      "DECEMBER": "December"
+    }
   }
-}
