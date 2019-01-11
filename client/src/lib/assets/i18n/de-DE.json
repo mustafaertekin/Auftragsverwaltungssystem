@@ -60,7 +60,8 @@
     "LOGIN": "Anmelden",
     "NEXT": "Nächste",
     "PREVIOUS" : "Zurück",
-    "SUBMIT": "Auftrag erfassen"
+    "SUBMIT": "Auftrag erfassen",
+    "LOGOUT": "Ausloggen"
   },
   "SALUTATION": {
     "TITLE": "Anrede"
