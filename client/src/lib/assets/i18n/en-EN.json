@@ -3,26 +3,106 @@
     "TITLE": "Dashboard"
   },
   "ORDER": {
-    "TITLE": "Orders"
+    "TITLE": "Orders",
+    "LIST": "Order List",
+    "NEW" : "New Order",
+    "SUBTITLE": "Create a new order",
+    "DETAILS": "Order Details",
+    "DESCRIPTION": "Order Description"
   },
   "USER": {
-    "TITLE": "Users"
+    "TITLE": "Users",
+    "LIST": "User List",
+    "NEW" : "New User"
   },
   "CUSTOMER": {
-    "TITLE": "Customers"
+    "TITLE": "Customers",
+    "LIST": "Customer List",
+    "NEW" : "New Order",
+    "DETAILS": "Customer details",
+    "STEP": "Chose a customer or create a new one",
+    "FIND": "Find a customer",
+    "SELECT": "Select a customer"
   },
   "DEVICE": {
-    "TITLE": "Devices"
+    "TITLE": "Devices",
+    "SELECT": "Select Device"
   },
   "SERVICE": {
-    "TITLE": "Services"
+    "TITLE": "Services",
+    "SELECT": "Select Service",
+    "TOTAL": "Service Total: ",
+    "STEP": "Add reperature services"
+  },
+  "MODEL":{
+    "TITLE": "Model",
+    "SELECT": "Select Model"
   },
   "SETTING": {
     "TITLE": "Settings"
   },
+  "ADD":{
+    "TITLE": "Add"
+  },
+  "UPDATE":{
+    "TITLE": "Update"
+  },
+  "INPUT":{
+    "FIRSTNAME": "First Name",
+    "LASTNAME": "Last Name",
+    "PHONE": "Phone"
+    },
   "BUTTON": {
-    "DELETE": "Loeschen",
-    "UPDATE": "Aktualizieren",
-    "SAVE": "Speichern"
+    "ADD": "Add",
+    "DELETE": "Delete",
+    "UPDATE": "Update",
+    "SAVE": "Save",
+    "LOGIN": "Login",
+    "NEXT": "Next",
+    "PREVIOUS" : "Previous",
+    "SUBMIT": "Submit new order"
+  },
+  "SALUTATION": {
+    "TITLE": "Salutation"
+  },
+  "STATISTIC": {
+    "TITLE": "Statistics"
+  },
+  "PASSWORD":{
+    "TITLE": "Password"
+  },
+  "ADDRESS":{
+    "TITLE": "Address",
+    "STEP": "Select an address or create a new one",
+    "DELIVERY": "Delivery Address",
+    "INVOICE": "Invoice Address"
+  },
+  "CHART":{
+    "SERVICE": "Monatly used services",
+    "AMOUNT": "Monatly gained amount"
+  },
+  "NOTICE":{
+    "TITLE": "No order is available, please add a new one or make a new search."
+  },
+  "COMMENTS":{
+    "TITLE": "Comments"
+  },
+  "SEARCH":{
+    "TITLE": "SEARCH ..."
+  },
+  "MONTHS": 
+    {
+      "JANUARY": "January",
+      "FEBRUARY": "February",
+      "MARCH": "March",
+      "APRIL": "April",
+      "MAY": "May",
+      "JUNE": "June",
+      "JULY": "July",
+      "AUGUST": "August",
+      "SEPTEMBER": "September",
+      "OCTOBER": "October",
+      "NOVEMBER": "November",
+      "DECEMBER": "December"
+    }
   }
-}

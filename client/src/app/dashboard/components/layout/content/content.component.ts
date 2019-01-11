@@ -41,6 +41,6 @@ export class DashboardMainContentComponent implements OnInit {
 
   animate() {
     this.animationState = 'out';
-    setTimeout(() => this.animationState = 'in', 500);
+    setTimeout(() => this.animationState = 'in', 400);
   }
 }

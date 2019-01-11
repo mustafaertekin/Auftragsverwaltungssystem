@@ -1,6 +1,6 @@
 <div class="order-details p-t-1 p-l-1 p-r-1">
   <mat-tab-group>
-    <mat-tab label="Order Details">
+    <mat-tab label="{{'ORDER.DETAILS' | translate }}">
       <div fxLayout="row">
         <span fxFlex></span>
         <div class="m-t-1 m-r-1 m-b-1" fxLayoutAlign="end center">
@@ -56,8 +56,8 @@
           <div>
             <mat-card>
               <mat-card-content>
-                <h3>User:</h3>
-                {{currentOrder?.user?.firstName}} {{currentOrder?.user?.lastName}}
+                <h3 translate="USER.TITLE"></h3>
+                {{currentOrder?.user?.firstName}}  {{currentOrder?.user?.lastName}}
               </mat-card-content>
             </mat-card>
           </div>
@@ -67,8 +67,8 @@
                 <form class="example-form">
 
                   <mat-form-field class="full-width">
-                    <input matInput #message maxlength="140" placeholder="Comments">
-                    <mat-hint align="start"><strong>Order Description</strong> </mat-hint>
+                    <input matInput #message maxlength="140" placeholder="{{ 'COMMENTS.TITLE' | translate}}">
+                    <mat-hint align="start"><strong translate="ORDER.DESCRIPTION"></strong></mat-hint>
                     <mat-hint align="end">{{message.value.length}} / 140</mat-hint>
                   </mat-form-field>
 
@@ -79,8 +79,8 @@
         </div>
       </div>
     </mat-tab>
-    <mat-tab label="Customer Details">
-      <avs-dashboard-customer-details (emitter)="getOrderById($event)" [clientId]="currentOrder?.client?.clientId"></avs-dashboard-customer-details>
+    <mat-tab label="{{'CUSTOMER.DETAILS' | translate }}">
+        <avs-dashboard-customer-details (emitter)="getOrderById($event)" [clientId]="currentOrder?.client?.clientId"></avs-dashboard-customer-details>
     </mat-tab>
   </mat-tab-group>
 </div>

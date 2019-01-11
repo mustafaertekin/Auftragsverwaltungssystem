@@ -1,11 +1,7 @@
-<!-- [style.background]="'blue'" -->
-<div class="background-img">
-<mat-grid-list cols="3" rowHeight="2:1">
-    <mat-grid-tile  > </mat-grid-tile>
-    <mat-grid-tile  > </mat-grid-tile>
-    <mat-grid-tile  > </mat-grid-tile>
-    <mat-grid-tile  > </mat-grid-tile>
-    <mat-grid-tile>
+<mat-grid-list cols="3" rowHeight="300px">
+    <mat-grid-tile [colspan]="3" [rowspan]="1" > </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="1" ></mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="1" >
       <mat-card class="full-width">
         <div class="login-card">
             <form [formGroup]="loginForm">
@@ -15,14 +11,16 @@
                   <mat-error *ngIf="!email.valid"></mat-error>
                 </mat-form-field>
                 <mat-form-field>
-                  <input matInput placeholder="Password" formControlName="password"  name="password" required>
+                  <input matInput placeholder= "{{ 'PASSWORD.TITLE' | translate }}" formControlName="password"  name="password" required>
                   <mat-error *ngIf="!password.valid"></mat-error>
                 </mat-form-field>
               </div>
             <button mat-button></button>
            </form>
           </div>
-        <button type="button" mat-button mat-raised-button color="primary" (click)="submit()">Login</button>
+        <button type="button" mat-button mat-raised-button color="primary" (click)="submit()">
+           <span  translate="BUTTON.LOGIN"></span>
+        </button>
       </mat-card>
     </mat-grid-tile>
     <mat-grid-tile></mat-grid-tile>

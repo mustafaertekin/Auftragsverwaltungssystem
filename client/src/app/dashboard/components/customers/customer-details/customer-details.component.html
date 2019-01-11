@@ -19,19 +19,19 @@
   <div fxLayout="row" >
       <form fxLayout="column" fxFlex="90"  [formGroup]="customerForm">
         <mat-form-field>
-          <mat-select placeholder="Salutation" formControlName="salutation">
+          <mat-select placeholder="{{ 'SALUTATION.TITLE' | translate }}" formControlName="salutation">
             <mat-option value="male">Male</mat-option>
             <mat-option value="female">Female</mat-option>
           </mat-select>
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="First name" formControlName="firstName">
+          <input matInput placeholder="{{ 'INPUT.FIRSTNAME' | translate }}" formControlName="firstName">
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Last name" formControlName="lastName">
+          <input matInput placeholder="{{ 'INPUT.LASTNAME' | translate }}" formControlName="lastName">
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Phone" formControlName="phone">
+          <input matInput placeholder="{{ 'INPUT.PHONE' | translate }}" formControlName="phone">
         </mat-form-field>
         <mat-form-field>
           <input matInput placeholder="Email" formControlName="email">
@@ -39,17 +39,17 @@
         <div fxLayout="row" fxLayoutGap="16px" *ngIf="clientId">
           <div>
             <button mat-button mat-raised-button color="accent" class="m-r-1" (click)="submitClientForm()">
-              <span> Update</span>
+              <span translate="BUTTON.UPDATE"></span>
             </button>
             <button mat-button mat-raised-button color="warn" (click)="deleteClient()">
-                <span> Delete</span>
+                <span translate="BUTTON.DELETE"></span>
               </button>
           </div>
         </div>
         <div fxLayout="row" fxLayoutGap="16px" *ngIf="!clientId">
             <div>
               <button mat-button mat-raised-button color="accent" class="m-r-1" (click)="createClient()">
-                <span> Save</span>
+                <span translate="BUTTON.SAVE"></span>
               </button>
             </div>
           </div>
