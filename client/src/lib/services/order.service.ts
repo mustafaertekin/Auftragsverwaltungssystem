@@ -19,6 +19,14 @@ export class OrderService {
     return this.http.post(`${this.serverUrl}orders`, order).pipe(map((res: Response) => res));
   }
 
+  public saveStatus(state): Observable<any> {
+    return this.http.post(`${this.serverUrl}orders/status`, state).pipe(map((res: Response) => res));
+  }
+
+  public comment(comment): Observable<any> {
+    return this.http.post(`${this.serverUrl}orders/comment`, comment).pipe(map((res: Response) => res));
+  }
+
   public getAll(): Observable<any> {
     return this.http.get(`${this.serverUrl}orders`).pipe(map((res: Response) => res));
   }

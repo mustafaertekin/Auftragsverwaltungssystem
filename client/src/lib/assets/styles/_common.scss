@@ -64,24 +64,24 @@ body {
     background: green;
   }
 
-  .status-color-red {
-    background: red;
+  .status-color-opened {
+    color: #ffab00;
   }
 
-  .status-color-yellow {
-    background: yellow;
+  .status-color-inprogress {
+    color: #2962ff;
   }
 
-  .status-color-blue {
-    background: blue;
+  .status-color-ready {
+    color: #00bfa5;
   }
 
-  .status-color-orange {
-    background: orange;
+  .status-color-cancelled {
+    color: #dd2c00;
   }
 
-  .status-color-purple {
-    background: purple;
+  .status-color-closed {
+    color: #aeea00;
   }
 
   .full-width {

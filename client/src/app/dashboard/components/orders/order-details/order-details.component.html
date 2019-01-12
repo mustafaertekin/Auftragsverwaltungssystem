@@ -21,6 +21,7 @@
           <div *ngFor="let service of currentOrder?.orderServices; let i = index;">
             <avs-order-item-service (emitter)="getOrderById($event)" [service]="service"></avs-order-item-service>
           </div>
+          <avs-order-item-service (emitter)="getOrderById($event)" [orderId]="currentOrderId"></avs-order-item-service>
         </div>
         <div fxFlex="40" fxLayout="column">
           <div>
@@ -36,13 +37,16 @@
           <div>
             <mat-card>
               <mat-card-content>
-                <mat-radio-group class="example-radio-group" [(ngModel)]="orderStatus">
-                  <mat-radio-button class="example-radio-button" *ngFor="let status of statuses" [value]="status">
-                    <span class="status-color status-color-{{status.color}}">
-                      {{status.name}}
-                    </span>
-                  </mat-radio-button>
-                </mat-radio-group>
+                <form>
+                  <mat-radio-group class="example-radio-group">
+                    <mat-radio-button (click)="saveStatus(status.color)" [checked]="status?.color === currentOrder?.status"
+                      class="example-radio-button" *ngFor="let status of statuses" [value]="status.color">
+                      <span class="status-color status-color-{{status.color}}">
+                        {{status.name}}
+                      </span>
+                    </mat-radio-button>
+                  </mat-radio-group>
+                </form>
               </mat-card-content>
             </mat-card>
           </div>
@@ -57,22 +61,7 @@
             <mat-card>
               <mat-card-content>
                 <h3 translate="USER.TITLE"></h3>
-                {{currentOrder?.user?.firstName}}  {{currentOrder?.user?.lastName}}
-              </mat-card-content>
-            </mat-card>
-          </div>
-          <div>
-            <mat-card>
-              <mat-card-content>
-                <form class="example-form">
-
-                  <mat-form-field class="full-width">
-                    <input matInput #message maxlength="140" placeholder="{{ 'COMMENTS.TITLE' | translate}}">
-                    <mat-hint align="start"><strong translate="ORDER.DESCRIPTION"></strong></mat-hint>
-                    <mat-hint align="end">{{message.value.length}} / 140</mat-hint>
-                  </mat-form-field>
-
-                </form>
+                {{currentOrder?.user?.firstName}} {{currentOrder?.user?.lastName}}
               </mat-card-content>
             </mat-card>
           </div>
@@ -80,7 +69,14 @@
       </div>
     </mat-tab>
     <mat-tab label="{{'CUSTOMER.DETAILS' | translate }}">
-        <avs-dashboard-customer-details (emitter)="getOrderById($event)" [clientId]="currentOrder?.client?.clientId"></avs-dashboard-customer-details>
+      <avs-dashboard-customer-details (emitter)="getOrderById($event)" [clientId]="currentOrder?.client?.clientId"></avs-dashboard-customer-details>
+    </mat-tab>
+    <mat-tab label="Commments">
+      <br><br>
+      <div [froalaEditor] [(froalaModel)]="editorContent" class="full-height"></div>
+      <button mat-raised-button color="primary" (click)="addOrderComment(editorContent)">
+        <mat-icon>add</mat-icon>Add comment
+      </button>
     </mat-tab>
   </mat-tab-group>
 </div>

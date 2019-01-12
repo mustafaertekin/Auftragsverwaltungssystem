@@ -12,12 +12,16 @@ export class OrderServiceManager {
     this.orderManager = new OrderManager();
   }
 
-  public async createOrderService(orderId: string, serviceId: string) {
+  public async createOrderService(body: any) {
     const newOrderService = new OrderService({
-      orderId,
-      serviceId
+      orderId: body.orderId,
+      serviceId: body.service,
+      modelId: body.model,
+      deviceId: body.device,
     });
-    return newOrderService.save();
+    await newOrderService.save();
+    await this.orderManager.recalculatePrice(_.get(newOrderService, 'dataValues.orderId', null));
+    return newOrderService;
   }
 
   public async updateOrderService(body: any): Promise<OrderService> {
@@ -28,7 +32,6 @@ export class OrderServiceManager {
       orderService.serviceId = body.service || orderService.serviceId;
 
       await orderService.save();
-      console.log('*********************', orderService, _.get(orderService, 'dataValues.orderId', null));
       await this.orderManager.recalculatePrice(_.get(orderService, 'dataValues.orderId', null));
 
       return orderService;

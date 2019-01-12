@@ -13,15 +13,16 @@ export class DashboardOrderDetailsComponent implements OnInit, OnChanges {
   @Output() emitter: EventEmitter<string> = new EventEmitter<string>();
   public currentOrder: any;
   disableDownloadButton: boolean;
+  editorContent: string;
 
   public orderStatus: string;
+
   statuses: any[] = [
-    { name: 'Pending', color: 'red'},
-    { name: 'Processing', color: 'yellow'},
-    { name: 'Completed', color: 'blue'},
-    { name: 'Unscuccesful', color: 'green'},
-    { name: 'Delivered', color: 'purple'},
-    { name: 'Cancelled', color: 'orange'}
+    { name: 'Opened', color: 'opened'},
+    { name: 'In progress', color: 'inprogress'},
+    { name: 'Ready', color: 'ready'},
+    { name: 'Cancelled', color: 'cancelled'},
+    { name: 'Closed', color: 'closed'}
   ];
   constructor(private orderService: OrderService,
     private route: ActivatedRoute, private router: Router) {}
@@ -33,6 +34,7 @@ export class DashboardOrderDetailsComponent implements OnInit, OnChanges {
   ngOnChanges (changes) {
     this.orderService.getById(this.currentOrderId).subscribe(order => {
       this.currentOrder = order;
+      this.editorContent = this.currentOrder.description;
     });
   }
 
@@ -58,6 +60,27 @@ export class DashboardOrderDetailsComponent implements OnInit, OnChanges {
 
   emailToClient(orderId) {
     this.orderService.mail(orderId).subscribe(response => {
+      // notification
+    });
+  }
+
+  saveStatus(state) {
+    const order = {
+      status: state,
+      orderId: this.currentOrderId
+    };
+
+    this.orderService.saveStatus(order).subscribe(response => {
+      this.emitter.emit('update');
+    });
+  }
+
+  addOrderComment(comment) {
+    const order = {
+      description: comment,
+      orderId: this.currentOrderId
+    };
+    this.orderService.comment(order).subscribe(response => {
       // notification
     });
   }

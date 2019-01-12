@@ -7,7 +7,7 @@
           {{order.client.firstName}} {{order.client.lastName}}
         </div>
         <div fxFlex="50" fxLayoutAlign="end center">
-          Status: {{order.status}}
+          <span class="m-r-1">Status</span>  <span class="status-color-{{order.status}}">{{order.status}}</span>
         </div>
         <div fxFlex="50">
           {{order.deliveryDate | date: 'short'}}

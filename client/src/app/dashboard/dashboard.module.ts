@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
@@ -61,6 +62,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   imports: [
     CommonModule,
     RouterModule.forRoot(DashboardRoutes, { onSameUrlNavigation: 'reload' }),
+    FroalaEditorModule.forRoot(),
+    FroalaViewModule.forRoot(),
     MaterialModule,
     FlexLayoutModule,
     FormsModule,

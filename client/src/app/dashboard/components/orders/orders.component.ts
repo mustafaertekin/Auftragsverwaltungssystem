@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterContentInit, OnChanges} from '@angular/core';
 import { OrderService } from '@avs-ecosystem/services/order.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'avs-dashboard-orders',
@@ -31,8 +32,8 @@ export class DashboardOrdersComponent implements OnInit, OnChanges {
   }
 
   getAllOrders(event) {
-    // console.log('ne olduki', event);
-    if (event === 'update') {
+    if (_.includes(['update'], event)) {
+      console.log('burdan geldim', event);
       this.animationState = 'out';
       this.orders = [];
     }
