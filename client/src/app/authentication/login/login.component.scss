@@ -1,11 +1,22 @@
 .login-page {
-  .background-img {
+  .background-image-container{
     background-image: url(/assets/images/mock1.jpg);
-    background-size: 100% auto;
-  }
-
-  .width-300 {
-    width: 300px;
+    background-size: cover;
+    height: 100vh;
+    width: 100vw;
+    .login-form{
+      max-width: 400px;
+      min-width: 400px;
+      height: 300px;
+      .person{
+        font-size: 48px;
+        height: 48px;
+        width: 48px;
+      }
+      .login-card{
+        margin-top: 30px;
+      }
+    }
   }
 }
 

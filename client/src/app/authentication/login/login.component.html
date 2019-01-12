@@ -1,37 +1,37 @@
 <div class="login-page ">
-  <div class="background-img">
-    <mat-grid-list cols="3" rowHeight="2:1">
-      <mat-grid-tile> </mat-grid-tile>
-      <mat-grid-tile> </mat-grid-tile>
-      <mat-grid-tile> </mat-grid-tile>
-      <mat-grid-tile> </mat-grid-tile>
-      <mat-grid-tile>
-        <mat-card class="full-width">
-          <div class="login-card">
-            <form [formGroup]="loginForm">
-              <div class="example-container">
-                <mat-form-field>
-                  <input matInput placeholder="Email" formControlName="email" name="email" required>
-                  <mat-error *ngIf="!email.valid"></mat-error>
-                </mat-form-field>
-                <mat-form-field>
-                  <input matInput placeholder="{{ 'PASSWORD.TITLE' | translate }}" formControlName="password" name="password"
-                    required>
-                  <mat-error *ngIf="!password.valid"></mat-error>
-                </mat-form-field>
-              </div>
-              <button mat-button></button>
-            </form>
-          </div>
-          <button type="button" mat-button mat-raised-button color="primary" (click)="submit()">
-            <span translate="BUTTON.LOGIN"></span>
-          </button>
+  <div class="background-image-container" fxLayoutAlign="center center">
+     <div class="login-form" fxLayoutAlign="center center">
+        <mat-card class="full-width m-l-1 m-r-1">
+          <mat-card-header>
+              <mat-icon mat-card-avatar class="person">person</mat-icon>
+              <mat-card-title>Login page</mat-card-title>
+              <mat-card-subtitle>Please provide your credentials</mat-card-subtitle>
+          </mat-card-header>
+          <mat-divider></mat-divider>
+          <mat-card-content class="m-t-1">
+              <div class="login-card">
+                  <form [formGroup]="loginForm">
+                    <div  fxLayout="column" >
+                      <mat-form-field>
+                        <input matInput placeholder="Email" formControlName="email" name="email" required>
+                        <mat-error *ngIf="!email.valid"></mat-error>
+                      </mat-form-field>
+                      <mat-form-field>
+                        <input matInput placeholder="{{ 'PASSWORD.TITLE' | translate }}" formControlName="password" name="password"
+                          required>
+                        <mat-error *ngIf="!password.valid"></mat-error>
+                      </mat-form-field>
+                    </div>
+                    <button mat-button></button>
+                  </form>
+                </div>
+          </mat-card-content>
+          <mat-card-actions>
+            <button type="button" [ngStyle.xs]="{'width': '100%'}" mat-button mat-raised-button color="primary" (click)="submit()">
+              <span>LOGIN</span>
+            </button>
+          </mat-card-actions>
         </mat-card>
-      </mat-grid-tile>
-      <mat-grid-tile></mat-grid-tile>
-      <mat-grid-tile></mat-grid-tile>
-      <mat-grid-tile></mat-grid-tile>
-      <mat-grid-tile></mat-grid-tile>
-    </mat-grid-list>
+      </div>
   </div>
 </div>
