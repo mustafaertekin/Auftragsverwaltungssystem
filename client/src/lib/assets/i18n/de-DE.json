@@ -25,8 +25,13 @@
     "SELECT": "Einen Kunden selektieren"
   },
   "DEVICE": {
-    "TITLE": "Gerät",
-    "SELECT": "Gerät auswählen"
+    "TITLE": "Geräte",
+    "SELECT": "Gerät auswählen",
+    "NEW": "Neues Gerät",
+    "SUBTITLE": "Erstellen Sie ein neues Gerät",
+    "STEP": "Wählen Sie ein Gerät aus oder erstellen Sie ein neues",
+    "ADD": "Neues Gerät hinzufügen",
+    "NAME": "Gerätname"
   },
   "SERVICE": {
     "TITLE": "Reperatur",
@@ -36,7 +41,8 @@
   },
   "MODEL":{
     "TITLE": "Modell",
-    "SELECT": "Modell auswählen"
+    "SELECT": "Modell auswählen",
+    "STEP": "Wählen Sie ein Modell oder erstellen Sie ein neues"
   },
   "SETTING": {
     "TITLE": "Einstellungen"
@@ -55,12 +61,13 @@
   "BUTTON": {
     "ADD": "Hinzufügen",
     "DELETE": "Löschen",
-    "UPDATE": "Aktualizieren",
+    "UPDATE": "Aktualisieren",
     "SAVE": "Speichern",
     "LOGIN": "Anmelden",
     "NEXT": "Nächste",
     "PREVIOUS" : "Zurück",
-    "SUBMIT": "Auftrag erfassen"
+    "SUBMIT": "Auftrag erfassen",
+    "LOGOUT": "Ausloggen"
   },
   "SALUTATION": {
     "TITLE": "Anrede"

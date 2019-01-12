@@ -19,14 +19,21 @@
     "TITLE": "Customers",
     "LIST": "Customer List",
     "NEW" : "New Order",
-    "DETAILS": "Customer details",
+    "DETAILS": "Customer Details",
     "STEP": "Chose a customer or create a new one",
     "FIND": "Find a customer",
     "SELECT": "Select a customer"
   },
   "DEVICE": {
     "TITLE": "Devices",
-    "SELECT": "Select Device"
+    "SELECT": "Select Device",
+    "NEW": "New Device",
+    "SUBTITLE": "Create a new device",
+    "STEP": "Chose a device or create a new one",
+    "ADD": "Add a new device",
+    "NAME": "Device name"
+  
+
   },
   "SERVICE": {
     "TITLE": "Services",
@@ -36,7 +43,8 @@
   },
   "MODEL":{
     "TITLE": "Model",
-    "SELECT": "Select Model"
+    "SELECT": "Select Model",
+    "STEP": "Choose a model or create one"
   },
   "SETTING": {
     "TITLE": "Settings"
@@ -60,7 +68,8 @@
     "LOGIN": "Login",
     "NEXT": "Next",
     "PREVIOUS" : "Previous",
-    "SUBMIT": "Submit new order"
+    "SUBMIT": "Submit new order",
+    "LOGOUT": "Logout"
   },
   "SALUTATION": {
     "TITLE": "Salutation"

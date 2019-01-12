@@ -2,12 +2,12 @@
   <div fxLayout="row" fxLayoutGap="40px">
       <div fxFlex="50">
           <div fxLayout="row">
-            <h3 fxFlex="100">Select a device</h3>
+            <h3 fxFlex="100" translate="DEVICE.SELECT"></h3>
           </div>
           <div fxLayout="row">
               <form fxFlex="100" [formGroup]="selectedDeviceForm">
                     <mat-form-field fxFlex="100">
-                        <mat-select placeholder="Language" fxFlex="100"  formControlName="selectedDevice" placeholder="Select a device">
+                        <mat-select fxFlex="100"  formControlName="selectedDevice" placeholder="{{ 'DEVICE.SELECT' | translate }}">
                           <mat-option *ngFor="let device of devices"
                           (click)="setSelectedDevice(device)"
                           [value]="device.deviceId"
@@ -21,7 +21,7 @@
       </div>
       <div fxFlex="50" >
           <div fxLayout="row">
-              <h3 fxFlex="100">Add a new device</h3>
+              <h3 fxFlex="100" translate="DEVICE.ADD"></h3>
             </div>
           <mat-accordion class="full-width">
               <mat-expansion-panel>
@@ -30,17 +30,17 @@
                     <span class="m-r-1">
                       <mat-icon>add_circle_outline</mat-icon>
                     </span>
-                    <span>Add a new device</span>
+                    <span translate="DEVICE.ADD"></span>
                   </mat-panel-title>
                 </mat-expansion-panel-header>
                 <form fxLayout="column" fxFlex="100" [formGroup]="deviceForm">
                   <mat-form-field>
-                    <input matInput placeholder="Device name" formControlName="deviceName">
+                    <input matInput placeholder="{{ 'DEVICE.NAME' | translate }}" formControlName="deviceName">
                   </mat-form-field>
                   <div fxLayout="row" fxLayoutGap="16px">
                     <div>
                       <button mat-button mat-raised-button color="accent" (click)="submitDeviceForm()">
-                        <span>Save</span>
+                        <span translate="BUTTON.SAVE"></span>
                       </button>
                     </div>
                   </div>
