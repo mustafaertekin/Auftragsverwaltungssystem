@@ -2,8 +2,8 @@
   <mat-card>
     <mat-card-header>
       <mat-icon class="title-icon-size" mat-card-avatar>settings</mat-icon>
-      <mat-card-title>Settings</mat-card-title>
-      <mat-card-subtitle>Change your settings</mat-card-subtitle>
+      <mat-card-title translate="SETTING.TITLE"></mat-card-title>
+      <mat-card-subtitle translate="SETTING.SUBTITLE"></mat-card-subtitle>
     </mat-card-header>
     <mat-divider></mat-divider>
     <mat-card-content>
@@ -29,7 +29,7 @@
                   (click)="submitSettings()"
                   mat-raised-button
                   color="accent">
-                  Save
+                 <span translate="BUTTON.SAVE"></span>
                 </button>
               </div>
             </form>

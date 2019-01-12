@@ -10,15 +10,19 @@
     </mat-expansion-panel-header>
     <form fxLayout="column" fxFlex="100" [formGroup]="serviceForm">
       <mat-form-field>
-        <input matInput placeholder="Service name" formControlName="serviceName">
+        <input matInput placeholder="{{'SERVICE.NAME' | translate}}"  formControlName="serviceName">
       </mat-form-field>
       <mat-form-field>
-        <input matInput placeholder="Price" formControlName="price">
+        <input matInput placeholder="{{'INPUT.PRICE' | translate}}" formControlName="price">
       </mat-form-field>
       <div>
         <div fxLayout="row" fxLayoutAlign="space-between center">
-          <button mat-button mat-raised-button color="accent" (click)="updateService()">Update</button>
-          <button mat-button mat-raised-button color="warn" (click)="deleteService()">Delete</button>
+          <button mat-button mat-raised-button color="accent" (click)="updateService()">
+            <span translate="BUTTON.UPDATE"></span>
+          </button>
+          <button mat-button mat-raised-button color="warn" (click)="deleteService()">
+           <span translate="BUTTON.DELETE"></span>
+          </button>
         </div>
       </div>
     </form>

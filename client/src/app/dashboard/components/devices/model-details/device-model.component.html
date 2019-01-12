@@ -1,15 +1,15 @@
 <div class="dashboard-device-model">
-  <h2>Model</h2>
+  <h2 translate="MODEL.TITLE"></h2>
   <div fxLayout="row" fxLayoutGap="40px">
       <div fxFlex="50">
           <div fxLayout="row">
-            <h3 fxFlex="100">Select a device model</h3>
+            <h3 fxFlex="100" translate="DEVICE.MODEL"></h3>
           </div>
           <div fxLayout="row">
               <form fxFlex="100" [formGroup]="selectedDeviceModelForm">
                     <mat-form-field fxFlex="100">
                         <mat-select fxFlex="100"
-                          formControlName="selectedDeviceModel" placeholder="Select a device model">
+                          formControlName="selectedDeviceModel" placeholder="{{'DEVICE.MODEL' | translate}}">
                           <mat-option *ngFor="let model of models"
                           (click)="setSelectedDeviceModel(model)"
                           [value]="model.deviceModelId"
@@ -23,7 +23,7 @@
       </div>
       <div fxFlex="50" >
           <div fxLayout="row">
-              <h3 fxFlex="100">Add a new device model</h3>
+              <h3 fxFlex="100" translate="MODEL.ADD"></h3>
             </div>
             <mat-accordion class="full-width">
                 <mat-expansion-panel>
@@ -32,17 +32,17 @@
                       <span class="m-r-1">
                         <mat-icon>add_circle_outline</mat-icon>
                       </span>
-                      <span>Add a new model</span>
+                      <span translate="MODEL.ADD"></span>
                     </mat-panel-title>
                   </mat-expansion-panel-header>
                   <form fxLayout="column" fxFlex="100" [formGroup]="modelForm">
                     <mat-form-field>
-                      <input matInput placeholder="Model name" formControlName="deviceModelName">
+                      <input matInput placeholder="{{'MODEL.NAME' | translate}}" formControlName="deviceModelName">
                     </mat-form-field>
                     <div fxLayout="row" fxLayoutGap="16px">
                       <div>
                         <button mat-button mat-raised-button color="accent" (click)="submitModelForm()">
-                          <span>Save</span>
+                          <span translate="BUTTON.SAVE"></span>
                         </button>
                       </div>
                     </div>

@@ -12,8 +12,13 @@
   },
   "USER": {
     "TITLE": "Users",
-    "LIST": "User List",
-    "NEW" : "New User"
+    "SUBTITLE": "User List",
+    "NEW" : "New User",
+    "DETAILS": "User Details",
+    "ADDRESS": "User Adress",
+    "ORDERS": "User Orders",
+    "UPDATE": "User update",
+    "SINCE": "Since: "
   },
   "CUSTOMER": {
     "TITLE": "Customers",
@@ -31,23 +36,27 @@
     "SUBTITLE": "Create a new device",
     "STEP": "Chose a device or create a new one",
     "ADD": "Add a new device",
-    "NAME": "Device name"
-  
-
+    "NAME": "Device name",
+    "MODEL": "Select a device model"
   },
   "SERVICE": {
     "TITLE": "Services",
     "SELECT": "Select Service",
     "TOTAL": "Service Total: ",
+    "ADD": "Add a new service",
+    "NAME": "Service name",
     "STEP": "Add reperature services"
   },
   "MODEL":{
     "TITLE": "Model",
     "SELECT": "Select Model",
-    "STEP": "Choose a model or create one"
+    "STEP": "Choose a model or create one",
+    "ADD": "Add a model" ,
+    "NAME": "Model name" 
   },
   "SETTING": {
-    "TITLE": "Settings"
+    "TITLE": "Settings",
+    "SUBTITLE": "Change your settings"
   },
   "ADD":{
     "TITLE": "Add"
@@ -58,7 +67,10 @@
   "INPUT":{
     "FIRSTNAME": "First Name",
     "LASTNAME": "Last Name",
-    "PHONE": "Phone"
+    "PHONE": "Phone",
+    "ROLES": "Roles",
+    "ACTIVE": "Is active",
+    "PRICE": "Price"
     },
   "BUTTON": {
     "ADD": "Add",
@@ -78,7 +90,12 @@
     "TITLE": "Statistics"
   },
   "PASSWORD":{
-    "TITLE": "Password"
+    "TITLE": "Password",
+    "UPDATE": "Update Password",
+    "CHANGE": "Change Password",
+    "CURRENT": "Current password",
+    "NEW": "New password",
+    "CONFIRM": "Confirm password"
   },
   "ADDRESS":{
     "TITLE": "Address",

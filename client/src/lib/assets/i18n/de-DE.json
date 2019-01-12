@@ -12,8 +12,13 @@
   },
   "USER": {
     "TITLE": "Benutzer",
-    "LIST": "Benutzerliste",
-    "NEW" : "Neuer Benutzer"
+    "SUBTITLE": "Benutzerliste",
+    "NEW" : "Neuer Benutzer",
+    "DETAILS": "Benutzerdetails",
+    "ADDRESS": "Benutzeradresse",
+    "ORDERS": "Benutzeraufträge",
+    "UPDATE": "Benutzer aktualisieren",
+    "SINCE": "Seit: "
   },
   "CUSTOMER": {
     "TITLE": "Kunden",
@@ -31,21 +36,27 @@
     "SUBTITLE": "Erstellen Sie ein neues Gerät",
     "STEP": "Wählen Sie ein Gerät aus oder erstellen Sie ein neues",
     "ADD": "Neues Gerät hinzufügen",
-    "NAME": "Gerätname"
+    "NAME": "Gerätname",
+    "MODEL": "Wählen Sie ein Gerätemodell aus"
   },
   "SERVICE": {
-    "TITLE": "Reperatur",
-    "SELECT": "Reperatur auswählen",
-    "TOTAL": "Reperatur Total: ",
-    "STEP": "Reperatur oder reperaturen erstellen"
+    "TITLE": "Reparatur",
+    "SELECT": "Reparatur auswählen",
+    "TOTAL": "Reparatur Total: ",
+    "ADD": "Neue Reparatur hinzufügen",
+    "NAME": "Repaturname",
+    "STEP": "Reparatur oder reparaturen erstellen"
   },
   "MODEL":{
     "TITLE": "Modell",
     "SELECT": "Modell auswählen",
-    "STEP": "Wählen Sie ein Modell oder erstellen Sie ein neues"
+    "STEP": "Wählen Sie ein Modell oder erstellen Sie ein neues",
+    "ADD": "Modell hinzufügen",
+    "NAME": "Modellname"  
   },
   "SETTING": {
-    "TITLE": "Einstellungen"
+    "TITLE": "Einstellungen",
+    "SUBTITLE": "Ändern Sie Ihre Einstellungen"
   },
   "ADD":{
     "TITLE": "Hinzufügen Kunde"
@@ -56,7 +67,10 @@
   "INPUT":{
     "FIRSTNAME": "Vorname",
     "LASTNAME": "Nachname",
-    "PHONE": "Telefon"
+    "PHONE": "Telefon",
+    "ROLES": "Rollen",
+    "ACTIVE": "Ist aktiv",
+    "PRICE": "Preis"
     },
   "BUTTON": {
     "ADD": "Hinzufügen",
@@ -76,7 +90,12 @@
     "TITLE": "Statistiken"
   },
   "PASSWORD":{
-    "TITLE": "Passwort"
+    "TITLE": "Passwort",
+    "UPDATE": "Passwort Aktualisieren",
+    "CHANGE": "Passwort ändern",
+    "CURRENT": "Aktuelles Passwort",
+    "NEW": "Neues Passwort",
+    "CONFIRM": "Bestätige das Passwort"
   },
   "ADDRESS":{
     "TITLE": "Adresse",

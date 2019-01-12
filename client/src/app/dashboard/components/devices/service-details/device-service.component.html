@@ -1,5 +1,5 @@
 <div class="dashboard-device-service">
-  <h2>Services</h2>
+  <h2 translate="SERVICE.TITLE"></h2>
   <div fxLayout="row">
     <mat-accordion class="full-width">
       <mat-expansion-panel>
@@ -8,20 +8,20 @@
             <span class="m-r-1">
               <mat-icon>add_circle_outline</mat-icon>
             </span>
-            <span>Add a new service</span>
+            <span translate="SERVICE.ADD"></span>
           </mat-panel-title>
         </mat-expansion-panel-header>
         <form fxLayout="column" fxFlex="100" [formGroup]="serviceForm">
           <mat-form-field>
-            <input matInput placeholder="Service name" formControlName="serviceName">
+            <input matInput placeholder="{{'SERVICE.NAME' | translate}}" formControlName="serviceName">
           </mat-form-field>
           <mat-form-field>
-            <input matInput placeholder="Price" formControlName="price">
+            <input matInput placeholder="{{'INPUT.PRICE' | translate}}" formControlName="price">
           </mat-form-field>
           <div fxLayout="row" fxLayoutGap="16px">
             <div>
               <button mat-button mat-raised-button color="accent" (click)="submitServiceForm()">
-                <span>Save</span>
+                <span translate="BUTTON.SAVE"></span>
               </button>
             </div>
           </div>

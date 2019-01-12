@@ -10,12 +10,16 @@
     </mat-expansion-panel-header>
     <form fxLayout="column" fxFlex="100" [formGroup]="deviceForm">
       <mat-form-field>
-        <input matInput placeholder="Device name" formControlName="deviceName">
+        <input matInput placeholder="{{'DEVICE.NAME' | translate}}" formControlName="deviceName">
       </mat-form-field>
       <div>
         <div fxLayout="row" fxLayoutAlign="space-between center">
-          <button mat-button mat-raised-button color="accent" (click)="updateDevice()">Update</button>
-          <button mat-button mat-raised-button color="warn" (click)="deleteDevice()">Delete</button>
+          <button mat-button mat-raised-button color="accent" (click)="updateDevice()">
+              <span translate="BUTTON.UPDATE"></span>
+          </button>
+          <button mat-button mat-raised-button color="warn" (click)="deleteDevice()">
+              <span translate="BUTTON.DELETE"></span>
+          </button>
         </div>
       </div>
     </form>
