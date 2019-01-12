@@ -7,23 +7,23 @@
           <span class="m-r-1">
             <mat-icon>add_circle_outline</mat-icon>
           </span>
-          <span>Add a new address</span>
+          <span translate="ADDRESS.ADD"></span>
         </mat-panel-title>
       </mat-expansion-panel-header>
       <form [formGroup]="addressForm">
         <div>
           <div fxLayout="column">
             <mat-form-field>
-              <input matInput formControlName="streetName" placeholder="Street">
+              <input matInput formControlName="streetName" placeholder="{{'INPUT.STREET' | translate}}">
             </mat-form-field>
             <mat-form-field>
-              <input matInput formControlName="plzNumber" placeholder="Zip">
+                <input matInput formControlName="cityName" placeholder="{{'INPUT.CITY' | translate}}">
+              </mat-form-field>
+            <mat-form-field>
+              <input matInput formControlName="plzNumber" placeholder="{{'INPUT.ZIP' | translate}}">
             </mat-form-field>
             <mat-form-field>
-              <input matInput formControlName="cityName" placeholder="City">
-            </mat-form-field>
-            <mat-form-field>
-              <mat-select formControlName="countryName" placeholder="Country">
+              <mat-select formControlName="countryName" placeholder="{{'INPUT.COUNTRY' | translate}}">
                 <mat-option value="ch">Schweiz</mat-option>
                 <mat-option value="de">Germany</mat-option>
                 <mat-option value="en">England</mat-option>
@@ -33,7 +33,9 @@
         </div>
         <div fxLayout="row" fxLayoutGap="16px">
           <div>
-            <button mat-button mat-raised-button color="accent" (click)="saveAddress()">Save</button>
+            <button mat-button mat-raised-button color="accent" (click)="saveAddress()">
+              <span translate="BUTTON.SAVE"></span>
+            </button>
           </div>
         </div>
       </form>

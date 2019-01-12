@@ -8,7 +8,8 @@
     "NEW" : "New Order",
     "SUBTITLE": "Create a new order",
     "DETAILS": "Order Details",
-    "DESCRIPTION": "Order Description"
+    "DESCRIPTION": "Order Description",
+    "ID": "Order No: "
   },
   "USER": {
     "TITLE": "Users",
@@ -22,12 +23,19 @@
   },
   "CUSTOMER": {
     "TITLE": "Customers",
+    "SUBTITLE": "Customer",
     "LIST": "Customer List",
+    "ADD": "Add a new customer",
     "NEW" : "New Order",
     "DETAILS": "Customer Details",
     "STEP": "Chose a customer or create a new one",
     "FIND": "Find a customer",
-    "SELECT": "Select a customer"
+    "SELECT": "Select a customer",
+    "ADDRESS": "Customer Addresses",
+    "ORDERS": "Customer Orders",
+    "NEWSTEP": "Fill out customer name",
+    "NEWADDRESS": "Add address for the customer",
+    "CREATED": "created: "
   },
   "DEVICE": {
     "TITLE": "Devices",
@@ -70,7 +78,11 @@
     "PHONE": "Phone",
     "ROLES": "Roles",
     "ACTIVE": "Is active",
-    "PRICE": "Price"
+    "PRICE": "Price",
+    "STREET" : "Street name",
+    "ZIP": "Zip",
+    "CITY": "City",
+    "COUNTRY": "Country"
     },
   "BUTTON": {
     "ADD": "Add",
@@ -101,7 +113,8 @@
     "TITLE": "Address",
     "STEP": "Select an address or create a new one",
     "DELIVERY": "Delivery Address",
-    "INVOICE": "Invoice Address"
+    "INVOICE": "Invoice Address",
+    "ADD": "Add a new address"
   },
   "CHART":{
     "SERVICE": "Monatly used services",

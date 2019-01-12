@@ -8,7 +8,8 @@
     "NEW" : "Neuer Auftrag",
     "SUBTITLE": "Erstellen Sie einen neuen Auftrag",
     "DETAILS": "Auftragsdetails",
-    "DESCRIPTION": "Auftragsbeschreibung"
+    "DESCRIPTION": "Auftragsbeschreibung",
+    "ID": "Auftragsnummer: "
   },
   "USER": {
     "TITLE": "Benutzer",
@@ -22,12 +23,19 @@
   },
   "CUSTOMER": {
     "TITLE": "Kunden",
+    "SUBTITLE": "Kunde",
     "LIST": "Kundenliste",
     "NEW" : "Neue Kunde",
+    "ADD": "Neue Kunde hinzufügen",
     "DETAILS": "Kundendetails",
     "STEP": "Wählen Sie einen Kunden oder erstellen Sie einen neuen",
     "FIND": "Einen Kunden suchen",
-    "SELECT": "Einen Kunden selektieren"
+    "SELECT": "Einen Kunden selektieren",
+    "ADDRESS": "Kundenadressen",
+    "ORDERS": "Kundenaufträge",
+    "NEWSTEP": "Füllen Sie Kundenname aus",
+    "NEWADDRESS": "Adresse für den Kunden hinzufügen",
+    "CREATED": "erstellt: "
   },
   "DEVICE": {
     "TITLE": "Geräte",
@@ -70,7 +78,11 @@
     "PHONE": "Telefon",
     "ROLES": "Rollen",
     "ACTIVE": "Ist aktiv",
-    "PRICE": "Preis"
+    "PRICE": "Preis",
+    "STREET" : "Strasse",
+    "ZIP": "Plz",
+    "CITY": "Ort",
+    "COUNTRY": "Land"
     },
   "BUTTON": {
     "ADD": "Hinzufügen",
@@ -101,7 +113,8 @@
     "TITLE": "Adresse",
     "STEP": "Wählen Sie eine Adresse aus oder erstellen Sie eine neue",
     "DELIVERY": "Lieferung Adresse",
-    "INVOICE": "Rechnung Adresse"
+    "INVOICE": "Rechnung Adresse",
+    "ADD": "Neue Adresse hinzufügen"
   },
   "CHART":{
     "SERVICE": "Monatlich genutzte Servicen",

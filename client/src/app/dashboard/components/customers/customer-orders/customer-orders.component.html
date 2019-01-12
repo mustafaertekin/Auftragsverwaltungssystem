@@ -8,10 +8,10 @@
                   Status: {{order.status}}
                 </div>
                 <div fxFlex="100">
-                   created: {{ order.creationDate | date: 'short'}}
+                   <span translate="CUSTOMER.CREATED"></span>{{ order.creationDate | date: 'short'}}
                 </div>
                 <div fxFlex="100">
-                  Order Id : {{order.orderId | slice:0:7}}
+                  <span translate="ORDER.ID"></span> {{order.orderId | slice:0:7}}
                 </div>
 
               </div>
