@@ -57,8 +57,8 @@
               <div fxFlex="50">
                 <form fxLayout="column" fxFlex="100" [formGroup]="addressForms">
                   <mat-form-field>
-                    <mat-select placeholder="{{ 'ADDRESS.DELIVERY' | translate }}" formControlName="deliveryAddress">
-                      <mat-option *ngFor="let address of addressForm?.addresses" [value]="address?.addressId">
+                    <mat-select  placeholder="{{ 'ADDRESS.DELIVERY' | translate }}" formControlName="deliveryAddress">
+                      <mat-option *ngFor="let address of addressForm?.addresses"   [value]="setAddressId(address?.addressId)">
                         {{address.streetName}}, {{address.cityName}}, {{address.plzNumber}}
                       </mat-option>
                     </mat-select>

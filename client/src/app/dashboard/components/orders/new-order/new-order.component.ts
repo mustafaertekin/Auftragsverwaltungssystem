@@ -17,6 +17,7 @@ export class DashboardNewOrderComponent implements OnInit, AfterContentInit {
   customers: any[];
   customer: any;
   addressForms: FormGroup;
+  selectedDelivery: string;
 
   constructor(private fb: FormBuilder,
     private route: ActivatedRoute,
@@ -73,6 +74,12 @@ export class DashboardNewOrderComponent implements OnInit, AfterContentInit {
     this.clientService.getByText(word).subscribe(customers => {
       this.customers = customers;
     });
+  }
+
+  setAddressId(addressId) {
+    this.addressForms.controls['deliveryAddress'].setValue(addressId);
+    this.addressForms.controls['invoiceAddress'].setValue(addressId);
+    return addressId;
   }
 
   getName(customer) {

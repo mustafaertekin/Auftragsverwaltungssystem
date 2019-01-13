@@ -18,6 +18,7 @@ export class DashboardOrdersComponent implements OnInit, OnChanges {
   opened = true;
   over = 'side';
   watcher: Subscription;
+  isMobile: boolean;
 
   constructor(private orderService: OrderService, media: ObservableMedia,
     private route: ActivatedRoute, private router: Router) {
@@ -25,14 +26,17 @@ export class DashboardOrdersComponent implements OnInit, OnChanges {
         if (change.mqAlias === 'sm' || change.mqAlias === 'xs') {
           this.opened = false;
           this.over = 'over';
+          this.isMobile = true;
         } else {
           this.opened = true;
           this.over = 'side';
+          this.isMobile = false;
         }
       });
     }
 
   ngOnInit() {
+    this.isMobile = false;
     this.currentOrderId = null;
     this.animationState = 'out';
     this.route.params.subscribe(params => {
@@ -47,9 +51,14 @@ export class DashboardOrdersComponent implements OnInit, OnChanges {
   ngOnChanges() {
   }
 
+  closeOnMobileSelection(){
+    if(this.isMobile) {
+      this.opened = false;
+    }
+  }
+
   getAllOrders(event) {
     if (_.includes(['update'], event)) {
-      console.log('burdan geldim', event);
       this.animationState = 'out';
       this.orders = [];
     }

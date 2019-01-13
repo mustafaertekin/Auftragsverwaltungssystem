@@ -22,7 +22,9 @@
               <avs-animate-fadein [state]="animationState">
                 <mat-list role="list">
                   <mat-list-item class="order-item-holder item-holder" role="listitem" *ngFor="let order of orders">
-                    <avs-dashboard-order-item [currentId]="currentOrderId" [order]="order" class="avs-dashboard-order-item"></avs-dashboard-order-item>
+                    <avs-dashboard-order-item [currentId]="currentOrderId"
+                     [order]="order" class="avs-dashboard-order-item" (click)="closeOnMobileSelection()">
+                    </avs-dashboard-order-item>
                   </mat-list-item>
                 </mat-list>
               </avs-animate-fadein>
@@ -35,34 +37,6 @@
           </div>
         </mat-sidenav-content>
       </mat-sidenav-container>
-      <!--
-      <mat-sidenav-container class=" full-height">
-
-           [(mode)]="over" [(opened)]="opened"
-        <mat-sidenav #sidenav [(mode)]="over" [(opened)]="'true'" class="">
-
-          <div fxlayoutalign="center center" class="order-list" *ngIf="orders?.length">
-            <div class="order-items-scrollbar-area" [perfectScrollbar]>
-              <avs-animate-fadein [state]="animationState">
-                <mat-list role="list">
-                  <mat-list-item class="order-item-holder item-holder" role="listitem" *ngFor="let order of orders">
-                    <avs-dashboard-order-item [currentId]="currentOrderId" [order]="order" class="avs-dashboard-order-item"></avs-dashboard-order-item>
-                  </mat-list-item>
-                </mat-list>
-              </avs-animate-fadein>
-            </div>
-          </div>
-        </mat-sidenav>
-        <mat-sidenav-content class="mat-sidenav-content">
-
-
-          <div fxlayoutalign="center center" *ngIf="currentOrderId && orders?.length">
-            <avs-dashboard-order-details (emitter)="getAllOrders($event)" [currentOrderId]="currentOrderId"></avs-dashboard-order-details>
-          </div>
-
-        </mat-sidenav-content>
-      </mat-sidenav-container>
-    -->
     </mat-card-content>
   </mat-card>
 </div>
