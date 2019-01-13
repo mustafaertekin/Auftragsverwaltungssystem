@@ -10,7 +10,7 @@
         <mat-step [stepControl]="services?.serviceForm" [optional]="optional">
           <ng-template matStepLabel><span translate="SERVICE.STEP"></span></ng-template>
           <avs-dashboard-order-services #services></avs-dashboard-order-services>
-          <div fxLayout="row" *ngIf="services?.serviceForm.valid" fxLayoutAlign="start center">
+          <div fxLayout="row" *ngIf="services?.orders?.length" fxLayoutAlign="start center">
             <button fxFlex="10" matStepperNext mat-button mat-raised-button color="accent">
               <span  translate="BUTTON.NEXT"></span>
             </button>
