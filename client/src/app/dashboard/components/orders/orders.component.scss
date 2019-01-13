@@ -5,24 +5,45 @@
      .mat-card-header {
        padding-left: 16px;
      }
+
+     .full-vw {
+       width: 100vw;
+     }
+
+     .order-container {
+       min-height: 100vh;
+
+       .order-side-nav {
+         width: 400px;
+       }
+
+       .order-mat-sidenav-content {
+         height: auto;
+         width: 100vw;
+       }
+     }
    }
 
    .order-list-container {
 
-     .no-order{
+     .no-order {
        width: 100%;
        height: 500px;
        display: flex;
        justify-content: center;
        align-items: center;
      }
+
      .order-list {
        border-right: 1px solid rgba(0, 0, 0, 0.12);
+
        .avs-dashboard-order-item {
          width: 100%;
        }
+
        .mat-list {
          padding-top: 0;
+
          .mat-list-item {
            height: auto;
          }
@@ -30,12 +51,12 @@
      }
    }
 
-   .order-items-scrollbar-area{
+   .order-items-scrollbar-area {
      max-height: calc(100vh - 200px);
      position: relative;
    }
 
-   .search-area{
+   .search-area {
      flex: 1 1 auto;
    }
  }

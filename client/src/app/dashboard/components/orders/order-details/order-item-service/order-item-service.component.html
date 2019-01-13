@@ -77,12 +77,12 @@
       </form>
     </mat-card-content>
     <mat-card-actions *ngIf="addNewService || isOnEditMode">
-      <div *ngIf="service" fxLayout="row" fxLayoutAlign="space-between center">
-        <div>
-          <button mat-raised-button color="primary" (click)="updateService();">
+      <div *ngIf="service" fxLayout="row" fxLayout.xs="column"  fxLayoutAlign="space-between center">
+        <div fxLayout.xs="column" >
+          <button mat-raised-button color="primary" class="m-b-1" (click)="updateService();">
             <mat-icon>done</mat-icon> Update
           </button>
-          <button mat-raised-button (click)="deleteOrderItemService()">
+          <button mat-raised-button class="m-b-1" (click)="deleteOrderItemService()">
             <mat-icon>delete</mat-icon> Delete
           </button>
         </div>
@@ -93,7 +93,7 @@
         </div>
       </div>
       <div *ngIf="!service" fxLayout="row" fxLayoutAlign="space-between center">
-        <button mat-raised-button color="primary" (click)="addService()">
+        <button mat-raised-button color="primary" class="m-b-1" (click)="addService()">
           <mat-icon>done</mat-icon> Save
         </button>
         <button mat-raised-button color="accent" (click)="addNewService = !addNewService">

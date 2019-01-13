@@ -1,7 +1,9 @@
 import { Component, OnInit, AfterContentInit, OnChanges} from '@angular/core';
 import { OrderService } from '@avs-ecosystem/services/order.service';
+import { ObservableMedia, MediaChange } from '@angular/flex-layout';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as _ from 'lodash';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'avs-dashboard-orders',
@@ -12,9 +14,22 @@ export class DashboardOrdersComponent implements OnInit, OnChanges {
   orders: any;
   currentOrderId: any;
   animationState: string;
+  opened = true;
+  over = 'side';
+  watcher: Subscription;
 
-  constructor(private orderService: OrderService,
-    private route: ActivatedRoute, private router: Router) {}
+  constructor(private orderService: OrderService, media: ObservableMedia,
+    private route: ActivatedRoute, private router: Router) {
+      this.watcher = media.subscribe((change: MediaChange) => {
+        if (change.mqAlias === 'sm' || change.mqAlias === 'xs') {
+          this.opened = false;
+          this.over = 'over';
+        } else {
+          this.opened = true;
+          this.over = 'side';
+        }
+      });
+    }
 
   ngOnInit() {
     this.currentOrderId = null;

@@ -16,7 +16,7 @@
           </button>
         </div>
       </div>
-      <div fxLayout="row" class="m-1">
+      <div fxLayout="row" fxLayout.xs="column" class="m-1">
         <div fxFlex="60">
           <div *ngFor="let service of currentOrder?.orderServices; let i = index;">
             <avs-order-item-service (emitter)="getOrderById($event)" [service]="service"></avs-order-item-service>
@@ -27,7 +27,7 @@
           <div>
             <mat-card>
               <mat-card-content>
-                <div fxLayout="row" fxLayoutAlign="space-between center">
+                <div fxLayout="row"  fxLayoutAlign="space-between center">
                   <h2>TOTAL:</h2>
                   <h2>{{currentOrder?.price}}.- CHF</h2>
                 </div>
