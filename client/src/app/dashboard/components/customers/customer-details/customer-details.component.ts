@@ -54,6 +54,7 @@ export class DashboardCustomerDetailsComponent implements OnInit, OnChanges {
   setCustomerForm() {
     this.customerForm = this.fb.group({
       salutation: [''],
+      isActive: ['', [Validators.required]],
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
       phone: ['', [Validators.required]],
@@ -93,6 +94,7 @@ export class DashboardCustomerDetailsComponent implements OnInit, OnChanges {
   setFormFields(result) {
     if (result) {
       this.customerForm.controls['salutation'].setValue(result.salutation);
+      this.customerForm.controls['isActive'].setValue(result.isActive);
       this.customerForm.controls['email'].setValue(result.email);
       this.customerForm.controls['firstName'].setValue(result.firstName);
       this.customerForm.controls['lastName'].setValue(result.lastName);

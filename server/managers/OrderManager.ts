@@ -195,12 +195,14 @@ export class OrderManager {
 
     public async findAll(): Promise<Order[]> {
         const orders: Order[] = await Order.findAll<Order>({
+          include:[ Client],
           order: [
              ['creationDate', 'DESC']
-          ]
+          ],
+          // where: { `client`.`isActive` : true }
         });
         if (orders) {
-            return orders;
+          return orders;
         } else {
             logger.error("No order found");
             throw new NotFoundError("No order found");

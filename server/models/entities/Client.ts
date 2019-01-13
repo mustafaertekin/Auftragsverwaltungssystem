@@ -38,6 +38,10 @@ export class Client extends BaseModel<Client> {
     @Column
     email: string;
 
+    @AllowNull(false)
+    @Column
+    isActive: boolean;
+
     @HasMany(() => Address)
     addresses: Address[];
 

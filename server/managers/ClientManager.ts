@@ -18,6 +18,7 @@ export class ClientManager {
 
     public async updateClient(clientId: string, client: Client): Promise <Client> {
         const dbclient = await Client.find<Client>({where: { clientId }});
+        
         if(dbclient) {
             dbclient.clientSecret = client.clientSecret || dbclient.clientSecret;
             dbclient.salutation = client.salutation || dbclient.salutation;
@@ -25,7 +26,8 @@ export class ClientManager {
             dbclient.lastName = client.lastName || dbclient.lastName;
             dbclient.firstName = client.firstName || dbclient.firstName;
             dbclient.phone = client.phone || dbclient.phone;
-            return dbclient.save();
+            dbclient.isActive = client.isActive
+            return await dbclient.save();
         } else {
             logger.error("No client found");
             throw new NotFoundError("No client found with that id");
@@ -71,7 +73,8 @@ export class ClientManager {
     public async deleteClient(clientId: string): Promise<Client | null> {
         const client = await Client.find<Client>({where: {clientId}});
         if(client) {
-            await client.destroy();
+            client.isActive = false;
+            await client.save();
             return client;
         } else {
             logger.error("No client found");

@@ -31,7 +31,11 @@ export class OrderRouter {
           ]
         }
       );
-      res.json(orders);
+      let filteredOrders = orders.filter((order) => {
+        return _.get(order, 'client.dataValues.isActive', false) === true;
+      })
+      console.log(filteredOrders)
+      res.json(filteredOrders);
     } catch (error) {
       next(error);
     }
