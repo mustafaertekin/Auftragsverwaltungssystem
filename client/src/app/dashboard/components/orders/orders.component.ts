@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterContentInit, OnChanges} from '@angular/core';
+import { Component, OnInit, AfterContentInit, ViewChild, ElementRef, OnChanges} from '@angular/core';
 import { OrderService } from '@avs-ecosystem/services/order.service';
 import { ObservableMedia, MediaChange } from '@angular/flex-layout';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -11,6 +11,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./orders.component.scss']
 })
 export class DashboardOrdersComponent implements OnInit, OnChanges {
+  @ViewChild('ordernav') ordernav: ElementRef;
   orders: any;
   currentOrderId: any;
   animationState: string;
@@ -57,6 +58,10 @@ export class DashboardOrdersComponent implements OnInit, OnChanges {
       this.animationState = 'in';
       this.currentOrderId = this.currentOrderId || (orders[0] ? orders[0].orderId : null);
     });
+  }
+
+  toggleOrderMenu() {
+    this.ordernav['toggle']();
   }
 
   searchWord(word) {

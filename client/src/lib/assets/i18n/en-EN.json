@@ -26,7 +26,7 @@
     "SUBTITLE": "Customer",
     "LIST": "Customer List",
     "ADD": "Add a new customer",
-    "NEW" : "New Order",
+    "NEW" : "New Customer",
     "DETAILS": "Customer Details",
     "STEP": "Chose a customer or create a new one",
     "FIND": "Find a customer",
@@ -60,7 +60,7 @@
     "SELECT": "Select Model",
     "STEP": "Choose a model or create one",
     "ADD": "Add a model" ,
-    "NAME": "Model name" 
+    "NAME": "Model name"
   },
   "SETTING": {
     "TITLE": "Settings",
@@ -129,7 +129,7 @@
   "SEARCH":{
     "TITLE": "SEARCH ..."
   },
-  "MONTHS": 
+  "MONTHS":
     {
       "JANUARY": "January",
       "FEBRUARY": "February",

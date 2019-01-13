@@ -1,7 +1,7 @@
 <div class="order-component avs-list m-t-1 m-l-1">
   <mat-card>
     <mat-card-header>
-      <mat-icon class="title-icon-size" (click)="sidenav.toggle()" mat-card-avatar>format_list_bulleted</mat-icon>
+      <mat-icon class="title-icon-size" (click)="toggleOrderMenu()" mat-card-avatar>format_list_bulleted</mat-icon>
       <mat-card-title translate="ORDER.TITLE"></mat-card-title>
       <mat-card-subtitle translate="ORDER.LIST"></mat-card-subtitle>
       <div class="search-area">
@@ -12,11 +12,11 @@
     </mat-card-header>
     <mat-divider></mat-divider>
     <mat-card-content fxLayout="row" class="order-list-container list-container">
-      <div class="no-order" *ngIf="!orders?.length">
+      <div class="no-order full-vw" *ngIf="!orders?.length">
         <span translate="NOTICE.TITLE"></span>
       </div>
-      <mat-sidenav-container class="order-container full-vw" fxLayout="row">
-        <mat-sidenav #sidenav [(mode)]="over" fxFlex.xs="100" [(opened)]="opened" class="order-side-nav">
+      <mat-sidenav-container class="order-container full-vw" *ngIf="orders?.length" fxLayout="row">
+        <mat-sidenav #ordernav [(mode)]="over" fxFlex.xs="100" [(opened)]="opened" class="order-side-nav">
           <div fxlayoutalign="center center" class="order-list" *ngIf="orders?.length">
             <div class="order-items-scrollbar-area" [perfectScrollbar]>
               <avs-animate-fadein [state]="animationState">
