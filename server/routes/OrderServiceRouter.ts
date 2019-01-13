@@ -35,10 +35,7 @@ export class OrderServiceRouter {
 
     public async post(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
-            const newOrderService = await this.orderServiceManager.createOrderService(
-                req.body.orderId,
-                req.body.serviceId
-            );
+            const newOrderService = await this.orderServiceManager.createOrderService(req.body);
             res.json(newOrderService);
         } catch(error) {
             next(error);

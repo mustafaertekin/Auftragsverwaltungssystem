@@ -56,7 +56,7 @@ export class Order extends BaseModel<Order> {
     @Column
     companyId: string;
 
-    @Column(DataType.ENUM(OrderStatus.CANCELED, OrderStatus.CLOSED, OrderStatus.INPROGRESS, OrderStatus.OPENED, OrderStatus.READY, OrderStatus.WAITING))
+    @Column(DataType.ENUM(OrderStatus.CANCELLED, OrderStatus.CLOSED, OrderStatus.INPROGRESS, OrderStatus.OPENED, OrderStatus.READY))
     status: OrderStatus;
 
     @Column

@@ -20,8 +20,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class DashboardOrderItemServiceComponent implements OnInit {
 
   @Input() service;
+  @Input() orderId;
   @Output() emitter: EventEmitter<string> = new EventEmitter<string>();
   isOnEditMode: boolean;
+  addNewService: boolean;
   devices: any [];
   models: any [];
   services: any [];
@@ -40,18 +42,32 @@ export class DashboardOrderItemServiceComponent implements OnInit {
 
   ngOnInit() {
     this.isOnEditMode = false;
-    this.serviceForm = this.fb.group({
-      device: [this.service.device.deviceId, [Validators.required]],
-      model: [this.service.deviceModel.deviceModelId, [Validators.required]],
-      service: [ this.service.Service.serviceId, [Validators.required]],
-      orderServiceId: [ this.service.orderServiceId, []],
-    });
-
+    this.addNewService = false;
+    this.setForm();
     this.getDevices();
-    this.getModelsByDeviceId(this.service.device);
-    this.getAllServicesByModelId(this.service.deviceModel);
+    if (this.service) {
+      this.getModelsByDeviceId(this.service.device);
+      this.getAllServicesByModelId(this.service.deviceModel);
+    }
   }
 
+  setForm() {
+    if (this.service) {
+      this.serviceForm = this.fb.group({
+        device: [this.service.device.deviceId, [Validators.required]],
+        model: [this.service.deviceModel.deviceModelId, [Validators.required]],
+        service: [ this.service.Service.serviceId, [Validators.required]],
+        orderServiceId: [ this.service.orderServiceId, []],
+      });
+    } else {
+      this.serviceForm = this.fb.group({
+        device: ['', [Validators.required]],
+        model: ['', [Validators.required]],
+        service: ['', [Validators.required]],
+        orderId: [ this.orderId, []],
+      });
+    }
+  }
 
   getDevices () {
     this.deviceServices.getAll().subscribe(devices => {
@@ -86,6 +102,12 @@ export class DashboardOrderItemServiceComponent implements OnInit {
   updateService() {
     this.orderItemService.updateItem(this.serviceForm.value).subscribe(() => {
       this.emitter.emit('updated');
+    });
+  }
+
+  addService() {
+    this.orderItemService.createOrderService(this.serviceForm.value).subscribe(() => {
+      this.emitter.emit('added');
     });
   }
 }

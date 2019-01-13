@@ -55,6 +55,30 @@ export class OrderRouter {
     }
   }
 
+  public async setStatus(req: express.Request, res: express.Response, next: express.NextFunction) {
+    try {
+      const order = await Order.findOne<Order>({ where: { orderId: req.body.orderId }});
+      if(order) {
+        order.status = req.body.status;
+        res.json(await order.save());
+      }
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  public async comment(req: express.Request, res: express.Response, next: express.NextFunction) {
+    try {
+      const order = await Order.findOne<Order>({ where: { orderId: req.body.orderId }});
+      if(order) {
+        order.description = req.body.description;
+        res.json(await order.save());
+      }
+    } catch (error) {
+      next(error);
+    }
+  }
+
   public async put(req: express.Request, res: express.Response, next: express.NextFunction) {
     try {
       const updatedOrder = await this.orderManager.updateOrder(
@@ -138,6 +162,8 @@ export class OrderRouter {
     this.router.get("/", Auth.getBearerMiddleware(), this.get.bind(this));
     this.router.get("/:id", Auth.getBearerMiddleware(), this.getById.bind(this));
     this.router.post("/", Auth.getBearerMiddleware(), this.post.bind(this));
+    this.router.post("/status", Auth.getBearerMiddleware(), this.setStatus.bind(this));
+    this.router.post("/comment", Auth.getBearerMiddleware(), this.comment.bind(this));
     this.router.put("/:id", Auth.getBearerMiddleware(), this.put.bind(this));
     this.router.delete("/:id", Auth.getBearerMiddleware(), this.delete.bind(this));
     this.router.get("/download/:id", Auth.getBearerMiddleware(), this.download.bind(this));

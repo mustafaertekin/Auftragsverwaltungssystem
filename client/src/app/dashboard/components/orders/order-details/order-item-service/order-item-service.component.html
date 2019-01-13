@@ -1,71 +1,105 @@
 <div class="order-item-service">
-    <mat-card class="m-b-1 m-r-1">
-        <mat-card-title>
-          <div fxLayout="row" fxLayoutAlign="space-between center">
-            <div>
-              <div *ngIf="!isOnEditMode" (click)="isOnEditMode = true; getDevices();">
-                <button mat-mini-fab>
-                  <mat-icon>edit</mat-icon>
-                </button>
-              </div>
-              <div *ngIf="isOnEditMode">
-                <button mat-mini-fab>
-                  <mat-icon (click)="isOnEditMode = false; updateService();">done</mat-icon>
-                </button>
-                <button class="m-l-1" mat-mini-fab (click)="deleteOrderItemService()">
-                  <mat-icon>delete</mat-icon>
-                </button>
-              </div>
-            </div>
-            <div>{{ selectedService?.price || service?.Service?.price}}.- CHF</div>
+  <mat-card class="m-b-1 m-r-1">
+    <mat-card-title>
+      <div *ngIf="service" fxLayout="row" fxLayoutAlign="space-between center">
+        <div>
+          <button mat-mini-fab (click)="isOnEditMode = !isOnEditMode;">
+            <mat-icon *ngIf="!isOnEditMode">arrow_drop_down</mat-icon>
+            <mat-icon *ngIf="isOnEditMode">arrow_drop_up</mat-icon>
+          </button>
+        </div>
+        <div>{{ selectedService?.price || service?.Service?.price}}.- CHF</div>
+      </div>
+      <div *ngIf="!service" fxLayout="row" fxLayoutAlign="space-between center">
+        <div fxFlex="20">
+          <button mat-mini-fab (click)="addNewService = !addNewService;">
+            <mat-icon *ngIf="!addNewService">arrow_drop_down</mat-icon>
+            <mat-icon *ngIf="addNewService">arrow_drop_up</mat-icon>
+          </button>
+        </div>
+        <div fxFlex="80">
+          <span>Add a new service</span>
+        </div>
+      </div>
+    </mat-card-title>
+    <mat-card-content class="m-t-1 m-b-1" *ngIf="!isOnEditMode && service">
+      <div fxLayout="column">
+        <div class="service-first">
+          <div fxLayout="row">
+            <div>Service: &nbsp;</div>
+            <div> {{ service?.Service?.serviceName}}</div>
           </div>
-        </mat-card-title>
-        <mat-card-content class="m-t-1 m-b-1" *ngIf="!isOnEditMode">
-          <div fxLayout="column">
-            <div class="service-first">
-              <div fxLayout="row"><div>Service: &nbsp;</div><div> {{ service?.Service?.serviceName}}</div> </div>
-              <div fxLayout="row" class="p-t-1 p-b-1"><div>Model: &nbsp;</div> <div> {{ service?.deviceModel?.deviceModelName}}</div></div>
-              <div fxLayout="row"><div>Device: &nbsp;</div> <div> {{ service?.device?.deviceName}}</div></div>
-            </div>
+          <div fxLayout="row" class="p-t-1 p-b-1">
+            <div>Model: &nbsp;</div>
+            <div> {{ service?.deviceModel?.deviceModelName}}</div>
           </div>
-        </mat-card-content>
-        <mat-card-content *ngIf="isOnEditMode">
-            <form [formGroup]="serviceForm" class="full-width">
-                <div fxLayout="column" class="m-t-1" fxLayoutAlign="start start" fxLayout.xs="column">
-                  <div fxFlex="100">
-                    <div>
-                      <mat-form-field>
-                        <mat-select formControlName="device" placeholder="Select device">
-                          <mat-option *ngFor="let device of devices; let i = index" name="xx-{i}" [value]="device.deviceId"
-                            (click)="getModelsByDeviceId(device)">
-                            {{device?.deviceName}}
-                          </mat-option>
-                        </mat-select>
-                      </mat-form-field>
-                    </div>
-                  </div>
-                  <div fxFlex="100">
-                    <mat-form-field>
-                      <mat-select formControlName="model" placeholder="Select model">
-                        <mat-option *ngFor="let model of models; let i = index" name="yy-{i}" [value]="model.deviceModelId"
-                          (click)="getAllServicesByModelId(model)">
-                          {{model?.deviceModelName}}
-                        </mat-option>
-                      </mat-select>
-                    </mat-form-field>
-                  </div>
-                  <div fxFlex="100">
-                    <mat-form-field>
-                      <mat-select formControlName="service" placeholder="Select service type">
-                        <mat-option *ngFor="let service of services; let i = index" name="zz-{i}" [value]="service.serviceId"
-                          (click)="getSelectedService(service)">
-                          {{service?.serviceName}}
-                        </mat-option>
-                      </mat-select>
-                    </mat-form-field>
-                  </div>
-                </div>
-              </form>
-        </mat-card-content>
-      </mat-card>
+          <div fxLayout="row">
+            <div>Device: &nbsp;</div>
+            <div> {{ service?.device?.deviceName}}</div>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-content *ngIf="addNewService || isOnEditMode">
+      <form [formGroup]="serviceForm" class="full-width">
+        <div fxLayout="column" class="m-t-1" fxLayoutAlign="start start" fxLayout.xs="column">
+          <div fxFlex="100" class="full-width">
+            <mat-form-field class="full-width">
+              <mat-select formControlName="device" placeholder="Select device">
+                <mat-option *ngFor="let device of devices; let i = index" name="xx-{i}" [value]="device.deviceId"
+                  (click)="getModelsByDeviceId(device)">
+                  {{device?.deviceName}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div fxFlex="100" class="full-width">
+            <mat-form-field class="full-width">
+              <mat-select formControlName="model" placeholder="Select model">
+                <mat-option *ngFor="let model of models; let i = index" name="yy-{i}" [value]="model.deviceModelId"
+                  (click)="getAllServicesByModelId(model)">
+                  {{model?.deviceModelName}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div fxFlex="100" class="full-width">
+            <mat-form-field class="full-width">
+              <mat-select formControlName="service" placeholder="Select service type">
+                <mat-option *ngFor="let service of services; let i = index" name="zz-{i}" [value]="service.serviceId"
+                  (click)="getSelectedService(service)">
+                  {{service?.serviceName}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+      </form>
+    </mat-card-content>
+    <mat-card-actions *ngIf="addNewService || isOnEditMode">
+      <div *ngIf="service" fxLayout="row" fxLayout.xs="column"  fxLayoutAlign="space-between center">
+        <div fxLayout.xs="column" >
+          <button mat-raised-button color="primary" class="m-b-1" (click)="updateService();">
+            <mat-icon>done</mat-icon> Update
+          </button>
+          <button mat-raised-button class="m-b-1" (click)="deleteOrderItemService()">
+            <mat-icon>delete</mat-icon> Delete
+          </button>
+        </div>
+        <div>
+          <button mat-raised-button color="accent" (click)="isOnEditMode = !isOnEditMode">
+            Cancel
+          </button>
+        </div>
+      </div>
+      <div *ngIf="!service" fxLayout="row" fxLayoutAlign="space-between center">
+        <button mat-raised-button color="primary" class="m-b-1" (click)="addService()">
+          <mat-icon>done</mat-icon> Save
+        </button>
+        <button mat-raised-button color="accent" (click)="addNewService = !addNewService">
+          Cancel
+        </button>
+      </div>
+    </mat-card-actions>
+  </mat-card>
 </div>

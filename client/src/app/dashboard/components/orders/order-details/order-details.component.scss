@@ -1,28 +1,33 @@
-
 // @import '';
 
-.order-details{
-    background: whitesmoke;
-    .example-radio-group {
-        display: inline-flex;
-        flex-direction: column;
-      }
+.order-details {
+  background: whitesmoke;
 
-      .example-radio-button {
-        margin: 5px;
-      }
+  .example-radio-group {
+    display: inline-flex;
+    flex-direction: column;
+  }
+
+  .example-radio-button {
+    margin: 5px;
+  }
 
 
-      .example-full-width {
-        width: 100%;
-      }
-      .mat-card{
-        width: 90%;
-        border-radius: 0px;
-        margin-bottom: 10px;
-      }
+  .example-full-width {
+    width: 100%;
+  }
 
-      .mat-radio-button label div:last-child{
-        background: red;
-      }
+  .mat-card {
+    width: 90%;
+    border-radius: 0px;
+    margin-bottom: 10px;
+  }
+
+  .mat-radio-button label div:last-child {
+    background: red;
+  }
+
+  .full-height {
+    min-height: 300px;
+  }
 }
