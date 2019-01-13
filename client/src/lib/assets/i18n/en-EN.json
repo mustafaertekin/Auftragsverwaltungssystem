@@ -14,6 +14,8 @@
   "USER": {
     "TITLE": "Users",
     "SUBTITLE": "User List",
+    "NEWUSERSUBTITLE": "Create a new user",
+    "STEP": "Fill out form",
     "NEW" : "New User",
     "DETAILS": "User Details",
     "ADDRESS": "User Adress",
@@ -78,6 +80,7 @@
     "PHONE": "Phone",
     "ROLES": "Roles",
     "ACTIVE": "Is active",
+    "ACTIVATE": "Activate Account",
     "PRICE": "Price",
     "STREET" : "Street name",
     "ZIP": "Zip",
