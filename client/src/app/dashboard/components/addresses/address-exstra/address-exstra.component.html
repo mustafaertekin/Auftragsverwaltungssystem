@@ -19,16 +19,16 @@
           <div>
             <div fxLayout="column">
               <mat-form-field>
-                <input matInput formControlName="streetName" placeholder="Street">
+                <input matInput formControlName="streetName" placeholder="{{'INPUT.STREET' | translate}}">
               </mat-form-field>
               <mat-form-field>
-                <input matInput formControlName="cityName" placeholder="City">
+                <input matInput formControlName="cityName" placeholder="{{'INPUT.CITY' | translate}}">
               </mat-form-field>
               <mat-form-field>
-                <input matInput formControlName="plzNumber" placeholder="Zip">
+                <input matInput formControlName="plzNumber" placeholder="{{'INPUT.ZIP' | translate}}">
               </mat-form-field>
               <mat-form-field>
-                <mat-select formControlName="countryName" placeholder="Country">
+                <mat-select formControlName="countryName" placeholder="{{'INPUT.COUNTRY' | translate}}">
                   <mat-option value="ch">Schweiz</mat-option>
                   <mat-option value="de">German</mat-option>
                   <mat-option value="en">England</mat-option>
@@ -38,8 +38,12 @@
           </div>
           <div  >
             <div fxLayout="row" fxLayoutAlign="space-between center">
-              <button  mat-button mat-raised-button color="accent" (click)="updateAddress()">Update</button>
-              <button mat-button mat-raised-button color="warn" (click)="deleteAddress(address.addressId)">Delete</button>
+              <button  mat-button mat-raised-button color="accent" (click)="updateAddress()">
+                <span translate="BUTTON.UPDATE"></span>
+              </button>
+              <button mat-button mat-raised-button color="warn" (click)="deleteAddress(address.addressId)">
+                <span translate="BUTTON.DELETE"></span>
+              </button>
             </div>
           </div>
         </form>

@@ -8,38 +8,63 @@
     "NEW" : "Neuer Auftrag",
     "SUBTITLE": "Erstellen Sie einen neuen Auftrag",
     "DETAILS": "Auftragsdetails",
-    "DESCRIPTION": "Auftragsbeschreibung"
+    "DESCRIPTION": "Auftragsbeschreibung",
+    "ID": "Auftragsnummer: "
   },
   "USER": {
     "TITLE": "Benutzer",
-    "LIST": "Benutzerliste",
-    "NEW" : "Neuer Benutzer"
+    "SUBTITLE": "Benutzerliste",
+    "NEW" : "Neuer Benutzer",
+    "DETAILS": "Benutzerdetails",
+    "ADDRESS": "Benutzeradresse",
+    "ORDERS": "Benutzeraufträge",
+    "UPDATE": "Benutzer aktualisieren",
+    "SINCE": "Seit: "
   },
   "CUSTOMER": {
     "TITLE": "Kunden",
+    "SUBTITLE": "Kunde",
     "LIST": "Kundenliste",
     "NEW" : "Neue Kunde",
+    "ADD": "Neue Kunde hinzufügen",
     "DETAILS": "Kundendetails",
     "STEP": "Wählen Sie einen Kunden oder erstellen Sie einen neuen",
     "FIND": "Einen Kunden suchen",
-    "SELECT": "Einen Kunden selektieren"
+    "SELECT": "Einen Kunden selektieren",
+    "ADDRESS": "Kundenadressen",
+    "ORDERS": "Kundenaufträge",
+    "NEWSTEP": "Füllen Sie Kundenname aus",
+    "NEWADDRESS": "Adresse für den Kunden hinzufügen",
+    "CREATED": "erstellt: "
   },
   "DEVICE": {
-    "TITLE": "Gerät",
-    "SELECT": "Gerät auswählen"
+    "TITLE": "Geräte",
+    "SELECT": "Gerät auswählen",
+    "NEW": "Neues Gerät",
+    "SUBTITLE": "Erstellen Sie ein neues Gerät",
+    "STEP": "Wählen Sie ein Gerät aus oder erstellen Sie ein neues",
+    "ADD": "Neues Gerät hinzufügen",
+    "NAME": "Gerätname",
+    "MODEL": "Wählen Sie ein Gerätemodell aus"
   },
   "SERVICE": {
-    "TITLE": "Reperatur",
-    "SELECT": "Reperatur auswählen",
-    "TOTAL": "Reperatur Total: ",
-    "STEP": "Reperatur oder reperaturen erstellen"
+    "TITLE": "Reparatur",
+    "SELECT": "Reparatur auswählen",
+    "TOTAL": "Reparatur Total: ",
+    "ADD": "Neue Reparatur hinzufügen",
+    "NAME": "Repaturname",
+    "STEP": "Reparatur oder reparaturen erstellen"
   },
   "MODEL":{
     "TITLE": "Modell",
-    "SELECT": "Modell auswählen"
+    "SELECT": "Modell auswählen",
+    "STEP": "Wählen Sie ein Modell oder erstellen Sie ein neues",
+    "ADD": "Modell hinzufügen",
+    "NAME": "Modellname"  
   },
   "SETTING": {
-    "TITLE": "Einstellungen"
+    "TITLE": "Einstellungen",
+    "SUBTITLE": "Ändern Sie Ihre Einstellungen"
   },
   "ADD":{
     "TITLE": "Hinzufügen Kunde"
@@ -50,17 +75,25 @@
   "INPUT":{
     "FIRSTNAME": "Vorname",
     "LASTNAME": "Nachname",
-    "PHONE": "Telefon"
+    "PHONE": "Telefon",
+    "ROLES": "Rollen",
+    "ACTIVE": "Ist aktiv",
+    "PRICE": "Preis",
+    "STREET" : "Strasse",
+    "ZIP": "Plz",
+    "CITY": "Ort",
+    "COUNTRY": "Land"
     },
   "BUTTON": {
     "ADD": "Hinzufügen",
     "DELETE": "Löschen",
-    "UPDATE": "Aktualizieren",
+    "UPDATE": "Aktualisieren",
     "SAVE": "Speichern",
     "LOGIN": "Anmelden",
     "NEXT": "Nächste",
     "PREVIOUS" : "Zurück",
-    "SUBMIT": "Auftrag erfassen"
+    "SUBMIT": "Auftrag erfassen",
+    "LOGOUT": "Ausloggen"
   },
   "SALUTATION": {
     "TITLE": "Anrede"
@@ -69,13 +102,19 @@
     "TITLE": "Statistiken"
   },
   "PASSWORD":{
-    "TITLE": "Passwort"
+    "TITLE": "Passwort",
+    "UPDATE": "Passwort Aktualisieren",
+    "CHANGE": "Passwort ändern",
+    "CURRENT": "Aktuelles Passwort",
+    "NEW": "Neues Passwort",
+    "CONFIRM": "Bestätige das Passwort"
   },
   "ADDRESS":{
     "TITLE": "Adresse",
     "STEP": "Wählen Sie eine Adresse aus oder erstellen Sie eine neue",
     "DELIVERY": "Lieferung Adresse",
-    "INVOICE": "Rechnung Adresse"
+    "INVOICE": "Rechnung Adresse",
+    "ADD": "Neue Adresse hinzufügen"
   },
   "CHART":{
     "SERVICE": "Monatlich genutzte Servicen",

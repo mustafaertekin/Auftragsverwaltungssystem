@@ -25,8 +25,8 @@
   <mat-card>
     <mat-card-header>
       <mat-icon class="title-icon-size" mat-card-avatar>person</mat-icon>
-      <mat-card-title>Customer</mat-card-title>
-      <mat-card-subtitle>Customer list</mat-card-subtitle>
+      <mat-card-title translate="CUSTOMER.TITLE"></mat-card-title>
+      <mat-card-subtitle translate="CUSTOMER.LIST"></mat-card-subtitle>
       <div class="search-area">
         <div class="search-wrapper">
           <avs-search (word)="searchWord($event)"></avs-search>
@@ -48,13 +48,13 @@
       </div>
       <div fxFlex="70" fxlayoutalign="center center" class="customer-main-details p-l-1 p-r-1 p-t-1" *ngIf="currentCustomerId">
         <mat-tab-group>
-          <mat-tab label="Client Details">
+          <mat-tab label="{{'CUSTOMER.DETAILS' | translate}}">
             <avs-dashboard-customer-details (emitter)="getAll($event)" [clientId]="currentCustomerId"></avs-dashboard-customer-details>
           </mat-tab>
-          <mat-tab label="Client Addresses">
+          <mat-tab label="{{'CUSTOMER.ADDRESS' | translate}}">
               <avs-dashboard-addresses [clientId]="currentCustomerId" #addressForm fxFlexFill></avs-dashboard-addresses>
           </mat-tab>
-          <mat-tab label="Client Orders">
+          <mat-tab label="{{'CUSTOMER.ORDERS' | translate}}">
             <avs-dashboard-customer-orders [clientId]="currentCustomerId"></avs-dashboard-customer-orders>
           </mat-tab>
         </mat-tab-group>

@@ -1,21 +1,21 @@
 <div class="user-details">
-  <h3>Update User</h3>
+  <h3 translate="USER.UPDATE"></h3>
   <div fxLayout="row">
     <form fxLayout="column" fxFlex="90" [formGroup]="userForm">
       <div class="m-t-1 m-b-1">
-        <mat-slide-toggle formControlName="isActive">Is active</mat-slide-toggle>
+        <mat-slide-toggle formControlName="isActive"><span translate="INPUT.ACTIVE"></span></mat-slide-toggle>
       </div>
       <mat-form-field>
-        <mat-select placeholder="Roles" formControlName="role">
+        <mat-select placeholder="{{'INPUT.ROLES' | translate}}" formControlName="role">
           <mat-option value="admin">Admin</mat-option>
           <mat-option value="member">Member</mat-option>
         </mat-select>
       </mat-form-field>
       <mat-form-field>
-        <input matInput placeholder="First name" formControlName="firstName">
+        <input matInput placeholder="{{'INPUT.FIRSTNAME' | translate}}" formControlName="firstName">
       </mat-form-field>
       <mat-form-field>
-        <input matInput placeholder="Last name" formControlName="lastName">
+        <input matInput placeholder="{{'INPUT.LASTNAME' | translate}}" formControlName="lastName">
       </mat-form-field>
       <mat-form-field>
         <input matInput placeholder="Email" formControlName="email">
@@ -23,10 +23,10 @@
       <div fxLayout="row" fxLayoutGap="16px">
         <div>
           <button mat-button mat-raised-button color="accent" class="m-r-1" (click)="submitUserForm()">
-            <span>Update</span>
+            <span translate="BUTTON.UPDATE"></span>
           </button>
           <button mat-button mat-raised-button color="warn" class="m-r-1" (click)="deleteUser()">
-            <span>Delete</span>
+            <span translate="BUTTON.DELETE"></span>
           </button>
         </div>
       </div>
@@ -35,23 +35,23 @@
 
   <mat-divider class="m-t-1 m-b-1"></mat-divider>
   <br>
-  <h3 class="m-t-1">Change Password</h3>
+  <h3 class="m-t-1" translate="PASSWORD.CHANGE"></h3>
   <div fxLayout="row">
     <form fxLayout="column" fxFlex="90" [formGroup]="updatePasswordForm">
       <mat-form-field>
-        <input matInput placeholder="Current password" type="password" formControlName="currentPassword">
+        <input matInput placeholder="{{'PASSWORD.CURRENT' | translate}}" type="password" formControlName="currentPassword">
       </mat-form-field>
       <mat-form-field>
-        <input matInput placeholder="Pass" type="password" formControlName="newPassword">
+        <input matInput placeholder="{{'PASSWORD.NEW' | translate}}" type="password" formControlName="newPassword">
       </mat-form-field>
       <mat-form-field>
-        <input matInput placeholder="Reenter pass" type="password" formControlName="repassword">
+        <input matInput placeholder="{{'PASSWORD.CONFIRM' | translate}}" type="password" formControlName="repassword">
       </mat-form-field>
 
       <div fxLayout="row" fxLayoutGap="16px">
         <div>
           <button mat-button mat-raised-button color="accent" class="m-r-1" (click)="updatePassword()">
-            <span> Update password</span>
+            <span translate="PASSWORD.UPDATE"></span>
           </button>
         </div>
       </div>

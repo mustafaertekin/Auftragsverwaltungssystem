@@ -2,8 +2,8 @@
   <mat-card>
     <mat-card-header>
       <mat-icon class="title-icon-size" mat-card-avatar>person</mat-icon>
-      <mat-card-title>Users</mat-card-title>
-      <mat-card-subtitle>User list</mat-card-subtitle>
+      <mat-card-title translate="USER.TITLE"></mat-card-title>
+      <mat-card-subtitle translate="USER.SUBTITLE"></mat-card-subtitle>
       <div class="search-area">
           <div class="search-wrapper">
             <avs-search (word)="searchWord($event)"></avs-search>
@@ -26,14 +26,14 @@
         </div>
       <div fxFlex="70" fxlayoutalign="center center" class="users-main-details p-l-1 p-r-1 p-t-1" *ngIf="currentUserId">
         <mat-tab-group>
-          <mat-tab label="User Details">
+          <mat-tab label="{{ 'USER.DETAILS' | translate }}">
                 <avs-dashboard-user-details (emitter)="getAll($event)" [userId]="currentUserId">
                 </avs-dashboard-user-details>
           </mat-tab>
-          <mat-tab label="User Addresses">
+          <mat-tab label="{{ 'USER.ADDRESS' | translate }}">
             <avs-dashboard-addresses [userId]="currentUserId" #addressForm fxFlexFill></avs-dashboard-addresses>
           </mat-tab>
-          <mat-tab label="User Orders">
+          <mat-tab label="{{ 'USER.ORDERS' | translate }}">
             <avs-dashboard-customer-orders [clientId]="currentUserId"></avs-dashboard-customer-orders>
           </mat-tab>
         </mat-tab-group>

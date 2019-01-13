@@ -8,38 +8,63 @@
     "NEW" : "New Order",
     "SUBTITLE": "Create a new order",
     "DETAILS": "Order Details",
-    "DESCRIPTION": "Order Description"
+    "DESCRIPTION": "Order Description",
+    "ID": "Order No: "
   },
   "USER": {
     "TITLE": "Users",
-    "LIST": "User List",
-    "NEW" : "New User"
+    "SUBTITLE": "User List",
+    "NEW" : "New User",
+    "DETAILS": "User Details",
+    "ADDRESS": "User Adress",
+    "ORDERS": "User Orders",
+    "UPDATE": "User update",
+    "SINCE": "Since: "
   },
   "CUSTOMER": {
     "TITLE": "Customers",
+    "SUBTITLE": "Customer",
     "LIST": "Customer List",
+    "ADD": "Add a new customer",
     "NEW" : "New Order",
-    "DETAILS": "Customer details",
+    "DETAILS": "Customer Details",
     "STEP": "Chose a customer or create a new one",
     "FIND": "Find a customer",
-    "SELECT": "Select a customer"
+    "SELECT": "Select a customer",
+    "ADDRESS": "Customer Addresses",
+    "ORDERS": "Customer Orders",
+    "NEWSTEP": "Fill out customer name",
+    "NEWADDRESS": "Add address for the customer",
+    "CREATED": "created: "
   },
   "DEVICE": {
     "TITLE": "Devices",
-    "SELECT": "Select Device"
+    "SELECT": "Select Device",
+    "NEW": "New Device",
+    "SUBTITLE": "Create a new device",
+    "STEP": "Chose a device or create a new one",
+    "ADD": "Add a new device",
+    "NAME": "Device name",
+    "MODEL": "Select a device model"
   },
   "SERVICE": {
     "TITLE": "Services",
     "SELECT": "Select Service",
     "TOTAL": "Service Total: ",
+    "ADD": "Add a new service",
+    "NAME": "Service name",
     "STEP": "Add reperature services"
   },
   "MODEL":{
     "TITLE": "Model",
-    "SELECT": "Select Model"
+    "SELECT": "Select Model",
+    "STEP": "Choose a model or create one",
+    "ADD": "Add a model" ,
+    "NAME": "Model name" 
   },
   "SETTING": {
-    "TITLE": "Settings"
+    "TITLE": "Settings",
+    "SUBTITLE": "Change your settings"
   },
   "ADD":{
     "TITLE": "Add"
@@ -50,7 +75,14 @@
   "INPUT":{
     "FIRSTNAME": "First Name",
     "LASTNAME": "Last Name",
-    "PHONE": "Phone"
+    "PHONE": "Phone",
+    "ROLES": "Roles",
+    "ACTIVE": "Is active",
+    "PRICE": "Price",
+    "STREET" : "Street name",
+    "ZIP": "Zip",
+    "CITY": "City",
+    "COUNTRY": "Country"
     },
   "BUTTON": {
     "ADD": "Add",
@@ -60,7 +92,8 @@
     "LOGIN": "Login",
     "NEXT": "Next",
     "PREVIOUS" : "Previous",
-    "SUBMIT": "Submit new order"
+    "SUBMIT": "Submit new order",
+    "LOGOUT": "Logout"
   },
   "SALUTATION": {
     "TITLE": "Salutation"
@@ -69,13 +102,19 @@
     "TITLE": "Statistics"
   },
   "PASSWORD":{
-    "TITLE": "Password"
+    "TITLE": "Password",
+    "UPDATE": "Update Password",
+    "CHANGE": "Change Password",
+    "CURRENT": "Current password",
+    "NEW": "New password",
+    "CONFIRM": "Confirm password"
   },
   "ADDRESS":{
     "TITLE": "Address",
     "STEP": "Select an address or create a new one",
     "DELIVERY": "Delivery Address",
-    "INVOICE": "Invoice Address"
+    "INVOICE": "Invoice Address",
+    "ADD": "Add a new address"
   },
   "CHART":{
     "SERVICE": "Monatly used services",

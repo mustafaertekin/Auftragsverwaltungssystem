@@ -7,7 +7,7 @@
           {{user.firstName}} {{user.lastName}}
         </div>
         <div fxFlex="100">
-            since: {{ user.creationDate | date: 'short'}}
+            <span translate="USER.SINCE"></span> {{ user.creationDate | date: 'short'}}
         </div>
         <div fxFlex="100">
           {{user.userId | slice:0:7}}

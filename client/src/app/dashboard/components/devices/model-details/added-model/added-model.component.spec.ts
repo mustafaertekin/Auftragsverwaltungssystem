@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddedModelComponent } from './added-model.component';
+import { DashboardModelExstraComponent } from './added-model.component';
 
 describe('AddedModelComponent', () => {
-  let component: AddedModelComponent;
-  let fixture: ComponentFixture<AddedModelComponent>;
+  let component: DashboardModelExstraComponent;
+  let fixture: ComponentFixture<DashboardModelExstraComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddedModelComponent ]
+      declarations: [ DashboardModelExstraComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AddedModelComponent);
+    fixture = TestBed.createComponent(DashboardModelExstraComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
