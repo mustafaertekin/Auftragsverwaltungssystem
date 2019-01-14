@@ -1,26 +1,6 @@
 <div class="customer-details">
-  <!--
-    <div fxLayout="row">
-        <form >
-            <mat-form-field >
-              <input type="text" placeholder="Assignee" aria-label="Assignee"
-                     matInput [formControl]="myControl" [matAutocomplete]="auto">
-              <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-                <mat-option *ngFor="let option of filteredOptions | async" [value]="getFullName(option)"
-                            (click)="showPersonDetails(option)">
-                  {{option.firstName}} {{option.lastName}}
-                </mat-option>
-              </mat-autocomplete>
-            </mat-form-field>
-          </form>
-    </div>
-  -->
-  <h2> </h2>
   <div fxLayout="row">
     <form fxLayout="column" fxFlex="90" [formGroup]="customerForm">
-      <div class="m-t-1 m-b-1">
-        <mat-slide-toggle formControlName="isActive"><span translate="INPUT.ACTIVE"></span></mat-slide-toggle>
-      </div>
       <mat-form-field>
         <mat-select placeholder="{{ 'SALUTATION.TITLE' | translate }}" formControlName="salutation">
           <mat-option value="male">Male</mat-option>
@@ -39,6 +19,9 @@
       <mat-form-field>
         <input matInput placeholder="Email" formControlName="email">
       </mat-form-field>
+      <div class="m-t-1 m-b-1">
+          <mat-slide-toggle formControlName="isActive"><span translate="INPUT.ACTIVATE"></span></mat-slide-toggle>
+        </div>
       <div fxLayout="row" fxLayoutGap="16px" *ngIf="clientId">
         <div>
           <button mat-button mat-raised-button color="accent" class="m-r-1" (click)="submitClientForm()">
@@ -51,7 +34,7 @@
       </div>
       <div fxLayout="row" fxLayoutGap="16px" *ngIf="!clientId">
         <div>
-          <button mat-button mat-raised-button color="accent" class="m-r-1" (click)="createClient()">
+          <button mat-button mat-raised-button color="accent" class="m-r-1 m-t-1" (click)="createClient()">
             <span translate="BUTTON.SAVE"></span>
           </button>
         </div>
