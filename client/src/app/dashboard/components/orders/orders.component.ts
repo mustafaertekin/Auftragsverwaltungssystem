@@ -41,26 +41,42 @@ export class DashboardOrdersComponent implements OnInit, OnChanges {
     this.animationState = 'out';
     this.route.params.subscribe(params => {
       this.currentOrderId = params['id'];
-      if (this.currentOrderId === 'list') {
-        this.currentOrderId = null;
-      }
-      this.getAllOrders(null);
+      // console.log('params', params);
+      this.setInitialSettings();
     });
+
+    // this.router.events.subscribe(params => {
+    //   // console.log('events', params);
+    //   this.setInitialSettings();
+    // });
+  }
+
+  setInitialSettings() {
+    if (this.currentOrderId === 'list') {
+      this.currentOrderId = null;
+    }
+    this.getAllOrders(null);
   }
 
   ngOnChanges() {
   }
 
-  closeOnMobileSelection(){
-    if(this.isMobile) {
+  closeOnMobileSelection(item) {
+    this.navigateToUrl(item);
+    if (this.isMobile) {
       this.opened = false;
     }
+  }
+
+  navigateToUrl(order) {
+    this.currentOrderId = order.orderId;
+    this.router.navigate(['/', 'dashboard', 'orders', order.orderId]);
   }
 
   getAllOrders(event) {
     if (_.includes(['update'], event)) {
       this.animationState = 'out';
-      this.orders = [];
+      // this.orders = [];
     }
     this.orderService.getAll().subscribe(orders => {
       this.orders = orders;

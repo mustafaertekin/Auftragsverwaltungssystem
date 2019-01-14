@@ -1,5 +1,6 @@
 import {AuthError} from "../errors/AuthError";
 import {RoleEnum} from "../models/enums/RoleEnum";
+import * as _ from 'lodash';
 
 const ConnectRoles = require('connect-roles');
 
@@ -25,18 +26,14 @@ export class Roles {
             async: true
         });
 
-        Roles.connectRoles.use(RoleEnum.ADMIN, function (req) {
+        Roles.connectRoles.use('admin', function (req) {
             if (req.user.role === 'admin') {
                 return true;
             }
         });
 
-        Roles.connectRoles.use('modify user', function (req) {
-            if(Roles.isAdmin(req.user)) {
-                return true;
-            } else {
-                return req.user.userId === req.params.userId || req.user.email === req.query.email;
-            }
+        Roles.connectRoles.use('everyone', function (req) {
+            return true;
         });
 
     }

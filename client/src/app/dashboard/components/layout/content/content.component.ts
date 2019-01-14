@@ -30,9 +30,10 @@ export class DashboardMainContentComponent implements OnInit {
 
   ngOnInit() {
     this.animate();
+    this.previousUrl  = this.router.url.split('/')[2];
     this.router.events.subscribe(elm => {
       const subRouter = this.router.url.split('/')[2];
-      if (!this.previousUrl || subRouter !== this.previousUrl) {
+      if (subRouter !== this.previousUrl) {
         this.animate();
         this.previousUrl = subRouter;
       }

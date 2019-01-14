@@ -25,7 +25,15 @@ export class UserRouter extends BaseRouter {
             if (req.query.email) {
                 const user = await this.userManager.findByEmail(req.query.email);
                 res.json(new UserDTO(user));
-            } else {
+            }
+            if(req.user.role === 'member') {
+              const user = await User.findOne<User>({ where: { userId: req.user.userId }});
+              if(user) {
+                return res.json([new UserDTO(user)]);
+              }
+              throw new Error('No user found!');
+            }
+            else {
                 const users = await User.findAll<User>();
                 const userDTOs = users.map(user => {
                     return new UserDTO(user);
@@ -127,14 +135,14 @@ export class UserRouter extends BaseRouter {
     }
 
     private buildRoutes() {
-        this.router.get("/", Auth.getBearerMiddleware(), Roles.connectRoles.can('modify user'), this.get.bind(this));
-        this.router.post("/", Auth.getBearerMiddleware(), Roles.connectRoles.can('modify user'), this.post.bind(this));
-        this.router.delete("/:userId", Auth.getBearerMiddleware(), Roles.connectRoles.can('modify user'), this.delete.bind(this));
-        this.router.put("/:userId", Auth.getBearerMiddleware() , Roles.connectRoles.can('modify user'), this.put.bind(this));
-        this.router.get("/:userId", Auth.getBearerMiddleware() , Roles.connectRoles.can('modify user'), this.getById.bind(this));
-        this.router.get("/current", Auth.getBearerMiddleware(), this.getByToken.bind(this));
+        this.router.get("/", Auth.getBearerMiddleware(), Roles.connectRoles.can('everyone'), this.get.bind(this));
+        this.router.post("/", Auth.getBearerMiddleware(), Roles.connectRoles.can('everyone'), this.post.bind(this));
+        this.router.delete("/:userId", Auth.getBearerMiddleware(), Roles.connectRoles.can('admin'), this.delete.bind(this));
+        this.router.put("/:userId", Auth.getBearerMiddleware() , Roles.connectRoles.can('everyone'), this.put.bind(this));
+        this.router.get("/:userId", Auth.getBearerMiddleware() , Roles.connectRoles.can('everyone'), this.getById.bind(this));
+        this.router.get("/current", Auth.getBearerMiddleware(), Roles.connectRoles.can('everyone'), this.getByToken.bind(this));
         this.router.get("/search/:text", Auth.getBearerMiddleware(), this.search.bind(this));
-        this.router.put("/:userId/password",  Auth.getBearerMiddleware(), Roles.connectRoles.can('modify user'), this.changePassword.bind(this));
-        this.router.put("/:userId/profileImage",  Auth.getBearerMiddleware(), Roles.connectRoles.can('modify user'), this.uploadHandler.single('profileImage'), this.uploadProfileImage.bind(this));
+        this.router.put("/:userId/password",  Auth.getBearerMiddleware(), Roles.connectRoles.can('everyone'), this.changePassword.bind(this));
+        this.router.put("/:userId/profileImage",  Auth.getBearerMiddleware(), Roles.connectRoles.can('everyone'), this.uploadHandler.single('profileImage'), this.uploadProfileImage.bind(this));
     }
 }

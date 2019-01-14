@@ -16,7 +16,7 @@
           </button>
         </div>
       </div>
-      <div fxLayout="row" fxLayout.xs="column" class="m-1">
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="16px">
         <div fxFlex="60">
           <div *ngFor="let service of currentOrder?.orderServices; let i = index;">
             <avs-order-item-service (emitter)="getOrderById($event)" [service]="service"></avs-order-item-service>
@@ -53,6 +53,7 @@
           <div>
             <mat-card>
               <mat-card-content>
+                <h3>Created at:</h3>
                 {{currentOrder?.deliveryDate | date: 'short'}}
               </mat-card-content>
             </mat-card>

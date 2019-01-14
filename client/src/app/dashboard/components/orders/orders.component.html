@@ -1,16 +1,17 @@
-<div class="order-component avs-list m-t-1 m-l-1">
+<div class="order-component avs-list m-1">
   <mat-card>
-    <mat-card-header>
+    <mat-card-header >
       <mat-icon class="title-icon-size" (click)="toggleOrderMenu()" mat-card-avatar>format_list_bulleted</mat-icon>
       <mat-card-title translate="ORDER.TITLE"></mat-card-title>
       <mat-card-subtitle translate="ORDER.LIST"></mat-card-subtitle>
+
       <div class="search-area">
         <div class="search-wrapper">
           <avs-search (word)="searchWord($event)"></avs-search>
         </div>
       </div>
     </mat-card-header>
-    <mat-divider></mat-divider>
+    <mat-divider class="m-t-1 m-b-1"></mat-divider>
     <mat-card-content fxLayout="row" class="order-list-container list-container">
       <div class="no-order full-vw" *ngIf="!orders?.length">
         <span translate="NOTICE.TITLE"></span>
@@ -23,7 +24,7 @@
                 <mat-list role="list">
                   <mat-list-item class="order-item-holder item-holder" role="listitem" *ngFor="let order of orders">
                     <avs-dashboard-order-item [currentId]="currentOrderId"
-                     [order]="order" class="avs-dashboard-order-item" (click)="closeOnMobileSelection()">
+                     [order]="order" class="avs-dashboard-order-item" (click)="closeOnMobileSelection(order)">
                     </avs-dashboard-order-item>
                   </mat-list-item>
                 </mat-list>

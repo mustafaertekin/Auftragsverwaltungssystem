@@ -114,7 +114,7 @@
             </div>
           </mat-list-item>
       </mat-nav-list>
-      <mat-nav-list dense>
+      <mat-nav-list dense *ngIf="isAdmin()">
         <mat-list-item [routerLink]="['/','dashboard','new-user']">
           <div fxLayout="row" class="vertical-center" fxLayoutAlign="space-between center">
             <span class="m-r-1">

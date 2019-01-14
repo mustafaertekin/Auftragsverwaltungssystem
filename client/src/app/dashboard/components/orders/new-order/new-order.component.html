@@ -18,7 +18,7 @@
         </mat-step>
         <mat-step [optional]="optional">
           <ng-template matStepLabel><span translate="CUSTOMER.STEP"></span></ng-template>
-          <div fxLayout="row" fxLayoutGap="40px">
+          <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="40px">
             <div fxFlex="50">
               <h3 translate="CUSTOMER.FIND"></h3>
               <form>
@@ -35,7 +35,7 @@
             <div fxFlex="50">
               <h3>
                 <span *ngIf="customer?.clientId" translate="UPDATE.TITLE"></span>
-                <span *ngIf="!customer?.clientId" translate="ADD.TITLE"></span>             
+                <span *ngIf="!customer?.clientId" translate="ADD.TITLE"></span>
               </h3>
               <avs-dashboard-customer-details [clientId]="customer?.clientId" (emitter)="setCustomer($event)"
                 fxFlexFill></avs-dashboard-customer-details>
@@ -53,7 +53,7 @@
         <mat-step>
           <ng-template matStepLabel><span translate="ADDRESS.STEP"></span></ng-template>
           <div fxLayout="column">
-            <div fxLayout="row" fxLayoutGap="40px">
+            <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="40px">
               <div fxFlex="50">
                 <form fxLayout="column" fxFlex="100" [formGroup]="addressForms">
                   <mat-form-field>
