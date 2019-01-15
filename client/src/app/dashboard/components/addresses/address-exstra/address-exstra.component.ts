@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as _ from 'lodash';
 import { AddressService } from '@avs-ecosystem/services/address.service';
 import { DashboardAddressesComponent } from '../addresses.component';
+import { NotificationService } from '@avs-ecosystem/services/notification-sevice';
 
 @Component({
   selector: 'avs-dashboard-address-exstra',
@@ -16,6 +17,7 @@ export class DashboardAddressesExstraComponent implements OnInit {
   @Input() userId: string;
 
   constructor(private fb: FormBuilder,
+    private notificationService: NotificationService,
     private parent: DashboardAddressesComponent,
     private addressService: AddressService) {
   }
@@ -49,6 +51,8 @@ export class DashboardAddressesExstraComponent implements OnInit {
       addresInfo.addressId = this.address.addressId;
       this.addressService.update(addresInfo).subscribe(() => {
         this.parent.getAllAddressesByClientId(this.clientId);
+      }, (err) => {
+        this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
       });
     }
   }
@@ -60,6 +64,8 @@ export class DashboardAddressesExstraComponent implements OnInit {
       addresInfo.addressId = this.address.addressId;
       this.addressService.update(addresInfo).subscribe(() => {
         this.parent.getAllAddressesByClientId(this.userId);
+      }, (err) => {
+        this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
       });
     }
   }
@@ -67,6 +73,8 @@ export class DashboardAddressesExstraComponent implements OnInit {
   deleteAddress(addressId) {
     this.addressService.delete(addressId).subscribe(addresses => {
       this.parent.getAllAddressesByClientId(this.clientId || this.userId);
+    }, (err) => {
+      this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
     });
   }
 }

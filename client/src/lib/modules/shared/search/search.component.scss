@@ -1,5 +1,5 @@
 .search-component {
-  margin-right: 30px;
+  margin-right: 16px;
   display: flex;
   justify-content: flex-end;
   .search__title {
@@ -11,7 +11,6 @@
 
   .search__container {
     max-width: 600px;
-    min-width: 300px;
     display: flex;
     justify-content: flex-end;
     width: 100%;

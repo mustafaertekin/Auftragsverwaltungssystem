@@ -2,6 +2,8 @@ import { Component, OnInit, OnChanges } from '@angular/core';
 import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
 import { UserService } from '@avs-ecosystem/services/user.service';
 import { ActivatedRoute } from '@angular/router';
+import { NotificationService } from '@avs-ecosystem/services/notification-sevice';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'avs-users',
@@ -13,7 +15,7 @@ export class UsersComponent implements OnInit, OnChanges {
   currentUserId: string;
   animationState: string;
 
-  constructor(private userService: UserService, private route: ActivatedRoute) { }
+  constructor(private userService: UserService, private notificationService: NotificationService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.init();
@@ -63,6 +65,8 @@ export class UsersComponent implements OnInit, OnChanges {
     }
     this.userService.getByText(word).subscribe(users => {
       this.setAfterUpdate(users);
+    }, (err) => {
+      this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
     });
   }
 }

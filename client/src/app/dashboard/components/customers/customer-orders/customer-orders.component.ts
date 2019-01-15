@@ -4,7 +4,7 @@ import {Observable, BehaviorSubject} from 'rxjs';
 import { Client } from '@avs-ecosystem/models/Client';
 import * as _ from 'lodash';
 import { ClientService } from '@avs-ecosystem/services/client.service';
-
+import { NotificationService } from '@avs-ecosystem/services/notification-sevice';
 
 @Component({
   selector: 'avs-dashboard-customer-orders',
@@ -18,6 +18,7 @@ export class DashboardCustomerOrdersComponent implements OnInit, OnChanges {
 
 
   constructor(private fb: FormBuilder,
+    private notificationService: NotificationService,
     private clientService: ClientService) {
   }
 
@@ -27,6 +28,8 @@ export class DashboardCustomerOrdersComponent implements OnInit, OnChanges {
   ngOnChanges() {
     this.clientService.getOrders(this.clientId).subscribe(orders => {
       this.orders = orders;
+    }, (err) => {
+      this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
     });
   }
 }

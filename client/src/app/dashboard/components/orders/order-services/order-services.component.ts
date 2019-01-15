@@ -9,6 +9,7 @@ import { DeviceModel } from '@avs-ecosystem/models/DeviceModel';
 import { DeviceService } from '@avs-ecosystem/services/device.service';
 import { ModelService } from '@avs-ecosystem/services/device-model.service';
 import { DeviceServiceType } from '@avs-ecosystem/services/device-service-type.service';
+import { NotificationService } from '@avs-ecosystem/services/notification-sevice';
 
 
 @Component({
@@ -34,6 +35,7 @@ export class DashboardOrderServicesComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
     private deviceServices: DeviceService,
+    private notificationService: NotificationService,
     private modelservice: ModelService,
     private deviceServiceTypeService: DeviceServiceType) {}
 
@@ -50,6 +52,8 @@ export class DashboardOrderServicesComponent implements OnInit {
   getAllDevices() {
     this.deviceServices.getAll().subscribe(devices => {
       this.devices = devices;
+    }, (err) => {
+      this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
     });
   }
 
@@ -64,6 +68,8 @@ export class DashboardOrderServicesComponent implements OnInit {
     this.model = model;
     this.deviceServiceTypeService.getAllByModelId(model.deviceModelId).subscribe(services => {
       this.services = services;
+    }, (err) => {
+      this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
     });
   }
 

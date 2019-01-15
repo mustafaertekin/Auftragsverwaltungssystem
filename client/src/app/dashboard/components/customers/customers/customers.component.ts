@@ -1,6 +1,8 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
 import { ClientService } from '@avs-ecosystem/services/client.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { NotificationService } from '@avs-ecosystem/services/notification-sevice';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'avs-dashboard-customers',
@@ -13,6 +15,7 @@ export class DashboardCustomersComponent implements OnInit {
   animationState: string;
 
   constructor(private clientService: ClientService, private router: Router,
+    private notificationService: NotificationService,
     private route: ActivatedRoute ) { }
 
   ngOnInit() {
@@ -32,6 +35,8 @@ export class DashboardCustomersComponent implements OnInit {
       this.customers = customers;
       this.currentCustomerId = this.currentCustomerId || (this.customers[0] ? this.customers[0].clientId : null);
       this.animationState = 'in';
+    }, (err) => {
+      this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
     });
   }
 
@@ -50,6 +55,8 @@ export class DashboardCustomersComponent implements OnInit {
       this.customers = customers;
       this.currentCustomerId = this.customers[0] ? this.customers[0].clientId : null;
       this.animationState = 'in';
+    }, (err) => {
+      this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
     });
   }
 

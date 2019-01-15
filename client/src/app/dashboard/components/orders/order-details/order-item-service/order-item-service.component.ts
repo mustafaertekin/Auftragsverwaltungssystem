@@ -1,6 +1,7 @@
 import {Component, OnInit, Input, Output, EventEmitter, OnChanges} from '@angular/core';
 import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
 import {Observable, BehaviorSubject} from 'rxjs';
+import { NotificationService } from '@avs-ecosystem/services/notification-sevice';
 import * as _ from 'lodash';
 import { Device } from '@avs-ecosystem/models/Device';
 import { OrderForm } from '@avs-ecosystem/models/OrderForm';
@@ -17,7 +18,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './order-item-service.component.html',
   styleUrls: ['./order-item-service.component.scss']
 })
-export class DashboardOrderItemServiceComponent implements OnInit {
+export class DashboardOrderItemServiceComponent implements OnInit, OnChanges {
 
   @Input() service;
   @Input() orderId;
@@ -35,6 +36,7 @@ export class DashboardOrderItemServiceComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private deviceServices: DeviceService,
+    private notificationService: NotificationService,
     private modelservice: ModelService,
     private orderItemService: OrderItemService,
     private deviceServiceTypeService: DeviceServiceType,
@@ -45,6 +47,13 @@ export class DashboardOrderItemServiceComponent implements OnInit {
     this.addNewService = false;
     this.setForm();
     this.getDevices();
+    if (this.service) {
+      this.getModelsByDeviceId(this.service.device);
+      this.getAllServicesByModelId(this.service.deviceModel);
+    }
+  }
+
+  ngOnChanges() {
     if (this.service) {
       this.getModelsByDeviceId(this.service.device);
       this.getAllServicesByModelId(this.service.deviceModel);
@@ -72,6 +81,8 @@ export class DashboardOrderItemServiceComponent implements OnInit {
   getDevices () {
     this.deviceServices.getAll().subscribe(devices => {
       this.devices = devices;
+    }, (err) => {
+      this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
     });
   }
 
@@ -79,13 +90,18 @@ export class DashboardOrderItemServiceComponent implements OnInit {
     this.device = device;
     this.modelservice.getAllByDeviceId(device.deviceId).subscribe(models => {
       this.models = models;
+    }, (err) => {
+      this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
     });
   }
 
   getAllServicesByModelId(model: DeviceModel) {
     this.model = model;
-    this.deviceServiceTypeService.getAllByModelId(model.deviceModelId).subscribe(services => {
+    this.deviceServiceTypeService.getAllByModelId(model.deviceModelId)
+    .subscribe(services => {
       this.services = services;
+    }, (err) => {
+      this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
     });
   }
 
@@ -96,18 +112,26 @@ export class DashboardOrderItemServiceComponent implements OnInit {
   deleteOrderItemService () {
     this.orderItemService.deleteOrderService(this.service.orderServiceId).subscribe(() => {
       this.emitter.emit('deleted');
+    }, (err) => {
+      this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
     });
   }
 
   updateService() {
     this.orderItemService.updateItem(this.serviceForm.value).subscribe(() => {
+      this.notificationService.success('Service updated!');
       this.emitter.emit('updated');
+    }, (err) => {
+      this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
     });
   }
 
   addService() {
     this.orderItemService.createOrderService(this.serviceForm.value).subscribe(() => {
+      this.notificationService.success('Service saved!');
       this.emitter.emit('added');
+    }, (err) => {
+      this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
     });
   }
 }

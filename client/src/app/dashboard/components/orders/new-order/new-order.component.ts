@@ -6,6 +6,7 @@ import * as _ from 'lodash';
 import { OrderService } from '@avs-ecosystem/services/order.service';
 import { ClientService } from '@avs-ecosystem/services/client.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NotificationService } from '@avs-ecosystem/services/notification-sevice';
 
 @Component({
   selector: 'avs-dashboard-new-order',
@@ -22,6 +23,7 @@ export class DashboardNewOrderComponent implements OnInit, AfterContentInit {
   constructor(private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
+    private notificationService: NotificationService,
     private clientService: ClientService,
     private orderService: OrderService) {}
 
@@ -73,6 +75,8 @@ export class DashboardNewOrderComponent implements OnInit, AfterContentInit {
     }
     this.clientService.getByText(word).subscribe(customers => {
       this.customers = customers;
+    }, (err) => {
+      this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
     });
   }
 

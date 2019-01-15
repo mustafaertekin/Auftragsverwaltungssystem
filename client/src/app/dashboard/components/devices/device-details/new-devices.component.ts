@@ -4,6 +4,7 @@ import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
 import {Observable, BehaviorSubject} from 'rxjs';
 import { Device } from '@avs-ecosystem/models/Device';
 import { AppSettingsService } from '@avs-ecosystem/services/app-settings.service';
+import { NotificationService } from '@avs-ecosystem/services/notification-sevice';
 import * as _ from 'lodash';
 
 @Component({
@@ -20,6 +21,7 @@ export class DashboardNewDeviceComponent implements OnInit {
 
   constructor(
     private settingService:  AppSettingsService,
+    private notificationService: NotificationService,
     private deviceService: DeviceService, private fb: FormBuilder
     ) {
   }
@@ -35,6 +37,8 @@ export class DashboardNewDeviceComponent implements OnInit {
   public getAllDevices() {
     this.deviceService.getAll().subscribe(result => {
       this.devices = result;
+    }, (err) => {
+      this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
     });
   }
 
@@ -42,6 +46,8 @@ export class DashboardNewDeviceComponent implements OnInit {
     if (this.deviceForm.valid) {
       this.deviceService.create(this.deviceForm.value).subscribe(result => {
         this.getAllDevices();
+      }, (err) => {
+        this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
       });
     }
   }

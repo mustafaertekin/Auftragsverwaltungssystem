@@ -3,8 +3,8 @@ import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
 import * as _ from 'lodash';
 import { UserService } from '@avs-ecosystem/services/user.service';
 import { AddressService } from '@avs-ecosystem/services/address.service';
+import { NotificationService } from '@avs-ecosystem/services/notification-sevice';
 import { Router } from '@angular/router';
-
 
 @Component({
   selector: 'avs-dashboard-new-user',
@@ -19,6 +19,7 @@ export class DashboardNewUserComponent implements OnInit {
   constructor(private fb: FormBuilder,
     private router: Router,
     private addressService: AddressService,
+    private notificationService: NotificationService,
     private userService: UserService) {
   }
 
@@ -55,7 +56,9 @@ export class DashboardNewUserComponent implements OnInit {
           this.isUserSubmitted = true;
           this.user = result;
           // this.router.navigate(['/', 'dashboard', 'users', 'list']);
-        }, err => console.log('Err from user submit', err));
+        }, (err) => {
+          this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
+        });
     }
   }
 }

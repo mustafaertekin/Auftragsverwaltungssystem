@@ -1,8 +1,9 @@
 import { Component, OnInit, Input, OnChanges, Output, EventEmitter } from '@angular/core';
 import { OrderService } from '@avs-ecosystem/services/order.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import * as _ from 'lodash';
 import { AppSettingsService } from '@avs-ecosystem/services/app-settings.service';
-
+import { NotificationService } from '@avs-ecosystem/services/notification-sevice';
 
 @Component({
   selector: 'avs-dashboard-order-details',
@@ -17,6 +18,7 @@ export class DashboardOrderDetailsComponent implements OnInit, OnChanges {
   disableDownloadButton: boolean;
   editorContent: string;
   currentUser: any;
+  animationState: string;
 
   public orderStatus: string;
 
@@ -30,21 +32,24 @@ export class DashboardOrderDetailsComponent implements OnInit, OnChanges {
   constructor(
     private settingService:  AppSettingsService,
     private orderService: OrderService,
+    private notificationService: NotificationService,
     private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit() {
     this.disableDownloadButton = false;
-
     this.settingService.getCurentUser().subscribe(currentUser => {
       this.currentUser = currentUser;
     });
   }
 
   ngOnChanges (changes) {
-    this.orderService.getById(this.currentOrderId).subscribe(order => {
-      this.currentOrder = order;
-      this.editorContent = this.currentOrder.description;
-    });
+    this.currentOrder = null;
+    if (this.currentOrderId) {
+      this.orderService.getById(this.currentOrderId).subscribe(order => {
+        this.currentOrder = order;
+        this.editorContent = this.currentOrder.description;
+      });
+    }
   }
 
   getOrderById (event) {
@@ -54,6 +59,9 @@ export class DashboardOrderDetailsComponent implements OnInit, OnChanges {
   deleteOrder(orderId) {
     this.orderService.deleteOrder(orderId).subscribe(result => {
       this.emitter.emit('update');
+      this.notificationService.success('Order has been deleted!');
+    }, (err) => {
+      this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
     });
   }
 
@@ -64,12 +72,17 @@ export class DashboardOrderDetailsComponent implements OnInit, OnChanges {
       const blob = new Blob([response], { type: 'application/pdf'});
       const url = window.URL.createObjectURL(blob);
       window.open(url);
+      this.notificationService.success('Document is ready!');
+    }, (err) => {
+      this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
     });
   }
 
   emailToClient(orderId) {
     this.orderService.mail(orderId).subscribe(response => {
-      // notification
+      this.notificationService.success('Email is sent');
+    }, (err) => {
+      this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
     });
   }
 
@@ -81,6 +94,9 @@ export class DashboardOrderDetailsComponent implements OnInit, OnChanges {
 
     this.orderService.saveStatus(order).subscribe(response => {
       this.emitter.emit('update');
+      this.notificationService.success('Status has been updated!');
+    }, (err) => {
+      this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
     });
   }
 
@@ -90,7 +106,9 @@ export class DashboardOrderDetailsComponent implements OnInit, OnChanges {
       orderId: this.currentOrderId
     };
     this.orderService.comment(order).subscribe(response => {
-      // notification
+      this.notificationService.success('Commend has been added!');
+    }, (err) => {
+      this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
     });
   }
 

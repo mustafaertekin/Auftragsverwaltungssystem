@@ -5,7 +5,7 @@ import { Client } from '@avs-ecosystem/models/Client';
 import * as _ from 'lodash';
 import { ClientService } from '@avs-ecosystem/services/client.service';
 import { AddressService } from '@avs-ecosystem/services/address.service';
-
+import { NotificationService } from '@avs-ecosystem/services/notification-sevice';
 
 @Component({
   selector: 'avs-dashboard-new-customer',
@@ -18,6 +18,7 @@ export class DashboardNewCustomerComponent implements OnInit, OnChanges {
   public client: any;
 
   constructor(private fb: FormBuilder, private addressService: AddressService,
+    private notificationService: NotificationService,
     private clientService: ClientService) {
   }
 
@@ -50,7 +51,9 @@ export class DashboardNewCustomerComponent implements OnInit, OnChanges {
         .subscribe(result => {
           this.client = result;
           this.isClientSubmitted = true;
-        }, err => console.log('Err from client submit', err));
+        }, (err) => {
+          this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
+        });
     }
   }
 }

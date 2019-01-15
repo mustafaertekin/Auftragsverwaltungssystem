@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
 import { AppSettingsService } from '@avs-ecosystem/services/app-settings.service';
 import { UserService } from '@avs-ecosystem/services/user.service';
+import { NotificationService } from '@avs-ecosystem/services/notification-sevice';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'avs-dashboard-settings',
@@ -24,6 +26,7 @@ export class DashboardSettingsComponent implements OnInit {
 
   constructor(private settingService: AppSettingsService,
     private userService: UserService,
+    private notificationService: NotificationService,
     private fb: FormBuilder) { }
 
   ngOnInit() {
@@ -54,7 +57,12 @@ export class DashboardSettingsComponent implements OnInit {
     if (this.userSettings.valid) {
       this.settingService.updateOrCreate(data).subscribe(user => {
         this.settingService.setUser(user);
+        this.notificationService.success('Settings are updated');
+      }, (err) => {
+        this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
       });
+    } else {
+      this.notificationService.error('Form is not valid!');
     }
   }
 

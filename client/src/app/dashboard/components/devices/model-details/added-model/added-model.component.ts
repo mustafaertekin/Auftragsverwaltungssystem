@@ -6,6 +6,7 @@ import { ModelService } from '@avs-ecosystem/services/device-model.service';
 import * as _ from 'lodash';
 import { DashboardDeviceModelComponent } from '../device-model.component';
 import { AppSettingsService } from '@avs-ecosystem/services/app-settings.service';
+import { NotificationService } from '@avs-ecosystem/services/notification-sevice';
 
 @Component({
   selector: 'avs-added-model',
@@ -22,6 +23,7 @@ export class DashboardModelExstraComponent implements OnInit {
     private modelService: ModelService,
     private parent: DashboardDeviceModelComponent,
     private fb: FormBuilder,
+    private notificationService: NotificationService,
     private settingService:  AppSettingsService) {
   }
 
@@ -32,6 +34,8 @@ export class DashboardModelExstraComponent implements OnInit {
 
     this.settingService.getCurentUser().subscribe(currentUser => {
       this.currentUser = currentUser;
+    }, (err) => {
+      this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
     });
   }
 
@@ -41,6 +45,8 @@ export class DashboardModelExstraComponent implements OnInit {
       model.modelId = this.model.deviceModelId;
       this.modelService.update(model).subscribe(result => {
         this.parent.getAllModels();
+      }, (err) => {
+        this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
       });
     }
   }
@@ -49,6 +55,8 @@ export class DashboardModelExstraComponent implements OnInit {
     if (this.modelForm.valid && this.model.deviceModelId) {
       this.modelService.delete(this.model.deviceModelId).subscribe(() => {
         this.parent.getAllModels();
+      }, (err) => {
+        this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
       });
     }
   }

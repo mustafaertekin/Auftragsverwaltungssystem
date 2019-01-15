@@ -6,7 +6,7 @@ import * as _ from 'lodash';
 import { UserService } from '@avs-ecosystem/services/user.service';
 import { AddressService } from '@avs-ecosystem/services/address.service';
 import { AppSettingsService } from '@avs-ecosystem/services/app-settings.service';
-
+import { NotificationService } from '@avs-ecosystem/services/notification-sevice';
 
 @Component({
   selector: 'avs-dashboard-user-details',
@@ -24,6 +24,7 @@ export class DashboardUserDetailsComponent implements OnInit, OnChanges {
 
   constructor(private fb: FormBuilder, private addressService: AddressService,
     private userService: UserService,
+    private notificationService: NotificationService,
     private settingService:  AppSettingsService) {
   }
 
@@ -39,6 +40,8 @@ export class DashboardUserDetailsComponent implements OnInit, OnChanges {
     this.userService.getById(this.userId).subscribe(user => {
       this.user = user;
       this.setFormFields(user);
+    }, (err) => {
+      this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
     });
   }
 
@@ -68,7 +71,10 @@ export class DashboardUserDetailsComponent implements OnInit, OnChanges {
         .subscribe(result => {
           const info = { id: result.userId, type: 'update'};
           this.emitter.emit(info);
-        }, err => console.log('Err from user submit', err));
+          this.notificationService.success('User is updated');
+        }, (err) => {
+          this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
+        });
     }
   }
 
@@ -77,7 +83,9 @@ export class DashboardUserDetailsComponent implements OnInit, OnChanges {
     .subscribe(result => {
       const info = { id: result.userId, type: 'delete'};
       this.emitter.emit(info);
-    }, err => console.log('Err from user submit', err));
+    }, (err) => {
+      this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
+    });
   }
 
   setFormFields(result) {
@@ -95,7 +103,10 @@ export class DashboardUserDetailsComponent implements OnInit, OnChanges {
       this.userService.updatePassword(this.userId, this.updatePasswordForm.value)
         .subscribe(result => {
           this.emitter.emit(result.userId);
-        }, err => console.log('Err from user submit', err));
+          this.notificationService.success('Password is updated');
+        }, (err) => {
+          this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
+        });
     }
   }
 

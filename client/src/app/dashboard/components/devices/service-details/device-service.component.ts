@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { Service } from '@avs-ecosystem/models/Service';
 import { DeviceService } from '@avs-ecosystem/services/device.service';
 import { DeviceServiceType } from '@avs-ecosystem/services/device-service-type.service';
+import { NotificationService } from '@avs-ecosystem/services/notification-sevice';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'avs-dashboard-device-service',
@@ -21,7 +23,8 @@ export class DashboardDeviceServiceComponent implements OnInit, OnChanges {
   @Input() modelId;
   public selectedService: Service;
 
-  constructor( private deviceService: DeviceServiceType, private fb: FormBuilder) {
+  constructor( private deviceService: DeviceServiceType,
+    private notificationService: NotificationService, private fb: FormBuilder) {
 
   }
 
@@ -39,6 +42,8 @@ export class DashboardDeviceServiceComponent implements OnInit, OnChanges {
     if (this.modelId) {
       this.deviceService.getAllByModelId(this.modelId).subscribe(result => {
         this.services = result;
+      }, (err) => {
+        this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
       });
     }
   }
@@ -47,6 +52,8 @@ export class DashboardDeviceServiceComponent implements OnInit, OnChanges {
     if (this.serviceForm.valid && this.modelId) {
       this.deviceService.create(this.serviceForm.value, this.modelId).subscribe(result => {
         this.getAllServices();
+      }, (err) => {
+        this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
       });
     }
   }

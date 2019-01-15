@@ -5,7 +5,7 @@ import * as _ from 'lodash';
 import { DashboardDeviceServiceComponent } from '../device-service.component';
 import { DeviceServiceType } from '@avs-ecosystem/services/device-service-type.service';
 import { AppSettingsService } from '@avs-ecosystem/services/app-settings.service';
-
+import { NotificationService } from '@avs-ecosystem/services/notification-sevice';
 
 @Component({
   selector: 'avs-added-service',
@@ -20,6 +20,7 @@ export class DashboardDeviceServiceExstraComponent implements OnInit {
   @Input() service: Service;
   constructor( private deviceServiceType: DeviceServiceType,
     private parent: DashboardDeviceServiceComponent,
+    private notificationService: NotificationService,
     private fb: FormBuilder,
     private settingService:  AppSettingsService) {
 
@@ -45,6 +46,8 @@ export class DashboardDeviceServiceExstraComponent implements OnInit {
       service.serviceId = this.service.serviceId;
       this.deviceServiceType.update(service).subscribe(result => {
         this.parent.getAllServices();
+      }, (err) => {
+        this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
       });
     }
   }
@@ -53,6 +56,8 @@ export class DashboardDeviceServiceExstraComponent implements OnInit {
     if (this.serviceForm.valid && this.service.serviceId) {
       this.deviceServiceType.delete(this.service.serviceId).subscribe(() => {
         this.parent.getAllServices();
+      }, (err) => {
+        this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
       });
     }
   }

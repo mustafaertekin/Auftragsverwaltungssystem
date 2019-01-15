@@ -8,7 +8,7 @@ import { ClientService } from '@avs-ecosystem/services/client.service';
 import { AddressService } from '@avs-ecosystem/services/address.service';
 import { DashboardNewOrderComponent } from '../../orders/new-order/new-order.component';
 import { AppSettingsService } from '@avs-ecosystem/services/app-settings.service';
-
+import { NotificationService } from '@avs-ecosystem/services/notification-sevice';
 
 @Component({
   selector: 'avs-dashboard-customer-details',
@@ -26,7 +26,7 @@ export class DashboardCustomerDetailsComponent implements OnInit, OnChanges {
   filteredOptions: Observable<Client[]>;
 
 
-  constructor(private fb: FormBuilder, private addressService: AddressService,
+  constructor(private fb: FormBuilder, private notificationService: NotificationService, private addressService: AddressService,
     private clientService: ClientService,
     private settingService:  AppSettingsService) {
     this.setCustomerForm();
@@ -35,6 +35,8 @@ export class DashboardCustomerDetailsComponent implements OnInit, OnChanges {
   ngOnInit() {
     this.settingService.getCurentUser().subscribe(currentUser => {
       this.currentUser = currentUser;
+    }, (err) => {
+      this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
     });
   }
 
@@ -45,6 +47,8 @@ export class DashboardCustomerDetailsComponent implements OnInit, OnChanges {
     }
     this.clientService.getById(this.clientId).subscribe(client => {
       this.setFormFields(client);
+    }, (err) => {
+      this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
     });
   }
 
@@ -77,7 +81,9 @@ export class DashboardCustomerDetailsComponent implements OnInit, OnChanges {
       this.clientService.updateClient(this.clientId, this.customerForm.value)
         .subscribe(result => {
           this.emitter.emit(result);
-        }, err => console.log('Err from client submit', err));
+        }, (err) => {
+          this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
+        });
     }
   }
 
@@ -86,13 +92,17 @@ export class DashboardCustomerDetailsComponent implements OnInit, OnChanges {
       this.clientService.createClient(this.customerForm.value)
         .subscribe(result => {
           this.emitter.emit(result);
-        }, err => console.log('Err from client submit', err));
+        }, (err) => {
+          this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
+        });
     }
   }
 
   public deleteClient() {
     this.clientService.delete(this.clientId).subscribe(result => {
        this.emitter.emit(result.clientId);
+    }, (err) => {
+      this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
     });
   }
 

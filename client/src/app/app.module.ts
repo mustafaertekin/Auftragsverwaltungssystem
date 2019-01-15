@@ -16,6 +16,7 @@ import { Http, AuthService,
   TokenService,
   IsAuthorizedGuard
 } from '@avs-ecosystem/services';
+import { SimpleNotificationsModule } from 'angular2-notifications';
 
 import { HomePageModule } from './home/home.module';
 import { DashboardPageModule } from './dashboard/dashboard.module';

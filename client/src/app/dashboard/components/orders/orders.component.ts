@@ -1,9 +1,11 @@
 import { Component, OnInit, AfterContentInit, ViewChild, ElementRef, OnChanges} from '@angular/core';
-import { OrderService } from '@avs-ecosystem/services/order.service';
 import { ObservableMedia, MediaChange } from '@angular/flex-layout';
 import { ActivatedRoute, Router } from '@angular/router';
-import * as _ from 'lodash';
 import { Subscription } from 'rxjs';
+import * as _ from 'lodash';
+import { OrderService } from '@avs-ecosystem/services/order.service';
+import { NotificationService } from '@avs-ecosystem/services/notification-sevice';
+
 
 @Component({
   selector: 'avs-dashboard-orders',
@@ -20,7 +22,9 @@ export class DashboardOrdersComponent implements OnInit, OnChanges {
   watcher: Subscription;
   isMobile: boolean;
 
-  constructor(private orderService: OrderService, media: ObservableMedia,
+  constructor(private orderService: OrderService,
+    private notificationService: NotificationService,
+    media: ObservableMedia,
     private route: ActivatedRoute, private router: Router) {
       this.watcher = media.subscribe((change: MediaChange) => {
         if (change.mqAlias === 'sm' || change.mqAlias === 'xs') {
@@ -38,17 +42,11 @@ export class DashboardOrdersComponent implements OnInit, OnChanges {
   ngOnInit() {
     this.isMobile = false;
     this.currentOrderId = null;
-    this.animationState = 'out';
+    this.animationState = 'in';
     this.route.params.subscribe(params => {
       this.currentOrderId = params['id'];
-      // console.log('params', params);
       this.setInitialSettings();
     });
-
-    // this.router.events.subscribe(params => {
-    //   // console.log('events', params);
-    //   this.setInitialSettings();
-    // });
   }
 
   setInitialSettings() {
@@ -74,14 +72,15 @@ export class DashboardOrdersComponent implements OnInit, OnChanges {
   }
 
   getAllOrders(event) {
+    // in order to trigger change on child component
+    const tempId = this.currentOrderId;
+    this.currentOrderId = null;
+
     if (_.includes(['update'], event)) {
-      this.animationState = 'out';
-      // this.orders = [];
     }
     this.orderService.getAll().subscribe(orders => {
       this.orders = orders;
-      this.animationState = 'in';
-      this.currentOrderId = this.currentOrderId || (orders[0] ? orders[0].orderId : null);
+      this.currentOrderId = tempId || (orders[0] ? orders[0].orderId : null);
     });
   }
 
@@ -96,6 +95,9 @@ export class DashboardOrdersComponent implements OnInit, OnChanges {
       return this.getAllOrders(null);
     }
     this.orderService.getByText(word).subscribe(orders => {
+      if (!orders.length) {
+        this.notificationService.warn('No result found!');
+      }
       this.orders = orders;
       this.animationState = 'in';
       this.currentOrderId = orders[0] ? orders[0].orderId : null;
