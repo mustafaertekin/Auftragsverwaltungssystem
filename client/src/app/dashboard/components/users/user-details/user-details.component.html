@@ -2,7 +2,7 @@
   <h3 translate="USER.UPDATE"></h3>
   <div fxLayout="row">
     <form fxLayout="column" fxFlex="90" [formGroup]="userForm">
-      <div class="m-t-1 m-b-1">
+      <div class="m-t-1 m-b-1" *ngIf="isAdmin()">
         <mat-slide-toggle formControlName="isActive"><span translate="INPUT.ACTIVE"></span></mat-slide-toggle>
       </div>
       <mat-form-field>
@@ -25,7 +25,7 @@
           <button mat-button mat-raised-button color="accent" class="m-r-1" (click)="submitUserForm()">
             <span translate="BUTTON.UPDATE"></span>
           </button>
-          <button mat-button mat-raised-button color="warn" class="m-r-1" (click)="deleteUser()">
+          <button mat-button mat-raised-button color="warn" class="m-r-1" (click)="deleteUser()" *ngIf="isAdmin()">
             <span translate="BUTTON.DELETE"></span>
           </button>
         </div>

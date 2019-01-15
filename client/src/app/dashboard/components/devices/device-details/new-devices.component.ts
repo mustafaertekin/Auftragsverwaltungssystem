@@ -3,6 +3,7 @@ import { DeviceService } from '@avs-ecosystem/services/device.service';
 import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
 import {Observable, BehaviorSubject} from 'rxjs';
 import { Device } from '@avs-ecosystem/models/Device';
+import { AppSettingsService } from '@avs-ecosystem/services/app-settings.service';
 import * as _ from 'lodash';
 
 @Component({
@@ -15,13 +16,20 @@ export class DashboardNewDeviceComponent implements OnInit {
   public selectedDeviceForm: FormGroup;
   public deviceForm: FormGroup;
   public device: Device;
+  currentUser: any;
 
-  constructor( private deviceService: DeviceService, private fb: FormBuilder) {
+  constructor(
+    private settingService:  AppSettingsService,
+    private deviceService: DeviceService, private fb: FormBuilder
+    ) {
   }
 
   ngOnInit() {
     this.setDeviceForm();
     this.getAllDevices();
+    this.settingService.getCurentUser().subscribe(currentUser => {
+      this.currentUser = currentUser;
+    });
   }
 
   public getAllDevices() {
@@ -53,5 +61,12 @@ export class DashboardNewDeviceComponent implements OnInit {
         selectedDevice: ['', [Validators.required]]
       });
     // }, 0);
+  }
+
+  isAdmin() {
+    if (this.currentUser && this.currentUser.role) {
+      return this.currentUser.role === 'admin';
+    }
+    return false;
   }
 }

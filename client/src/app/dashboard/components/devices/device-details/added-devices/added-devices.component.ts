@@ -5,6 +5,7 @@ import {Observable, BehaviorSubject} from 'rxjs';
 import { Device } from '@avs-ecosystem/models/Device';
 import * as _ from 'lodash';
 import { DashboardNewDeviceComponent } from '../new-devices.component';
+import { AppSettingsService } from '@avs-ecosystem/services/app-settings.service';
 
 @Component({
   selector: 'avs-dashboard-added-devices',
@@ -13,8 +14,12 @@ import { DashboardNewDeviceComponent } from '../new-devices.component';
 })
 export class DashboardAddedDeviceComponent implements OnInit {
   public deviceForm: FormGroup;
+  currentUser: any;
+
   @Input() device: Device;
-  constructor( private deviceService: DeviceService,
+  constructor(
+    private settingService:  AppSettingsService,
+    private deviceService: DeviceService,
     private parent: DashboardNewDeviceComponent,
     private fb: FormBuilder) {
   }
@@ -23,23 +28,34 @@ export class DashboardAddedDeviceComponent implements OnInit {
     this.deviceForm = this.fb.group({
       deviceName: [this.device.deviceName, [Validators.required]]
     });
+
+    this.settingService.getCurentUser().subscribe(currentUser => {
+      this.currentUser = currentUser;
+    });
   }
 
-  updateDevice(){
-    if(this.deviceForm.valid && this.device.deviceId) {
+  updateDevice() {
+    if (this.deviceForm.valid && this.device.deviceId) {
       const device = this.deviceForm.value;
       device.deviceId = this.device.deviceId;
       this.deviceService.update(device).subscribe(result => {
         this.parent.getAllDevices();
-      })
+      });
     }
   }
 
-  deleteDevice(){
-    if(this.deviceForm.valid && this.device.deviceId) {
+  deleteDevice() {
+    if (this.deviceForm.valid && this.device.deviceId) {
       this.deviceService.delete(this.device.deviceId).subscribe(() => {
         this.parent.getAllDevices();
-      })
+      });
     }
+  }
+
+  isAdmin() {
+    if (this.currentUser && this.currentUser.role) {
+      return this.currentUser.role === 'admin';
+    }
+    return false;
   }
 }

@@ -2,6 +2,7 @@ import * as express from "express";
 import {DeviceModel} from "../models/entities/DeviceModel";
 import {Auth} from "../auth/auth";
 import {DeviceModelManager} from "../managers/DeviceModelManager";
+import {Roles} from "../auth/roles";
 
 export class DeviceModelRouter {
 
@@ -75,12 +76,12 @@ export class DeviceModelRouter {
     }
     
     private buildRoutes() {
-        this.router.get("/", Auth.getBearerMiddleware(), this.get.bind(this));
-        this.router.get("/getAllByDeviceId/:deviceId", Auth.getBearerMiddleware(), this.getAllByDeviceId.bind(this));
-        this.router.get("/:id", Auth.getBearerMiddleware(), this.getById.bind(this));
-        this.router.post("/:deviceId", Auth.getBearerMiddleware(), this.post.bind(this));
-        this.router.put("/:id", Auth.getBearerMiddleware(), this.put.bind(this));
-        this.router.delete("/:id", Auth.getBearerMiddleware(), this.delete.bind(this));
+        this.router.get("/", Auth.getBearerMiddleware(), Roles.connectRoles.can('everyone'), this.get.bind(this));
+        this.router.get("/getAllByDeviceId/:deviceId", Auth.getBearerMiddleware(), Roles.connectRoles.can('everyone'), this.getAllByDeviceId.bind(this));
+        this.router.get("/:id", Auth.getBearerMiddleware(), Roles.connectRoles.can('everyone'), this.getById.bind(this));
+        this.router.post("/:deviceId", Auth.getBearerMiddleware(), Roles.connectRoles.can('everyone'), this.post.bind(this));
+        this.router.put("/:id", Auth.getBearerMiddleware(), Roles.connectRoles.can('everyone'), this.put.bind(this));
+        this.router.delete("/:id", Auth.getBearerMiddleware(), Roles.connectRoles.can('admin'), this.delete.bind(this));
     }
 
 }

@@ -4,6 +4,7 @@ import { Order } from "../models/entities/Order";
 import { Auth } from "../auth/auth";
 import { OrderManager } from "../managers/OrderManager";
 import * as _ from 'lodash';
+import {Roles} from "../auth/roles";
 import { Client } from "../models/entities/Client";
 import * as pdf from 'html-pdf';
 import * as moment from 'moment';
@@ -163,16 +164,16 @@ export class OrderRouter {
   }
 
   private buildRoutes() {
-    this.router.get("/", Auth.getBearerMiddleware(), this.get.bind(this));
-    this.router.get("/:id", Auth.getBearerMiddleware(), this.getById.bind(this));
-    this.router.post("/", Auth.getBearerMiddleware(), this.post.bind(this));
-    this.router.post("/status", Auth.getBearerMiddleware(), this.setStatus.bind(this));
-    this.router.post("/comment", Auth.getBearerMiddleware(), this.comment.bind(this));
-    this.router.put("/:id", Auth.getBearerMiddleware(), this.put.bind(this));
-    this.router.delete("/:id", Auth.getBearerMiddleware(), this.delete.bind(this));
-    this.router.get("/download/:id", Auth.getBearerMiddleware(), this.download.bind(this));
-    this.router.get("/search/:text", Auth.getBearerMiddleware(), this.search.bind(this));
-    this.router.post("/mail/:id", Auth.getBearerMiddleware(), this.mail.bind(this));
+    this.router.get("/", Auth.getBearerMiddleware(), Roles.connectRoles.can('everyone'), this.get.bind(this));
+    this.router.get("/:id", Auth.getBearerMiddleware(), Roles.connectRoles.can('everyone'), this.getById.bind(this));
+    this.router.post("/", Auth.getBearerMiddleware(), Roles.connectRoles.can('everyone'), this.post.bind(this));
+    this.router.post("/status", Auth.getBearerMiddleware(), Roles.connectRoles.can('everyone'), this.setStatus.bind(this));
+    this.router.post("/comment", Auth.getBearerMiddleware(), Roles.connectRoles.can('everyone'), this.comment.bind(this));
+    this.router.put("/:id", Auth.getBearerMiddleware(), Roles.connectRoles.can('everyone'), this.put.bind(this));
+    this.router.delete("/:id", Auth.getBearerMiddleware(), Roles.connectRoles.can('admin'), this.delete.bind(this));
+    this.router.get("/download/:id", Auth.getBearerMiddleware(), Roles.connectRoles.can('everyone'), this.download.bind(this));
+    this.router.get("/search/:text", Auth.getBearerMiddleware(), Roles.connectRoles.can('everyone'), this.search.bind(this));
+    this.router.post("/mail/:id", Auth.getBearerMiddleware(), Roles.connectRoles.can('everyone'), this.mail.bind(this));
   }
 
 }

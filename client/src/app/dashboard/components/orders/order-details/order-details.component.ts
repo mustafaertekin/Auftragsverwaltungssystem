@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, OnChanges, Output, EventEmitter } from '@angular/core';
 import { OrderService } from '@avs-ecosystem/services/order.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AppSettingsService } from '@avs-ecosystem/services/app-settings.service';
+
 
 @Component({
   selector: 'avs-dashboard-order-details',
@@ -14,6 +16,7 @@ export class DashboardOrderDetailsComponent implements OnInit, OnChanges {
   public currentOrder: any;
   disableDownloadButton: boolean;
   editorContent: string;
+  currentUser: any;
 
   public orderStatus: string;
 
@@ -24,11 +27,17 @@ export class DashboardOrderDetailsComponent implements OnInit, OnChanges {
     { name: 'Cancelled', color: 'cancelled'},
     { name: 'Closed', color: 'closed'}
   ];
-  constructor(private orderService: OrderService,
+  constructor(
+    private settingService:  AppSettingsService,
+    private orderService: OrderService,
     private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit() {
     this.disableDownloadButton = false;
+
+    this.settingService.getCurentUser().subscribe(currentUser => {
+      this.currentUser = currentUser;
+    });
   }
 
   ngOnChanges (changes) {
@@ -83,5 +92,12 @@ export class DashboardOrderDetailsComponent implements OnInit, OnChanges {
     this.orderService.comment(order).subscribe(response => {
       // notification
     });
+  }
+
+  isAdmin() {
+    if (this.currentUser && this.currentUser.role) {
+      return this.currentUser.role === 'admin';
+    }
+    return false;
   }
 }

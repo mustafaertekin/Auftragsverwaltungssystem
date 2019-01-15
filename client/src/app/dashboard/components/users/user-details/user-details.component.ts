@@ -5,6 +5,7 @@ import { Client } from '@avs-ecosystem/models/Client';
 import * as _ from 'lodash';
 import { UserService } from '@avs-ecosystem/services/user.service';
 import { AddressService } from '@avs-ecosystem/services/address.service';
+import { AppSettingsService } from '@avs-ecosystem/services/app-settings.service';
 
 
 @Component({
@@ -18,14 +19,20 @@ export class DashboardUserDetailsComponent implements OnInit, OnChanges {
   @Output() emitter: EventEmitter<any> = new EventEmitter<any>();
   @Input() userId: any;
   public user: any;
+  currentUser: any;
 
 
   constructor(private fb: FormBuilder, private addressService: AddressService,
-    private userService: UserService) {
+    private userService: UserService,
+    private settingService:  AppSettingsService) {
   }
 
   ngOnInit() {
     this.setUserForm();
+
+    this.settingService.getCurentUser().subscribe(currentUser => {
+      this.currentUser = currentUser;
+    });
   }
 
   ngOnChanges() {
@@ -90,5 +97,12 @@ export class DashboardUserDetailsComponent implements OnInit, OnChanges {
           this.emitter.emit(result.userId);
         }, err => console.log('Err from user submit', err));
     }
+  }
+
+  isAdmin() {
+    if (this.currentUser && this.currentUser.role) {
+      return this.currentUser.role === 'admin';
+    }
+    return false;
   }
 }

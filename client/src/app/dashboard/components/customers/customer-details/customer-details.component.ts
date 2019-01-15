@@ -7,6 +7,7 @@ import {startWith, map} from 'rxjs/operators';
 import { ClientService } from '@avs-ecosystem/services/client.service';
 import { AddressService } from '@avs-ecosystem/services/address.service';
 import { DashboardNewOrderComponent } from '../../orders/new-order/new-order.component';
+import { AppSettingsService } from '@avs-ecosystem/services/app-settings.service';
 
 
 @Component({
@@ -20,16 +21,21 @@ export class DashboardCustomerDetailsComponent implements OnInit, OnChanges {
   @Input() clientId: any;
   public addresses: any;
   myControl = new FormControl();
+  currentUser: any;
   options: Client[] = [];
   filteredOptions: Observable<Client[]>;
 
 
   constructor(private fb: FormBuilder, private addressService: AddressService,
-    private clientService: ClientService) {
+    private clientService: ClientService,
+    private settingService:  AppSettingsService) {
     this.setCustomerForm();
   }
 
   ngOnInit() {
+    this.settingService.getCurentUser().subscribe(currentUser => {
+      this.currentUser = currentUser;
+    });
   }
 
   ngOnChanges(changes) {
@@ -100,5 +106,12 @@ export class DashboardCustomerDetailsComponent implements OnInit, OnChanges {
       this.customerForm.controls['lastName'].setValue(result.lastName);
       this.customerForm.controls['phone'].setValue(result.phone);
     }
+  }
+
+  isAdmin() {
+    if (this.currentUser && this.currentUser.role) {
+      return this.currentUser.role === 'admin';
+    }
+    return false;
   }
 }

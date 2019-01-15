@@ -5,6 +5,7 @@ import { DashboardNewDeviceComponent } from '../../device-details/new-devices.co
 import { ModelService } from '@avs-ecosystem/services/device-model.service';
 import * as _ from 'lodash';
 import { DashboardDeviceModelComponent } from '../device-model.component';
+import { AppSettingsService } from '@avs-ecosystem/services/app-settings.service';
 
 @Component({
   selector: 'avs-added-model',
@@ -13,17 +14,24 @@ import { DashboardDeviceModelComponent } from '../device-model.component';
 })
 export class DashboardModelExstraComponent implements OnInit {
 
+  currentUser: any;
+
   public modelForm: FormGroup;
   @Input() model: DeviceModel;
-  constructor( private modelService: ModelService,
+  constructor(
+    private modelService: ModelService,
     private parent: DashboardDeviceModelComponent,
-    private fb: FormBuilder) {
-
+    private fb: FormBuilder,
+    private settingService:  AppSettingsService) {
   }
 
   ngOnInit() {
     this.modelForm = this.fb.group({
       deviceModelName: [this.model.deviceModelName, [Validators.required]]
+    });
+
+    this.settingService.getCurentUser().subscribe(currentUser => {
+      this.currentUser = currentUser;
     });
   }
 
@@ -45,4 +53,10 @@ export class DashboardModelExstraComponent implements OnInit {
     }
   }
 
+  isAdmin() {
+    if (this.currentUser && this.currentUser.role) {
+      return this.currentUser.role === 'admin';
+    }
+    return false;
+  }
 }

@@ -11,7 +11,7 @@
             <mat-icon *ngIf="!disableDownloadButton">print</mat-icon>
             <mat-spinner color="warn" diameter="30" *ngIf="disableDownloadButton"></mat-spinner>
           </button>
-          <button mat-fab color="warn" (click)="deleteOrder(currentOrder.orderId)">
+          <button mat-fab color="warn" (click)="deleteOrder(currentOrder.orderId)" *ngIf="isAdmin()">
             <mat-icon>delete</mat-icon>
           </button>
         </div>
