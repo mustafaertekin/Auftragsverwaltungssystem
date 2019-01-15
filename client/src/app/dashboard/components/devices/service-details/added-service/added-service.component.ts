@@ -4,7 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import * as _ from 'lodash';
 import { DashboardDeviceServiceComponent } from '../device-service.component';
 import { DeviceServiceType } from '@avs-ecosystem/services/device-service-type.service';
-
+import { AppSettingsService } from '@avs-ecosystem/services/app-settings.service';
 
 
 @Component({
@@ -14,17 +14,22 @@ import { DeviceServiceType } from '@avs-ecosystem/services/device-service-type.s
 })
 export class DashboardDeviceServiceExstraComponent implements OnInit {
 
+  currentUser: any;
 
   public serviceForm: FormGroup;
   @Input() service: Service;
   constructor( private deviceServiceType: DeviceServiceType,
     private parent: DashboardDeviceServiceComponent,
-    private fb: FormBuilder) {
+    private fb: FormBuilder,
+    private settingService:  AppSettingsService) {
 
   }
 
   ngOnInit() {
     this.setServiceForm();
+    this.settingService.getCurentUser().subscribe(currentUser => {
+      this.currentUser = currentUser;
+    });
   }
 
   setServiceForm() {
@@ -50,5 +55,12 @@ export class DashboardDeviceServiceExstraComponent implements OnInit {
         this.parent.getAllServices();
       });
     }
+  }
+
+  isAdmin() {
+    if (this.currentUser && this.currentUser.role) {
+      return this.currentUser.role === 'admin';
+    }
+    return false;
   }
 }

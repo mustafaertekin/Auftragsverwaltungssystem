@@ -20,7 +20,7 @@
           <button mat-button mat-raised-button color="accent" (click)="updateService()">
             <span translate="BUTTON.UPDATE"></span>
           </button>
-          <button mat-button mat-raised-button color="warn" (click)="deleteService()">
+          <button mat-button mat-raised-button color="warn" (click)="deleteService()" *ngIf="isAdmin()">
            <span translate="BUTTON.DELETE"></span>
           </button>
         </div>
