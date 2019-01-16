@@ -22,10 +22,10 @@
       </mat-form-field>
       <div fxLayout="row" fxLayoutGap="16px">
         <div>
-          <button mat-button mat-raised-button color="accent" class="m-r-1" (click)="submitUserForm()">
+          <button mat-button mat-raised-button color="accent" class="m-t-1 m-r-1" (click)="submitUserForm()">
             <span translate="BUTTON.UPDATE"></span>
           </button>
-          <button mat-button mat-raised-button color="warn" class="m-r-1" (click)="deleteUser()" *ngIf="isAdmin()">
+          <button mat-button mat-raised-button color="warn" class="m-t-1" (click)="deleteUser()" *ngIf="isAdmin()">
             <span translate="BUTTON.DELETE"></span>
           </button>
         </div>
