@@ -42,10 +42,10 @@
             </div>
           </div>
           <div fxLayout="row" fxLayoutAlign="start center" *ngIf="customer?.clientId">
-            <button fxFlex="10" class="m-t-1" matStepperPrevious mat-button mat-raised-button color="accent">
+            <button fxFlex="10" class="m-t-1 m-r-1" matStepperPrevious mat-button mat-raised-button color="accent">
               <span translate="BUTTON.PREVIOUS"></span>
             </button>
-            <button fxFlex="10" class="m-t-1" matStepperNext mat-button mat-raised-button color="accent">
+            <button fxFlex="10" class="m-t-1 m-r-1" matStepperNext mat-button mat-raised-button color="accent">
               <span translate="BUTTON.NEXT"></span>
             </button>
           </div>
@@ -79,13 +79,13 @@
             <div fxLayout="row">
               <br>
               <div fxLayout="row" fxLayoutAlign="start center">
-                <button class="m-t-1" matStepperPrevious mat-button mat-raised-button color="accent">
+                <button class="m-t-1 m-r-1" matStepperPrevious mat-button mat-raised-button color="accent">
                  <span translate="BUTTON.PREVIOUS"></span>
                 </button>
               </div>
               <br>
             </div>
-            <div fxLayout="row m-t-1 full-width" fxLayoutAlign="center center">
+            <div fxLayout="row" class="full-width"fxLayoutAlign="center center">
               <br><br>
               <button *ngIf="customer?.clientId && addressForms.valid" mat-button
                 mat-raised-button class="submit-order-button m-1" color="accent" (click)="saveOrder(services?.orders)">
