@@ -37,12 +37,14 @@ export class DashboardUserDetailsComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    this.userService.getById(this.userId).subscribe(user => {
-      this.user = user;
-      this.setFormFields(user);
-    }, (err) => {
-      this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
-    });
+    if (this.userId) {
+      this.userService.getById(this.userId).subscribe(user => {
+        this.user = user;
+        this.setFormFields(user);
+      }, (err) => {
+        this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
+      });
+    }
   }
 
   setUserForm() {

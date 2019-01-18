@@ -9,7 +9,6 @@ import { HomeMainComponent } from './components/main/main.component';
 import { HomeMainHeaderComponent } from './components/header/header.component';
 import { HomeMainContentComponent } from './components/content/content.component';
 import { HomeMainLayoutComponent } from './components/layout/layout.component';
-import { HomeMainFooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   imports: [
@@ -20,11 +19,10 @@ import { HomeMainFooterComponent } from './components/footer/footer.component';
     ReactiveFormsModule,
     MaterialModule
   ],
-  declarations: [ 
+  declarations: [
     HomeMainComponent,
     HomeMainHeaderComponent,
     HomeMainContentComponent,
-    HomeMainFooterComponent,
     HomeMainLayoutComponent
   ]
 })
