@@ -7,7 +7,7 @@ export class NotificationService {
   constructor(
     private notificationService: NotificationsService) {
       this.options = {
-        timeOut: 2000,
+        timeOut: 5000,
         showProgressBar: true,
         pauseOnHover: true,
         clickToClose: true
