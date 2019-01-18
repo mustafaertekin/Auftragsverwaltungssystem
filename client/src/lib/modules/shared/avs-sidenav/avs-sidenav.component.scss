@@ -1,0 +1,45 @@
+.avs-sidenav {
+
+  .full-vw {
+    width: 100vw;
+  }
+
+  .order-mat-sidenav-content {
+    height: 100vh;
+  }
+
+  .order-list-container {
+    .no-order {
+      width: 100%;
+      height: 500px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+
+    .order-side-nav {
+      width: 400px;
+
+      .order-items-scrollbar-area {
+        max-height: calc(100vh - 200px);
+        position: relative;
+      }
+      .order-list {
+        border-right: 1px solid rgba(0, 0, 0, 0.12);
+
+        .avs-dashboard-order-item {
+          width: 100%;
+        }
+
+        .mat-list {
+          padding-top: 0;
+
+          .mat-list-item {
+            height: auto;
+          }
+        }
+      }
+    }
+  }
+}

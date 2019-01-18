@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA , NO_ERRORS_SCHEMA} from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
@@ -50,6 +50,7 @@ import { UserService } from '@avs-ecosystem/services/user.service';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { DashboardOrderItemServiceComponent } from './components/orders/order-details/order-item-service/order-item-service.component';
 import { NotificationService } from '@avs-ecosystem/services/notification-sevice';
+import { DashboardSideNavComponent } from '@avs-ecosystem/modules/shared/avs-sidenav/avs-sidenav.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -109,7 +110,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     DashboardUserItemComponent,
     DashboardUserDetailsComponent,
     DashboardNewUserComponent,
-    DashboardOrderItemServiceComponent
+    DashboardOrderItemServiceComponent,
+    DashboardSideNavComponent
   ],
   providers: [
     NotificationService,

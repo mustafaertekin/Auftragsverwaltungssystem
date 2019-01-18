@@ -106,6 +106,9 @@ body {
     }
     .list-container {
       min-height: 100vh;
+      .item-holder{
+        height: auto;
+      }
       .item-holder > div {
           padding: 0 0;
       }

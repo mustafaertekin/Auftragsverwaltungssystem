@@ -14,12 +14,6 @@
       .avs-dashboard-user-item {
         width: 100%;
       }
-      .mat-list {
-        padding-top: 0;
-        .mat-list-item {
-          height: auto;
-        }
-      }
     }
     .users-main-details{
       background: whitesmoke;
@@ -30,6 +24,7 @@
     max-height: calc(100vh - 200px);
     position: relative;
   }
+
 
   .search-area{
     flex: 1 1 auto;

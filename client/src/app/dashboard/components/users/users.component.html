@@ -1,43 +1,38 @@
-<div class="users-component avs-list m-t-1 m-l-1">
+<div class="users-component avs-list m-1">
   <mat-card>
     <mat-card-header>
-      <mat-icon class="title-icon-size" mat-card-avatar>person</mat-icon>
+      <mat-icon class="title-icon-size" (click)="nav?.sidenav.toggle()" mat-card-avatar>person</mat-icon>
       <mat-card-title translate="USER.TITLE"></mat-card-title>
       <mat-card-subtitle translate="USER.SUBTITLE"></mat-card-subtitle>
       <div class="search-area">
-          <div class="search-wrapper">
-            <avs-search (word)="searchWord($event)"></avs-search>
-          </div>
+        <div class="search-wrapper">
+          <avs-search (word)="searchWord($event)"></avs-search>
         </div>
+      </div>
     </mat-card-header>
     <mat-divider></mat-divider>
     <mat-card-content fxLayout="row" class="user-list-container list-container">
-        <div fxFlex="30" fxlayoutalign="center center" class="user-list">
-          <div class="user-items-scrollbar-area" [perfectScrollbar]>
-            <avs-animate-fadein [state]="animationState">
-              <mat-list role="list">
-                <mat-list-item class="user-item-holder item-holder" role="listitem" *ngFor="let user of users">
-                  <avs-dashboard-user-item [userId]="currentUserId"
-                  [user]="user" class="avs-dashboard-user-item"></avs-dashboard-user-item>
-                </mat-list-item>
-              </mat-list>
-            </avs-animate-fadein>
-          </div>
+      <avs-sidenav #nav>
+        <div list>
+          <mat-list-item class="user-item-holder item-holder" role="listitem" *ngFor="let user of users">
+            <avs-dashboard-user-item [userId]="currentUserId" [user]="user" class="avs-dashboard-user-item"></avs-dashboard-user-item>
+          </mat-list-item>
         </div>
-      <div fxFlex="70" fxlayoutalign="center center" class="users-main-details p-l-1 p-r-1 p-t-1" *ngIf="currentUserId">
-        <mat-tab-group>
-          <mat-tab label="{{ 'USER.DETAILS' | translate }}">
-                <avs-dashboard-user-details (emitter)="getAll($event)" [userId]="currentUserId">
-                </avs-dashboard-user-details>
-          </mat-tab>
-          <mat-tab label="{{ 'USER.ADDRESS' | translate }}">
-            <avs-dashboard-addresses [userId]="currentUserId" #addressForm fxFlexFill></avs-dashboard-addresses>
-          </mat-tab>
-          <mat-tab label="{{ 'USER.ORDERS' | translate }}">
-            <avs-dashboard-customer-orders [clientId]="currentUserId"></avs-dashboard-customer-orders>
-          </mat-tab>
-        </mat-tab-group>
-      </div>
+        <div details>
+          <mat-tab-group>
+            <mat-tab label="{{ 'USER.DETAILS' | translate }}">
+              <avs-dashboard-user-details (emitter)="getAll($event)" [userId]="currentUserId">
+              </avs-dashboard-user-details>
+            </mat-tab>
+            <mat-tab label="{{ 'USER.ADDRESS' | translate }}">
+              <avs-dashboard-addresses [userId]="currentUserId" #addressForm fxFlexFill></avs-dashboard-addresses>
+            </mat-tab>
+            <mat-tab label="{{ 'USER.ORDERS' | translate }}">
+              <avs-dashboard-customer-orders [clientId]="currentUserId"></avs-dashboard-customer-orders>
+            </mat-tab>
+          </mat-tab-group>
+        </div>
+      </avs-sidenav>
     </mat-card-content>
   </mat-card>
 </div>
