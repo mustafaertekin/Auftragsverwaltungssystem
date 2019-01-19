@@ -1,7 +1,7 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
 import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
 import { UserService } from '@avs-ecosystem/services/user.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NotificationService } from '@avs-ecosystem/services/notification-sevice';
 import * as _ from 'lodash';
 
@@ -14,8 +14,13 @@ export class UsersComponent implements OnInit, OnChanges {
   users: any;
   currentUserId: string;
   animationState: string;
+  isMobile: boolean;
+  opened: boolean;
 
-  constructor(private userService: UserService, private notificationService: NotificationService, private route: ActivatedRoute) { }
+  constructor(private userService: UserService,
+    private notificationService: NotificationService,
+    private router: Router,
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.init();
@@ -27,6 +32,7 @@ export class UsersComponent implements OnInit, OnChanges {
 
   init() {
     this.currentUserId = null;
+    this.opened = true;
     this.animationState = 'out';
     this.route.params.subscribe(params => {
       this.currentUserId = params['id'] ? params['id'] : null;
@@ -35,6 +41,23 @@ export class UsersComponent implements OnInit, OnChanges {
       }
     });
     this.getAll(null);
+  }
+
+  changeNavigationState(event) {
+    this.isMobile = event.isMobile;
+    this.opened = event.opened;
+  }
+
+  closeOnMobileSelection(item, nav) {
+    this.navigateToUrl(item);
+    if (this.isMobile) {
+      nav.sidenav.toggle();
+    }
+  }
+
+  navigateToUrl(user) {
+    this.currentUserId = user.userId;
+    this.router.navigate(['/', 'dashboard', 'users', user.userId]);
   }
 
   getAll(event) {

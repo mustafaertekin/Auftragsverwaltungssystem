@@ -15,6 +15,14 @@ export class OrderItemService {
     this.serverUrl = environment.baseUrl;
    }
 
+  public get(): Observable<any> {
+    return this.http.get(`${this.serverUrl}order-service`).pipe(map((res: Response) => res));
+  }
+
+  public getByOrderId(orderId: string): Observable<any> {
+    return this.http.get(`${this.serverUrl}order-service/getByOrderId/${orderId}`).pipe(map((res: Response) => res));
+  }
+
   public createOrderService(service): Observable<any> {
     return this.http.post(`${this.serverUrl}order-service`, service).pipe(map((res: Response) => res));
   }

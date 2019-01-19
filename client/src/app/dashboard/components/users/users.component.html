@@ -12,10 +12,12 @@
     </mat-card-header>
     <mat-divider></mat-divider>
     <mat-card-content fxLayout="row" class="user-list-container list-container">
-      <avs-sidenav #nav>
+      <avs-sidenav #nav fxFlex="1 1 auto" (emitter)="changeNavigationState($event)" >
         <div list>
           <mat-list-item class="user-item-holder item-holder" role="listitem" *ngFor="let user of users">
-            <avs-dashboard-user-item [userId]="currentUserId" [user]="user" class="avs-dashboard-user-item"></avs-dashboard-user-item>
+            <avs-dashboard-user-item fxFlex="1 1 auto" [userId]="currentUserId"
+            (click)="closeOnMobileSelection(user, nav)"
+            [user]="user" class="avs-dashboard-user-item"></avs-dashboard-user-item>
           </mat-list-item>
         </div>
         <div details>

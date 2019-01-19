@@ -1,8 +1,7 @@
-
 <div class="customer-component avs-list m-t-1 m-l-1">
   <mat-card>
     <mat-card-header>
-      <mat-icon class="title-icon-size" mat-card-avatar>person</mat-icon>
+      <mat-icon class="title-icon-size" (click)="nav?.sidenav.toggle()" mat-card-avatar>person</mat-icon>
       <mat-card-title translate="CUSTOMER.TITLE"></mat-card-title>
       <mat-card-subtitle translate="CUSTOMER.LIST"></mat-card-subtitle>
       <div class="search-area">
@@ -13,30 +12,28 @@
     </mat-card-header>
     <mat-divider></mat-divider>
     <mat-card-content fxLayout="row" class="customer-list-container list-container">
-      <div fxFlex="30" fxlayoutalign="center center" class="customer-list">
-        <div class="customer-items-scrollbar-area" [perfectScrollbar]>
-          <avs-animate-fadein [state]="animationState">
-            <mat-list role="list">
-              <mat-list-item class="customer-item-holder item-holder" role="listitem" *ngFor="let customer of customers">
-                <avs-dashboard-customer-item [currentId]="currentCustomerId" [customer]="customer" class="avs-dashboard-customer-item"></avs-dashboard-customer-item>
-              </mat-list-item>
-            </mat-list>
-          </avs-animate-fadein>
+      <avs-sidenav #nav  (emitter)="changeNavigationState($event)" fxFlex="1 1 auto">
+        <div list>
+          <mat-list-item class="customer-item-holder item-holder" role="listitem" *ngFor="let customer of customers">
+            <avs-dashboard-customer-item fxFlex="1 1 auto"
+            (click)="closeOnMobileSelection(customer, nav)"
+            [currentId]="currentCustomerId" [customer]="customer" class="avs-dashboard-customer-item"></avs-dashboard-customer-item>
+          </mat-list-item>
         </div>
-      </div>
-      <div fxFlex="70" fxlayoutalign="center center" class="customer-main-details p-l-1 p-r-1 p-t-1" *ngIf="currentCustomerId">
-        <mat-tab-group>
-          <mat-tab label="{{'CUSTOMER.DETAILS' | translate}}">
-            <avs-dashboard-customer-details (emitter)="getAll($event)" [clientId]="currentCustomerId"></avs-dashboard-customer-details>
-          </mat-tab>
-          <mat-tab label="{{'CUSTOMER.ADDRESS' | translate}}">
+        <div details>
+          <mat-tab-group>
+            <mat-tab label="{{'CUSTOMER.DETAILS' | translate}}">
+              <avs-dashboard-customer-details (emitter)="getAll($event)" [clientId]="currentCustomerId"></avs-dashboard-customer-details>
+            </mat-tab>
+            <mat-tab label="{{'CUSTOMER.ADDRESS' | translate}}">
               <avs-dashboard-addresses [clientId]="currentCustomerId" #addressForm fxFlexFill></avs-dashboard-addresses>
-          </mat-tab>
-          <mat-tab label="{{'CUSTOMER.ORDERS' | translate}}">
-            <avs-dashboard-customer-orders [clientId]="currentCustomerId"></avs-dashboard-customer-orders>
-          </mat-tab>
-        </mat-tab-group>
-      </div>
+            </mat-tab>
+            <mat-tab label="{{'CUSTOMER.ORDERS' | translate}}">
+              <avs-dashboard-customer-orders [clientId]="currentCustomerId"></avs-dashboard-customer-orders>
+            </mat-tab>
+          </mat-tab-group>
+        </div>
+      </avs-sidenav>
     </mat-card-content>
   </mat-card>
 </div>

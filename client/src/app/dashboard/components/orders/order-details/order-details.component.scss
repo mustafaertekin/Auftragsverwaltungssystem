@@ -1,8 +1,5 @@
-// @import '';
-
 .order-details {
   background: whitesmoke;
-
   .example-radio-group {
     display: inline-flex;
     flex-direction: column;
@@ -12,15 +9,11 @@
     margin: 5px;
   }
 
-
-  .example-full-width {
-    width: 100%;
-  }
-
   .mat-card {
     width: 90%;
     border-radius: 0px;
     margin-bottom: 10px;
+    padding: 16px;
   }
 
   .mat-radio-button label div:last-child {

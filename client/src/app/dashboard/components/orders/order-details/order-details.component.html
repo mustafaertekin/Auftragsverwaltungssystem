@@ -1,4 +1,4 @@
-<div class="order-details p-t-1 p-l-1 p-r-1">
+<div class="order-details">
   <mat-tab-group>
     <mat-tab label="{{'ORDER.DETAILS' | translate }}">
       <div fxLayout="row">
@@ -86,7 +86,7 @@
     </mat-tab>
     <mat-tab label="Commments">
       <br><br>
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="full-width">
         <textarea matInput [(ngModel)]="editorContent" rows="30" placeholder="Comments"></textarea>
       </mat-form-field>
       <button mat-raised-button color="primary" (click)="addOrderComment(editorContent)">

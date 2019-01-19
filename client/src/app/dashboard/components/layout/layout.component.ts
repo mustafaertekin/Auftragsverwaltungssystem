@@ -23,6 +23,5 @@ export class DashboardMainLayoutComponent implements OnInit {
 
   ngOnInit() {
     this.translate.setDefaultLang('en-EN');
-    // console.log('gelen yapi user', this.data);
   }
 }

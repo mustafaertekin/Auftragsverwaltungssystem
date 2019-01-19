@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterContentInit, ViewChild, ElementRef, OnChanges} from '@angular/core';
+import { Component, OnInit, EventEmitter, ViewChild, ElementRef, OnChanges, Output } from '@angular/core';
 import { ObservableMedia, MediaChange } from '@angular/flex-layout';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -15,6 +15,7 @@ import { NotificationService } from '@avs-ecosystem/services/notification-sevice
 })
 export class DashboardSideNavComponent implements OnInit {
   @ViewChild('sidenav') sidenav: ElementRef;
+  @Output() public emitter: EventEmitter<any> = new EventEmitter<any>();
   orders: any;
   currentOrderId: any;
   animationState: string;
@@ -27,7 +28,7 @@ export class DashboardSideNavComponent implements OnInit {
     private notificationService: NotificationService,
     private media: ObservableMedia,
     private route: ActivatedRoute, private router: Router) {
-    }
+  }
 
   ngOnInit() {
     this.watcher = this.media.subscribe((change: MediaChange) => {
@@ -40,6 +41,7 @@ export class DashboardSideNavComponent implements OnInit {
         this.over = 'side';
         this.isMobile = false;
       }
+      this.emitter.emit({isMobile: this.isMobile, isopen: this.opened});
     });
   }
 }

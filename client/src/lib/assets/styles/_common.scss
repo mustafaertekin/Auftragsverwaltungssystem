@@ -99,11 +99,21 @@ body {
   }
 
   .avs-list {
-    .mat-card {
+    & >.mat-card {
+      padding: 16px 0;
+
       .mat-card-header {
         padding-left: 16px;
       }
+      avs-sidenav{
+        width: 100%;
+      }
     }
+
+    .search-area{
+      flex: 1 1 auto;
+    }
+
     .list-container {
       min-height: 100vh;
       .item-holder{

@@ -2,15 +2,20 @@ import * as express from "express";
 import {OrderService} from "../models/entities/OrderService";
 import {Auth} from "../auth/auth";
 import {OrderServiceManager} from "../managers/OrderServiceManager";
+import {OrderManager} from "../managers/OrderManager";
+import { Service } from "../models/entities/Service";
+import { Device } from "../models/entities/Device";
+import { DeviceModel } from "../models/entities/DeviceModel";
 
 export class OrderServiceRouter {
 
     public router: express.Router;
     private orderServiceManager: OrderServiceManager;
-
+    private orderMangager: OrderManager;
 
     constructor() {
         this.orderServiceManager = new OrderServiceManager();
+        this.orderMangager = new OrderManager();
         this.router = express.Router();
         this.buildRoutes();
     }
@@ -32,6 +37,19 @@ export class OrderServiceRouter {
             next(error);
         }
     }
+
+    public async getByOrderId(req: express.Request, res: express.Response, next: express.NextFunction) {
+      try {
+          await this.orderMangager.recalculatePrice(req.params.id);
+          const orderService = await OrderService.findAll<OrderService>({
+             where: {orderId: req.params.id},
+             include: [Device, DeviceModel, Service]
+            });
+          res.json(orderService);
+      } catch(error) {
+          next(error);
+      }
+  }
 
     public async post(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
@@ -63,6 +81,7 @@ export class OrderServiceRouter {
     private buildRoutes() {
         this.router.get("/", Auth.getBearerMiddleware(), this.get.bind(this));
         this.router.get("/:id", Auth.getBearerMiddleware(), this.getById.bind(this));
+        this.router.get("/getByOrderId/:id", Auth.getBearerMiddleware(), this.getByOrderId.bind(this));
         this.router.post("/", Auth.getBearerMiddleware(), this.post.bind(this));
         this.router.put("/", Auth.getBearerMiddleware(), this.put.bind(this));
         this.router.delete("/:id", Auth.getBearerMiddleware(), this.delete.bind(this));

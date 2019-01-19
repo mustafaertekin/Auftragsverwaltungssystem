@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import * as _ from 'lodash';
 import { AppSettingsService } from '@avs-ecosystem/services/app-settings.service';
 import { NotificationService } from '@avs-ecosystem/services/notification-sevice';
+import { OrderItemService } from '@avs-ecosystem/services/order-item.service';
 
 @Component({
   selector: 'avs-dashboard-order-details',
@@ -13,29 +14,31 @@ import { NotificationService } from '@avs-ecosystem/services/notification-sevice
 export class DashboardOrderDetailsComponent implements OnInit, OnChanges {
 
   @Input() currentOrderId;
-  @Output() emitter: EventEmitter<string> = new EventEmitter<string>();
+  @Output() emitter: EventEmitter<any> = new EventEmitter<any>();
   public currentOrder: any;
   disableDownloadButton: boolean;
   editorContent: string;
   currentUser: any;
   animationState: string;
+  statuses: any[];
 
   public orderStatus: string;
 
-  statuses: any[] = [
-    { name: 'Opened', color: 'opened'},
-    { name: 'In progress', color: 'inprogress'},
-    { name: 'Ready', color: 'ready'},
-    { name: 'Cancelled', color: 'cancelled'},
-    { name: 'Closed', color: 'closed'}
-  ];
   constructor(
     private settingService:  AppSettingsService,
     private orderService: OrderService,
+    private orderItemService: OrderItemService,
     private notificationService: NotificationService,
     private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit() {
+    this.statuses = [
+      { name: 'Opened', color: 'opened'},
+      { name: 'In progress', color: 'inprogress'},
+      { name: 'Ready', color: 'ready'},
+      { name: 'Cancelled', color: 'cancelled'},
+      { name: 'Closed', color: 'closed'}
+    ];
     this.disableDownloadButton = false;
     this.settingService.getCurentUser().subscribe(currentUser => {
       this.currentUser = currentUser;
@@ -52,8 +55,19 @@ export class DashboardOrderDetailsComponent implements OnInit, OnChanges {
     }
   }
 
+  getAllOrderItemServicesByOrderId() {
+    this.orderItemService.getByOrderId(this.currentOrderId).subscribe(items => {
+      this.currentOrder.orderServices = items;
+      this.currentOrder.price = items
+          .reduce((acc, curr, index) => {
+            acc += curr.Service.price;
+            return acc; }, 0);
+    });
+  }
+
   getOrderById (event) {
-    this.emitter.emit('update');
+    this.getAllOrderItemServicesByOrderId();
+    this.emitter.emit(event);
   }
 
   deleteOrder(orderId) {
@@ -82,7 +96,7 @@ export class DashboardOrderDetailsComponent implements OnInit, OnChanges {
     this.orderService.mail(orderId).subscribe(response => {
       this.notificationService.success('Email is sent');
     }, (err) => {
-      //this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
+      // this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
     });
   }
 

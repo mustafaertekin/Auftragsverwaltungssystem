@@ -17,32 +17,19 @@ export class DashboardOrdersComponent implements OnInit, OnChanges {
   orders: any;
   currentOrderId: any;
   animationState: string;
-  opened = true;
-  over = 'side';
-  watcher: Subscription;
   isMobile: boolean;
+  opened: boolean;
 
   constructor(private orderService: OrderService,
     private notificationService: NotificationService,
-    media: ObservableMedia,
     private route: ActivatedRoute, private router: Router) {
-      this.watcher = media.subscribe((change: MediaChange) => {
-        if (change.mqAlias === 'sm' || change.mqAlias === 'xs') {
-          this.opened = false;
-          this.over = 'over';
-          this.isMobile = true;
-        } else {
-          this.opened = true;
-          this.over = 'side';
-          this.isMobile = false;
-        }
-      });
     }
 
   ngOnInit() {
     this.isMobile = false;
+    this.opened = true;
     this.currentOrderId = null;
-    this.animationState = 'in';
+    this.animationState = 'out';
     this.route.params.subscribe(params => {
       this.currentOrderId = params['id'];
       this.setInitialSettings();
@@ -59,10 +46,15 @@ export class DashboardOrdersComponent implements OnInit, OnChanges {
   ngOnChanges() {
   }
 
-  closeOnMobileSelection(item) {
+  changeNavigationState(event) {
+    this.isMobile = event.isMobile;
+    this.opened = event.opened;
+  }
+
+  closeOnMobileSelection(item, nav) {
     this.navigateToUrl(item);
     if (this.isMobile) {
-      this.opened = false;
+      nav.sidenav.toggle();
     }
   }
 
@@ -72,20 +64,12 @@ export class DashboardOrdersComponent implements OnInit, OnChanges {
   }
 
   getAllOrders(event) {
-    // in order to trigger change on child component
-    const tempId = this.currentOrderId;
-    this.currentOrderId = null;
-
     if (_.includes(['update'], event)) {
     }
     this.orderService.getAll().subscribe(orders => {
       this.orders = orders;
-      this.currentOrderId = tempId || (orders[0] ? orders[0].orderId : null);
+      this.currentOrderId = this.currentOrderId || (orders[0] ? orders[0].orderId : null);
     });
-  }
-
-  toggleOrderMenu() {
-    this.ordernav['toggle']();
   }
 
   searchWord(word) {

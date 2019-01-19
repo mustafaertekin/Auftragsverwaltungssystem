@@ -1,7 +1,7 @@
 <div class="order-component avs-list m-1">
   <mat-card>
-    <mat-card-header >
-      <mat-icon class="title-icon-size" (click)="toggleOrderMenu()" mat-card-avatar>format_list_bulleted</mat-icon>
+    <mat-card-header>
+      <mat-icon class="title-icon-size" (click)="nav?.sidenav.toggle()" mat-card-avatar>format_list_bulleted</mat-icon>
       <mat-card-title translate="ORDER.TITLE"></mat-card-title>
       <mat-card-subtitle translate="ORDER.LIST"></mat-card-subtitle>
 
@@ -13,31 +13,18 @@
     </mat-card-header>
     <mat-divider class="m-t-1 m-b-1"></mat-divider>
     <mat-card-content fxLayout="row" class="order-list-container list-container">
-      <div class="no-order full-vw" *ngIf="!orders?.length">
-        <span translate="NOTICE.TITLE" class="m-1 text-center"></span>
-      </div>
-      <mat-sidenav-container  class="order-container full-vw" *ngIf="orders?.length" fxLayout="row">
-        <mat-sidenav [autoFocus]="false" #ordernav [(mode)]="over" fxFlex.xs="100" [(opened)]="opened" class="order-side-nav">
-          <div fxlayoutalign="center center" class="order-list" *ngIf="orders?.length">
-            <div class="order-items-scrollbar-area" [perfectScrollbar]>
-              <avs-animate-fadein [state]="animationState">
-                <mat-list role="list">
-                  <mat-list-item class="order-item-holder item-holder" role="listitem" *ngFor="let order of orders">
-                    <avs-dashboard-order-item [currentId]="currentOrderId"
-                     [order]="order" class="avs-dashboard-order-item" (click)="closeOnMobileSelection(order)">
-                    </avs-dashboard-order-item>
-                  </mat-list-item>
-                </mat-list>
-              </avs-animate-fadein>
-            </div>
-          </div>
-        </mat-sidenav>
-        <mat-sidenav-content class="order-mat-sidenav-content">
-          <div fxlayoutalign="center center" >
-            <avs-dashboard-order-details (emitter)="getAllOrders($event)" [currentOrderId]="currentOrderId"></avs-dashboard-order-details>
-          </div>
-        </mat-sidenav-content>
-      </mat-sidenav-container>
+      <avs-sidenav #nav fxFlex="1 1 auto" (emitter)="changeNavigationState($event)">
+        <div list>
+          <mat-list-item class="order-item-holder item-holder" role="listitem" *ngFor="let order of orders">
+            <avs-dashboard-order-item fxFlex="1 1 auto" [currentId]="currentOrderId" [order]="order" class="avs-dashboard-order-item"
+              (click)="closeOnMobileSelection(order, nav)">
+            </avs-dashboard-order-item>
+          </mat-list-item>
+        </div>
+        <div details>
+          <avs-dashboard-order-details (emitter)="getAllOrders($event)" [currentOrderId]="currentOrderId"></avs-dashboard-order-details>
+        </div>
+      </avs-sidenav>
     </mat-card-content>
   </mat-card>
 </div>

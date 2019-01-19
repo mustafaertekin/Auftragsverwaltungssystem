@@ -1,4 +1,4 @@
-<div class="avs-sidenav">
+<div class="avs-sidenav" fxFlex="1 1 auto">
   <div class="order-list-container list-container">
     <mat-sidenav-container fxLayout="row">
       <mat-sidenav [autoFocus]="false" #sidenav [(mode)]="over" fxFlex.xs="100" [(opened)]="opened" class="order-side-nav">
@@ -12,8 +12,8 @@
           </div>
         </div>
       </mat-sidenav>
-      <mat-sidenav-content class="order-mat-sidenav-content">
-        <div fxlayoutalign="center center">
+      <mat-sidenav-content class="order-mat-sidenav-content" fxFlex="1 1 auto">
+        <div fxlayoutalign="end center">
           <ng-content  select="[details]"></ng-content>
         </div>
       </mat-sidenav-content>
