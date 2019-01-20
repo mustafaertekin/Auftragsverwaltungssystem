@@ -1,7 +1,7 @@
-import {Component, OnInit, AfterContentInit} from '@angular/core';
+import {Component, OnInit, AfterContentInit, ElementRef, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
-import {Observable, BehaviorSubject, fromEvent} from 'rxjs';
-import {map, debounceTime} from 'rxjs/operators';
+import {Observable, BehaviorSubject, fromEvent, of} from 'rxjs';
+import {map, debounceTime, tap} from 'rxjs/operators';
 import * as _ from 'lodash';
 import { OrderService } from '@avs-ecosystem/services/order.service';
 import { ClientService } from '@avs-ecosystem/services/client.service';
@@ -20,6 +20,7 @@ export class DashboardNewOrderComponent implements OnInit, AfterContentInit {
   addressForms: FormGroup;
   selectedDelivery: string;
   deliveryDate: FormControl;
+  @ViewChild('addressComponent') addressComponent: ElementRef;
 
   constructor(private fb: FormBuilder,
     private route: ActivatedRoute,
@@ -97,14 +98,18 @@ export class DashboardNewOrderComponent implements OnInit, AfterContentInit {
     return `${customer.firstName} ${customer.lastName}`;
   }
 
+  setPersonAddresses(addresses) {
+    this.setAddressForm(addresses[0].addressId);
+  }
+
   setCustomer(customer) {
     this.customer = customer;
   }
 
-  setAddressForm() {
+  setAddressForm(addressId = '') {
     this.addressForms = this.fb.group({
-      deliveryAddress: ['', [Validators.required]],
-      invoiceAddress: ['', [Validators.required]],
+      deliveryAddress: [addressId, [Validators.required]],
+      invoiceAddress: [addressId, [Validators.required]],
     });
   }
 }

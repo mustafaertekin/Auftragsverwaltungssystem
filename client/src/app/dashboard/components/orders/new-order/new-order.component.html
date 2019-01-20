@@ -58,14 +58,14 @@
                 <form fxLayout="column" fxFlex="100" [formGroup]="addressForms">
                   <mat-form-field>
                     <mat-select  placeholder="{{ 'ADDRESS.DELIVERY' | translate }}" formControlName="deliveryAddress">
-                      <mat-option *ngFor="let address of addressForm?.addresses"   [value]="setAddressId(address?.addressId)">
+                      <mat-option *ngFor="let address of addressComponent?.addresses"   [value]="address?.addressId">
                         {{address.streetName}}, {{address.cityName}}, {{address.plzNumber}}
                       </mat-option>
                     </mat-select>
                   </mat-form-field>
                   <mat-form-field>
-                    <mat-select placeholder="{{ 'ADDRESS.INVOICE' | translate }}"formControlName="invoiceAddress">
-                      <mat-option *ngFor="let address of addressForm?.addresses" [value]="address?.addressId">
+                    <mat-select placeholder="{{ 'ADDRESS.INVOICE' | translate }}" formControlName="invoiceAddress">
+                      <mat-option *ngFor="let address of addressComponent?.addresses" [value]="address?.addressId">
                         {{address.streetName}}, {{address.cityName}}, {{address.plzNumber}}
                       </mat-option>
                     </mat-select>
@@ -78,7 +78,7 @@
                 </form>
               </div>
               <div fxFlex="50">
-                <avs-dashboard-addresses class="m-b-1" [clientId]="customer?.clientId" #addressForm fxFlexFill></avs-dashboard-addresses>
+                <avs-dashboard-addresses class="m-b-1" (emitter)="setPersonAddresses($event)" [clientId]="customer?.clientId" #addressComponent fxFlexFill></avs-dashboard-addresses>
               </div>
             </div>
             <div fxLayout="row">
