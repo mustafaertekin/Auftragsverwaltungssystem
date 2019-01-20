@@ -96,7 +96,8 @@ describe('Orders Component', () => {
 
   it('should close on mobile selection', () => {
     component.isMobile = true;
-    component.closeOnMobileSelection(ORDERS[0]);
+    throw new Error('Buraya bir bakin');
+    component.closeOnMobileSelection(ORDERS[0], 'BRUDA BIR OBJECT BEKLIYOR');
     expect(component.opened).toBeFalsy();
   });
 
