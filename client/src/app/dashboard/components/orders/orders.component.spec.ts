@@ -69,6 +69,8 @@ fdescribe('Orders Component', () => {
         ...setup.getProviders(),
         DashboardOrdersComponent,
         { provide: OrderService, useValue: ordersMockService },
+        { provide: ActivatedRoute, useValue: ordersMockService },
+        { provide: Router, useValue: ordersMockService}
       ]
     })
       .compileComponents();
