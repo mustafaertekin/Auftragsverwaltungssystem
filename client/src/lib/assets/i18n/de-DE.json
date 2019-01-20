@@ -11,7 +11,8 @@
     "DESCRIPTION": "Auftragsbeschreibung",
     "ID": "Auftragsnummer: ",
     "CREATED": "Erstellt am: ",
-    "UPDATED": "Aktualisiert am: "
+    "UPDATED": "Aktualisiert am: ",
+    "DELIVERYDATE": "Abholtermin"
   },
   "USER": {
     "TITLE": "Benutzer",

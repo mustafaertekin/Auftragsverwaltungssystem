@@ -12,7 +12,7 @@
           <div fxLayout="column" class="m-t-1 m-b-1">
             <form class="m-t-1" #settingsForm [formGroup]="userSettings">
               <mat-form-field>
-                <mat-select placeholder="{{ SETTING.LANGUAGE | translate }}" formControlName="language">
+                <mat-select placeholder="{{ 'SETTING.LANGUAGE' | translate }}" formControlName="language">
                   <mat-option (click)="changeLanguage('en-EN')" value="en-EN">English</mat-option>
                   <mat-option (click)="changeLanguage('de-DE')" value="de-DE">German</mat-option>
                 </mat-select>

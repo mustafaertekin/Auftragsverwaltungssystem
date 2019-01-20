@@ -11,7 +11,8 @@
     "DESCRIPTION": "Order Description",
     "ID": "Order No: ",
     "CREATED": "Created at: ",
-    "UPDATED": "Updated at: "
+    "UPDATED": "Updated at: ",
+    "DELIVERYDATE": "Delivery Date"
   },
   "USER": {
     "TITLE": "Users",

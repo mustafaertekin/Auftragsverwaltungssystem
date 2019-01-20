@@ -87,7 +87,7 @@
             <div>
               <mat-card>
                 <mat-card-content>
-                  <h3>Delivery date:</h3>
+                  <h3 translate="ORDER.DELIVERYDATE"><span>:</span></h3>
                   <mat-form-field>
                     <input matInput [matDatepicker]="dp" (dateChange)="saveNewDeliveryDate()" placeholder=""
                       [formControl]="deliveryDate">
@@ -100,7 +100,7 @@
             <div>
               <mat-card>
                 <mat-card-content>
-                  <h3>Created at:</h3>
+                  <h3 translate="ORDER.CREATED"></h3>
                   {{currentOrder?.creationDate | date: 'short'}}
                 </mat-card-content>
               </mat-card>
