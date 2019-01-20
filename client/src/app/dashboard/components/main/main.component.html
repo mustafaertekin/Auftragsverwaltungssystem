@@ -3,7 +3,7 @@
     <mat-card-content>
       <h2 translate="STATISTIC.TITLE"></h2>
 
-      <div fxLayout="column">
+      <div fxLayout="column" *ngIf="isLoaded">
 
 
         <div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxLayoutGap="40px">
