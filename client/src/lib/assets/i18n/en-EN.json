@@ -130,8 +130,7 @@
   },
   "COMMENTS":{
     "TITLE": "Comments",
-    "SAVE":"SAVE"
-
+    "ADD":"SAVE"
   },
   "SEARCH":{
     "TITLE": "SEARCH ..."
