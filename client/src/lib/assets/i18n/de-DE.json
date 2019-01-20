@@ -100,7 +100,8 @@
     "NEXT": "Nächste",
     "PREVIOUS": "Zurück",
     "SUBMIT": "Auftrag erfassen",
-    "LOGOUT": "Ausloggen"
+    "LOGOUT": "Ausloggen",
+    "CANCEL": "Abbrechen"
   },
   "SALUTATION": {
     "TITLE": "Anrede"
