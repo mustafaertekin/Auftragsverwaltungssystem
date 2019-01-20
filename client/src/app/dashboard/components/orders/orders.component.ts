@@ -88,7 +88,7 @@ export class DashboardOrdersComponent implements OnInit, OnChanges {
     });
   }
 
-  toggleNavigation(nav) {
+  toggleNavigation() {
     this.ordernav['sidenav'].toggle();
   }
 }
