@@ -47,7 +47,7 @@
     "NEW": "Neues Gerät",
     "SUBTITLE": "Erstellen Sie ein neues Gerät",
     "STEP": "Wählen Sie ein Gerät aus oder erstellen Sie ein neues",
-    "ADD": "Neues Gerät hinzufügen",
+    "ADD": "Gerät hinzufügen oder bearbeiten",
     "NAME": "Gerätname",
     "MODEL": "Wählen Sie ein Gerätemodell aus"
   },
@@ -63,7 +63,7 @@
     "TITLE": "Modell",
     "SELECT": "Modell auswählen",
     "STEP": "Wählen Sie ein Modell oder erstellen Sie ein neues",
-    "ADD": "Modell hinzufügen",
+    "ADD": "Modell hinzufügen oder bearbeiten",
     "NAME": "Modellname"
   },
   "SETTING": {

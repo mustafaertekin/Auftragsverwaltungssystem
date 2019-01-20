@@ -47,7 +47,7 @@
     "NEW": "New Device",
     "SUBTITLE": "Create a new device",
     "STEP": "Chose a device or create a new one",
-    "ADD": "Add a new device",
+    "ADD": "Add or edit device",
     "NAME": "Device name",
     "MODEL": "Select a device model"
   },
@@ -63,7 +63,7 @@
     "TITLE": "Model",
     "SELECT": "Select Model",
     "STEP": "Choose a model or create one",
-    "ADD": "Add a model" ,
+    "ADD": "Add or edit device model" ,
     "NAME": "Model name"
   },
   "SETTING": {
