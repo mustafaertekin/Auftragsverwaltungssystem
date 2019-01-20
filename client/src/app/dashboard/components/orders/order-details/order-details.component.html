@@ -47,6 +47,28 @@
               </mat-card>
             </div>
             <div>
+                <mat-card>
+                  <mat-card-content>
+                      <form fxLayout="column" fxFlex="100">
+                          <mat-form-field>
+                            <mat-select  placeholder="{{ 'ADDRESS.DELIVERY' | translate }}" [formControl]="deliveryAddress">
+                              <mat-option *ngFor="let address of currentOrder?.client?.addresses"   [value]="address?.addressId">
+                                {{address.streetName}}, {{address.cityName}}, {{address.plzNumber}}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                          <mat-form-field>
+                            <mat-select placeholder="{{ 'ADDRESS.INVOICE' | translate }}" [formControl]="invoiceAddress">
+                              <mat-option *ngFor="let address of currentOrder?.client?.addresses" [value]="address?.addressId">
+                                {{address.streetName}}, {{address.cityName}}, {{address.plzNumber}}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </form>
+                  </mat-card-content>
+                </mat-card>
+              </div>
+            <div>
               <mat-card>
                 <mat-card-content>
                   <form>

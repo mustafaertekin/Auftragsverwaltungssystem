@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
+import * as _ from 'lodash';
 import { DebugElement } from '@angular/core';
 import * as setup from '@avs-ecosystem/services/mockServices/test-setup';
 
@@ -91,7 +92,7 @@ describe('Order Item Service Component', () => {
 
   it('should get device models', () => {
     component.getModelsByDeviceId(DEVICES[0]);
-    expect(component.models.deviceModelId).toBe(DEVICEMODELS.deviceModelId);
+    expect(_.get(component, 'models.deviceModelId')).toBe(DEVICEMODELS.deviceModelId);
   });
 
 });

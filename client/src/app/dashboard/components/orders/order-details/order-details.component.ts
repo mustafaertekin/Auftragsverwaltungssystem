@@ -25,6 +25,8 @@ export class DashboardOrderDetailsComponent implements OnInit, OnChanges {
   statuses: any[];
   deliveryDate: FormControl;
   deliveryDateForm: FormGroup;
+  invoiceAddress: FormControl;
+  deliveryAddress: FormControl;
 
   public orderStatus: string;
 
@@ -56,6 +58,8 @@ export class DashboardOrderDetailsComponent implements OnInit, OnChanges {
       date = new Date();
     }
     this.deliveryDate = new FormControl(new Date(date));
+    this.deliveryAddress = new FormControl();
+    this.invoiceAddress = new FormControl();
   }
 
   ngOnChanges (changes) {
@@ -65,8 +69,32 @@ export class DashboardOrderDetailsComponent implements OnInit, OnChanges {
         this.currentOrder = order;
         this.setAddressForm(_.get(this.currentOrder, 'deliveryDate', ''));
         this.editorContent = this.currentOrder.description;
+        this.deliveryAddress = new FormControl(order.deliveryAddressId.addressId);
+        this.invoiceAddress = new FormControl(order.billingAddressId.addressId);
+
+        const contactAddresses = {
+          orderId: order.orderId,
+          deliveryAddressId: '',
+          billingAddressId: ''
+        };
+
+        this.deliveryAddress.valueChanges.subscribe(addressId => {
+          contactAddresses.deliveryAddressId = addressId;
+          this.updateAssignableAddresses(contactAddresses);
+        });
+
+        this.invoiceAddress.valueChanges.subscribe(addressId => {
+          contactAddresses.billingAddressId = addressId;
+          this.updateAssignableAddresses(contactAddresses);
+        });
       });
     }
+  }
+
+  updateAssignableAddresses(address) {
+    this.orderService.changeContactaddress(address).subscribe(result => {
+      this.notificationService.success('Address is successfuly updated!');
+    });
   }
 
   saveNewDeliveryDate() {
