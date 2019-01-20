@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as _ from 'lodash';
 import { AddressService } from '@avs-ecosystem/services/address.service';
@@ -15,6 +15,7 @@ export class DashboardAddressesComponent implements OnInit, OnChanges {
   public selectedAddress: any;
   @Input() clientId: string;
   @Input() userId: string;
+  @Output() emitter: EventEmitter<any> = new EventEmitter<any>();
 
 
   constructor(private fb: FormBuilder,
@@ -98,6 +99,7 @@ export class DashboardAddressesComponent implements OnInit, OnChanges {
   public getAllAddressesByClientId(clientId) {
     this.addressService.getByClientId(clientId).subscribe(addresses => {
       this.addresses = addresses;
+      this.emitter.emit(addresses);
     }, (err) => {
       this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${_.get(err, 'error.message', '')}`);
     });

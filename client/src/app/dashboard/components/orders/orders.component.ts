@@ -85,4 +85,8 @@ export class DashboardOrdersComponent implements OnInit, OnChanges {
       this.currentOrderId = orders[0] ? orders[0].orderId : null;
     });
   }
+
+  toggleNavigation() {
+    this.ordernav['sidenav'].toggle();
+  }
 }

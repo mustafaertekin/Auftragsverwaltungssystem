@@ -23,6 +23,10 @@ export class OrderService {
     return this.http.post(`${this.serverUrl}orders/status`, state).pipe(map((res: Response) => res));
   }
 
+  public changeContactaddress(address): Observable<any> {
+    return this.http.post(`${this.serverUrl}orders/changeContactaddress`, address).pipe(map((res: Response) => res));
+  }
+
   public updateDeliveryDate(date): Observable<any> {
     return this.http.post(`${this.serverUrl}orders/updateDeliveryDate`, date).pipe(map((res: Response) => res));
   }
