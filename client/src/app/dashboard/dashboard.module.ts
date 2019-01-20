@@ -49,7 +49,6 @@ import { DashboardNewUserComponent } from './components/users/new-user/new-user.
 import { UserService } from '@avs-ecosystem/services/user.service';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { DashboardOrderItemServiceComponent } from './components/orders/order-details/order-item-service/order-item-service.component';
-import { NotificationService } from '@avs-ecosystem/services/notification-sevice';
 import { DashboardSideNavComponent } from '@avs-ecosystem/modules/shared/avs-sidenav/avs-sidenav.component';
 
 export function createTranslateLoader(http: HttpClient) {
@@ -114,7 +113,6 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     DashboardSideNavComponent
   ],
   providers: [
-    NotificationService,
     {
       provide: PERFECT_SCROLLBAR_CONFIG,
       useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG

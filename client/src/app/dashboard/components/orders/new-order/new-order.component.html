@@ -70,6 +70,11 @@
                       </mat-option>
                     </mat-select>
                   </mat-form-field>
+                  <mat-form-field>
+                      <input matInput [matDatepicker]="dp"  placeholder="Delivery date" [formControl]="deliveryDate">
+                      <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+                      <mat-datepicker #dp></mat-datepicker>
+                    </mat-form-field>
                 </form>
               </div>
               <div fxFlex="50">

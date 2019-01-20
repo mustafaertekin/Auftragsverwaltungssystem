@@ -16,7 +16,6 @@ import { Http, AuthService,
   TokenService,
   IsAuthorizedGuard
 } from '@avs-ecosystem/services';
-import { SimpleNotificationsModule } from 'angular2-notifications';
 
 import { HomePageModule } from './home/home.module';
 import { DashboardPageModule } from './dashboard/dashboard.module';
@@ -33,6 +32,7 @@ import { AppSettingsService } from '@avs-ecosystem/services/app-settings.service
 import { StatisticsService } from '@avs-ecosystem/services/statistics.service';
 import { CurrentUserResolver } from '@avs-ecosystem/services/current-user.resolver';
 import { OrderItemService } from '@avs-ecosystem/services/order-item.service';
+import { NotificationService } from '@avs-ecosystem/services/notification-sevice';
 
 @NgModule({
   declarations: [
@@ -69,6 +69,7 @@ import { OrderItemService } from '@avs-ecosystem/services/order-item.service';
     StatisticsService,
     CurrentUserResolver,
     OrderItemService,
+    NotificationService,
     {
       provide : HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

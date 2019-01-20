@@ -1,8 +1,8 @@
 <div class="order-details">
   <mat-tab-group>
     <mat-tab label="{{'ORDER.DETAILS' | translate }}">
-      <div fxLayout="row">
-        <span fxFlex></span>
+      <div fxLayout="column" fxLayoutGap="16px" fxLayout.xs="column">
+
         <div class="m-t-1 m-r-1 m-b-1" fxLayoutAlign="end center">
           <button mat-fab class="" (click)="emailToClient(currentOrder.orderId)">
             <mat-icon>email</mat-icon>
@@ -14,6 +14,15 @@
           <button mat-fab color="warn" (click)="deleteOrder(currentOrder.orderId)" *ngIf="isAdmin()">
             <mat-icon>delete</mat-icon>
           </button>
+        </div>
+        <div fxFlex="100" fxFlex.xs="100">
+          <mat-card>
+            <mat-card-content>
+              <div fxLayout="row" fxLayoutAlign="space-between center">
+                <h2>{{currentOrder?.client?.firstName}} {{currentOrder?.client?.lastName}}</h2>
+              </div>
+            </mat-card-content>
+          </mat-card>
         </div>
       </div>
       <avs-animate-fadein [state]="animationState">
@@ -56,19 +65,32 @@
             <div>
               <mat-card>
                 <mat-card-content>
+                  <h3>Delivery date:</h3>
+                  <mat-form-field>
+                    <input matInput [matDatepicker]="dp" (dateChange)="saveNewDeliveryDate()" placeholder=""
+                      [formControl]="deliveryDate">
+                    <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+                    <mat-datepicker #dp></mat-datepicker>
+                  </mat-form-field>
+                </mat-card-content>
+              </mat-card>
+            </div>
+            <div>
+              <mat-card>
+                <mat-card-content>
                   <h3>Created at:</h3>
                   {{currentOrder?.creationDate | date: 'short'}}
                 </mat-card-content>
               </mat-card>
             </div>
             <div>
-                <mat-card>
-                  <mat-card-content>
-                    <h3>Updatet at:</h3>
-                    {{currentOrder?.updatedOn | date: 'short'}}
-                  </mat-card-content>
-                </mat-card>
-              </div>
+              <mat-card>
+                <mat-card-content>
+                  <h3>Updated at:</h3>
+                  {{currentOrder?.updatedOn | date: 'short'}}
+                </mat-card-content>
+              </mat-card>
+            </div>
             <div>
               <mat-card>
                 <mat-card-content>
@@ -83,6 +105,9 @@
     </mat-tab>
     <mat-tab label="{{'CUSTOMER.DETAILS' | translate }}">
       <avs-dashboard-customer-details (emitter)="getOrderById($event)" [clientId]="currentOrder?.client?.clientId"></avs-dashboard-customer-details>
+    </mat-tab>
+    <mat-tab label="Customer addresses">
+      <avs-dashboard-addresses [clientId]="currentOrder?.client?.clientId" fxFlexFill></avs-dashboard-addresses>
     </mat-tab>
     <mat-tab label="Commments">
       <br><br>

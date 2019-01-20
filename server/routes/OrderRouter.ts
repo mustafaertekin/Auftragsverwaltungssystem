@@ -72,6 +72,18 @@ export class OrderRouter {
     }
   }
 
+  public async updateDeliveryDate(req: express.Request, res: express.Response, next: express.NextFunction) {
+    try {
+      const order = await Order.findOne<Order>({ where: { orderId: req.body.orderId }});
+      if(order) {
+        order.deliveryDate = req.body.date;
+        res.json(await order.save());
+      }
+    } catch (error) {
+      next(error);
+    }
+  }
+
   public async comment(req: express.Request, res: express.Response, next: express.NextFunction) {
     try {
       const order = await Order.findOne<Order>({ where: { orderId: req.body.orderId }});
@@ -119,7 +131,7 @@ export class OrderRouter {
         const mailOptions = {
           from: 'auftragpro@gmail.com',
           to: _.get(order, 'client.email'),
-          subject: 'AVS - Your order is on its way!',
+          subject: `AVS - Your order status: ${order.status}`,
           html: html,
         };
 
@@ -168,6 +180,7 @@ export class OrderRouter {
     this.router.get("/:id", Auth.getBearerMiddleware(), Roles.connectRoles.can('everyone'), this.getById.bind(this));
     this.router.post("/", Auth.getBearerMiddleware(), Roles.connectRoles.can('everyone'), this.post.bind(this));
     this.router.post("/status", Auth.getBearerMiddleware(), Roles.connectRoles.can('everyone'), this.setStatus.bind(this));
+    this.router.post("/updateDeliveryDate", Auth.getBearerMiddleware(), Roles.connectRoles.can('everyone'), this.updateDeliveryDate.bind(this));
     this.router.post("/comment", Auth.getBearerMiddleware(), Roles.connectRoles.can('everyone'), this.comment.bind(this));
     this.router.put("/:id", Auth.getBearerMiddleware(), Roles.connectRoles.can('everyone'), this.put.bind(this));
     this.router.delete("/:id", Auth.getBearerMiddleware(), Roles.connectRoles.can('admin'), this.delete.bind(this));

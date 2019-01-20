@@ -19,7 +19,6 @@ export class IsAuthorizedGuard implements CanActivate {
     // true or false
     try {
       if (this.tokenservice.isTokenExpired(token.access_token)) {
-        this.router.navigate(['/']);
         return false;
       }
       return true;

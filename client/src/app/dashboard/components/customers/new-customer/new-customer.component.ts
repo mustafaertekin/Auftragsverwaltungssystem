@@ -36,6 +36,7 @@ export class DashboardNewCustomerComponent implements OnInit, OnChanges {
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
       phone: ['', [Validators.required]],
+      isActive: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
     });
   }

@@ -79,7 +79,7 @@ export class OrderManager {
                   deliveryAddressId: deliveryAddress,
                   billingAddressId: invoiceAddress,
                   description: 'not yet implemented',
-                  deliveryDate: new Date().toString()
+                  deliveryDate: reqObject.body.deliveryDate
           });
           const savedOrder = await newOrder.save();
 

@@ -1,10 +1,12 @@
 import { Component, OnInit, Input, OnChanges, Output, EventEmitter } from '@angular/core';
+import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { OrderService } from '@avs-ecosystem/services/order.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as _ from 'lodash';
 import { AppSettingsService } from '@avs-ecosystem/services/app-settings.service';
 import { NotificationService } from '@avs-ecosystem/services/notification-sevice';
 import { OrderItemService } from '@avs-ecosystem/services/order-item.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'avs-dashboard-order-details',
@@ -21,10 +23,13 @@ export class DashboardOrderDetailsComponent implements OnInit, OnChanges {
   currentUser: any;
   animationState: string;
   statuses: any[];
+  deliveryDate: FormControl;
+  deliveryDateForm: FormGroup;
 
   public orderStatus: string;
 
   constructor(
+    private fb: FormBuilder,
     private settingService:  AppSettingsService,
     private orderService: OrderService,
     private orderItemService: OrderItemService,
@@ -43,6 +48,14 @@ export class DashboardOrderDetailsComponent implements OnInit, OnChanges {
     this.settingService.getCurentUser().subscribe(currentUser => {
       this.currentUser = currentUser;
     });
+    this.setAddressForm('');
+  }
+
+  setAddressForm(date) {
+    if (!date) {
+      date = new Date();
+    }
+    this.deliveryDate = new FormControl(new Date(date));
   }
 
   ngOnChanges (changes) {
@@ -50,9 +63,21 @@ export class DashboardOrderDetailsComponent implements OnInit, OnChanges {
     if (this.currentOrderId) {
       this.orderService.getById(this.currentOrderId).subscribe(order => {
         this.currentOrder = order;
+        this.setAddressForm(_.get(this.currentOrder, 'deliveryDate', ''));
         this.editorContent = this.currentOrder.description;
       });
     }
+  }
+
+  saveNewDeliveryDate() {
+    const data = {
+      date: this.deliveryDate.value,
+      orderId: this.currentOrderId
+    };
+    this.orderService.updateDeliveryDate(data).subscribe(result => {
+      this.emitter.emit('update');
+      this.notificationService.success('Delivery date is updated!');
+    });
   }
 
   getAllOrderItemServicesByOrderId() {

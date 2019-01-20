@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core'; 
-import { CommonModule } from '@angular/common'; 
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from '@avs-ecosystem/modules/material/material.module';
@@ -9,6 +9,8 @@ import { LoginComponent } from './login/login.component';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { SimpleNotificationsModule } from 'angular2-notifications';
+
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -22,6 +24,7 @@ export function createTranslateLoader(http: HttpClient) {
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
+    SimpleNotificationsModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
           provide: TranslateLoader,

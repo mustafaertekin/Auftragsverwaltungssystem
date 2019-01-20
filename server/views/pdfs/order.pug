@@ -194,10 +194,20 @@ head
                                 tr
                                   td.Font.Font--body.Font--noWrap(style="border: 0;border-collapse: collapse;margin: 0;padding: 0;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;mso-line-height-rule: exactly;vertical-align: middle;color: #525f7f;font-size: 15px;line-height: 24px;white-space: nowrap;")
                                     | #{order.client.firstName} #{order.client.lastName}
-                            table.Section.Divider(width='100%' style='border: 0;border-collapse: collapse;margin: 0;padding: 0;background-color: #ffffff;')
+                          td.Spacer.DataBlocks-spacer(width='20' style='border: 0;border-collapse: collapse;margin: 0;padding: 0;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;color: #ffffff;font-size: 1px;line-height: 1px;mso-line-height-rule: exactly;') &nbsp;
+                          td.DataBlocks-item(valign='top' style='border: 0;border-collapse: collapse;margin: 0;padding: 0;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;')
+                            table(style='border: 0;border-collapse: collapse;margin: 0;padding: 0;')
                               tbody
                                 tr
-                                  td.Spacer.Spacer--divider(height='32' style='border: 0;border-collapse: collapse;margin: 0;padding: 0;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;color: #ffffff;font-size: 1px;line-height: 1px;mso-line-height-rule: exactly;') &nbsp;
+                                  td.Font.Font--caption.Font--uppercase.Font--mute.Font--noWrap(style="border: 0;border-collapse: collapse;margin: 0;padding: 0;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;mso-line-height-rule: exactly;vertical-align: middle;color: #8898aa;font-size: 12px;line-height: 16px;white-space: nowrap;font-weight: bold;text-transform: uppercase;")
+
+                          td.Spacer.DataBlocks-spacer(width='20' style='border: 0;border-collapse: collapse;margin: 0;padding: 0;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;color: #ffffff;font-size: 1px;line-height: 1px;mso-line-height-rule: exactly;') &nbsp;
+                          td.DataBlocks-item(valign='top' style='border: 0;border-collapse: collapse;margin: 0;padding: 0;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;')
+                            table(style='border: 0;border-collapse: collapse;margin: 0;padding: 0;')
+                              tbody
+                                tr
+                                  td.Font.Font--caption.Font--uppercase.Font--mute.Font--noWrap(style="border: 0;border-collapse: collapse;margin: 0;padding: 0;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;mso-line-height-rule: exactly;vertical-align: middle;color: #8898aa;font-size: 12px;line-height: 16px;white-space: nowrap;font-weight: bold;text-transform: uppercase;")
+                                    | Status: #{order.status}
                         tr
                           td.DataBlocks-item(valign='top' style='border: 0;border-collapse: collapse;margin: 0;padding: 0;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;')
                             table(style='border: 0;border-collapse: collapse;margin: 0;padding: 0;')

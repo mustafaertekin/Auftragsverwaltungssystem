@@ -19,6 +19,7 @@ export class DashboardNewOrderComponent implements OnInit, AfterContentInit {
   customer: any;
   addressForms: FormGroup;
   selectedDelivery: string;
+  deliveryDate: FormControl;
 
   constructor(private fb: FormBuilder,
     private route: ActivatedRoute,
@@ -29,6 +30,7 @@ export class DashboardNewOrderComponent implements OnInit, AfterContentInit {
 
   ngOnInit() {
     this.optional = false;
+    this.deliveryDate = new FormControl(new Date());
     this.setAddressForm();
   }
 
@@ -46,11 +48,16 @@ export class DashboardNewOrderComponent implements OnInit, AfterContentInit {
           addedServices,
           clientId: this.customer.clientId,
           deliveryAddress: this.addressForms.value.deliveryAddress,
-          invoiceAddress: this.addressForms.value.invoiceAddress
+          invoiceAddress: this.addressForms.value.invoiceAddress,
+          deliveryDate: this.deliveryDate.value,
         }).subscribe(result =>  {
             this.router.navigate(['/', 'dashboard', 'orders', `${result.orderId}`], { relativeTo: this.route});
         });
     }
+  }
+
+  setDeliveryDate() {
+    console.log(this.deliveryDate.value);
   }
 
   ngAfterContentInit() {

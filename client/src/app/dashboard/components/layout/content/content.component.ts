@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class DashboardMainContentComponent implements OnInit {
   @ViewChild('sidenav') sidenav: ElementRef;
   watcher: Subscription;
-  opened = false;
+  opened: boolean;
   over = 'side';
   animationState: string;
   previousUrl: string;
@@ -20,6 +20,7 @@ export class DashboardMainContentComponent implements OnInit {
    }
 
   ngOnInit() {
+    this.opened = true;
     setTimeout(() => {
       this.watcher = this.media.subscribe((change: MediaChange) => {
         if (change.mqAlias === 'sm' || change.mqAlias === 'xs') {
