@@ -3,7 +3,7 @@ import { AddressService } from '@avs-ecosystem/services/address.service';
 import { of } from 'rxjs';
 import { DebugElement } from '@angular/core';
 import * as setup from '@avs-ecosystem/services/mockServices/test-setup';
-
+import { NotificationService } from '@avs-ecosystem/services/notification-sevice';
 
 import { DashboardAddressesComponent } from '../addresses.component';
 import { DashboardAddressesExtraComponent } from './address-extra.component';
@@ -28,7 +28,7 @@ describe('Address Extra Component', () => {
   ];
 
   const instantiateMocks = () => {
-    addressMockService = jasmine.createSpyObj(['delete', 'update', 'getByClientId']);
+    addressMockService = jasmine.createSpyObj(['delete', 'update', 'getByClientId', 'success', 'error']);
     addressMockService.update.and.returnValue(of(null));
     addressMockService.delete.and.returnValue(of(null));
   };
@@ -58,6 +58,7 @@ describe('Address Extra Component', () => {
         DashboardAddressesComponent,
         DashboardAddressesExtraComponent,
         { provide: AddressService, useValue: addressMockService },
+        { provide: NotificationService, useValue: addressMockService },
       ]
     })
       .compileComponents();

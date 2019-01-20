@@ -4,11 +4,13 @@ import { of } from 'rxjs';
 import { DebugElement } from '@angular/core';
 import * as setup from '@avs-ecosystem/services/mockServices/test-setup';
 import { By } from '@angular/platform-browser';
+import { NotificationService } from '@avs-ecosystem/services/notification-sevice';
+
 
 import { DashboardAddressesComponent } from './addresses.component';
 
 
-describe('Address Extra Component', () => {
+describe('Address Component', () => {
   let component: DashboardAddressesComponent;
   let fixture: ComponentFixture<DashboardAddressesComponent>;
   let debugElement: DebugElement;
@@ -27,7 +29,7 @@ describe('Address Extra Component', () => {
   ];
 
   const instantiateMocks = () => {
-    addressMockService = jasmine.createSpyObj(['delete', 'update', 'getByClientId', 'create']);
+    addressMockService = jasmine.createSpyObj(['delete', 'update', 'getByClientId', 'create', 'success']);
     addressMockService.update.and.returnValue(of(null));
     addressMockService.delete.and.returnValue(of(null));
     addressMockService.create.and.returnValue(of(ADDRESSES[0]));
@@ -66,6 +68,7 @@ describe('Address Extra Component', () => {
         ...setup.getProviders(),
         DashboardAddressesComponent,
         { provide: AddressService, useValue: addressMockService },
+        { provide: NotificationService, useValue: addressMockService },
       ]
     })
       .compileComponents();
@@ -78,7 +81,7 @@ describe('Address Extra Component', () => {
     debugElement = fixture.debugElement;
   });
 
-  it('should create address extra compoenent', () => {
+  it('should create address  compoenent', () => {
     expect(component).toBeTruthy();
   });
 
@@ -93,20 +96,6 @@ describe('Address Extra Component', () => {
     component.saveAddress();
 
     expect(component.addresses).toBe(ADDRESSES);
-  });
-
-  it('should call a saveForClient', () => {
-    const spy = spysOn(DashboardAddressesComponent, 'saveForClient').and.returnValue(ADDRESSES);
-    component.setAddressForm();
-
-    expect(component.addressForm.valid).toBeFalsy();
-    component = setForm(component);
-    expect(component.addressForm.valid).toBeTruthy();
-
-    component.userId = null;
-    component.saveAddress();
-
-    expect(spy).toHaveBeenCalled();
   });
 
   it('should save a user s address', () => {
