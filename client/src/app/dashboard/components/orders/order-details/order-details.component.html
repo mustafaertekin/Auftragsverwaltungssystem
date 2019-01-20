@@ -65,7 +65,6 @@
             <div>
               <mat-card>
                 <mat-card-content>
-<<<<<<< HEAD
                   <h3>Delivery date:</h3>
                   <mat-form-field>
                     <input matInput [matDatepicker]="dp" (dateChange)="saveNewDeliveryDate()" placeholder=""
@@ -80,15 +79,11 @@
               <mat-card>
                 <mat-card-content>
                   <h3>Created at:</h3>
-=======
-                  <h3 translate="ORDER.CREATED"></h3>
->>>>>>> AVS-34
                   {{currentOrder?.creationDate | date: 'short'}}
                 </mat-card-content>
               </mat-card>
             </div>
             <div>
-<<<<<<< HEAD
               <mat-card>
                 <mat-card-content>
                   <h3>Updated at:</h3>
@@ -96,15 +91,6 @@
                 </mat-card-content>
               </mat-card>
             </div>
-=======
-                <mat-card>
-                  <mat-card-content>
-                    <h3 translate="ORDER.UPDATED"></h3>
-                    {{currentOrder?.updatedOn | date: 'short'}}
-                  </mat-card-content>
-                </mat-card>
-              </div>
->>>>>>> AVS-34
             <div>
               <mat-card>
                 <mat-card-content>
