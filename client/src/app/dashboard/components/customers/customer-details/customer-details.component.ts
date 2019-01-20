@@ -72,17 +72,19 @@ export class DashboardCustomerDetailsComponent implements OnInit, OnChanges {
       this.clientService.updateClient(this.clientId, this.customerForm.value)
         .subscribe(result => {
           this.emitter.emit(result);
+          this.notificationService.success('Successfully created!');
         }, (err) => {
           this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
         });
     }
   }
 
-  private createClient() {
+  createClient() {
     if (this.customerForm.valid) {
       this.clientService.createClient(this.customerForm.value)
         .subscribe(result => {
           this.emitter.emit(result);
+          this.notificationService.success('Successfully created!');
         }, (err) => {
           this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
         });

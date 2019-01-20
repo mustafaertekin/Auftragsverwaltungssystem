@@ -24,14 +24,14 @@ import { DashboardOrderDetailsComponent } from './components/orders/order-detail
 import { DashboardNewOrderComponent } from './components/orders/new-order/new-order.component';
 import { DashboardCustomerDetailsComponent } from './components/customers/customer-details/customer-details.component';
 import { DashboardAddressesComponent } from './components/addresses/addresses.component';
-import { DashboardAddressesExstraComponent } from './components/addresses/address-exstra/address-exstra.component';
+import { DashboardAddressesExtraComponent } from './components/addresses/address-extra/address-extra.component';
 import { DashboardDevicesComponent } from './components/devices/devices.component';
 import { DashboardNewDeviceComponent } from './components/devices/device-details/new-devices.component';
 import { DashboardDeviceModelComponent } from './components/devices/model-details/device-model.component';
 import { DashboardDeviceServiceComponent } from './components/devices/service-details/device-service.component';
 import { DashboardAddedDeviceComponent } from './components/devices/device-details/added-devices/added-devices.component';
-import { DashboardModelExstraComponent } from './components/devices/model-details/added-model/added-model.component';
-import { DashboardDeviceServiceExstraComponent } from './components/devices/service-details/added-service/added-service.component';
+import { DashboardModelExtraComponent } from './components/devices/model-details/added-model/added-model.component';
+import { DashboardDeviceServiceExtraComponent } from './components/devices/service-details/added-service/added-service.component';
 import { UsersComponent } from './components/users/users.component';
 import { DashboardCustomersComponent } from './components/customers/customers/customers.component';
 import { DashboardSettingsComponent } from './components/settings/settings.component';
@@ -87,14 +87,14 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     DashboardNewOrderComponent,
     DashboardCustomerDetailsComponent,
     DashboardAddressesComponent,
-    DashboardAddressesExstraComponent,
+    DashboardAddressesExtraComponent,
     DashboardDevicesComponent,
     DashboardNewDeviceComponent,
     DashboardDeviceModelComponent,
     DashboardDeviceServiceComponent,
     DashboardAddedDeviceComponent,
-    DashboardModelExstraComponent,
-    DashboardDeviceServiceExstraComponent,
+    DashboardModelExtraComponent,
+    DashboardDeviceServiceExtraComponent,
     UsersComponent,
     DashboardCustomersComponent,
     DashboardSettingsComponent,

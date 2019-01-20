@@ -8,7 +8,7 @@ import { By } from '@angular/platform-browser';
 import { DashboardAddressesComponent } from './addresses.component';
 
 
-describe('Address Exstra Component', () => {
+describe('Address Extra Component', () => {
   let component: DashboardAddressesComponent;
   let fixture: ComponentFixture<DashboardAddressesComponent>;
   let debugElement: DebugElement;
@@ -78,7 +78,7 @@ describe('Address Exstra Component', () => {
     debugElement = fixture.debugElement;
   });
 
-  it('should create address exstra compoenent', () => {
+  it('should create address extra compoenent', () => {
     expect(component).toBeTruthy();
   });
 

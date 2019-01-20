@@ -6,11 +6,11 @@ import { DashboardAddressesComponent } from '../addresses.component';
 import { NotificationService } from '@avs-ecosystem/services/notification-sevice';
 
 @Component({
-  selector: 'avs-dashboard-address-exstra',
-  templateUrl: './address-exstra.component.html',
-  styleUrls: ['./address-exstra.component.scss']
+  selector: 'avs-dashboard-address-extra',
+  templateUrl: './address-extra.component.html',
+  styleUrls: ['./address-extra.component.scss']
 })
-export class DashboardAddressesExstraComponent implements OnInit {
+export class DashboardAddressesExtraComponent implements OnInit {
   public addressForm: FormGroup;
   @Input() address: any;
   @Input() clientId: string;
@@ -51,6 +51,7 @@ export class DashboardAddressesExstraComponent implements OnInit {
       addresInfo.addressId = this.address.addressId;
       this.addressService.update(addresInfo).subscribe(() => {
         this.parent.getAllAddressesByClientId(this.clientId);
+        this.notificationService.success('Successfully updated!');
       }, (err) => {
         this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${_.get(err, 'error.message', '')}`);
       });
@@ -64,6 +65,7 @@ export class DashboardAddressesExstraComponent implements OnInit {
       addresInfo.addressId = this.address.addressId;
       this.addressService.update(addresInfo).subscribe(() => {
         this.parent.getAllAddressesByClientId(this.userId);
+        this.notificationService.success('Successfully updated!');
       }, (err) => {
         this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${_.get(err, 'error.message', '')}`);
       });
@@ -73,6 +75,7 @@ export class DashboardAddressesExstraComponent implements OnInit {
   deleteAddress(addressId) {
     this.addressService.delete(addressId).subscribe(addresses => {
       this.parent.getAllAddressesByClientId(this.clientId || this.userId);
+      this.notificationService.success('Successfully deleted!');
     }, (err) => {
       this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${_.get(err, 'error.message', '')}`);
     });

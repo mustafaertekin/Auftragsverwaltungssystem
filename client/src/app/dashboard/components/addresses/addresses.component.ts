@@ -78,6 +78,7 @@ export class DashboardAddressesComponent implements OnInit, OnChanges {
       addresInfo.clientId = this.clientId;
       this.addressService.create(addresInfo).subscribe(() => {
         this.getAllAddressesByClientId(this.clientId);
+        this.notificationService.success('Successfully saved!');
       }, (err) => {
         this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${_.get(err, 'error.message', '')}`);
       });
@@ -90,6 +91,7 @@ export class DashboardAddressesComponent implements OnInit, OnChanges {
       addresInfo.userId = this.userId;
       this.addressService.create(addresInfo).subscribe(() => {
         this.getAllAddressesByClientId(this.userId);
+        this.notificationService.success('Successfully saved!');
       }, (err) => {
         this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${_.get(err, 'error.message', '')}`);
       });

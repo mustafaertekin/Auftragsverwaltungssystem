@@ -12,7 +12,7 @@ import { NotificationService } from '@avs-ecosystem/services/notification-sevice
   templateUrl: './added-service.component.html',
   styleUrls: ['./added-service.component.scss']
 })
-export class DashboardDeviceServiceExstraComponent implements OnInit {
+export class DashboardDeviceServiceExtraComponent implements OnInit {
 
   currentUser: any;
 

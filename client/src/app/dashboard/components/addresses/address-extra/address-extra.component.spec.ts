@@ -6,12 +6,12 @@ import * as setup from '@avs-ecosystem/services/mockServices/test-setup';
 
 
 import { DashboardAddressesComponent } from '../addresses.component';
-import { DashboardAddressesExstraComponent } from './address-exstra.component';
+import { DashboardAddressesExtraComponent } from './address-extra.component';
 
 
-describe('Address Exstra Component', () => {
-  let component: DashboardAddressesExstraComponent;
-  let fixture: ComponentFixture<DashboardAddressesExstraComponent>;
+describe('Address Extra Component', () => {
+  let component: DashboardAddressesExtraComponent;
+  let fixture: ComponentFixture<DashboardAddressesExtraComponent>;
   let debugElement: DebugElement;
   let addressMockService = null;
 
@@ -48,7 +48,7 @@ describe('Address Exstra Component', () => {
   beforeEach(async(() => {
     instantiateMocks();
     TestBed.configureTestingModule({
-      declarations: [DashboardAddressesExstraComponent, DashboardAddressesComponent],
+      declarations: [DashboardAddressesExtraComponent, DashboardAddressesComponent],
       schemas: [...setup.getShemas()],
       imports: [
         ...setup.getImports()
@@ -56,7 +56,7 @@ describe('Address Exstra Component', () => {
       providers: [
         ...setup.getProviders(),
         DashboardAddressesComponent,
-        DashboardAddressesExstraComponent,
+        DashboardAddressesExtraComponent,
         { provide: AddressService, useValue: addressMockService },
       ]
     })
@@ -64,20 +64,20 @@ describe('Address Exstra Component', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DashboardAddressesExstraComponent);
+    fixture = TestBed.createComponent(DashboardAddressesExtraComponent);
     component = fixture.componentInstance;
     setComponentInputs(component);
     debugElement = fixture.debugElement;
   });
 
-  it('should create address exstra compoenent', () => {
+  it('should create address extra compoenent', () => {
     expect(component).toBeTruthy();
   });
 
   it('should update a client s address', () => {
 
     spysOn(DashboardAddressesComponent, 'getAllAddressesByClientId').and.returnValue(ADDRESSES);
-    spysOn(DashboardAddressesExstraComponent, 'updateForClient').and.returnValue(ADDRESSES);
+    spysOn(DashboardAddressesExtraComponent, 'updateForClient').and.returnValue(ADDRESSES);
 
     component.setAddressForm();
     component.userId = null;
@@ -91,7 +91,7 @@ describe('Address Exstra Component', () => {
   it('should update a user s address', () => {
 
     spysOn(DashboardAddressesComponent, 'getAllAddressesByClientId').and.returnValue(ADDRESSES);
-    spysOn(DashboardAddressesExstraComponent, 'updateForUser').and.returnValue(ADDRESSES);
+    spysOn(DashboardAddressesExtraComponent, 'updateForUser').and.returnValue(ADDRESSES);
 
     component.setAddressForm();
     component.clientId = null;
