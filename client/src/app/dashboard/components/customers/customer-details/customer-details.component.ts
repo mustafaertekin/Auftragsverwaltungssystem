@@ -21,7 +21,6 @@ export class DashboardCustomerDetailsComponent implements OnInit, OnChanges {
   @Input() clientId: any;
   public addresses: any;
   myControl = new FormControl();
-  currentUser: any;
   options: Client[] = [];
   filteredOptions: Observable<Client[]>;
 
@@ -32,13 +31,7 @@ export class DashboardCustomerDetailsComponent implements OnInit, OnChanges {
     this.setCustomerForm();
   }
 
-  ngOnInit() {
-    this.settingService.getCurentUser().subscribe(currentUser => {
-      this.currentUser = currentUser;
-    }, (err) => {
-      this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
-    });
-  }
+  ngOnInit() {}
 
   ngOnChanges(changes) {
     if (!changes.clientId.currentValue && !changes.clientId.firstChange) {
@@ -116,12 +109,5 @@ export class DashboardCustomerDetailsComponent implements OnInit, OnChanges {
       this.customerForm.controls['lastName'].setValue(result.lastName);
       this.customerForm.controls['phone'].setValue(result.phone);
     }
-  }
-
-  isAdmin() {
-    if (this.currentUser && this.currentUser.role) {
-      return this.currentUser.role === 'admin';
-    }
-    return false;
   }
 }

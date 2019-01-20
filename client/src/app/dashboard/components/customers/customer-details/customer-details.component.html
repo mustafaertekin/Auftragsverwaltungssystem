@@ -20,16 +20,13 @@
         <input matInput placeholder="Email" formControlName="email">
       </mat-form-field>
       <div class="m-t-1 m-b-1">
-        <mat-slide-toggle formControlName="isActive"><span translate="INPUT.ACTIVATE"></span></mat-slide-toggle>
-      </div>
+          <mat-slide-toggle formControlName="isActive"><span translate="INPUT.ACTIVATE"></span></mat-slide-toggle>
+        </div>
       <div fxLayout="row" fxLayoutGap="16px" *ngIf="clientId">
         <div>
           <button mat-button mat-raised-button color="accent" class="m-r-1 m-t-1" (click)="submitClientForm()">
             <span translate="BUTTON.UPDATE"></span>
           </button>
-          <!-- <button mat-button mat-raised-button color="warn" (click)="deleteClient()">
-            <span translate="BUTTON.DELETE"></span>
-          </button> -->
         </div>
       </div>
       <div fxLayout="row" fxLayoutGap="16px" *ngIf="!clientId">

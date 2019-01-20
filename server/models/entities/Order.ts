@@ -74,6 +74,5 @@ export class Order extends BaseModel<Order> {
     @HasMany(() => OrderService)
     orderServices: OrderService[];
 
-
 }
 
