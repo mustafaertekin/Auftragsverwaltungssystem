@@ -11,7 +11,7 @@ import { routes } from 'src/app/home/home.routing';
 import { ActivatedRoute, Router } from '@angular/router';
 
 
-describe('Orders Component', () => {
+fdescribe('Orders Component', () => {
   let component: DashboardOrdersComponent;
   let fixture: ComponentFixture<DashboardOrdersComponent>;
   let debugElement: DebugElement;
@@ -69,6 +69,8 @@ describe('Orders Component', () => {
         ...setup.getProviders(),
         DashboardOrdersComponent,
         { provide: OrderService, useValue: ordersMockService },
+        { provide: ActivatedRoute, useValue: ordersMockService },
+        { provide: Router, useValue: ordersMockService}
       ]
     })
       .compileComponents();

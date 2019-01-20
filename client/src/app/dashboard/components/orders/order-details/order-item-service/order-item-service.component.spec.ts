@@ -15,7 +15,7 @@ import { DeviceServiceType } from '@avs-ecosystem/services/device-service-type.s
 import { ActivatedRoute, Router } from '@angular/router';
 
 
-fdescribe('Order Item Service Component', () => {
+describe('Order Item Service Component', () => {
   let component: DashboardOrderItemServiceComponent;
   let fixture: ComponentFixture<DashboardOrderItemServiceComponent>;
   let debugElement: DebugElement;
@@ -94,8 +94,8 @@ fdescribe('Order Item Service Component', () => {
   });
 
   it('should get device models', () => {
-    component.getModelsByDeviceId(DEVICES[0]);
-    expect(component.models[0].deviceModelId).toBe(DEVICEMODELS[0].deviceModelId);
+    component.getModelsByDeviceId(DEVICES);
+    expect(component.models.deviceModelId).toBe(DEVICEMODELS.deviceModelId);
   });
 
 });
