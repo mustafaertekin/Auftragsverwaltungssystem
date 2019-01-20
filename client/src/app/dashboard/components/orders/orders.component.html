@@ -1,7 +1,7 @@
 <div class="order-component avs-list m-1">
   <mat-card>
     <mat-card-header>
-      <mat-icon class="title-icon-size" (click)="nav?.sidenav.toggle()" mat-card-avatar>format_list_bulleted</mat-icon>
+      <mat-icon class="title-icon-size" (click)="toggleNavigation()" mat-card-avatar>format_list_bulleted</mat-icon>
       <mat-card-title translate="ORDER.TITLE"></mat-card-title>
       <mat-card-subtitle translate="ORDER.LIST"></mat-card-subtitle>
 
@@ -16,7 +16,7 @@
       <div class="m-1" fxLayoutAlign="center center" fxFlex="100" *ngIf="!orders?.length">
         <span>You dont have any orders yet! Please create one.</span>
       </div>
-      <avs-sidenav #nav fxFlex="1 1 auto" *ngIf="orders?.length" (emitter)="changeNavigationState($event)">
+      <avs-sidenav #ordernav fxFlex="1 1 auto" *ngIf="orders?.length" (emitter)="changeNavigationState($event)">
         <div list>
           <mat-list-item class="order-item-holder item-holder" role="listitem" *ngFor="let order of orders">
             <avs-dashboard-order-item fxFlex="1 1 auto" [currentId]="currentOrderId" [order]="order" class="avs-dashboard-order-item"
