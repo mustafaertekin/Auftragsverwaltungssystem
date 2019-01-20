@@ -32,10 +32,10 @@ export class OrderRouter {
           ]
         }
       );
-      let filteredOrders = orders.filter((order) => {
+      const filteredOrders = orders.filter((order) => {
         return _.get(order, 'client.dataValues.isActive', false) === true;
-      })
-      console.log(filteredOrders)
+      });
+
       res.json(filteredOrders);
     } catch (error) {
       next(error);
@@ -156,6 +156,7 @@ export class OrderRouter {
           }
         });
       });
+      res.status(200).json({message: 'Email successfully sent!'});
     } catch (error) {
       next(error);
     }

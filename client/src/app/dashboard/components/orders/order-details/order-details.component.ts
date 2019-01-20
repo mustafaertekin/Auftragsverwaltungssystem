@@ -92,7 +92,7 @@ export class DashboardOrderDetailsComponent implements OnInit, OnChanges {
   }
 
   updateAssignableAddresses(address) {
-    this.orderService.changeContactaddress(address).subscribe(result => {
+    this.orderService.changeContactAddress(address).subscribe(result => {
       this.notificationService.success('Address is successfuly updated!');
     });
   }
@@ -138,7 +138,10 @@ export class DashboardOrderDetailsComponent implements OnInit, OnChanges {
       this.disableDownloadButton = false;
       const blob = new Blob([response], { type: 'application/pdf'});
       const url = window.URL.createObjectURL(blob);
-      window.open(url);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${orderId}.pdf`;
+      a.click();
       this.notificationService.success('Document is ready!');
     }, (err) => {
       this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
@@ -147,6 +150,7 @@ export class DashboardOrderDetailsComponent implements OnInit, OnChanges {
 
   emailToClient(orderId) {
     this.orderService.mail(orderId).subscribe(response => {
+      console.log('haloo');
       this.notificationService.success('Email is sent');
     }, (err) => { });
   }
