@@ -12,10 +12,14 @@ export class DashboardOrderItemComponent implements OnInit, OnChanges {
   constructor() {}
 
   ngOnInit() {
-    this.isHighlighted = this.currentId === this.order.orderId;
+    this.checkStatus();
   }
 
   ngOnChanges() {
+    this.checkStatus();
+  }
+
+  checkStatus() {
     this.isHighlighted = this.currentId === this.order.orderId;
   }
 }

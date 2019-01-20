@@ -4,22 +4,22 @@
     <div class="order-item-info">
       <div fxLayout="row wrap" fxLayoutGap="10px grid">
         <div fxFlex="50">
-          {{order.client.firstName}} {{order.client.lastName}}
+          {{order?.client?.firstName}} {{order?.client?.lastName}}
         </div>
         <div fxFlex="50" fxLayoutAlign="end center">
-          <span class="m-r-1">Status</span>  <span class="status-color-{{order.status}}">{{order.status}}</span>
+          <span class="m-r-1">Status</span>  <span class="status-color-{{order.status}}">{{order?.status}}</span>
         </div>
         <div fxFlex="50">
-          {{order.deliveryDate | date: 'short'}}
+          {{order?.deliveryDate | date: 'short'}}
         </div>
         <div fxFlex="50" class="text-align-right">
 
         </div>
         <div fxFlex="50">
-          {{order.orderId | slice:0:7}}
+          {{order?.orderId | slice:0:7}}
         </div>
         <div fxFlex="50" fxLayoutAlign="end center">
-          {{order.price}} CHF
+          {{order?.price}} CHF
         </div>
       </div>
     </div>

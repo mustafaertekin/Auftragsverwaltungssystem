@@ -9,7 +9,9 @@
     "SUBTITLE": "Erstellen Sie einen neuen Auftrag",
     "DETAILS": "Auftragsdetails",
     "DESCRIPTION": "Auftragsbeschreibung",
-    "ID": "Auftragsnummer: "
+    "ID": "Auftragsnummer: ",
+    "CREATED": "Erstellt am: ",
+    "UPDATED": "Aktualisiert am: "
   },
   "USER": {
     "TITLE": "Benutzer",
@@ -127,7 +129,8 @@
     "TITLE": "Es ist keine Bestellung verfügbar, fügen Sie eine neue hinzu oder suchen Sie eine neue Suche."
   },
   "COMMENTS":{
-    "TITLE": "Bemerkungen"
+    "TITLE": "Bemerkungen",
+    "ADD":"Bemerkungen hinzufügen"
   },
   "SEARCH":{
     "TITLE": "SUCHEN ..."

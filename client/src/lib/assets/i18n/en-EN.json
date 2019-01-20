@@ -9,7 +9,9 @@
     "SUBTITLE": "Create a new order",
     "DETAILS": "Order Details",
     "DESCRIPTION": "Order Description",
-    "ID": "Order No: "
+    "ID": "Order No: ",
+    "CREATED": "Created at: ",
+    "UPDATED": "Updated at: "
   },
   "USER": {
     "TITLE": "Users",
@@ -37,7 +39,7 @@
     "ORDERS": "Customer Orders",
     "NEWSTEP": "Fill out customer name",
     "NEWADDRESS": "Add address for the customer",
-    "CREATED": "created: "
+    "CREATED": "Created: "
   },
   "DEVICE": {
     "TITLE": "Devices",
@@ -127,7 +129,9 @@
     "TITLE": "No order is available, please add a new one or make a new search."
   },
   "COMMENTS":{
-    "TITLE": "Comments"
+    "TITLE": "Comments",
+    "ADD":"Add comments"
+
   },
   "SEARCH":{
     "TITLE": "SEARCH ..."

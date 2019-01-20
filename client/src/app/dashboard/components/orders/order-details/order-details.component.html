@@ -65,6 +65,7 @@
             <div>
               <mat-card>
                 <mat-card-content>
+<<<<<<< HEAD
                   <h3>Delivery date:</h3>
                   <mat-form-field>
                     <input matInput [matDatepicker]="dp" (dateChange)="saveNewDeliveryDate()" placeholder=""
@@ -79,11 +80,15 @@
               <mat-card>
                 <mat-card-content>
                   <h3>Created at:</h3>
+=======
+                  <h3 translate="ORDER.CREATED"></h3>
+>>>>>>> AVS-34
                   {{currentOrder?.creationDate | date: 'short'}}
                 </mat-card-content>
               </mat-card>
             </div>
             <div>
+<<<<<<< HEAD
               <mat-card>
                 <mat-card-content>
                   <h3>Updated at:</h3>
@@ -91,6 +96,15 @@
                 </mat-card-content>
               </mat-card>
             </div>
+=======
+                <mat-card>
+                  <mat-card-content>
+                    <h3 translate="ORDER.UPDATED"></h3>
+                    {{currentOrder?.updatedOn | date: 'short'}}
+                  </mat-card-content>
+                </mat-card>
+              </div>
+>>>>>>> AVS-34
             <div>
               <mat-card>
                 <mat-card-content>
@@ -115,7 +129,7 @@
         <textarea matInput [(ngModel)]="editorContent" rows="30" placeholder="Comments"></textarea>
       </mat-form-field>
       <button mat-raised-button color="primary" (click)="addOrderComment(editorContent)">
-        <mat-icon>add</mat-icon>Add comment
+        <mat-icon>add</mat-icon><span translate="COMMENTS.ADD"></span>
       </button>
     </mat-tab>
   </mat-tab-group>
