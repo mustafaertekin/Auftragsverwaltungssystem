@@ -10,22 +10,10 @@
         </span>
       </a>
     </div>
-
     <button mat-icon-button value="sidebarclosed" (click)="toogleSideNavigation()">
       <mat-icon>menu</mat-icon>
     </button>
-
-    <!-- the space between search icon and the profil-image -->
     <span fxFlex></span>
-    <!--
-    <button  >
-      <mat-icon>language</mat-icon>
-    </button>
-    <mat-menu>
-      <button mat-menu-item (click)="setCulture('en-EN')">English</button>
-      <button mat-menu-item (click)="setCulture('de-DE')">German</button>
-    </mat-menu>
--->
     <button [mat-menu-trigger-for]="menu" class="person-name" mat-icon-button>
       {{personName}}
     </button>

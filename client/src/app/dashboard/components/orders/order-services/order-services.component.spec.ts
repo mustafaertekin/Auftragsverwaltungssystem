@@ -10,7 +10,7 @@ import { NotificationService } from '@avs-ecosystem/services/notification-sevice
 import { DashboardOrderServicesComponent } from './order-services.component';
 
 
-fdescribe('Order Service Component', () => {
+describe('Order Service Component', () => {
   let component: DashboardOrderServicesComponent;
   let fixture: ComponentFixture<DashboardOrderServicesComponent>;
   let debugElement: DebugElement;
@@ -19,20 +19,28 @@ fdescribe('Order Service Component', () => {
   let deviceServiceMockService = null;
   let notificationMockService = null;
 
-  const DEVICES = [{deviceId: '12345-242', deviceName: 'Iphone', creationDate: 'Fri Jan 18 2019 23:17:36 GMT+0100', deletionDate: 'Fri Jan 18 2019 23:17:45 GMT+0100'},
-                  {deviceId: '12345-999', deviceName: 'Samsung',  creationDate: 'Fri Jan 18 2019 23:17:36 GMT+0100', deletionDate: 'Fri Jan 18 2019 23:17:45 GMT+0100'}];
+  const DEVICES = [{
+    deviceId: '12345-242',
+    deviceName: 'Iphone',
+    creationDate: 'Fri Jan 18 2019 23:17:36 GMT+0100',
+    deletionDate: 'Fri Jan 18 2019 23:17:45 GMT+0100'},
+    {
+    deviceId: '12345-999',
+    deviceName: 'Samsung',
+    creationDate: 'Fri Jan 18 2019 23:17:36 GMT+0100',
+    deletionDate: 'Fri Jan 18 2019 23:17:45 GMT+0100'}];
 
   const MODELS =[{deviceId: '12345-242', deviceModelId:'111-222', deviceModelName: 'LEYLA',  creationDate: 'Fri Jan 18 2019 23:17:22 GMT+0100', deletionDate: 'Fri Jan 18 2019 23:17:49 GMT+0100'},
                  {deviceId: '12345-999', deviceModelId:'333-444', deviceModelName: 'MECNUN',  creationDate: 'Fri Jan 18 2019 23:17:24 GMT+0100', deletionDate: 'Fri Jan 18 2019 23:17:45 GMT+0100'}];
-                
+
   const SERVICES =[{deviceId: '12345-242', deviceModelId:'111-222', deviceModelName: 'LEYLA', serviceId: '777-888', serviceName: 'hayde', price: 300},
                  {deviceId: '12345-999', deviceModelId:'333-444', deviceModelName: 'MECNUN',  serviceId: '777-888', serviceName: 'hayde', price: 400}];
 
-                
+
   const SERVICE =[{ serviceId: '777-888', serviceName: 'hayde', price: 300}]
-                 
-  
-  
+
+
+
   const instantiateMocks = () => {
     deviceMockService = jasmine.createSpyObj(['delete', 'update', 'getAll', 'create']);
     modelMockService = jasmine.createSpyObj(['delete', 'update', 'getAllByDeviceId', 'create']);
@@ -50,14 +58,14 @@ fdescribe('Order Service Component', () => {
     return spyOn(service, method);
   };
 
- 
+
   const setComponentInputs = (componentReference) => {
     // componentReference.address = ORDERS[0];
 
     // componentReference.clientId = ORDERS[0].clientId;
     // componentReference.orderId = ORDERS[0].orderId;
   };
-  
+
 
   beforeEach(async(() => {
     instantiateMocks();
@@ -73,9 +81,7 @@ fdescribe('Order Service Component', () => {
         { provide: DeviceService, useValue: deviceMockService },
         { provide: ModelService, useValue: modelMockService },
         { provide: DeviceServiceType, useValue: deviceServiceMockService },
-        { provide: NotificationService, useValue: notificationMockService },
-      
-
+        { provide: NotificationService, useValue: notificationMockService }
       ]
     })
       .compileComponents();
@@ -115,7 +121,7 @@ fdescribe('Order Service Component', () => {
     component.getSelectedService(SERVICE[0])
     expect(component.service.serviceId).toBe(SERVICE[0].serviceId);
   });
- 
 
-  
+
+
 });
