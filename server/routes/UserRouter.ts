@@ -91,6 +91,9 @@ export class UserRouter extends BaseRouter {
 
     public async delete(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
+          if(req.params.userId === req.user.userId) {
+            return res.status(403).json('You are not authorized!');
+          }
             const user = await this.userManager.deleteUser(req.params.userId);
             res.json(user);
         } catch (error) {
