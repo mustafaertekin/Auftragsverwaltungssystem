@@ -34,6 +34,12 @@ export class DashboardOrdersComponent implements OnInit, OnChanges {
     });
   }
 
+  toggleMenu() {
+    if (this.ordernav) {
+      this.ordernav['sidenav'].toggle();
+    }
+  }
+
   setInitialSettings() {
     if (this.currentOrderId === 'list') {
       this.currentOrderId = null;
@@ -84,9 +90,5 @@ export class DashboardOrdersComponent implements OnInit, OnChanges {
       this.animationState = 'in';
       this.currentOrderId = orders[0] ? orders[0].orderId : null;
     });
-  }
-
-  toggleNavigation() {
-    this.ordernav['sidenav'].toggle();
   }
 }
