@@ -1,14 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { AddressService } from '@avs-ecosystem/services/address.service';
 import { of } from 'rxjs';
 import { DebugElement } from '@angular/core';
 import * as setup from '@avs-ecosystem/services/mockServices/test-setup';
-import { By } from '@angular/platform-browser';
 
 import { DashboardOrderItemServiceComponent } from './order-item-service.component';
-import { FormBuilder } from '@angular/forms';
 import { DeviceService } from '@avs-ecosystem/services/device.service';
-import { NotificationService } from '@avs-ecosystem/services/notification-sevice';
 import { ModelService } from '@avs-ecosystem/services/device-model.service';
 import { OrderItemService } from '@avs-ecosystem/services/order-item.service';
 import { DeviceServiceType } from '@avs-ecosystem/services/device-service-type.service';
@@ -94,7 +90,7 @@ describe('Order Item Service Component', () => {
   });
 
   it('should get device models', () => {
-    component.getModelsByDeviceId(DEVICES);
+    component.getModelsByDeviceId(DEVICES[0]);
     expect(component.models.deviceModelId).toBe(DEVICEMODELS.deviceModelId);
   });
 

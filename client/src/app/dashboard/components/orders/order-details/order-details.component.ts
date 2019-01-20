@@ -148,9 +148,7 @@ export class DashboardOrderDetailsComponent implements OnInit, OnChanges {
   emailToClient(orderId) {
     this.orderService.mail(orderId).subscribe(response => {
       this.notificationService.success('Email is sent');
-    }, (err) => {
-      // this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
-    });
+    }, (err) => { });
   }
 
   saveStatus(state) {

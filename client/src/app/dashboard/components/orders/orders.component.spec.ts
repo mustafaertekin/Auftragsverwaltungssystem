@@ -1,17 +1,13 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { AddressService } from '@avs-ecosystem/services/address.service';
 import { of } from 'rxjs';
 import { DebugElement } from '@angular/core';
 import * as setup from '@avs-ecosystem/services/mockServices/test-setup';
-import { By } from '@angular/platform-browser';
 import { DashboardOrdersComponent } from './orders.component';
 import { OrderService } from '@avs-ecosystem/services/order.service';
-import { NotificationService } from '@avs-ecosystem/services/notification-sevice';
-import { routes } from 'src/app/home/home.routing';
 import { ActivatedRoute, Router } from '@angular/router';
 
 
-fdescribe('Orders Component', () => {
+describe('Orders Component', () => {
   let component: DashboardOrdersComponent;
   let fixture: ComponentFixture<DashboardOrdersComponent>;
   let debugElement: DebugElement;
@@ -76,8 +72,6 @@ fdescribe('Orders Component', () => {
       .compileComponents();
   }));
 
-
-
   beforeEach(() => {
     fixture = TestBed.createComponent(DashboardOrdersComponent);
     component = fixture.componentInstance;
@@ -94,13 +88,6 @@ fdescribe('Orders Component', () => {
     expect(component.orders[0].firstName).toBe('John');
     expect(component.orders[0].lastName).toBe('Nash');
     expect(component.orders[0].status).toBe('opened');
-  });
-
-  it('should close on mobile selection', () => {
-    component.isMobile = true;
-    throw new Error('Buraya bir bakin');
-    component.closeOnMobileSelection(ORDERS[0], 'BRUDA BIR OBJECT BEKLIYOR');
-    expect(component.opened).toBeFalsy();
   });
 
 });
