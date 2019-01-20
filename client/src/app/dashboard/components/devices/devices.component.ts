@@ -1,4 +1,4 @@
-import {Component, OnInit, OnChanges, Input, EventEmitter} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'avs-dashboard-devices',
@@ -6,9 +6,9 @@ import {Component, OnInit, OnChanges, Input, EventEmitter} from '@angular/core';
   styleUrls: ['./devices.component.scss']
 })
 export class DashboardDevicesComponent implements OnInit {
-   public selectedDeviceId: string;
+  public selectedDeviceId: string;
 
-  constructor( ) {
+  constructor() {
 
   }
 

@@ -27,7 +27,7 @@ export class DashboardNewOrderComponent implements OnInit, AfterContentInit {
     private router: Router,
     private notificationService: NotificationService,
     private clientService: ClientService,
-    private orderService: OrderService) {}
+    private orderService: OrderService) { }
 
   ngOnInit() {
     this.optional = false;
@@ -51,14 +51,10 @@ export class DashboardNewOrderComponent implements OnInit, AfterContentInit {
           deliveryAddress: this.addressForms.value.deliveryAddress,
           invoiceAddress: this.addressForms.value.invoiceAddress,
           deliveryDate: this.deliveryDate.value,
-        }).subscribe(result =>  {
-            this.router.navigate(['/', 'dashboard', 'orders', `${result.orderId}`], { relativeTo: this.route});
+        }).subscribe(result => {
+          this.router.navigate(['/', 'dashboard', 'orders', `${result.orderId}`], { relativeTo: this.route });
         });
     }
-  }
-
-  setDeliveryDate() {
-    console.log(this.deliveryDate.value);
   }
 
   ngAfterContentInit() {
@@ -84,7 +80,7 @@ export class DashboardNewOrderComponent implements OnInit, AfterContentInit {
     this.clientService.getByText(word).subscribe(customers => {
       this.customers = customers;
     }, (err) => {
-      this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
+      this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${_.get(err, 'error.message', '')}`);
     });
   }
 

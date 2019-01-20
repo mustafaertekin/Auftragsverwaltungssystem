@@ -1,7 +1,6 @@
-import {Component, OnInit, OnChanges, Input, EventEmitter} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DeviceService } from '@avs-ecosystem/services/device.service';
-import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
-import {Observable, BehaviorSubject} from 'rxjs';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Device } from '@avs-ecosystem/models/Device';
 import { AppSettingsService } from '@avs-ecosystem/services/app-settings.service';
 import { NotificationService } from '@avs-ecosystem/services/notification-sevice';
@@ -20,10 +19,10 @@ export class DashboardNewDeviceComponent implements OnInit {
   currentUser: any;
 
   constructor(
-    private settingService:  AppSettingsService,
+    private settingService: AppSettingsService,
     private notificationService: NotificationService,
     private deviceService: DeviceService, private fb: FormBuilder
-    ) {
+  ) {
   }
 
   ngOnInit() {
@@ -38,7 +37,7 @@ export class DashboardNewDeviceComponent implements OnInit {
     this.deviceService.getAll().subscribe(result => {
       this.devices = result;
     }, (err) => {
-      this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
+      this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${_.get(err, 'error.message', '')}`);
     });
   }
 
@@ -47,7 +46,7 @@ export class DashboardNewDeviceComponent implements OnInit {
       this.deviceService.create(this.deviceForm.value).subscribe(result => {
         this.getAllDevices();
       }, (err) => {
-        this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
+        this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${_.get(err, 'error.message', '')}`);
       });
     }
   }
@@ -58,15 +57,13 @@ export class DashboardNewDeviceComponent implements OnInit {
   }
 
   setDeviceForm() {
-    // setTimeout(() => {
-      this.deviceForm = this.fb.group({
-        deviceName: ['', [Validators.required]]
-      });
+    this.deviceForm = this.fb.group({
+      deviceName: ['', [Validators.required]]
+    });
 
-      this.selectedDeviceForm = this.fb.group({
-        selectedDevice: ['', [Validators.required]]
-      });
-    // }, 0);
+    this.selectedDeviceForm = this.fb.group({
+      selectedDevice: ['', [Validators.required]]
+    });
   }
 
   isAdmin() {

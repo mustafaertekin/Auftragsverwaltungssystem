@@ -9,7 +9,7 @@ export class DashboardOrderItemComponent implements OnInit, OnChanges {
   @Input() order;
   @Input() currentId;
   isHighlighted: boolean;
-  constructor() {}
+  constructor() { }
 
   ngOnInit() {
     this.checkStatus();

@@ -18,11 +18,11 @@ export class DashboardDeviceServiceExstraComponent implements OnInit {
 
   public serviceForm: FormGroup;
   @Input() service: Service;
-  constructor( private deviceServiceType: DeviceServiceType,
+  constructor(private deviceServiceType: DeviceServiceType,
     private parent: DashboardDeviceServiceComponent,
     private notificationService: NotificationService,
     private fb: FormBuilder,
-    private settingService:  AppSettingsService) {
+    private settingService: AppSettingsService) {
 
   }
 
@@ -47,7 +47,7 @@ export class DashboardDeviceServiceExstraComponent implements OnInit {
       this.deviceServiceType.update(service).subscribe(result => {
         this.parent.getAllServices();
       }, (err) => {
-        this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
+        this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${_.get(err, 'error.message', '')}`);
       });
     }
   }
@@ -57,7 +57,7 @@ export class DashboardDeviceServiceExstraComponent implements OnInit {
       this.deviceServiceType.delete(this.service.serviceId).subscribe(() => {
         this.parent.getAllServices();
       }, (err) => {
-        this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
+        this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${_.get(err, 'error.message', '')}`);
       });
     }
   }

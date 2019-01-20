@@ -1,54 +1,51 @@
 <div class="dashboard-new-device">
-  <div fxLayout="row" fxLayout.xs="column"  fxLayoutGap="40px">
-      <div fxFlex="50">
-          <div fxLayout="row">
-            <h3 fxFlex="100" translate="DEVICE.SELECT"></h3>
-          </div>
-          <div fxLayout="row">
-              <form fxFlex="100" [formGroup]="selectedDeviceForm">
-                    <mat-form-field fxFlex="100">
-                        <mat-select fxFlex="100"  formControlName="selectedDevice" placeholder="{{ 'DEVICE.SELECT' | translate }}">
-                          <mat-option *ngFor="let device of devices"
-                          (click)="setSelectedDevice(device)"
-                          [value]="device.deviceId"
-                          >
-                              {{device.deviceName}}
-                          </mat-option>
-                        </mat-select>
-                      </mat-form-field>
-              </form>
-          </div>
+  <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="40px">
+    <div fxFlex="50">
+      <div fxLayout="row">
+        <h3 fxFlex="100" translate="DEVICE.SELECT"></h3>
       </div>
-      <div fxFlex="50" >
-          <div fxLayout="row">
-              <h3 fxFlex="100" translate="DEVICE.ADD"></h3>
+      <div fxLayout="row">
+        <form fxFlex="100" [formGroup]="selectedDeviceForm">
+          <mat-form-field fxFlex="100">
+            <mat-select fxFlex="100" formControlName="selectedDevice" placeholder="{{ 'DEVICE.SELECT' | translate }}">
+              <mat-option *ngFor="let device of devices" (click)="setSelectedDevice(device)" [value]="device.deviceId">
+                {{device.deviceName}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </form>
+      </div>
+    </div>
+    <div fxFlex="50">
+      <div fxLayout="row">
+        <h3 fxFlex="100" translate="DEVICE.ADD"></h3>
+      </div>
+      <mat-accordion class="full-width">
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <span class="m-r-1">
+                <mat-icon>add_circle_outline</mat-icon>
+              </span>
+              <span translate="DEVICE.ADD"></span>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <form fxLayout="column" fxFlex="100" [formGroup]="deviceForm">
+            <mat-form-field>
+              <input matInput placeholder="{{ 'DEVICE.NAME' | translate }}" formControlName="deviceName">
+            </mat-form-field>
+            <div fxLayout="row" fxLayoutGap="16px">
+              <div>
+                <button mat-button mat-raised-button color="accent" (click)="submitDeviceForm()">
+                  <span translate="BUTTON.SAVE"></span>
+                </button>
+              </div>
             </div>
-          <mat-accordion class="full-width">
-              <mat-expansion-panel>
-                <mat-expansion-panel-header>
-                  <mat-panel-title>
-                    <span class="m-r-1">
-                      <mat-icon>add_circle_outline</mat-icon>
-                    </span>
-                    <span translate="DEVICE.ADD"></span>
-                  </mat-panel-title>
-                </mat-expansion-panel-header>
-                <form fxLayout="column" fxFlex="100" [formGroup]="deviceForm">
-                  <mat-form-field>
-                    <input matInput placeholder="{{ 'DEVICE.NAME' | translate }}" formControlName="deviceName">
-                  </mat-form-field>
-                  <div fxLayout="row" fxLayoutGap="16px">
-                    <div>
-                      <button mat-button mat-raised-button color="accent" (click)="submitDeviceForm()">
-                        <span translate="BUTTON.SAVE"></span>
-                      </button>
-                    </div>
-                  </div>
-                </form>
-              </mat-expansion-panel>
-              <avs-dashboard-added-devices  [device]="device" *ngFor="let device of devices">
-              </avs-dashboard-added-devices>
-            </mat-accordion>
-      </div>
+          </form>
+        </mat-expansion-panel>
+        <avs-dashboard-added-devices [device]="device" *ngFor="let device of devices">
+        </avs-dashboard-added-devices>
+      </mat-accordion>
+    </div>
   </div>
 </div>

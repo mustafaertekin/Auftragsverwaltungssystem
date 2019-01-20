@@ -5,20 +5,21 @@
   "ORDER": {
     "TITLE": "Orders",
     "LIST": "Order List",
-    "NEW" : "New Order",
+    "NEW": "New Order",
     "SUBTITLE": "Create a new order",
     "DETAILS": "Order Details",
     "DESCRIPTION": "Order Description",
     "ID": "Order No: ",
     "CREATED": "Created at: ",
-    "UPDATED": "Updated at: "
+    "UPDATED": "Updated at: ",
+    "DELIVERYDATE": "Delivery Date"
   },
   "USER": {
     "TITLE": "Users",
     "SUBTITLE": "User List",
     "NEWUSERSUBTITLE": "Create a new user",
     "STEP": "Fill out form",
-    "NEW" : "New User",
+    "NEW": "New User",
     "DETAILS": "User Details",
     "ADDRESS": "User Adress",
     "ORDERS": "User Orders",
@@ -30,7 +31,7 @@
     "SUBTITLE": "Customer",
     "LIST": "Customer List",
     "ADD": "Add a new customer",
-    "NEW" : "New Customer",
+    "NEW": "New Customer",
     "DETAILS": "Customer Details",
     "STEP": "Chose a customer or create a new one",
     "FIND": "Find a customer",
@@ -59,7 +60,7 @@
     "NAME": "Service name",
     "STEP": "Add reperature services"
   },
-  "MODEL":{
+  "MODEL": {
     "TITLE": "Model",
     "SELECT": "Select Model",
     "STEP": "Choose a model or create one",
@@ -68,15 +69,16 @@
   },
   "SETTING": {
     "TITLE": "Settings",
-    "SUBTITLE": "Change your settings"
+    "SUBTITLE": "Change your settings",
+    "LANGUAGE": "Language"
   },
-  "ADD":{
+  "ADD": {
     "TITLE": "Add"
   },
-  "UPDATE":{
+  "UPDATE": {
     "TITLE": "Update"
   },
-  "INPUT":{
+  "INPUT": {
     "FIRSTNAME": "First Name",
     "LASTNAME": "Last Name",
     "PHONE": "Phone",
@@ -84,11 +86,11 @@
     "ACTIVE": "Is active",
     "ACTIVATE": "Activate Account",
     "PRICE": "Price",
-    "STREET" : "Street name",
+    "STREET": "Street name",
     "ZIP": "Zip",
     "CITY": "City",
     "COUNTRY": "Country"
-    },
+  },
   "BUTTON": {
     "ADD": "Add",
     "DELETE": "Delete",
@@ -96,7 +98,7 @@
     "SAVE": "Save",
     "LOGIN": "Login",
     "NEXT": "Next",
-    "PREVIOUS" : "Previous",
+    "PREVIOUS": "Previous",
     "SUBMIT": "Submit new order",
     "LOGOUT": "Logout"
   },
@@ -106,7 +108,7 @@
   "STATISTIC": {
     "TITLE": "Statistics"
   },
-  "PASSWORD":{
+  "PASSWORD": {
     "TITLE": "Password",
     "UPDATE": "Update Password",
     "CHANGE": "Change Password",
@@ -114,40 +116,43 @@
     "NEW": "New password",
     "CONFIRM": "Confirm password"
   },
-  "ADDRESS":{
+  "ADDRESS": {
     "TITLE": "Address",
     "STEP": "Select an address or create a new one",
     "DELIVERY": "Delivery Address",
     "INVOICE": "Invoice Address",
     "ADD": "Add a new address"
   },
-  "CHART":{
-    "SERVICE": "Monatly used services",
-    "AMOUNT": "Monatly gained amount"
+  "CHART": {
+    "SERVICES": "Total used services",
+    "AMOUNT": "Monatly gained amount",
+    "STATUS": "Total service statuses"
   },
-  "NOTICE":{
+  "NOTICE": {
     "TITLE": "No order is available, please add a new one or make a new search."
   },
-  "COMMENTS":{
+  "COMMENTS": {
     "TITLE": "Comments",
     "ADD":"SAVE"
   },
-  "SEARCH":{
+  "SEARCH": {
     "TITLE": "SEARCH ..."
   },
-  "MONTHS":
-    {
-      "JANUARY": "January",
-      "FEBRUARY": "February",
-      "MARCH": "March",
-      "APRIL": "April",
-      "MAY": "May",
-      "JUNE": "June",
-      "JULY": "July",
-      "AUGUST": "August",
-      "SEPTEMBER": "September",
-      "OCTOBER": "October",
-      "NOVEMBER": "November",
-      "DECEMBER": "December"
-    }
+  "STATUS": {
+    "TITLE": "Status: "
+  },
+  "MONTHS": {
+    "JANUARY": "January",
+    "FEBRUARY": "February",
+    "MARCH": "March",
+    "APRIL": "April",
+    "MAY": "May",
+    "JUNE": "June",
+    "JULY": "July",
+    "AUGUST": "August",
+    "SEPTEMBER": "September",
+    "OCTOBER": "October",
+    "NOVEMBER": "November",
+    "DECEMBER": "December"
   }
+}

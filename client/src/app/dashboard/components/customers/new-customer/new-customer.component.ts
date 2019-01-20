@@ -1,7 +1,5 @@
-import {Component, OnInit, OnChanges, Input, EventEmitter, Output} from '@angular/core';
-import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
-import {Observable, BehaviorSubject} from 'rxjs';
-import { Client } from '@avs-ecosystem/models/Client';
+import { Component, OnInit, OnChanges } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as _ from 'lodash';
 import { ClientService } from '@avs-ecosystem/services/client.service';
 import { AddressService } from '@avs-ecosystem/services/address.service';
@@ -42,7 +40,7 @@ export class DashboardNewCustomerComponent implements OnInit, OnChanges {
   }
 
   public submitClientForm() {
-      this.saveClient();
+    this.saveClient();
   }
 
   private saveClient() {
@@ -53,7 +51,7 @@ export class DashboardNewCustomerComponent implements OnInit, OnChanges {
           this.client = result;
           this.isClientSubmitted = true;
         }, (err) => {
-          this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
+          this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${_.get(err, 'error.message', '')}`);
         });
     }
   }

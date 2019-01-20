@@ -1,24 +1,27 @@
-.customer-orders{
-    width: 100%;
-    box-sizing: border-box;
-    height: 100vh;
-    padding: 20px 0 0 0;
+.customer-orders {
+  width: 100%;
+  box-sizing: border-box;
+  height: 100vh;
+  padding: 20px 0 0 0;
+  outline: none;
+
+  mat-list {
     outline: none;
-    mat-list{
+
+    mat-list-item {
+      height: 130px;
       outline: none;
-      mat-list-item{
-        height:130px;
+
+      .item-info {
+        cursor: pointer;
+        width: 100%;
+        background: white;
+        height: auto;
+        padding: 16px 16px;
         outline: none;
-        .item-info{
-          cursor: pointer;
-          width: 100%;
-          background: white;
-          height: auto;
-          padding: 16px 16px;
-          outline: none;
-          margin: 16px 0 16px 0;
-        }
+        margin: 16px 0 16px 0;
       }
     }
+  }
 
 }

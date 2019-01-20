@@ -1,5 +1,4 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
-import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
 import { UserService } from '@avs-ecosystem/services/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NotificationService } from '@avs-ecosystem/services/notification-sevice';
@@ -63,15 +62,15 @@ export class UsersComponent implements OnInit, OnChanges {
   getAll(event) {
     this.animationState = 'out';
     this.userService.getAll().subscribe(users => {
-     if (event) {
-       if (event.type === 'delete') {
-         this.currentUserId = null;
-       }
-       if (event.type === 'update') {
-        this.currentUserId = event.id;
+      if (event) {
+        if (event.type === 'delete') {
+          this.currentUserId = null;
+        }
+        if (event.type === 'update') {
+          this.currentUserId = event.id;
+        }
       }
-     }
-     this.setAfterUpdate(users);
+      this.setAfterUpdate(users);
     });
   }
 
@@ -89,7 +88,7 @@ export class UsersComponent implements OnInit, OnChanges {
     this.userService.getByText(word).subscribe(users => {
       this.setAfterUpdate(users);
     }, (err) => {
-      this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
+      this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${_.get(err, 'error.message', '')}`);
     });
   }
 }

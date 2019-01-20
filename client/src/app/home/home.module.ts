@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from '@avs-ecosystem/modules/material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -26,4 +25,4 @@ import { HomeMainLayoutComponent } from './components/layout/layout.component';
     HomeMainLayoutComponent
   ]
 })
-export class HomePageModule {}
+export class HomePageModule { }

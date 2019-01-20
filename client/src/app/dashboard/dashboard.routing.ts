@@ -15,12 +15,11 @@ export const DashboardRoutes: Routes = [
   {
     path: 'dashboard',
     component: DashboardMainLayoutComponent,
-    canActivate: [IsAuthorizedGuard], // check if user currently logged in otherwise send to home page
-    resolve: { user: CurrentUserResolver }, // get user settings to apply for frontend user specific options
+    canActivate: [IsAuthorizedGuard],
+    resolve: { user: CurrentUserResolver },
     children: [
-      { path: '', redirectTo: 'main', pathMatch: 'full'},
-      // { path: '**', redirectTo: 'main', pathMatch: 'full'}, // non matched route
-      { path: 'main', component: DashboardMainComponent},
+      { path: '', redirectTo: 'main', pathMatch: 'full' },
+      { path: 'main', component: DashboardMainComponent },
       { path: 'orders/:id', component: DashboardOrdersComponent },
       { path: 'new-order', component: DashboardNewOrderComponent },
       { path: 'devices', component: DashboardDevicesComponent },
@@ -29,7 +28,6 @@ export const DashboardRoutes: Routes = [
       { path: 'customers/:id', component: DashboardCustomersComponent },
       { path: 'new-customer', component: DashboardNewCustomerComponent },
       { path: 'settings', component: DashboardSettingsComponent }
-
     ]
   }
 ];

@@ -17,7 +17,7 @@ export class DashboardMainContentComponent implements OnInit {
 
   constructor(
     private media: ObservableMedia, private router: Router) {
-   }
+  }
 
   ngOnInit() {
     this.opened = true;
@@ -34,7 +34,7 @@ export class DashboardMainContentComponent implements OnInit {
     }, 0);
 
     this.animate();
-    this.previousUrl  = this.router.url.split('/')[2];
+    this.previousUrl = this.router.url.split('/')[2];
     this.router.events.subscribe(elm => {
       const subRouter = this.router.url.split('/')[2];
       if (subRouter !== this.previousUrl) {

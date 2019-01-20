@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AppSettingsService } from '@avs-ecosystem/services/app-settings.service';
 import { UserService } from '@avs-ecosystem/services/user.service';
 import { NotificationService } from '@avs-ecosystem/services/notification-sevice';
@@ -59,7 +59,7 @@ export class DashboardSettingsComponent implements OnInit {
         this.settingService.setUser(user);
         this.notificationService.success('Settings are updated');
       }, (err) => {
-        this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
+        this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${_.get(err, 'error.message', '')}`);
       });
     } else {
       this.notificationService.error('Form is not valid!');

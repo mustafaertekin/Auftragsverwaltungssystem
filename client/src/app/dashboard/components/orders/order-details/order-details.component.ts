@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, OnChanges, Output, EventEmitter } from '@angular/core';
-import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormBuilder, FormGroup } from '@angular/forms';
 import { OrderService } from '@avs-ecosystem/services/order.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as _ from 'lodash';
@@ -32,19 +32,19 @@ export class DashboardOrderDetailsComponent implements OnInit, OnChanges {
 
   constructor(
     private fb: FormBuilder,
-    private settingService:  AppSettingsService,
+    private settingService: AppSettingsService,
     private orderService: OrderService,
     private orderItemService: OrderItemService,
     private notificationService: NotificationService,
-    private route: ActivatedRoute, private router: Router) {}
+    private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.statuses = [
-      { name: 'Opened', color: 'opened'},
-      { name: 'In progress', color: 'inprogress'},
-      { name: 'Ready', color: 'ready'},
-      { name: 'Cancelled', color: 'cancelled'},
-      { name: 'Closed', color: 'closed'}
+      { name: 'Opened', color: 'opened' },
+      { name: 'In progress', color: 'inprogress' },
+      { name: 'Ready', color: 'ready' },
+      { name: 'Cancelled', color: 'cancelled' },
+      { name: 'Closed', color: 'closed' }
     ];
     this.disableDownloadButton = false;
     this.settingService.getCurentUser().subscribe(currentUser => {
@@ -62,7 +62,7 @@ export class DashboardOrderDetailsComponent implements OnInit, OnChanges {
     this.invoiceAddress = new FormControl();
   }
 
-  ngOnChanges (changes) {
+  ngOnChanges(changes) {
     this.currentOrder = null;
     if (this.currentOrderId) {
       this.orderService.getById(this.currentOrderId).subscribe(order => {
@@ -112,13 +112,14 @@ export class DashboardOrderDetailsComponent implements OnInit, OnChanges {
     this.orderItemService.getByOrderId(this.currentOrderId).subscribe(items => {
       this.currentOrder.orderServices = items;
       this.currentOrder.price = items
-          .reduce((acc, curr, index) => {
-            acc += curr.Service.price;
-            return acc; }, 0);
+        .reduce((acc, curr, index) => {
+          acc += curr.Service.price;
+          return acc;
+        }, 0);
     });
   }
 
-  getOrderById (event) {
+  getOrderById(event) {
     this.getAllOrderItemServicesByOrderId();
     this.emitter.emit(event);
   }
@@ -128,7 +129,7 @@ export class DashboardOrderDetailsComponent implements OnInit, OnChanges {
       this.emitter.emit('update');
       this.notificationService.success('Order has been deleted!');
     }, (err) => {
-      this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
+      this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${_.get(err, 'error.message', '')}`);
     });
   }
 
@@ -136,7 +137,7 @@ export class DashboardOrderDetailsComponent implements OnInit, OnChanges {
     this.disableDownloadButton = true;
     this.orderService.download(orderId).subscribe(response => {
       this.disableDownloadButton = false;
-      const blob = new Blob([response], { type: 'application/pdf'});
+      const blob = new Blob([response], { type: 'application/pdf' });
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
@@ -144,7 +145,7 @@ export class DashboardOrderDetailsComponent implements OnInit, OnChanges {
       a.click();
       this.notificationService.success('Document is ready!');
     }, (err) => {
-      this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
+      this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${_.get(err, 'error.message', '')}`);
     });
   }
 
@@ -165,7 +166,7 @@ export class DashboardOrderDetailsComponent implements OnInit, OnChanges {
       this.emitter.emit('update');
       this.notificationService.success('Status has been updated!');
     }, (err) => {
-      this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
+      this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${_.get(err, 'error.message', '')}`);
     });
   }
 
@@ -177,7 +178,7 @@ export class DashboardOrderDetailsComponent implements OnInit, OnChanges {
     this.orderService.comment(order).subscribe(response => {
       this.notificationService.success('Commend has been added!');
     }, (err) => {
-      this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
+      this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${_.get(err, 'error.message', '')}`);
     });
   }
 
