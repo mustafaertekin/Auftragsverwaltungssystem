@@ -2,7 +2,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 import { DebugElement } from '@angular/core';
 import * as setup from '@avs-ecosystem/services/mockServices/test-setup';
-import { By } from '@angular/platform-browser';
 import { DeviceService } from '@avs-ecosystem/services/device.service';
 import { ModelService } from '@avs-ecosystem/services/device-model.service';
 import { DeviceServiceType } from '@avs-ecosystem/services/device-service-type.service';
@@ -30,23 +29,43 @@ describe('Order Service Component', () => {
     creationDate: 'Fri Jan 18 2019 23:17:36 GMT+0100',
     deletionDate: 'Fri Jan 18 2019 23:17:45 GMT+0100'}];
 
-  const MODELS =[{deviceId: '12345-242', deviceModelId:'111-222', deviceModelName: 'LEYLA',  creationDate: 'Fri Jan 18 2019 23:17:22 GMT+0100', deletionDate: 'Fri Jan 18 2019 23:17:49 GMT+0100'},
-                 {deviceId: '12345-999', deviceModelId:'333-444', deviceModelName: 'MECNUN',  creationDate: 'Fri Jan 18 2019 23:17:24 GMT+0100', deletionDate: 'Fri Jan 18 2019 23:17:45 GMT+0100'}];
+  const MODELS = [{
+      deviceId: '12345-242',
+      deviceModelId: '111-222',
+      deviceModelName: 'LEYLA',
+      creationDate: 'Fri Jan 18 2019 23:17:22 GMT+0100',
+      deletionDate: 'Fri Jan 18 2019 23:17:49 GMT+0100'},
+    {
+      deviceId: '12345-999',
+      deviceModelId: '333-444',
+      deviceModelName: 'MECNUN',
+      creationDate: 'Fri Jan 18 2019 23:17:24 GMT+0100',
+      deletionDate: 'Fri Jan 18 2019 23:17:45 GMT+0100'
+    }];
 
-  const SERVICES =[{deviceId: '12345-242', deviceModelId:'111-222', deviceModelName: 'LEYLA', serviceId: '777-888', serviceName: 'hayde', price: 300},
-                 {deviceId: '12345-999', deviceModelId:'333-444', deviceModelName: 'MECNUN',  serviceId: '777-888', serviceName: 'hayde', price: 400}];
+  const SERVICES = [{
+      deviceId: '12345-242',
+      deviceModelId: '111-222',
+      deviceModelName: 'LEYLA',
+      serviceId: '777-888',
+      serviceName: 'hayde',
+      price: 300},
+    {
+      deviceId: '12345-999',
+      deviceModelId: '333-444',
+      deviceModelName: 'MECNUN',
+      serviceId: '777-888',
+      serviceName: 'hayde',
+      price: 400
+    }];
 
-
-  const SERVICE =[{ serviceId: '777-888', serviceName: 'hayde', price: 300}]
-
-
+  const SERVICE = [{ serviceId: '777-888', serviceName: 'hayde', price: 300}];
 
   const instantiateMocks = () => {
     deviceMockService = jasmine.createSpyObj(['delete', 'update', 'getAll', 'create']);
     modelMockService = jasmine.createSpyObj(['delete', 'update', 'getAllByDeviceId', 'create']);
     deviceServiceMockService = jasmine.createSpyObj(['delete', 'update', 'getAllByModelId', 'getSelectedService']);
     notificationMockService = jasmine.createSpyObj(['delete', 'update', 'getByClientId', 'create']);
-//     orderMockService.update.and.returnValue(of(null));
     deviceMockService.getAll.and.returnValue(of(DEVICES));
     modelMockService.getAllByDeviceId.and.returnValue(of(MODELS));
     deviceServiceMockService.getAllByModelId.and.returnValue(of(SERVICES));
@@ -57,15 +76,6 @@ describe('Order Service Component', () => {
     service = debugElement.injector.get(service);
     return spyOn(service, method);
   };
-
-
-  const setComponentInputs = (componentReference) => {
-    // componentReference.address = ORDERS[0];
-
-    // componentReference.clientId = ORDERS[0].clientId;
-    // componentReference.orderId = ORDERS[0].orderId;
-  };
-
 
   beforeEach(async(() => {
     instantiateMocks();
@@ -90,7 +100,6 @@ describe('Order Service Component', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(DashboardOrderServicesComponent);
     component = fixture.componentInstance;
-    setComponentInputs(component);
     debugElement = fixture.debugElement;
     fixture.detectChanges();
   });
@@ -118,10 +127,8 @@ describe('Order Service Component', () => {
   });
 
   it('should get selected service', () => {
-    component.getSelectedService(SERVICE[0])
+    component.getSelectedService(SERVICE[0]);
     expect(component.service.serviceId).toBe(SERVICE[0].serviceId);
   });
-
-
 
 });
