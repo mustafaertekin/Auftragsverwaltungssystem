@@ -55,7 +55,7 @@
           <div fxLayout="column">
             <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="40px">
               <div fxFlex="50">
-                <form fxLayout="column" fxFlex="100" [formGroup]="addressForms">
+                <form fxLayout="column" fxFlex="100" #addressformHash [formGroup]="addressForms">
                   <mat-form-field>
                     <mat-select  placeholder="{{ 'ADDRESS.DELIVERY' | translate }}" formControlName="deliveryAddress">
                       <mat-option *ngFor="let address of addressComponent?.addresses"   [value]="address?.addressId">
@@ -90,9 +90,9 @@
               </div>
               <br>
             </div>
-            <div fxLayout="row" class="full-width"fxLayoutAlign="center center">
+            <div fxLayout="row" class="full-width"fxLayoutAlign="center center" *ngIf="addressformHash.valid">
               <br><br>
-              <button *ngIf="customer?.clientId && addressForms.valid" mat-button
+              <button [disabled]="customer?.clientId" mat-button
                 mat-raised-button class="submit-order-button m-1" color="accent" (click)="saveOrder(services?.orders)">
                 <span translate="BUTTON.SUBMIT"></span>
               </button>

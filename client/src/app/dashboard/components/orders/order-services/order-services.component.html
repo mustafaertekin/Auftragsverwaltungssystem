@@ -56,24 +56,27 @@
     </form>
 
   </div>
-  <div fxLayout="row" *ngIf="orders?.length">
-    <mat-nav-list class="full-width">
-      <mat-list-item *ngFor="let order of orders">
-        <div fxFlex="23">{{order?.device?.deviceName}}</div>
-        <div fxFlex="23">{{order?.model?.deviceModelName}}</div>
-        <div fxFlex="23">{{order?.service?.serviceName}}</div>
-        <div fxFlex="23">{{order?.service?.price}}</div>
-        <div fxFlex="8">
-          <button mat-button mat-raised-button color="warn" (click)="removeServiceRow(order.id)">
-            <mat-icon>delete</mat-icon>
-          </button>
+  <div *ngIf="orders?.length">
+    <div fxFlex="1 1 auto">
+      <div  fxLayoutAlign="space-between center" class="m-b-1 m-t-1" *ngFor="let order of orders">
+        <div fxLayout.xs="column" fxLayout="row" class="full-width" fxFlex="100">
+          <div class="m-l-1 m-r-1">{{order?.device?.deviceName}}</div>
+          <div class="m-l-1 m-r-1">{{order?.model?.deviceModelName}}</div>
+          <div class="m-l-1 m-r-1">{{order?.service?.serviceName}}</div>
         </div>
-        <mat-divider></mat-divider>
-      </mat-list-item>
-    </mat-nav-list>
+        <div>
+          <div>CHF {{order?.service?.price}}.-</div>
+          <div fxFlex="8" class="m-l-1 m-r-1">
+            <button mat-button mat-raised-button color="warn" (click)="removeServiceRow(order.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
   <div fxLayout="row" *ngIf="orders?.length" fxLayoutAlign="end center">
-    <div fxFlex="25">
+    <div fxFlex="70" fxFlex.xs="100" fxLayoutAlign="end center">
       <h2><span translate="SERVICE.TOTAL"></span>{{serviceTotal}}</h2>
     </div>
   </div>
