@@ -1,26 +1,27 @@
-.avs-home-container{
-    .item {
-        padding: 20px;
-        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+.avs-home-container {
+  .item {
+    padding: 20px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 
+  }
+
+  .navbar {
+    background: whitesmoke;
+    text-align: center;
+    padding: 20px 30px;
+
+    .navbar-logo {
+      .logo {
+        width: 180px;
       }
 
-      .navbar {
-        background: whitesmoke;
-        text-align: center;
-        padding: 20px 30px;
-        .navbar-logo {
-          .logo {
-            width: 180px;
-          }
+      display: flex;
+      line-height: 18px;
+      align-items: center;
+    }
+  }
 
-          display: flex;
-          line-height: 18px;
-          align-items: center;
-        }
-      }
-
-      div img {
-        width: 99%;
-      }
+  div img {
+    width: 99%;
+  }
 }

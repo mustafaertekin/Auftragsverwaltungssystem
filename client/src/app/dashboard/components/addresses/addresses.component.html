@@ -1,5 +1,4 @@
 <div class="dashboard-addresses">
-  <h2> </h2>
   <mat-accordion>
     <mat-expansion-panel>
       <mat-expansion-panel-header>
@@ -20,8 +19,8 @@
               <input matInput formControlName="plzNumber" placeholder="{{'INPUT.ZIP' | translate}}">
             </mat-form-field>
             <mat-form-field>
-                <input matInput formControlName="cityName" placeholder="{{'INPUT.CITY' | translate}}">
-              </mat-form-field>
+              <input matInput formControlName="cityName" placeholder="{{'INPUT.CITY' | translate}}">
+            </mat-form-field>
             <mat-form-field>
               <mat-select formControlName="countryName" placeholder="{{'INPUT.COUNTRY' | translate}}">
                 <mat-option value="ch">Schweiz</mat-option>
@@ -40,10 +39,7 @@
         </div>
       </form>
     </mat-expansion-panel>
-      <avs-dashboard-address-exstra  *ngFor="let address of addresses"
-      [clientId]="clientId"
-      [userId]="userId"
-      [address]="address">
-      </avs-dashboard-address-exstra>
+    <avs-dashboard-address-exstra *ngFor="let address of addresses" [clientId]="clientId" [userId]="userId" [address]="address">
+    </avs-dashboard-address-exstra>
   </mat-accordion>
 </div>

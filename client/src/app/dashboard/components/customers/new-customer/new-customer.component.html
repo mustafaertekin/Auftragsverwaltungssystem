@@ -8,48 +8,49 @@
       </mat-card-header>
       <mat-divider></mat-divider>
       <mat-card-content fxLayout="row" class="list-container">
-          <mat-vertical-stepper [linear]="'true'" #stepper class="full-width">
-              <mat-step [stepControl]="customerForm">
-                  <ng-template matStepLabel><span translate="CUSTOMER.NEWSTEP"></span></ng-template>
-                  <div fxLayout="row" >
-                      <form fxLayout="column" fxFlex="90"  [formGroup]="customerForm">
-                          <mat-form-field>
-                            <mat-select placeholder="{{'SALUTATION.TITLE' | translate}}" formControlName="salutation">
-                              <mat-option value="male">Male</mat-option>
-                              <mat-option value="female">Female</mat-option>
-                            </mat-select>
-                          </mat-form-field>
-                          <mat-form-field>
-                            <input matInput placeholder="{{'INPUT.FIRSTNAME' | translate }}" formControlName="firstName">
-                          </mat-form-field>
-                          <mat-form-field>
-                            <input matInput placeholder="{{'INPUT.LASTNAME' | translate}}" formControlName="lastName">
-                          </mat-form-field>
-                          <mat-form-field>
-                            <input matInput placeholder="{{'INPUT.PHONE' | translate}}"  formControlName="phone">
-                          </mat-form-field>
-                          <mat-form-field>
-                            <input matInput placeholder="Email" formControlName="email">
-                          </mat-form-field>
-                          <div class="m-t-1 m-b-1">
-                              <mat-slide-toggle formControlName="isActive"><span translate="INPUT.ACTIVATE"></span></mat-slide-toggle>
-                            </div>
-                          <div fxLayout="row" fxLayoutGap="16px">
-                              <button mat-button mat-raised-button color="accent" class="m-r-1" (click)="submitClientForm()">
-                                <span translate="BUTTON.SAVE"></span>
-                              </button>
-                              <button mat-button mat-raised-button matStepperNext color="accent" [disabled]="!isClientSubmitted" class="m-r-1">
-                                <span translate="BUTTON.NEXT"></span>
-                              </button>
-                          </div>
-                        </form>
-                  </div>
-              </mat-step>
-              <mat-step>
-                  <ng-template matStepLabel><span translate="CUSTOMER.NEWADDRESS"></span></ng-template>
-                  <avs-dashboard-addresses [clientId]="client?.clientId"  fxFlexFill></avs-dashboard-addresses>
-              </mat-step>
-            </mat-vertical-stepper>
+        <mat-vertical-stepper [linear]="'true'" #stepper class="full-width">
+          <mat-step [stepControl]="customerForm">
+            <ng-template matStepLabel><span translate="CUSTOMER.NEWSTEP"></span></ng-template>
+            <div fxLayout="row">
+              <form fxLayout="column" fxFlex="90" [formGroup]="customerForm">
+                <mat-form-field>
+                  <mat-select placeholder="{{'SALUTATION.TITLE' | translate}}" formControlName="salutation">
+                    <mat-option value="male">Male</mat-option>
+                    <mat-option value="female">Female</mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <mat-form-field>
+                  <input matInput placeholder="{{'INPUT.FIRSTNAME' | translate }}" formControlName="firstName">
+                </mat-form-field>
+                <mat-form-field>
+                  <input matInput placeholder="{{'INPUT.LASTNAME' | translate}}" formControlName="lastName">
+                </mat-form-field>
+                <mat-form-field>
+                  <input matInput placeholder="{{'INPUT.PHONE' | translate}}" formControlName="phone">
+                </mat-form-field>
+                <mat-form-field>
+                  <input matInput placeholder="Email" formControlName="email">
+                </mat-form-field>
+                <div class="m-t-1 m-b-1">
+                  <mat-slide-toggle formControlName="isActive"><span translate="INPUT.ACTIVATE"></span></mat-slide-toggle>
+                </div>
+                <div fxLayout="row" fxLayoutGap="16px">
+                  <button mat-button mat-raised-button color="accent" class="m-r-1" (click)="submitClientForm()">
+                    <span translate="BUTTON.SAVE"></span>
+                  </button>
+                  <button mat-button mat-raised-button matStepperNext color="accent" [disabled]="!isClientSubmitted"
+                    class="m-r-1">
+                    <span translate="BUTTON.NEXT"></span>
+                  </button>
+                </div>
+              </form>
+            </div>
+          </mat-step>
+          <mat-step>
+            <ng-template matStepLabel><span translate="CUSTOMER.NEWADDRESS"></span></ng-template>
+            <avs-dashboard-addresses [clientId]="client?.clientId" fxFlexFill></avs-dashboard-addresses>
+          </mat-step>
+        </mat-vertical-stepper>
       </mat-card-content>
     </mat-card>
   </div>

@@ -9,7 +9,7 @@ export class DashboardUserItemComponent implements OnInit, OnChanges {
   @Input() user;
   @Input() userId;
   isHighlighted: boolean;
-  constructor() {}
+  constructor() { }
 
   ngOnInit() {
     this.isHighlighted = this.userId === this.user.userId;

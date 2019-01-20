@@ -1,7 +1,5 @@
-import {Component, OnInit, OnChanges, Input, EventEmitter, Output} from '@angular/core';
-import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
-import {Observable, BehaviorSubject} from 'rxjs';
-import { Client } from '@avs-ecosystem/models/Client';
+import { Component, OnInit, OnChanges, Input, EventEmitter, Output } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as _ from 'lodash';
 import { UserService } from '@avs-ecosystem/services/user.service';
 import { AddressService } from '@avs-ecosystem/services/address.service';

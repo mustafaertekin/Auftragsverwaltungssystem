@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { DeviceModel } from '@avs-ecosystem/models/DeviceModel';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { DashboardNewDeviceComponent } from '../../device-details/new-devices.component';
 import { ModelService } from '@avs-ecosystem/services/device-model.service';
 import * as _ from 'lodash';
 import { DashboardDeviceModelComponent } from '../device-model.component';
@@ -24,7 +23,7 @@ export class DashboardModelExstraComponent implements OnInit {
     private parent: DashboardDeviceModelComponent,
     private fb: FormBuilder,
     private notificationService: NotificationService,
-    private settingService:  AppSettingsService) {
+    private settingService: AppSettingsService) {
   }
 
   ngOnInit() {
@@ -35,7 +34,7 @@ export class DashboardModelExstraComponent implements OnInit {
     this.settingService.getCurentUser().subscribe(currentUser => {
       this.currentUser = currentUser;
     }, (err) => {
-      this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
+      this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${_.get(err, 'error.message', '')}`);
     });
   }
 
@@ -46,7 +45,7 @@ export class DashboardModelExstraComponent implements OnInit {
       this.modelService.update(model).subscribe(result => {
         this.parent.getAllModels();
       }, (err) => {
-        this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
+        this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${_.get(err, 'error.message', '')}`);
       });
     }
   }
@@ -56,7 +55,7 @@ export class DashboardModelExstraComponent implements OnInit {
       this.modelService.delete(this.model.deviceModelId).subscribe(() => {
         this.parent.getAllModels();
       }, (err) => {
-        this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
+        this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${_.get(err, 'error.message', '')}`);
       });
     }
   }

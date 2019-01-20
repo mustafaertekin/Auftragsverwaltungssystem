@@ -1,7 +1,5 @@
-import { Component, OnInit, AfterContentInit, ViewChild, ElementRef, OnChanges} from '@angular/core';
-import { ObservableMedia, MediaChange } from '@angular/flex-layout';
+import { Component, OnInit, ViewChild, ElementRef, OnChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
 import * as _ from 'lodash';
 import { OrderService } from '@avs-ecosystem/services/order.service';
 import { NotificationService } from '@avs-ecosystem/services/notification-sevice';
@@ -23,7 +21,7 @@ export class DashboardOrdersComponent implements OnInit, OnChanges {
   constructor(private orderService: OrderService,
     private notificationService: NotificationService,
     private route: ActivatedRoute, private router: Router) {
-    }
+  }
 
   ngOnInit() {
     this.isMobile = false;

@@ -12,16 +12,14 @@ export class DashboardSideMenuContentComponent implements OnInit {
   currentUser: any;
 
   constructor(
-    private settingService:  AppSettingsService,
-    private route: ActivatedRoute, private router: Router) {}
+    private settingService: AppSettingsService,
+    private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.selectedMenu = 'main';
-    // on first load there is no event triggered
     this.route.params.subscribe(params => {
       this.setSelectedMenu();
     });
-    // read url when routing is changed
     this.router.events.subscribe(params => {
       this.setSelectedMenu();
     });

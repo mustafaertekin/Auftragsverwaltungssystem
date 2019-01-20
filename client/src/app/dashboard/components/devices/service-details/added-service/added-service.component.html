@@ -10,7 +10,7 @@
     </mat-expansion-panel-header>
     <form fxLayout="column" fxFlex="100" [formGroup]="serviceForm">
       <mat-form-field>
-        <input matInput placeholder="{{'SERVICE.NAME' | translate}}"  formControlName="serviceName">
+        <input matInput placeholder="{{'SERVICE.NAME' | translate}}" formControlName="serviceName">
       </mat-form-field>
       <mat-form-field>
         <input matInput placeholder="{{'INPUT.PRICE' | translate}}" formControlName="price">
@@ -21,7 +21,7 @@
             <span translate="BUTTON.UPDATE"></span>
           </button>
           <button mat-button mat-raised-button color="warn" (click)="deleteService()" *ngIf="isAdmin()">
-           <span translate="BUTTON.DELETE"></span>
+            <span translate="BUTTON.DELETE"></span>
           </button>
         </div>
       </div>

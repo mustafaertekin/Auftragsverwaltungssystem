@@ -9,9 +9,9 @@ export class AppComponent implements OnInit {
   theme: string;
 
   constructor(private settingsService: AppSettingsService) {
-     this.settingsService.listenThemaChanges().subscribe(theme => {
-       this.theme = theme;
-     });
+    this.settingsService.listenThemaChanges().subscribe(theme => {
+      this.theme = theme;
+    });
   }
 
   ngOnInit() { }

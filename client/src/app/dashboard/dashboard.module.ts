@@ -1,16 +1,13 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA , NO_ERRORS_SCHEMA} from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
-import { DeviceDetectorModule } from 'ngx-device-detector';
-import { TranslateService } from '@ngx-translate/core';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 
-import { AppSettingsService } from '@avs-ecosystem/services/app-settings.service';
 import { MaterialModule } from '@avs-ecosystem/modules/material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -46,7 +43,6 @@ import { DashboardNewCustomerComponent } from './components/customers/new-custom
 import { DashboardUserItemComponent } from './components/users/user-item/user-item.component';
 import { DashboardUserDetailsComponent } from './components/users/user-details/user-details.component';
 import { DashboardNewUserComponent } from './components/users/new-user/new-user.component';
-import { UserService } from '@avs-ecosystem/services/user.service';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { DashboardOrderItemServiceComponent } from './components/orders/order-details/order-item-service/order-item-service.component';
 import { DashboardSideNavComponent } from '@avs-ecosystem/modules/shared/avs-sidenav/avs-sidenav.component';
@@ -72,9 +68,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     SharedModule,
     TranslateModule.forRoot({
       loader: {
-          provide: TranslateLoader,
-          useFactory: (createTranslateLoader),
-          deps: [HttpClient]
+        provide: TranslateLoader,
+        useFactory: (createTranslateLoader),
+        deps: [HttpClient]
       }
     })
   ],

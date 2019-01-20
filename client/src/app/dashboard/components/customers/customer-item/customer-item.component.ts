@@ -9,7 +9,7 @@ export class DashboardCustomerItemComponent implements OnInit, OnChanges {
   @Input() customer;
   @Input() currentId;
   isHighlighted: boolean;
-  constructor() {}
+  constructor() { }
 
   ngOnInit() {
     this.isHighlighted = this.currentId === this.customer.clientId;

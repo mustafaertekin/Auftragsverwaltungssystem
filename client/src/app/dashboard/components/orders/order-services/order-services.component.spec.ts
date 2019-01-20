@@ -22,44 +22,48 @@ describe('Order Service Component', () => {
     deviceId: '12345-242',
     deviceName: 'Iphone',
     creationDate: 'Fri Jan 18 2019 23:17:36 GMT+0100',
-    deletionDate: 'Fri Jan 18 2019 23:17:45 GMT+0100'},
-    {
+    deletionDate: 'Fri Jan 18 2019 23:17:45 GMT+0100'
+  },
+  {
     deviceId: '12345-999',
     deviceName: 'Samsung',
     creationDate: 'Fri Jan 18 2019 23:17:36 GMT+0100',
-    deletionDate: 'Fri Jan 18 2019 23:17:45 GMT+0100'}];
+    deletionDate: 'Fri Jan 18 2019 23:17:45 GMT+0100'
+  }];
 
   const MODELS = [{
-      deviceId: '12345-242',
-      deviceModelId: '111-222',
-      deviceModelName: 'LEYLA',
-      creationDate: 'Fri Jan 18 2019 23:17:22 GMT+0100',
-      deletionDate: 'Fri Jan 18 2019 23:17:49 GMT+0100'},
-    {
-      deviceId: '12345-999',
-      deviceModelId: '333-444',
-      deviceModelName: 'MECNUN',
-      creationDate: 'Fri Jan 18 2019 23:17:24 GMT+0100',
-      deletionDate: 'Fri Jan 18 2019 23:17:45 GMT+0100'
-    }];
+    deviceId: '12345-242',
+    deviceModelId: '111-222',
+    deviceModelName: 'LEYLA',
+    creationDate: 'Fri Jan 18 2019 23:17:22 GMT+0100',
+    deletionDate: 'Fri Jan 18 2019 23:17:49 GMT+0100'
+  },
+  {
+    deviceId: '12345-999',
+    deviceModelId: '333-444',
+    deviceModelName: 'MECNUN',
+    creationDate: 'Fri Jan 18 2019 23:17:24 GMT+0100',
+    deletionDate: 'Fri Jan 18 2019 23:17:45 GMT+0100'
+  }];
 
   const SERVICES = [{
-      deviceId: '12345-242',
-      deviceModelId: '111-222',
-      deviceModelName: 'LEYLA',
-      serviceId: '777-888',
-      serviceName: 'hayde',
-      price: 300},
-    {
-      deviceId: '12345-999',
-      deviceModelId: '333-444',
-      deviceModelName: 'MECNUN',
-      serviceId: '777-888',
-      serviceName: 'hayde',
-      price: 400
-    }];
+    deviceId: '12345-242',
+    deviceModelId: '111-222',
+    deviceModelName: 'LEYLA',
+    serviceId: '777-888',
+    serviceName: 'hayde',
+    price: 300
+  },
+  {
+    deviceId: '12345-999',
+    deviceModelId: '333-444',
+    deviceModelName: 'MECNUN',
+    serviceId: '777-888',
+    serviceName: 'hayde',
+    price: 400
+  }];
 
-  const SERVICE = [{ serviceId: '777-888', serviceName: 'hayde', price: 300}];
+  const SERVICE = [{ serviceId: '777-888', serviceName: 'hayde', price: 300 }];
 
   const instantiateMocks = () => {
     deviceMockService = jasmine.createSpyObj(['delete', 'update', 'getAll', 'create']);

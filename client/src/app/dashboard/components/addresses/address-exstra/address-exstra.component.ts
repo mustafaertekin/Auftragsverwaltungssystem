@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as _ from 'lodash';
 import { AddressService } from '@avs-ecosystem/services/address.service';
@@ -52,7 +52,7 @@ export class DashboardAddressesExstraComponent implements OnInit {
       this.addressService.update(addresInfo).subscribe(() => {
         this.parent.getAllAddressesByClientId(this.clientId);
       }, (err) => {
-        this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
+        this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${_.get(err, 'error.message', '')}`);
       });
     }
   }
@@ -65,7 +65,7 @@ export class DashboardAddressesExstraComponent implements OnInit {
       this.addressService.update(addresInfo).subscribe(() => {
         this.parent.getAllAddressesByClientId(this.userId);
       }, (err) => {
-        this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
+        this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${_.get(err, 'error.message', '')}`);
       });
     }
   }
@@ -74,7 +74,7 @@ export class DashboardAddressesExstraComponent implements OnInit {
     this.addressService.delete(addressId).subscribe(addresses => {
       this.parent.getAllAddressesByClientId(this.clientId || this.userId);
     }, (err) => {
-      this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
+      this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${_.get(err, 'error.message', '')}`);
     });
   }
 }

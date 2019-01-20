@@ -1,7 +1,5 @@
-import {Component, OnInit, OnChanges, Input, EventEmitter, Output} from '@angular/core';
-import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
-import {Observable, BehaviorSubject} from 'rxjs';
-import { Client } from '@avs-ecosystem/models/Client';
+import { Component, OnInit, OnChanges, Input, EventEmitter, Output } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import * as _ from 'lodash';
 import { ClientService } from '@avs-ecosystem/services/client.service';
 import { NotificationService } from '@avs-ecosystem/services/notification-sevice';
@@ -14,7 +12,7 @@ import { NotificationService } from '@avs-ecosystem/services/notification-sevice
 export class DashboardCustomerOrdersComponent implements OnInit, OnChanges {
   @Output() emitter: EventEmitter<string> = new EventEmitter<string>();
   @Input() clientId: string;
-  orders: any [];
+  orders: any[];
 
 
   constructor(private fb: FormBuilder,
@@ -29,7 +27,7 @@ export class DashboardCustomerOrdersComponent implements OnInit, OnChanges {
     this.clientService.getOrders(this.clientId).subscribe(orders => {
       this.orders = orders;
     }, (err) => {
-      this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
+      this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${_.get(err, 'error.message', '')}`);
     });
   }
 }

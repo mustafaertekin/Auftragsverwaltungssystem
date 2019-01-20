@@ -11,26 +11,20 @@
         <mat-card-content>
           <div fxLayout="column" class="m-t-1 m-b-1">
             <form class="m-t-1" #settingsForm [formGroup]="userSettings">
-              <mat-form-field><!-- formControlName="role"-->
-                <mat-select placeholder="Language" formControlName="language">
+              <mat-form-field>
+                <mat-select placeholder="{{ 'SETTING.LANGUAGE' | translate }}" formControlName="language">
                   <mat-option (click)="changeLanguage('en-EN')" value="en-EN">English</mat-option>
                   <mat-option (click)="changeLanguage('de-DE')" value="de-DE">German</mat-option>
                 </mat-select>
               </mat-form-field>
-              <mat-radio-group class=" " fxLayout="column" formControlName="theme">
-                <mat-radio-button class="m-1"  (click)="changeTheme(theme)" *ngFor="let theme of themes"
-                  [value]="theme">
+              <mat-radio-group fxLayout="column" formControlName="theme">
+                <mat-radio-button class="m-1" (click)="changeTheme(theme)" *ngFor="let theme of themes" [value]="theme">
                   {{theme}}
                 </mat-radio-button>
               </mat-radio-group>
               <div fxLayout="row" fxLayoutAlign="start center">
-                <button fxFlex="10" class="m-r-1"
-
-                  mat-button
-                  (click)="submitSettings()"
-                  mat-raised-button
-                  color="accent">
-                 <span translate="BUTTON.SAVE"></span>
+                <button fxFlex="10" class="m-r-1" mat-button (click)="submitSettings()" mat-raised-button color="accent">
+                  <span translate="BUTTON.SAVE"></span>
                 </button>
               </div>
             </form>
