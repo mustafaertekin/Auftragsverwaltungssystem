@@ -134,7 +134,7 @@
     <mat-tab label="{{'COMMENTS.TITLE' | translate }}">
       <br><br>
       <mat-form-field class="full-width">
-        <textarea matInput [(ngModel)]="editorContent" rows="30" placeholder="{{'COMMENTS.TITLE' | translate }}"></textarea>
+        <textarea matInput [(ngModel)]="editorContent" rows="10" placeholder="{{'COMMENTS.TITLE' | translate }}"></textarea>
       </mat-form-field>
       <button mat-raised-button color="primary" (click)="addOrderComment(editorContent)">
         <mat-icon>add</mat-icon><span translate="COMMENTS.ADD"></span>
