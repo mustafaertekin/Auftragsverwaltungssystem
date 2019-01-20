@@ -38,7 +38,7 @@
   <h3 class="m-t-1" translate="PASSWORD.CHANGE"></h3>
   <div fxLayout="row">
     <form fxLayout="column" fxFlex="90" [formGroup]="updatePasswordForm">
-      <mat-form-field>
+      <mat-form-field *ngIf="!isAdmin()">
         <input matInput placeholder="{{'PASSWORD.CURRENT' | translate}}" type="password" formControlName="currentPassword">
       </mat-form-field>
       <mat-form-field>
