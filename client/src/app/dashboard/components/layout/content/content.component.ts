@@ -10,25 +10,28 @@ import { Router } from '@angular/router';
 export class DashboardMainContentComponent implements OnInit {
   @ViewChild('sidenav') sidenav: ElementRef;
   watcher: Subscription;
-  opened = true;
+  opened = false;
   over = 'side';
   animationState: string;
   previousUrl: string;
 
   constructor(
-    media: ObservableMedia, private router: Router) {
-    this.watcher = media.subscribe((change: MediaChange) => {
-      if (change.mqAlias === 'sm' || change.mqAlias === 'xs') {
-        this.opened = false;
-        this.over = 'over';
-      } else {
-        this.opened = true;
-        this.over = 'side';
-      }
-    });
+    private media: ObservableMedia, private router: Router) {
    }
 
   ngOnInit() {
+    setTimeout(() => {
+      this.watcher = this.media.subscribe((change: MediaChange) => {
+        if (change.mqAlias === 'sm' || change.mqAlias === 'xs') {
+          this.opened = false;
+          this.over = 'over';
+        } else {
+          this.opened = true;
+          this.over = 'side';
+        }
+      });
+    }, 0);
+
     this.animate();
     this.previousUrl  = this.router.url.split('/')[2];
     this.router.events.subscribe(elm => {

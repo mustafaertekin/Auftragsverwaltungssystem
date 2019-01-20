@@ -17,45 +17,22 @@ export class AvsLineChartComponent implements OnInit, AfterContentInit {
   @Input() type: string;
   @Input() title: string;
   @Input() data: number[];
+  @Input() xaxes: any [];
   uniqueId: number;
   lineconfig: any;
   ctx: any;
   line_chart: any;
   line_chart_container: any;
-  months: string []  = [];
+  myChart: any = null;
 
   constructor(private translate: TranslateService) { }
 
   ngOnInit() {
     this.getUniqeId();
-    this.updateMonthsNames();
-    this.translate.onLangChange.subscribe(() =>   {
-      this.updateMonthsNames();
-    });
-    // console.log('MONTHS', this.months);
-  }
 
-  updateMonthsNames() {
-    this.months = [];
-    const MONTHS = [
-      this.translate.get('MONTHS.JANUARY'),
-      this.translate.get('MONTHS.FEBRUARY'),
-      this.translate.get('MONTHS.MARCH'),
-      this.translate.get('MONTHS.APRIL'),
-      this.translate.get('MONTHS.MAY'),
-      this.translate.get('MONTHS.JUNE'),
-      this.translate.get('MONTHS.JULY'),
-      this.translate.get('MONTHS.AUGUST'),
-      this.translate.get('MONTHS.SEPTEMBER'),
-      this.translate.get('MONTHS.OCTOBER'),
-      this.translate.get('MONTHS.NOVEMBER'),
-      this.translate.get('MONTHS.DECEMBER'),
-    ];
-    of(null).pipe(merge(...MONTHS)).subscribe((result: string) => {
-      if (result) {
-        this.months.push(result);
-      }
-    });
+    if (!this.type) {
+      throw new Error('graph type must be defined');
+    }
   }
 
   ngAfterContentInit() {
@@ -67,35 +44,64 @@ export class AvsLineChartComponent implements OnInit, AfterContentInit {
   onResize(event) {
     this.line_chart_container = document.getElementById('line_chart_container');
     this.setNewSize(this.line_chart_container.innerWidth);
+    if (this.myChart) {
+      this.myChart.update(100);
+    }
   }
 
-  getUniqeId () {
+  getUniqeId() {
     this.uniqueId = Date.now() - Math.floor(Math.random() * 1000);
   }
 
   setNewSize(size) {
-    let myChart = null;
+    this.myChart = null;
     setTimeout(() => {
       if (!this.lineconfig) {
-        this.lineconfig = new LineConfig(this.type, this.title);
-        this.lineconfig.getConfig().data.labels = this.months;
-        this.line_chart_container = document.getElementById('line_chart_container');
-        this.line_chart = document.getElementById(`${this.uniqueId}`);
-        if (!this.data) {
-          this.lineconfig.addDataSet([], this.title);
-        } else {
-          this.data.forEach(item => {
-            this.lineconfig.addDataSet(item, this.title);
-          });
+        if (this.type === 'line' || this.type === 'bar') {
+          this.setLineChart(size);
         }
-
-        myChart = new Chart(this.line_chart['getContext']('2d'), this.lineconfig.getConfig());
-      }
-      this.line_chart.style.width = `${size}px`;
-
-      if (myChart) {
-        myChart.update(100);
+        if (this.type === 'pie') {
+          this.setPieChart(size);
+        }
       }
     }, 200);
+  }
+
+  setLineChart(size) {
+    this.lineconfig = new LineConfig(this.type, this.title);
+    this.lineconfig.getConfig().data.labels = this.xaxes;
+    this.line_chart_container = document.getElementById('line_chart_container');
+    this.line_chart = document.getElementById(`${this.uniqueId}`);
+    if (!this.data) {
+      this.lineconfig.addDataSet([], this.title);
+    } else {
+      this.data.forEach(item => {
+        this.lineconfig.addDataSet(item, this.title);
+      });
+    }
+    this.line_chart.style.width = `${size}px`;
+    this.myChart = new Chart(this.line_chart['getContext']('2d'), this.lineconfig.getConfig());
+  }
+
+  setPieChart(size) {
+    this.lineconfig = new LineConfig(this.type, this.title);
+    this.lineconfig.getConfig().data.labels = this.xaxes;
+    this.lineconfig.getConfig().options = {  responsive: true, title: { display: true,  text: this.title  }};
+
+    this.line_chart_container = document.getElementById('line_chart_container');
+    this.line_chart = document.getElementById(`${this.uniqueId}`);
+    if (!this.data) {
+      this.lineconfig.addDataSet([], this.title);
+    } else {
+      if (Array.isArray(this.data[0])) {
+        this.data.forEach(item => {
+          this.lineconfig.addDataSet(item, this.title);
+        });
+      } else {
+        this.lineconfig.addDataSet(this.data, this.title);
+      }
+    }
+    this.line_chart.style.width = `${size}px`;
+    this.myChart = new Chart(this.line_chart['getContext']('2d'), this.lineconfig.getConfig());
   }
 }

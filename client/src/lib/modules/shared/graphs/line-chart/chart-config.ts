@@ -1,11 +1,27 @@
 export class LineConfig {
-  MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  MONTHS = [];
+  COLORS = [];
+  colors: string [];
   config: any;
   data: any;
   options: any;
   _seed: any;
 
   constructor(type = 'line', title) {
+    this.COLORS = [
+      '#ff1744',
+      '#f50057',
+      '#d500f9',
+      '#7c4dff',
+      '#536dfe',
+      '#448aff',
+      '#40c4ff',
+      '#18ffff',
+      '#64ffda',
+      '#69f0ae',
+      '#b2ff59'
+    ];
+    this.colors = this.COLORS;
     this._seed = Date.now();
     this.initConfig(title, type);
   }
@@ -14,19 +30,22 @@ export class LineConfig {
     data = data.length !== 0 ? data : this.generateRandomData();
     const dataSet = {
       label: label,
-      backgroundColor: this.getRandomColor(),
-      borderColor: this.getRandomColor(),
+      backgroundColor: data.map(() => {
+        return this.getSpecificColors();
+      }),
+      borderColor: data.map(() => {
+        return this.getSpecificColors();
+      }),
       data: data,
       fill: false,
     };
     this.getConfig().data.datasets.push(dataSet);
   }
 
-  getRandomColor() {
-    const letters = '0123456789ABCDEF';
-    let color = '#';
-    for (let i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
+  getSpecificColors () {
+    const color = this.colors.pop();
+    if (this.colors.length === 0) {
+      this.colors = this.COLORS;
     }
     return color;
   }

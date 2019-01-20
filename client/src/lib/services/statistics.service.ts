@@ -15,7 +15,7 @@ export class StatisticsService {
     this.serverUrl = environment.baseUrl;
    }
 
-  public getMonatlyGain(): Observable<any> {
+  public getStatistcis(): Observable<any> {
     return this.http.get(`${this.serverUrl}statistics/gain`).pipe(map((res: Response) => res));
   }
 }

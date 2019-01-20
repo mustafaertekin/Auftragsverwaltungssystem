@@ -31,17 +31,19 @@ export class DashboardSideNavComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.watcher = this.media.subscribe((change: MediaChange) => {
-      if (change.mqAlias === 'sm' || change.mqAlias === 'xs') {
-        this.opened = false;
-        this.over = 'over';
-        this.isMobile = true;
-      } else {
-        this.opened = true;
-        this.over = 'side';
-        this.isMobile = false;
-      }
-      this.emitter.emit({isMobile: this.isMobile, isopen: this.opened});
-    });
+    setTimeout(() => {
+      this.watcher = this.media.subscribe((change: MediaChange) => {
+        if (change.mqAlias === 'sm' || change.mqAlias === 'xs') {
+          this.opened = false;
+          this.over = 'over';
+          this.isMobile = true;
+        } else {
+          this.opened = true;
+          this.over = 'side';
+          this.isMobile = false;
+        }
+        this.emitter.emit({isMobile: this.isMobile, isopen: this.opened});
+      });
+    }, 0);
   }
 }
