@@ -18,6 +18,7 @@ export class DashboardMainComponent implements OnInit {
   stateData: number [];
   servicesNames: string [];
   servicesValues: number [];
+  isLoaded: boolean;
 
   constructor(private translate: TranslateService, private userService: UserService,
     private settingService:  AppSettingsService,
@@ -26,13 +27,14 @@ export class DashboardMainComponent implements OnInit {
 
   ngOnInit() {
     this.translateMonths();
-
+    this.isLoaded = false;
     this.statisticService.getStatistcis().subscribe(data => {
       this.monathlyGainData = [data.gain];
       this.stateData = data.statuses.map(item => item.cnt);
       this.statuses = data.statuses.map(item => item.status);
       this.servicesNames = data.services.names;
       this.servicesValues = data.services.values;
+      this.isLoaded = true;
     });
   }
 

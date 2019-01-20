@@ -100,7 +100,8 @@
     "NEXT": "Next",
     "PREVIOUS": "Previous",
     "SUBMIT": "Submit new order",
-    "LOGOUT": "Logout"
+    "LOGOUT": "Logout",
+    "CANCEL": "Cancel"
   },
   "SALUTATION": {
     "TITLE": "Salutation"
