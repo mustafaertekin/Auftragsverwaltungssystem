@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'avs-home-header',
@@ -7,7 +7,4 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeMainHeaderComponent {
 
-  setCulture(culture) {
-
-  }
 }

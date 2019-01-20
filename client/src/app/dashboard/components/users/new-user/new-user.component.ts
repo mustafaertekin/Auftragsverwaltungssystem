@@ -1,5 +1,5 @@
-import {Component, OnInit, OnChanges, Input, EventEmitter, Output} from '@angular/core';
-import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as _ from 'lodash';
 import { UserService } from '@avs-ecosystem/services/user.service';
 import { AddressService } from '@avs-ecosystem/services/address.service';
@@ -41,7 +41,7 @@ export class DashboardNewUserComponent implements OnInit {
   }
 
   public submitUserForm() {
-      this.createUser();
+    this.createUser();
   }
 
   get isActive() {
@@ -55,9 +55,8 @@ export class DashboardNewUserComponent implements OnInit {
         .subscribe(result => {
           this.isUserSubmitted = true;
           this.user = result;
-          // this.router.navigate(['/', 'dashboard', 'users', 'list']);
         }, (err) => {
-          this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
+          this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${_.get(err, 'error.message', '')}`);
         });
     }
   }

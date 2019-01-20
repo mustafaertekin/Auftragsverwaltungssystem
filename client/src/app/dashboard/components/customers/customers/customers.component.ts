@@ -18,7 +18,7 @@ export class DashboardCustomersComponent implements OnInit {
 
   constructor(private clientService: ClientService, private router: Router,
     private notificationService: NotificationService,
-    private route: ActivatedRoute ) { }
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.isMobile = false;
@@ -40,7 +40,7 @@ export class DashboardCustomersComponent implements OnInit {
       this.currentCustomerId = this.currentCustomerId || (this.customers[0] ? this.customers[0].clientId : null);
       this.animationState = 'in';
     }, (err) => {
-      this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
+      this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${_.get(err, 'error.message', '')}`);
     });
   }
 
@@ -77,7 +77,7 @@ export class DashboardCustomersComponent implements OnInit {
       this.currentCustomerId = this.customers[0] ? this.customers[0].clientId : null;
       this.animationState = 'in';
     }, (err) => {
-      this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
+      this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${_.get(err, 'error.message', '')}`);
     });
   }
 

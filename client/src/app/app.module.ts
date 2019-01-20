@@ -1,17 +1,18 @@
 import { NgModule } from '@angular/core';
 import { MainPageRoutesModule } from './app-routing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { HttpModule } from '@angular/http';
-import { FlexLayoutModule} from '@angular/flex-layout';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from '@avs-ecosystem/modules/material/material.module';
 
 import 'hammerjs';
 import { AppComponent } from './app.component';
 import { BrowserModule } from '@angular/platform-browser';
-import { Http, AuthService,
+import {
+  Http, AuthService,
   AppHttpService,
   TokenService,
   IsAuthorizedGuard
@@ -71,9 +72,9 @@ import { NotificationService } from '@avs-ecosystem/services/notification-sevice
     OrderItemService,
     NotificationService,
     {
-      provide : HTTP_INTERCEPTORS,
+      provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
-      multi   : true,
+      multi: true,
     }
   ],
 })

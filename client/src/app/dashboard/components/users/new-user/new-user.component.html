@@ -26,25 +26,26 @@
                   <input matInput placeholder="{{ 'INPUT.FIRSTNAME' | translate }}" formControlName="firstName">
                 </mat-form-field>
                 <mat-form-field>
-                  <input matInput placeholder="{{ 'INPUT.LASTNAME' | translate }}"  formControlName="lastName">
+                  <input matInput placeholder="{{ 'INPUT.LASTNAME' | translate }}" formControlName="lastName">
                 </mat-form-field>
                 <mat-form-field>
                   <input matInput placeholder="Email" formControlName="email">
                 </mat-form-field>
                 <mat-form-field>
-                  <input matInput placeholder="{{ 'PASSWORD.TITLE' | translate }}"  formControlName="password">
+                  <input matInput placeholder="{{ 'PASSWORD.TITLE' | translate }}" formControlName="password">
                 </mat-form-field>
                 <mat-form-field>
-                  <input matInput placeholder="{{ 'PASSWORD.CONFIRM' | translate }}"  formControlName="repassword">
+                  <input matInput placeholder="{{ 'PASSWORD.CONFIRM' | translate }}" formControlName="repassword">
                 </mat-form-field>
                 <div fxLayout="row" fxLayoutGap="16px">
                   <div>
                     <button mat-button mat-raised-button color="accent" class="m-r-1" (click)="submitUserForm()">
                       <span translate="BUTTON.SAVE"></span>
                     </button>
-                    <button mat-button mat-raised-button matStepperNext color="accent" [disabled]="!isUserSubmitted" class="m-r-1">
-                        <span translate="BUTTON.NEXT"></span>
-                      </button>
+                    <button mat-button mat-raised-button matStepperNext color="accent" [disabled]="!isUserSubmitted"
+                      class="m-r-1">
+                      <span translate="BUTTON.NEXT"></span>
+                    </button>
                   </div>
                 </div>
               </form>

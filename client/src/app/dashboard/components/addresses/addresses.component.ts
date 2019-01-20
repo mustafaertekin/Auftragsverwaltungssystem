@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as _ from 'lodash';
-import { ClientService } from '@avs-ecosystem/services/client.service';
 import { AddressService } from '@avs-ecosystem/services/address.service';
 import { NotificationService } from '@avs-ecosystem/services/notification-sevice';
 
@@ -77,9 +76,9 @@ export class DashboardAddressesComponent implements OnInit, OnChanges {
       const addresInfo = this.addressForm.value;
       addresInfo.clientId = this.clientId;
       this.addressService.create(addresInfo).subscribe(() => {
-          this.getAllAddressesByClientId(this.clientId);
+        this.getAllAddressesByClientId(this.clientId);
       }, (err) => {
-        this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
+        this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${_.get(err, 'error.message', '')}`);
       });
     }
   }
@@ -89,18 +88,18 @@ export class DashboardAddressesComponent implements OnInit, OnChanges {
       const addresInfo = this.addressForm.value;
       addresInfo.userId = this.userId;
       this.addressService.create(addresInfo).subscribe(() => {
-          this.getAllAddressesByClientId(this.userId);
+        this.getAllAddressesByClientId(this.userId);
       }, (err) => {
-        this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
+        this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${_.get(err, 'error.message', '')}`);
       });
     }
   }
 
-  public getAllAddressesByClientId (clientId) {
+  public getAllAddressesByClientId(clientId) {
     this.addressService.getByClientId(clientId).subscribe(addresses => {
       this.addresses = addresses;
     }, (err) => {
-      this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
+      this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${_.get(err, 'error.message', '')}`);
     });
   }
 }

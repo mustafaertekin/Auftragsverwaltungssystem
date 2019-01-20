@@ -5,7 +5,7 @@
   "ORDER": {
     "TITLE": "Aufträge",
     "LIST": "Auftragliste",
-    "NEW" : "Neuer Auftrag",
+    "NEW": "Neuer Auftrag",
     "SUBTITLE": "Erstellen Sie einen neuen Auftrag",
     "DETAILS": "Auftragsdetails",
     "DESCRIPTION": "Auftragsbeschreibung",
@@ -16,7 +16,7 @@
   "USER": {
     "TITLE": "Benutzer",
     "SUBTITLE": "Benutzerliste",
-    "NEW" : "Neuer Benutzer",
+    "NEW": "Neuer Benutzer",
     "STEP": "Füllen Sie Formular aus",
     "NEWUSERSUBTITLE": "Erstellen Sie einen neuen Benutzer",
     "DETAILS": "Benutzerdetails",
@@ -29,7 +29,7 @@
     "TITLE": "Kunden",
     "SUBTITLE": "Kunde",
     "LIST": "Kundenliste",
-    "NEW" : "Neue Kunde",
+    "NEW": "Neue Kunde",
     "ADD": "Neue Kunde hinzufügen",
     "DETAILS": "Kundendetails",
     "STEP": "Wählen Sie einen Kunden oder erstellen Sie einen neuen",
@@ -59,24 +59,25 @@
     "NAME": "Repaturname",
     "STEP": "Reparatur oder reparaturen erstellen"
   },
-  "MODEL":{
+  "MODEL": {
     "TITLE": "Modell",
     "SELECT": "Modell auswählen",
     "STEP": "Wählen Sie ein Modell oder erstellen Sie ein neues",
     "ADD": "Modell hinzufügen",
-    "NAME": "Modellname"  
+    "NAME": "Modellname"
   },
   "SETTING": {
     "TITLE": "Einstellungen",
-    "SUBTITLE": "Ändern Sie Ihre Einstellungen"
+    "SUBTITLE": "Ändern Sie Ihre Einstellungen",
+    "LANGUAGE": "Sprache"
   },
-  "ADD":{
+  "ADD": {
     "TITLE": "Hinzufügen Kunde"
   },
-  "UPDATE":{
+  "UPDATE": {
     "TITLE": "Aktualisieren Kunde"
   },
-  "INPUT":{
+  "INPUT": {
     "FIRSTNAME": "Vorname",
     "LASTNAME": "Nachname",
     "PHONE": "Telefon",
@@ -84,11 +85,11 @@
     "ACTIVE": "Ist aktiv",
     "ACTIVATE": "Konto aktivieren",
     "PRICE": "Preis",
-    "STREET" : "Strasse",
+    "STREET": "Strasse",
     "ZIP": "Plz",
     "CITY": "Ort",
     "COUNTRY": "Land"
-    },
+  },
   "BUTTON": {
     "ADD": "Hinzufügen",
     "DELETE": "Löschen",
@@ -96,7 +97,7 @@
     "SAVE": "Speichern",
     "LOGIN": "Anmelden",
     "NEXT": "Nächste",
-    "PREVIOUS" : "Zurück",
+    "PREVIOUS": "Zurück",
     "SUBMIT": "Auftrag erfassen",
     "LOGOUT": "Ausloggen"
   },
@@ -106,7 +107,7 @@
   "STATISTIC": {
     "TITLE": "Statistiken"
   },
-  "PASSWORD":{
+  "PASSWORD": {
     "TITLE": "Passwort",
     "UPDATE": "Passwort Aktualisieren",
     "CHANGE": "Passwort ändern",
@@ -114,29 +115,32 @@
     "NEW": "Neues Passwort",
     "CONFIRM": "Bestätige das Passwort"
   },
-  "ADDRESS":{
+  "ADDRESS": {
     "TITLE": "Adresse",
     "STEP": "Wählen Sie eine Adresse aus oder erstellen Sie eine neue",
     "DELIVERY": "Lieferung Adresse",
     "INVOICE": "Rechnung Adresse",
     "ADD": "Neue Adresse hinzufügen"
   },
-  "CHART":{
-    "SERVICE": "Monatlich genutzte Servicen",
-    "AMOUNT": "Monatlich gewonnener Betrag"
+  "CHART": {
+    "SERVICES": "Total Reperaturen",
+    "AMOUNT": "Monatlich gewonnener Betrag",
+    "STATUS": "Total Servicestatus"
   },
-  "NOTICE":{
+  "NOTICE": {
     "TITLE": "Es ist keine Bestellung verfügbar, fügen Sie eine neue hinzu oder suchen Sie eine neue Suche."
   },
-  "COMMENTS":{
+  "COMMENTS": {
     "TITLE": "Bemerkungen",
-    "ADD":"Bemerkungen hinzufügen"
+    "ADD": "Bemerkungen hinzufügen"
   },
-  "SEARCH":{
+  "SEARCH": {
     "TITLE": "SUCHEN ..."
   },
-  "MONTHS": 
-  {
+  "STATUS": {
+    "TITLE": "Status: "
+  },
+  "MONTHS": {
     "JANUARY": "January",
     "FEBRUARY": "February",
     "MARCH": "März",

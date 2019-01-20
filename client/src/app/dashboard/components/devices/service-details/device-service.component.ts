@@ -1,4 +1,4 @@
-import {Component, OnInit, OnChanges, Input, EventEmitter} from '@angular/core';
+import { Component, OnInit, OnChanges, Input } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Service } from '@avs-ecosystem/models/Service';
@@ -23,7 +23,7 @@ export class DashboardDeviceServiceComponent implements OnInit, OnChanges {
   @Input() modelId;
   public selectedService: Service;
 
-  constructor( private deviceService: DeviceServiceType,
+  constructor(private deviceService: DeviceServiceType,
     private notificationService: NotificationService, private fb: FormBuilder) {
 
   }
@@ -43,7 +43,7 @@ export class DashboardDeviceServiceComponent implements OnInit, OnChanges {
       this.deviceService.getAllByModelId(this.modelId).subscribe(result => {
         this.services = result;
       }, (err) => {
-        this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
+        this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${_.get(err, 'error.message', '')}`);
       });
     }
   }
@@ -53,7 +53,7 @@ export class DashboardDeviceServiceComponent implements OnInit, OnChanges {
       this.deviceService.create(this.serviceForm.value, this.modelId).subscribe(result => {
         this.getAllServices();
       }, (err) => {
-        this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
+        this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${_.get(err, 'error.message', '')}`);
       });
     }
   }

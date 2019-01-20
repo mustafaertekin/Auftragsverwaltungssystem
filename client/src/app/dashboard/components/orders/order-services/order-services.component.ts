@@ -1,6 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
-import {Observable, BehaviorSubject} from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as _ from 'lodash';
 import { Device } from '@avs-ecosystem/models/Device';
 import { OrderForm } from '@avs-ecosystem/models/OrderForm';
@@ -37,7 +36,7 @@ export class DashboardOrderServicesComponent implements OnInit {
     private deviceServices: DeviceService,
     private notificationService: NotificationService,
     private modelservice: ModelService,
-    private deviceServiceTypeService: DeviceServiceType) {}
+    private deviceServiceTypeService: DeviceServiceType) { }
 
   ngOnInit() {
     this.getAllDevices();
@@ -53,7 +52,7 @@ export class DashboardOrderServicesComponent implements OnInit {
     this.deviceServices.getAll().subscribe(devices => {
       this.devices = devices;
     }, (err) => {
-      this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
+      this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${_.get(err, 'error.message', '')}`);
     });
   }
 
@@ -69,7 +68,7 @@ export class DashboardOrderServicesComponent implements OnInit {
     this.deviceServiceTypeService.getAllByModelId(model.deviceModelId).subscribe(services => {
       this.services = services;
     }, (err) => {
-      this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
+      this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${_.get(err, 'error.message', '')}`);
     });
   }
 
@@ -80,7 +79,7 @@ export class DashboardOrderServicesComponent implements OnInit {
 
   public saveNewService() {
     if (this.serviceForm.valid) {
-      const form: OrderForm = { id: 0, service: null, device: null, model: null};
+      const form: OrderForm = { id: 0, service: null, device: null, model: null };
       form.id = new Date().getTime();
       form.service = this.service;
       form.model = this.model;

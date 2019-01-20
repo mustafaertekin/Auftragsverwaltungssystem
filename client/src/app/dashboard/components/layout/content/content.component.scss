@@ -1,11 +1,13 @@
-.avs-dashboard-content{
-    .container{
-        min-height: 100vh;
-        .side-nav{
-            width: 220px;
-        }
-        .mat-sidenav-content{
-            height: auto;
-        }
+.avs-dashboard-content {
+  .container {
+    min-height: 100vh;
+
+    .side-nav {
+      width: 220px;
     }
+
+    .mat-sidenav-content {
+      height: auto;
+    }
+  }
 }

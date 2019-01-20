@@ -1,4 +1,4 @@
-<div class="order-item"  >
+<div class="order-item">
   <div [ngClass]="{'heighlight': isHighlighted }" class="order-wrapper">
     <div [ngClass]="{'selected-indicator': isHighlighted }" class="mat-toolbar mat-primary"></div>
     <div class="order-item-info">
@@ -7,7 +7,8 @@
           {{order?.client?.firstName}} {{order?.client?.lastName}}
         </div>
         <div fxFlex="50" fxLayoutAlign="end center">
-          <span class="m-r-1">Status</span>  <span class="status-color-{{order.status}}">{{order?.status}}</span>
+          <span class="m-r-1" translate="STATUS.TITLE"></span>
+          <span class="status-color-{{order.status}}">{{order?.status}}</span>
         </div>
         <div fxFlex="50">
           {{order?.deliveryDate | date: 'short'}}

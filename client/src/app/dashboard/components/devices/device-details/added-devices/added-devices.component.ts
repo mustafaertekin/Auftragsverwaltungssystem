@@ -1,7 +1,6 @@
-import {Component, OnInit, OnChanges, Input, EventEmitter} from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { DeviceService } from '@avs-ecosystem/services/device.service';
-import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
-import {Observable, BehaviorSubject} from 'rxjs';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Device } from '@avs-ecosystem/models/Device';
 import * as _ from 'lodash';
 import { DashboardNewDeviceComponent } from '../new-devices.component';
@@ -19,7 +18,7 @@ export class DashboardAddedDeviceComponent implements OnInit {
 
   @Input() device: Device;
   constructor(
-    private settingService:  AppSettingsService,
+    private settingService: AppSettingsService,
     private deviceService: DeviceService,
     private notificationService: NotificationService,
     private parent: DashboardNewDeviceComponent,
@@ -34,7 +33,7 @@ export class DashboardAddedDeviceComponent implements OnInit {
     this.settingService.getCurentUser().subscribe(currentUser => {
       this.currentUser = currentUser;
     }, (err) => {
-      this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
+      this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${_.get(err, 'error.message', '')}`);
     });
   }
 
@@ -45,7 +44,7 @@ export class DashboardAddedDeviceComponent implements OnInit {
       this.deviceService.update(device).subscribe(result => {
         this.parent.getAllDevices();
       }, (err) => {
-        this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
+        this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${_.get(err, 'error.message', '')}`);
       });
     }
   }
@@ -55,7 +54,7 @@ export class DashboardAddedDeviceComponent implements OnInit {
       this.deviceService.delete(this.device.deviceId).subscribe(() => {
         this.parent.getAllDevices();
       }, (err) => {
-        this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${ _.get(err, 'error.message', '')}`);
+        this.notificationService.error(`${_.get(err, 'statusText', 'Error')}, ${_.get(err, 'error.message', '')}`);
       });
     }
   }

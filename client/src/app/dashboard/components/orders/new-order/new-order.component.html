@@ -12,7 +12,7 @@
           <avs-dashboard-order-services #services></avs-dashboard-order-services>
           <div fxLayout="row" *ngIf="services?.orders?.length" fxLayoutAlign="start center">
             <button fxFlex="10" matStepperNext mat-button mat-raised-button color="accent">
-              <span  translate="BUTTON.NEXT"></span>
+              <span translate="BUTTON.NEXT"></span>
             </button>
           </div>
         </mat-step>
@@ -23,7 +23,8 @@
               <h3 translate="CUSTOMER.FIND"></h3>
               <form>
                 <mat-form-field class="full-width">
-                  <input type="text" id="customer_search" placeholder="{{ 'CUSTOMER.SELECT' | translate }}" matInput [matAutocomplete]="auto">
+                  <input type="text" id="customer_search" placeholder="{{ 'CUSTOMER.SELECT' | translate }}" matInput
+                    [matAutocomplete]="auto">
                   <mat-autocomplete #auto="matAutocomplete">
                     <mat-option *ngFor="let customer of customers" [value]="getName(customer)" (click)="setCustomer(customer)">
                       {{customer.firstName}} {{customer.lastName}}, {{customer.email}}
@@ -57,24 +58,24 @@
               <div fxFlex="50">
                 <form fxLayout="column" fxFlex="100" [formGroup]="addressForms">
                   <mat-form-field>
-                    <mat-select  placeholder="{{ 'ADDRESS.DELIVERY' | translate }}" formControlName="deliveryAddress">
-                      <mat-option *ngFor="let address of addressForm?.addresses"   [value]="setAddressId(address?.addressId)">
+                    <mat-select placeholder="{{ 'ADDRESS.DELIVERY' | translate }}" formControlName="deliveryAddress">
+                      <mat-option *ngFor="let address of addressForm?.addresses" [value]="setAddressId(address?.addressId)">
                         {{address.streetName}}, {{address.cityName}}, {{address.plzNumber}}
                       </mat-option>
                     </mat-select>
                   </mat-form-field>
                   <mat-form-field>
-                    <mat-select placeholder="{{ 'ADDRESS.INVOICE' | translate }}"formControlName="invoiceAddress">
+                    <mat-select placeholder="{{ 'ADDRESS.INVOICE' | translate }}" formControlName="invoiceAddress">
                       <mat-option *ngFor="let address of addressForm?.addresses" [value]="address?.addressId">
                         {{address.streetName}}, {{address.cityName}}, {{address.plzNumber}}
                       </mat-option>
                     </mat-select>
                   </mat-form-field>
                   <mat-form-field>
-                      <input matInput [matDatepicker]="dp"  placeholder="Delivery date" [formControl]="deliveryDate">
-                      <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
-                      <mat-datepicker #dp></mat-datepicker>
-                    </mat-form-field>
+                    <input matInput [matDatepicker]="dp" placeholder="Delivery date" [formControl]="deliveryDate">
+                    <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+                    <mat-datepicker #dp></mat-datepicker>
+                  </mat-form-field>
                 </form>
               </div>
               <div fxFlex="50">
@@ -85,15 +86,15 @@
               <br>
               <div fxLayout="row" fxLayoutAlign="start center">
                 <button class="m-t-1 m-r-1" matStepperPrevious mat-button mat-raised-button color="accent">
-                 <span translate="BUTTON.PREVIOUS"></span>
+                  <span translate="BUTTON.PREVIOUS"></span>
                 </button>
               </div>
               <br>
             </div>
-            <div fxLayout="row" class="full-width"fxLayoutAlign="center center">
+            <div fxLayout="row" class="full-width" fxLayoutAlign="center center">
               <br><br>
-              <button *ngIf="customer?.clientId && addressForms.valid" mat-button
-                mat-raised-button class="submit-order-button m-1" color="accent" (click)="saveOrder(services?.orders)">
+              <button *ngIf="customer?.clientId && addressForms.valid" mat-button mat-raised-button class="submit-order-button m-1"
+                color="accent" (click)="saveOrder(services?.orders)">
                 <span translate="BUTTON.SUBMIT"></span>
               </button>
             </div>

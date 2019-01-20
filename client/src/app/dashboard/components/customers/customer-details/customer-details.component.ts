@@ -1,12 +1,10 @@
-import {Component, OnInit, OnChanges, Input, EventEmitter, Output} from '@angular/core';
-import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
-import {Observable, BehaviorSubject} from 'rxjs';
+import { Component, OnInit, OnChanges, Input, EventEmitter, Output } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { Observable } from 'rxjs';
 import { Client } from '@avs-ecosystem/models/Client';
 import * as _ from 'lodash';
-import {startWith, map} from 'rxjs/operators';
 import { ClientService } from '@avs-ecosystem/services/client.service';
 import { AddressService } from '@avs-ecosystem/services/address.service';
-import { DashboardNewOrderComponent } from '../../orders/new-order/new-order.component';
 import { AppSettingsService } from '@avs-ecosystem/services/app-settings.service';
 import { NotificationService } from '@avs-ecosystem/services/notification-sevice';
 

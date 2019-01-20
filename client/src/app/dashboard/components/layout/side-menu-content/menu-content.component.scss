@@ -1,14 +1,16 @@
-.side-menu-content{
-  .mat-expansion-panel-header{
+.side-menu-content {
+  .mat-expansion-panel-header {
     padding: 0 24px 0 0;
-    .selected-indicator{
+
+    .selected-indicator {
       width: 4px;
       padding-top: 16px;
       height: 36px;
       margin-right: 16px;
     }
   }
-  .selected-item{
+
+  .selected-item {
     background: whitesmoke;
   }
 }

@@ -8,18 +8,19 @@ export class LineConfig {
   _seed: any;
 
   constructor(type = 'line', title) {
-    this.COLORS = [
-      '#ff1744',
-      '#f50057',
-      '#d500f9',
-      '#7c4dff',
-      '#536dfe',
-      '#448aff',
-      '#40c4ff',
-      '#18ffff',
-      '#64ffda',
-      '#69f0ae',
-      '#b2ff59'
+    this.COLORS = [ 
+      '#ea5569',
+      '#58b666',
+      '#00d3ec',
+      '#ff7835',
+      '#5a3076',
+      '#e6323c',
+      '#af35c0',
+      '#ff9f34',
+      '#ac457b',
+      '#4eaa5a',
+      '#2f73b7'
+      
     ];
     this.colors = this.COLORS;
     this._seed = Date.now();

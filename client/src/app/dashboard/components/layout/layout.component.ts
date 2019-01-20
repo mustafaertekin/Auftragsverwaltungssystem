@@ -16,7 +16,7 @@ export class DashboardMainLayoutComponent implements OnInit {
   constructor(private translate: TranslateService,
     private userService: UserService,
     private route: ActivatedRoute,
-    private settingService:  AppSettingsService,
+    private settingService: AppSettingsService,
     private statisticService: StatisticsService) {
 
   }
