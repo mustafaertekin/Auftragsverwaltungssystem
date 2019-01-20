@@ -64,7 +64,7 @@
     "SELECT": "Modell auswählen",
     "STEP": "Wählen Sie ein Modell oder erstellen Sie ein neues",
     "ADD": "Modell hinzufügen",
-    "NAME": "Modellname"  
+    "NAME": "Modellname"
   },
   "SETTING": {
     "TITLE": "Einstellungen",
@@ -130,12 +130,12 @@
   },
   "COMMENTS":{
     "TITLE": "Bemerkungen",
-    "ADD":"Bemerkungen hinzufügen"
+    "SAVE":"SPEICHERN"
   },
   "SEARCH":{
     "TITLE": "SUCHEN ..."
   },
-  "MONTHS": 
+  "MONTHS":
   {
     "JANUARY": "January",
     "FEBRUARY": "February",
