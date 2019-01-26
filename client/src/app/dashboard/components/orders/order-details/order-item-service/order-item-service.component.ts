@@ -55,9 +55,11 @@ export class DashboardOrderItemServiceComponent implements OnInit, OnChanges {
       this.getModelsByDeviceId(this.service.device);
       this.getAllServicesByModelId(this.service.deviceModel);
     }
+    this.setForm();
   }
 
   setForm() {
+    console.log('orderId', this.orderId);
     if (this.service) {
       this.serviceForm = this.fb.group({
         device: [this.service.device.deviceId, [Validators.required]],
